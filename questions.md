@@ -1,11 +1,46 @@
 # Flutter Interview Questions and Answers
 
-1. What is `Flutter`?
+1. What is `Flutter` and Explain Flutter Inspector. Write features,Advantages and limitations?
 
    `Flutter` is a free, open-source software development kit (SDK) for building cross-platform
    mobile
    applications. It was created by Google and released in May 2017
 
+   In the same manner, as with Native Android, the XML file allows us to view our app's blueprint
+   and properties. There is a powerful tool called Flutter Inspector for Flutter applications that
+   allows you to visualize the blueprint of your widgets and their properties. Using it, you can
+   diagnose various layout issues and understand the current layout.
+   Flutter Inspector offers the following benefits:
+    - Select widget mode
+    - Toggle platform
+    - Show paint baselines
+    - Show debug paint
+    - Refresh widget
+    - Enable slow animations
+    - Show/hide performance overlay
+
+   **Advantages**:
+    - Reduce Code Development
+    - Cross-platform Development
+    - Live and Hot Reloading
+    - Similar to Native App performance
+    - Good Community Support
+    - Little/Minimal Code
+    - Expressive and Flexible UI
+
+   **Features:**
+    - Flexibility, scalability, and integration
+    - Hot Reload
+    - One-Stop Solution
+    - Native Performance and Internationalized Flutter Libraries
+    - Huge Widget Library
+
+   **limitations:**
+    - Third-party libraries are limited
+    - Release size is larger
+    - Requirements of Dart
+    - Limited complexity
+    - Lack of overall support
 
 2. What is `Dart`?
 
@@ -15,10 +50,20 @@
    Flutter apps. The Dart language can be compiled both AOT (Ahead-of-Time) and JIT (Just-in-Time).
 
 
-3. What is role of sdk in the flutter?
+3. What is role of `sdk` in the flutter and it's features?
     - The Flutter SDK provides tools, libraries, and resources to create user interfaces for Android
       and iOS. It uses a single codebase to help developers build high-performance, scalable
       applications.
+    - **Features:**
+        - Dart SDK
+        - Contains a rendering engine, widgets, APIs for testing and integration, etc.
+        - Compilation tools for Native Machine Code (code for iOS and Android).
+        - React-style modern framework
+        - Provide Interop and plugin APIs to connect with system and 3rd-party SDKs.
+        - A headless test runner that runs tests on Windows, Linux, and Mac.
+        - Use the Dart DevTools to test, debug, and profile your app. Use
+        - Flutter and Dart command-line tools to develop, build, test and compile your apps across
+          platforms.
 
 4. Why `Flutter` uses `Dart` as Programming Language?
 
@@ -179,21 +224,24 @@
 
 12. What is `setState()` ?
 
-setState() is a method that changes the state of a widget. It's the main way to update a widget's
-state and trigger a rebuild of the widget tree.
+    - setState() is a method that changes the state of a widget. It's the main way to update a
+      widget's state and trigger a rebuild of the widget tree.
 
 13. What is the use of `pubspec.yaml` and `pubspec.lock` file in Flutter?
 
-The `pubspec.yaml` file allows you to define the packages your app relies on,Project name,
-Project description, Project version, Project dependencies, SDK constraints, Flutter-specific
-configurations and declare your assets
-like font, images, audio, video, etc.
-For Android developers, this is roughly similar to a `build.gradle` file.
+    - The pubspec.yaml file, also known as 'pubspec', is a file that is included when you create a
+      Flutter project and is located at the top of the project tree. This file contains information
+      about the dependencies like packages and their versions, fonts, assets(Like: images, audio,
+      etc.) etc., that a project requires.
+      It makes sure that the next time you build the project, you will get the same package version.
+      For **Android developers,** this is roughly similar to a **`build.gradle`** file.
 
-The `pubspec.lock` file in Flutter contains specific versions of the packages included in a
-project. It's automatically generated when you build your project for the first time.
-The .lock file locks the specific versions of dependencies, ensuring that everyone working on the
-project uses the exact same versions.
+    - The **`pubspec.lock`** file in Flutter contains specific versions of the packages included in
+      a
+      project. It's automatically generated when you build your project for the first time.
+      The .lock file locks the specific versions of dependencies, ensuring that everyone working on
+      the
+      project uses the exact same versions.
 
 14. What is the difference between `main()` and `runApp()` functions in Flutter?
 
@@ -204,12 +252,12 @@ project uses the exact same versions.
       root widget on the screen.
     - The `main()` function should call `runApp()` to start the Flutter application.
 
-Here are some more details about the main() and runApp() functions:
+    Here are some more details about the main() and runApp() functions:
 
-- `main()`: This function came from Java-like languages. Without it, you can't write any
-  programs on Flutter.
-- `runApp()`: This function returns the widgets that are attached to the screen as a root of the
-  widget tree. It inflates the given widget and attaches it to the screen.
+    - `main()`: This function came from Java-like languages. Without it, you can't write any
+      programs on Flutter.
+    - `runApp()`: This function returns the widgets that are attached to the screen as a root of the
+      widget tree. It inflates the given widget and attaches it to the screen.
 
 15. What's the difference between a method and a function?
 
@@ -305,12 +353,12 @@ Here are some more details about the main() and runApp() functions:
 
     - stream is a way to receive data over time. It can be used to implement a variety of features,
       such as real-time data updates, progress bars, and loading spinners.
+    - A stream is a sequence of asynchronous data events.
 
     - `Single-subscription streams:` These streams can only be listened to by a single subscriber.
       Once a subscriber has listened to the stream, no other subscriber can listen to it.
     - `Broadcast streams:` These streams can be listened to by multiple subscribers. When a
-      broadcast
-      stream emits an event, all of its subscribers are notified.
+      broadcast stream emits an event, all of its subscribers are notified.
 
 22. what is the list?
 
@@ -554,6 +602,14 @@ Here are some more details about the main() and runApp() functions:
     Hot reload maintains the app state while updating the UI almost instantaneously whereas Hot
     restart resets the app state to its initial conditions before updating the UI.
 
+    **Hot reload:**
+    - Hot reload doesn’t rerun main() or initState(), it loads code changes into the virtual machine
+      and rebuilds the widget tree, thus preserving the app state.
+
+    **Hot restart:**
+    - Hot restart doesn’t preserve the app state. It loads code changes into the VM and restarts the
+      Flutter app.
+
 
 46. What is an App State?
 
@@ -668,8 +724,10 @@ Here are some more details about the main() and runApp() functions:
 
 54. What is `BuildContext` and how is it useful?
 
-    - BuildContext is actually the widget's element in the Element tree — so every widget has its
-      own BuildContext.
+    - BuildContexts are used to identify or locate widgets in widget trees. Each widget has its own
+      BuildContext, i.e., one BuildContext per widget. Basically, we're using it to find references
+      to other widgets and themes. In addition, you can utilize it to interact with widget parents
+      and access widget data.
     - You usually use BuildContext to get a reference to the theme or to another widget. For
       example, if
     - you want to show a material dialog, you need a reference to the scaffold. You can get it with
@@ -839,6 +897,7 @@ Here are some more details about the main() and runApp() functions:
     `StreamBuilder`: Opt for StreamBuilder when you need to display data that changes over time.
     This includes scenarios like live chat conversations, real-time sensor readings, or dynamic data
     updates.
+
 66. What is chanel socket?
 
     - A channel socket in Flutter is a communication channel between two Flutter applications or
@@ -1048,9 +1107,9 @@ Here are some more details about the main() and runApp() functions:
 
     There are three main kinds of tests:
     - unit tests, widget tests and integration tests.
-    - `Unit tests` are all about checking the validity of your business logic.
-    - `Widget tests` are for making sure UI widgets have the components that you expect them to.
-    - `Integration tests` check that your app is working as a whole.
+    - **`Unit tests`** are all about checking the validity of your business logic.
+    - **`Widget tests`** are for making sure UI widgets have the components that you expect them to.
+    - **`Integration tests`** check that your app is working as a whole.
 
 
 82. What is the difference between debug mode, profile mode and release mode?
@@ -1137,3 +1196,21 @@ Here are some more details about the main() and runApp() functions:
     - Aspect Ratio Widget
     - Fractionally Sized Box Widgets
     - Custom MutiChild Layout Class.
+
+91. What do you understand about tween animation?
+
+    - The shortened version of in-between animation is tween animation. The start and endpoints of
+      an animation must be specified in tween animation. Using this method, the animation can begin
+      at the beginning and can progress through a series of values until it reaches the endpoint.
+      Transition speed and duration are also determined by using the tween animation. Calculating
+      the transition from the beginning to the end will be easier with the widget framework.
+    - Ex: The Tween class specifies a range of values for opacity, typically from 0.0 (completely
+      transparent) to 1.0 (fully opaque).
+
+92. Write the difference between SizedBox Vs Container.
+    - **`Container`**: In this parent widget, multiple child widgets can be easily controlled and
+      handled by adjusting their size, padding, and color efficiently. We can wrap a widget in a
+      container widget if it needs any styling, like a color, a shape, or a size constraint, etc.
+    - **`SizedBox`**: This is a specific size box. It does not allow us to set the widget's color or
+      decoration, unlike Container. In this case, we only need to resize the widget that is passed
+      as a child. In other words, it forces its child widget to have a specific size.
