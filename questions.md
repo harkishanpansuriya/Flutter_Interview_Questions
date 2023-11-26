@@ -361,7 +361,7 @@ Here are some more details about the main() and runApp() functions:
       Shape class is an abstract class, which means that any class that extends the Shape class must
       implement the draw() method.
 
-30. `extends` versus `implements` versus `with`/
+30. `extends` versus `implements` versus `with`.
 
     - **1. `extends`:**
         - **Usage:**
