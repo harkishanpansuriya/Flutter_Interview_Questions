@@ -1238,4 +1238,3 @@
     - Configure your app
     - Submit your app for review
     - Publish your app
-94. 
