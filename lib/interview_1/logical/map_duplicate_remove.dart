@@ -18,8 +18,10 @@ void main() {
     },
   ];
 
-  userListMap.removeWhere(
-      (user) => userListMap.where((u) => u['name'] == user['name']).length > 1);
+  // userListMap.removeWhere(
+  //     (user) => userListMap.where((u) => u['name'] == user['name']).length > 1);
+
+  userListMap.removeWhere((user) => userListMap.where((element) => element['name'] == user['name']).length > 1);
 
   print(userListMap);
 }

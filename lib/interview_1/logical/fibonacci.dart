@@ -12,5 +12,8 @@ int fibonacci(int n) {
   }
 
   // The nth number in the sequence is the sum of the (n - 1)th and (n - 2)th numbers
-  return fibonacci(n - 1) + fibonacci(n - 2);
+  int result = fibonacci(n - 1) + fibonacci(n - 2);
+  print('Fibonacci($n): $result');
+
+  return result;
 }
