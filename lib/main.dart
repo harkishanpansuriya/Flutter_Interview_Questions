@@ -8,7 +8,6 @@ import 'package:flutter_bg/interview_1/mvc/login_post_api_call_mvc.dart';
 import 'package:flutter_bg/interview_1/mvvm/login_post_call_mvvm.dart';
 import 'package:flutter_bg/interview_1/mvc/counter_app.dart';
 import 'package:flutter_bg/src/oops/ui/oops_screen.dart';
-import 'package:flutter_bg/src/solid/ui/solid_screen.dart';
 import 'package:flutter_bg/useful_links/useful_links.dart';
 
 void main() {
