@@ -246,23 +246,23 @@
 11. Dart – Standard `Input` `Output`.
     - Taking a string input from user (`INPUT`):
 
-    ```void main()
+    ``void main()
     {
     print("Enter your name?");
     // Reading name of the Harkishan
     String? name = stdin.readLineSync(); 
-    }```
+    }``
 
-    - OUTPUT: 
+    - OUTPUT: Harkishan
 
-    ```void main()
+    ``void main()
     {
     // Printing in first way
     print("Welcome to GeeksforGeeks! // printing from print statement");
     
         // Printing in second way
         stdout.write("Welcome to GeeksforGeeks! // printing from stdout.write()");
-    }```
+    }``
 
 12. Queues in Dart.
     - Dart also provides the user to manipulate a collection of data in the form of a queue. A queue
