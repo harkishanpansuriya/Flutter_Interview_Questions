@@ -340,12 +340,12 @@
       tell the compiler that you want to treat an object of one type as if it were of a different
       type.
     - Explicit cast: Convert an object of one type to another using the as keyword.
-    - For Example:
-      ```void main() {
-          Object x = 12;
-          int y = x as int; // explicit cast from Object to int
-          print(y.runtimeType); // prints: int
-      }```
+      - For Example:
+        ```void main() {
+            Object x = 12;
+            int y = x as int; // explicit cast from Object to int
+            print(y.runtimeType); // prints: int
+        }```
     - Implicit cast: Dart's type system automatically converts one type to another if it's safe. For
       instance, an integer can be implicitly cast to a double.
         - Here's an example:
