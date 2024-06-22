@@ -246,23 +246,23 @@
 11. Dart – Standard `Input` `Output`.
     - Taking a string input from user (`INPUT`):
 
-    ``void main()
+    ```void main()
     {
     print("Enter your name?");
     // Reading name of the Harkishan
     String? name = stdin.readLineSync(); 
-    }``
+    }```
 
     - OUTPUT: Harkishan
 
-    ``void main()
+    ```void main()
     {
     // Printing in first way
     print("Welcome to GeeksforGeeks! // printing from print statement");
     
         // Printing in second way
         stdout.write("Welcome to GeeksforGeeks! // printing from stdout.write()");
-    }``
+    }```
 
 12. Queues in Dart.
     - Dart also provides the user to manipulate a collection of data in the form of a queue. A queue
@@ -341,7 +341,7 @@
       type.
     - Explicit cast: Convert an object of one type to another using the as keyword.
     - For Example:
-        - ```void main() {
+      ```void main() {
           Object x = 12;
           int y = x as int; // explicit cast from Object to int
           print(y.runtimeType); // prints: int
@@ -349,8 +349,11 @@
     - Implicit cast: Dart's type system automatically converts one type to another if it's safe. For
       instance, an integer can be implicitly cast to a double.
         - Here's an example:
-            - ```void main() {
-          int integer = 10; double doubleValue = integer.toDouble(); print(doubleValue); }```
+          ```void main() {
+          int integer = 10; 
+          double doubleValue = integer.toDouble(); 
+          print(doubleValue); 
+          }```
 
     > In Dart, implicit casting is performed using methods like `toString`, `toInt`, `toDouble`, `int.parse`, and `double.parse`,
     > while explicit casting is done with the `as` keyword, particularly for type assertions with objects.
