@@ -780,6 +780,7 @@
     - a constructor is a special method that is used to initialize objects when they are created.
     - It is called when an object is instantiated, and it sets the initial state of the object by assigning values to its properties.
     - https://dart.dev/language/constructors#generative-constructors 
+    - https://codingwithtashi.medium.com/dart-interview-questions-and-answers-866d5c6a5141
     - ///todo <- takes info from that and write here
 
 33. what is fromJson and toJson?
