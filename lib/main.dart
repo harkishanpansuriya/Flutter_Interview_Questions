@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bg/colors/colors.dart';
-import 'package:flutter_bg/constant/app_constant.dart';
 import 'package:flutter_bg/dart_deep_dive/ui/dart_deep_dive_screen_main.dart';
 import 'package:flutter_bg/extension.dart';
-import 'package:flutter_bg/interview_1/mvvm/userdata_get_api_call.dart';
-import 'package:flutter_bg/interview_1/mvc/login_post_api_call_mvc.dart';
-import 'package:flutter_bg/interview_1/mvvm/login_post_call_mvvm.dart';
 import 'package:flutter_bg/interview_1/mvc/counter_app.dart';
+import 'package:flutter_bg/solid_principles/ui/solid_screen.dart';
 import 'package:flutter_bg/src/oops/ui/oops_screen.dart';
 import 'package:flutter_bg/useful_links/useful_links.dart';
 
@@ -131,3 +128,5 @@ class DashboardCard extends StatelessWidget {
     );
   }
 }
+
+

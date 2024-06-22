@@ -54,8 +54,8 @@
             - Providing public getter and setter methods to access and update the value of private
               property.
             - Getter and setter methods are used to access and update the value of private property.
-              Getter methods are used to access the value of private property. Setter methods are
-              used to update the value of private property.
+              Getter methods are used to access the value of privatasserte property. Setter methods
+              are used to update the value of private property.
 
 # 🚀 Flutter Interview Questions and Answers 💡
 
@@ -215,7 +215,11 @@
     - `Flutter engine`: Handles the display and formatting of text.
     - `Built-in service`: Used for the management of plugins, packages, and event loops.
 
-8. Difference between GraphQl vs Rest. with pros and cons in short
+8. Explain an `interface` in dart with an example?
+    - Unlike other languages dart does not have any interface keyword, You can implement it with an
+      abstract keyword.
+
+9. Difference between GraphQl vs Rest. with pros and cons in short
 
    `GraphQL:-`
 
@@ -234,12 +238,134 @@
       `Data formats`: REST can present data in XML and YAML formats.
       `Drawbacks`: REST relies on rigid endpoints and data structures.
 
-9. What is an extension?
+10. What is an extension?
     - A way to extend the functionality of existing libraries without modifying their source code.
     - Extensions in Dart allow you to develop custom functionalities on any library or data
       structure.
 
-10. What is Mixin?.
+11. Dart – Standard `Input` `Output`.
+    - Taking a string input from user (`INPUT`):
+
+    ```void main()
+    {
+    print("Enter your name?");
+    // Reading name of the Harkishan
+    String? name = stdin.readLineSync(); 
+    }```
+
+    - OUTPUT: 
+
+    ```void main()
+    {
+    // Printing in first way
+    print("Welcome to GeeksforGeeks! // printing from print statement");
+    
+        // Printing in second way
+        stdout.write("Welcome to GeeksforGeeks! // printing from stdout.write()");
+    }```
+
+12. Queues in Dart.
+    - Dart also provides the user to manipulate a collection of data in the form of a queue. A queue
+      is a FIFO (First In First Out) data structure where the element that is added first will be
+      deleted first. It takes the data from one end and removes it from the other end.
+    - Queues are useful when you want to build a first-in, first-out collection of data. It is the
+      special case of list implementation of data in Dart.
+    - For Example:
+
+        ```void main()
+        {
+        // Creating a Queue
+        Queue<String> geek = new Queue<String>();
+        
+        // Printing default
+        // value of queue
+        print(geek);
+        
+        // Adding a element
+        // and displaying it
+        geek.add("Geeks");
+        print(geek);
+        
+        // Adding multiple
+        // element and displaying it
+        List<String> geek_data = ["For","Geeks"];
+        geek.addAll(geek_data);
+        print(geek);
+        
+        // Deleting all the
+        // data from queue
+        geek.clear();
+        print(geek);
+        
+        // Checking if the
+        // queue is empty or not
+        print(geek.isEmpty);
+        
+        // Adding first element
+        geek.addFirst("Geeks");
+        print(geek);
+        
+        //Adding Last element
+        geek.addLast("For");
+        geek.addLast("Geeks");
+        print(geek);
+        
+        // Checking length of the queue
+        print(geek.length);
+        
+        // Removing First
+        // Element from queue
+        geek.removeFirst();
+        print(geek);
+        
+        // Removing Last
+        // element from queue
+        geek.removeLast();
+        print(geek);
+        
+        // Displaying all the
+        // elements of the queue
+        geek.forEach(print);
+        }```
+
+13. `Enum` in dart.
+    - Enum are a special kind of class used to represent a fixed number of constant values. info
+      Note. All enums automatically extend the Enum class. They are also sealed, meaning they cannot
+      be subclassed, implemented, mixed in, or otherwise explicitly instantiated.
+    - Enums are used to give names to constants, which makes the code easier to read and maintain.
+
+
+14. Casting in dart.
+    - **Definition**: Convert an object of one data type into another Or Casting in Dart is used to
+      tell the compiler that you want to treat an object of one type as if it were of a different
+      type.
+    - Explicit cast: Convert an object of one type to another using the as keyword.
+    - For Example:
+        - ```void main() {
+          Object x = 12;
+          int y = x as int; // explicit cast from Object to int
+          print(y.runtimeType); // prints: int
+      }```
+    - Implicit cast: Dart's type system automatically converts one type to another if it's safe. For
+      instance, an integer can be implicitly cast to a double.
+        - Here's an example:
+            - ```void main() {
+          int integer = 10; double doubleValue = integer.toDouble(); print(doubleValue); }```
+
+    > In Dart, implicit casting is performed using methods like `toString`, `toInt`, `toDouble`, `int.parse`, and `double.parse`,
+    > while explicit casting is done with the `as` keyword, particularly for type assertions with objects.
+
+15. Implicit interface in dart.
+    - 
+
+16. What is assert in dart?
+17. Final vs const.
+    - Final: A final variable can only be set once and it is initialized when accessed.
+    - Const: A constant variable is a compile-time constant and its value must be known before the
+      program runs.
+
+
+12. What is Mixin?.
     - Mixins are a way of reusing the code in multiple classes. Mixins are declared using the
       keyword `mixin`.
 
