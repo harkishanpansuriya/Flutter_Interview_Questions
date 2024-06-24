@@ -588,8 +588,7 @@
      }
      ```
 
-22. routes and ongenerateroute flutter.
-    - 
+22. 
 23. Push vs pushnamed methods.
     - `push` requires a Route object, while `pushNamed` requires a String argument (the name of the
       route).
