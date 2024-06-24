@@ -146,35 +146,37 @@
     - Application Programming Interface.
 
 4. Diff between the Package and plugin in Flutter?
+    - A `plugin` is a special kind of package that involves native `Kotlin`/`Java`(for Android)
+      or `swift`/`Objective-C`(for iOS) code.
+    - A package contains only dart code.
 
-   **Package in Flutter:**
-    - It's like a gift box with reusable code. A package is a collection of Dart files containing
-      code that can be easily shared and reused across different Flutter projects.
+   You need a plugin when you need to communicate with native OS.
 
-   **Plugin in Flutter:**
-    - Think of it as a power-up module for your Flutter app. A plugin is a specialized package that
-      connects your Flutter app to platform-specific features or external services, like accessing
-      the camera, GPS, or file system.
+   Some examples of packages and plugins are as follow:
 
-   **When to use a package:**
-    - You need to add new features and functionality to your Flutter app.
-    - You want to make your code more modular and organized.
-    - You want to reuse code across multiple Flutter apps.
+   Package:
 
-   **When to use a plugin:**
+    - `http`: A package that provides an easy-to-use API for making HTTP requests from a Flutter
+      app.
 
-    - You need to interact with the underlying platform.
-    - You want to use a native platform API or service in your Flutter app.
-    - You want to access a device's hardware or sensors.
+    - `shared_preferences`: A package that provides a simple way to store and retrieve key-value
+      pairs in persistent storage.
 
-   **Examples:**
-    - If you want to add a state management library to your Flutter app, you would use a package
-      like Provider or BLoC.
-    - If you want to use the camera in your Flutter app, you would use the camera plugin.
-    - If you want to access the device's file system in your Flutter app, you would use the file
-      system plugin.
+    - `intl`: A package that provides internationalization and localization support for Flutter
+      apps.
 
-5. Dart is known for its "Ahead of Time" (AOT) and "Just in Time" (JIT) compilation. Can you explain
+   Plugin:
+
+    - `camera`: A plugin that provides access to the device's camera and allows taking pictures and
+      recording videos.
+    - `firebase_messaging`: A plugin that allows Flutter apps to receive and handle push
+      notifications using Firebase Cloud Messaging.
+    - `google_maps_flutter`: A plugin that provides a Flutter widget for displaying interactive maps
+      using the Google Maps API.
+
+   From the examples it should be clear why plugin require native code.
+
+6. Dart is known for its "Ahead of Time" (AOT) and "Just in Time" (JIT) compilation. Can you explain
    the differences between these two compilation modes and when each is typically used in Dart
    development?
 
@@ -202,26 +204,26 @@
     - JIT is easier to debug due to runtime state access.
     - AOT code is smaller because it excludes the JIT compiler.
 
-6. What are the `Flutter widgets`?
+7. What are the `Flutter widgets`?
 
    In Flutter, a widget is a basic unit of the user interface (UI). Widgets are reusable pieces of
    code that describe how a part of the UI should be displayed. They can be combined and nested to
    create a dynamic UI.
 
-7. Can you tell us the four main elements of Flutter? and Explain the flutter architecture.
+8. Can you tell us the four main elements of Flutter? and Explain the flutter architecture.
     - Flutter engine, Widgets, Design-specific widgets, Foundation Library
     - `Upper layers`: The Dart-based platform that takes care of app widgets, gestures, animations,
       illustrations, and materials;
     - `Flutter engine`: Handles the display and formatting of text.
     - `Built-in service`: Used for the management of plugins, packages, and event loops.
 
-8. Explain an `interface` in dart with an example?
+9. Explain an `interface` in dart with an example?
     - Unlike other languages dart does not have any interface keyword, You can implement it with an
       abstract keyword.
 
-9. Difference between GraphQl vs Rest. with pros and cons in short
+10. Difference between GraphQl vs Rest. with pros and cons in short
 
-   `GraphQL:-`
+    `GraphQL:-`
 
     - GraphQL is an API query language as well as a runtime for answering those queries with
       existing data.
@@ -230,7 +232,7 @@
     - The most exciting part of GraphQL is its ability to provide you with all the data in one
       endpoint.
 
-   `RESTful:-`
+    `RESTful:-`
 
     - `Data control`: REST APIs are more limited in data control because each request needs to be
       tailored for the specific data being requested.
@@ -238,12 +240,11 @@
       `Data formats`: REST can present data in XML and YAML formats.
       `Drawbacks`: REST relies on rigid endpoints and data structures.
 
-10. What is an extension?
-    - A way to extend the functionality of existing libraries without modifying their source code.
-    - Extensions in Dart allow you to develop custom functionalities on any library or data
-      structure.
+11. What is an extension?
+    - to add new methods to existing classes or interfaces without changing their original
+      implementation.
 
-11. Dart – Standard `Input` `Output`.
+12. Dart – Standard `Input` `Output`.
     - Input: In Dart programming language, you can take standard input from the user through the
       console via the use of .readLineSync() function. To take input from the console you need to
       import a library, named dart:io from libraries of Dart.
@@ -282,7 +283,140 @@
       initialized before it is used. If the variable is not initialized before it is used, a
       LateInitializationError will be thrown at runtime.
 
-14. What `is` and `as` keywords in dart?
+14. What is generic in dart?
+    - In Dart, generics are a way to create reusable functions, classes, and types that can work
+      with multiple data types, while still providing type safety.
+    - We can achieve using T operator.
+
+    ```dart
+        class Dropdown<T> {
+          final List<T> items;
+          
+          Dropdown(this.items);
+        }
+     ```
+
+    - Using the generic class:
+
+    ```dart
+        // Create a dropdown with a list of strings
+        Dropdown<String> stringDropdown = Dropdown(['Apple', 'Banana', 'Cherry']);
+        
+        // Create a dropdown with a list of integers
+        Dropdown<int> intDropdown = Dropdown([1, 2, 3, 4, 5]);
+     ```
+
+    > By using generics, we've created a reusable Dropdown class that can work with different types of lists,
+    > while still providing type safety. This means that we can't accidentally add a string to an intDropdown or vice versa.
+
+
+15. What is `Expanded` and `Flexible` in Dart?
+    - `Expanded`: A widget that expands a child of a Row, Column, or Flex so that the child fills
+      the available space. Using an Expanded widget makes a child of a Row, Column, or Flex expand
+      to fill the available space along the main axis (e.g., horizontally for a Row or vertically
+      for a Column).
+    - `Flexible`: Using a Flexible widget gives a child of a Row, Column, or Flex the flexibility to
+      expand to fill the available space in the main axis (e.g., horizontally for a Row or
+      vertically for a Column), but, unlike Expanded, Flexible does not require the child to fill
+      the available space.
+    > Expanded is similar to Flexible with its fit property set to FlexFit.tight by default.
+
+16. Flex widget in dart.
+    - Flex is a widget that displays its children in a one-dimensional array, either horizontally or
+      vertically. It's similar to a Row or Column widget.
+    ```dart
+         Flex(
+           direction: Axis.horizontal, // or Axis.vertical
+           children: [
+           Container(
+            width: 100,
+            height: 100,
+            color: Colors.red,
+           ),
+           Container(
+             width: 200,
+             height: 100,
+             color: Colors.green,
+           ),
+           Container(
+            width: 50,
+            height: 100,
+            color: Colors.blue,
+           ),
+           ],
+       )
+     ```
+
+17. didChangedependencies vs didupdatewidget
+    - didChangeDependencies():
+        - `didChangeDependencies()` is called when a dependency of the State object changes, such as
+          when an InheritedWidget that the widget depends on changes.
+        - `didChangeDependencies()` is called immediately after initState() and whenever a
+          dependency changes.
+        - `didChangeDependencies()` is useful for performing expensive operations (e.g., network
+          fetches) when dependencies change, as the framework will only call this method when
+          necessary.
+    - didUpdateWidget():
+        - `didUpdateWidget()` is called whenever the widget configuration changes, such as when the
+          parent widget passes new data to the child widget.
+        - `didUpdateWidget()` is called whenever the widget's configuration changes, typically when
+          the parent widget passes new data to the child.
+        - `didUpdateWidget()` is useful for updating the widget's UI in response to changes in the
+          widget's configuration, such as updating the UI when the parent widget passes new data.
+
+
+17. What does mean context.mounted = false?
+    - When context.mounted is false, it means that the widget is no longer part of the widget tree
+      and has been disposed or removed.
+
+18. What is `as` and `is` in Dart?
+    - `as` keyword: The as keyword is used for type casting, which means it converts an object of
+      one type to another type.
+        ```dart
+            var obj = 'Hello';
+            String str = obj as String;
+      ```
+      > In this example, obj is of type Object, but we cast it to String using the as keyword.
+    - `is` keyword: The is keyword is used for type checking, which means it checks if an object is
+      of a specific type and will return bool.
+        ```dart
+            var obj = 'Hello';
+            if (obj is String) {
+              print('obj is a String');
+            }
+       ```
+      > In this example, the is keyword checks if obj is of type String. If it is, the code inside the if statement will be executed.
+
+
+19. Why we use state management why not SetState?
+    - Using `setState`: Let's say you have a StatefulWidget with 10 widgets, and you want to update
+      the text of one of them. If you use `setState`, the entire widget tree will be rebuilt, which
+      can be slow and inefficient.
+    - Using State management: By using a state management solution like `Provider`, `Riverpod`,
+      or `Bloc`, you can decouple your widgets from the state of your app and only rebuild the
+      widgets that need to be updated.
+
+
+17. Var and Dynamic.
+    - dynamic: can change TYPE of the variable, & can change VALUE of the variable later in code.
+    - var: can't change TYPE of the variable, but can change the VALUE of the variable later in
+      code.
+
+18. What is the difference in calling Future and Future.microtask in Flutter?
+    - All microtasks are executed before any other Futures/Timers.
+    - This means that you will want to schedule a microtask when you want to complete a small
+      computation asynchronously as soon as possible.
+    ```dart
+    void main() {
+        Future(() => print('future 1'));
+        Future(() => print('future 2'));
+        // Microtasks will be executed before futures.
+        Future.microtask(() => print('microtask 1'));
+        Future.microtask(() => print('microtask 2'));
+    }
+    ```
+
+19. What `is` and `as` keywords in dart?
     - In Dart, the is and as keywords are used for type checking and casting.
     - *The as keyword* : The as keyword is used to cast an object to a specific type. It returns the
       object if it is of the specified type, or null if it is not.
@@ -308,7 +442,7 @@
       }
       ```
 
-15. `Queues` in Dart.
+20. `Queues` in Dart.
     - Dart also provides the user to manipulate a collection of data in the form of a queue. A queue
       is a FIFO (First In First Out) data structure where the element that is added first will be
       deleted first. It takes the data from one end and removes it from the other end.
@@ -374,7 +508,93 @@
         }
       ```
 
-16. `Enum` in dart.
+21. route vs routeGenerator.
+
+    `routes` is static and doesn't offer functionalities like passing an argument to the widget,
+    implementing a different `PageRoute` etc, which is why `onGenerateRoute` exists.
+
+    In the given code, you'll find that how using `onGenerateRoute` property, you can parse an
+    argument and send it over, which isn't possible with simple `routes`.
+
+    `FooPage` is navigated through `routes` and `BarPage` through `onGenerateRoute`.
+     
+    ---
+
+    Initial setup in `MaterialApp`.
+
+     ```dart
+     void main() {
+       runApp(
+         MaterialApp(
+           routes: {
+             '/': (_) => HomePage(), // You can also use MaterialApp's `home` property instead of '/'
+             '/foo': (_) => FooPage(), // No way to pass an argument to FooPage.
+           },
+           onGenerateRoute: (settings) {
+             if (settings.name == '/bar') {
+               final value = settings.arguments as int; // Retrieve the value.
+               return MaterialPageRoute(builder: (_) => BarPage(value)); // Pass it to BarPage.
+             }
+             return null; // Let `onUnknownRoute` handle this behavior.
+           },
+         ),
+       );
+     }
+     ```
+
+     ```dart
+     class HomePage extends StatelessWidget {
+       @override
+       Widget build(BuildContext context) {
+         return Scaffold(
+           appBar: AppBar(title: Text('HomePage')),
+           body: Center(
+             child: Column(
+               children: [
+                 ElevatedButton(
+                   onPressed: () => Navigator.pushNamed(context, '/foo'),
+                   child: Text('Go to FooPage'),
+                 ),
+                 ElevatedButton(
+                   onPressed: () => Navigator.pushNamed(context, '/bar', arguments: 42), // Passing argument
+                   child: Text('Go to BarPage'),
+                 ),
+               ],
+             ),
+           ),
+         );
+       }
+     }
+     ```
+
+    `foo.dart`
+
+     ```dart
+     class FooPage extends StatelessWidget {
+       @override
+       Widget build(_) => Scaffold(appBar: AppBar(title: Text('FooPage')));
+     }
+     ```
+
+    And `bar.dart`:
+
+     ```dart
+     class BarPage extends StatelessWidget {
+       final int value;
+       BarPage(this.value);
+     
+       @override
+       Widget build(_) => Scaffold(appBar: AppBar(title: Text('BarPage, value = $value')));
+     }
+     ```
+
+22. routes and ongenerateroute flutter.
+    - 
+23. Push vs pushnamed methods.
+    - `push` requires a Route object, while `pushNamed` requires a String argument (the name of the
+      route).
+
+24. `Enum` in dart.
     - Enum are a special kind of class used to represent a fixed number of constant values. info
       Note. All enums automatically extend the Enum class. They are also sealed, meaning they cannot
       be subclassed, implemented, mixed in, or otherwise explicitly instantiated.
@@ -470,12 +690,71 @@
       program runs.
 
 
-12. What is Mixin?.
+12. What is Mixin and how to use?.
     - Mixins are a way of reusing the code in multiple classes. Mixins are declared using the
       keyword `mixin`.
+    - Mixins are a way to reuse code in multiple classes.
+        - Usage:
+            - Using `on` keyword:
+                - Use the `on` clause to declare a superclass.
+                - The `on` clause exists to define the type that super calls are resolved against.
+                  So, you should only use it if you need to have a super call inside a mixin.
+              > The `on` clause forces any class that uses a mixin to also be a subclass of the type in the on clause. If the mixin depends on members in the superclass, this ensures those members are available where the mixin is used:
+
+            ```dart
+
+             class Musician {
+                musicianMethod() {
+                print('Playing music!');
+                }
+             }
+             
+             mixin MusicalPerformer on Musician {
+                perfomerMethod() {
+                print('Performing music!');
+                super.musicianMethod();
+                }
+             }
+             
+             class SingerDancer extends Musician with MusicalPerformer { }
+             
+             main() {
+                SingerDance().performerMethod();
+             }
+             
+           ```             
+
+            - Using `with` keyword:
+                - The with keyword is used to specify one or more mixins that a class will use. A
+                  mixin is a way of defining code that can be reused in multiple class hierarchies.
+                  When a class uses a mixin, it inherits all the members of the mixin.
+                - Code example:
+              ```dart
+                 mixin Musician {
+                   void playInstrument(String instrumentName);
+                         
+                   void playPiano() {
+                   playInstrument('Piano');
+                   }
+                         
+                   void playFlute() {
+                   playInstrument('Flute');
+                   }
+                 }
+                         
+                 class Virtuoso with Musician {
+                   void playInstrument(String instrumentName) {
+                   print('Plays the $instrumentName beautifully');
+                   }
+                 }
+            ```
 
 
-11. What is the difference between `Stateful` widget and `Stateless` widget and it's lifeCycle
+13. spacer in dart.
+    - Spacer is a widget in Flutter that takes up available space in a `Row`, `Column` or `flex`
+      layout.
+
+14. What is the difference between `Stateful` widget and `Stateless` widget and it's lifeCycle
     methods?
 
     - Stateless widgets cannot change their state during the runtime of the app,
@@ -523,12 +802,14 @@
             - Called after the state object is completely removed or when the screen is popped. Used
               for cleanup operations.
 
-12. What is `setState()` ?
+15. What is `setState()` ?
 
-    - setState() is a method that changes the state of a widget. It's the main way to update a
-      widget's state and trigger a rebuild of the widget tree.
+    - In Dart, `setState` is a method used in Flutter to update the state of a widget. It is a part
+      of the StatefulWidget class.
+    - When you call `setState`, it triggers a rebuild of the widget tree, which means that the
+      framework will re-run the `build` method of the widget and its children.
 
-13. What is the use of `pubspec.yaml` and `pubspec.lock` file in Flutter?
+16. What is the use of `pubspec.yaml` and `pubspec.lock` file in Flutter?
 
     - The pubspec.yaml file, also known as 'pubspec', is a file that is included when you create a
       Flutter project and is located at the top of the project tree. This file contains information
@@ -542,7 +823,7 @@
       .lock file locks the specific versions of dependencies, ensuring that everyone working on the
       project uses the exact same versions.
 
-14. What is the difference between `main()` and `runApp()` functions in Flutter?
+17. What is the difference between `main()` and `runApp()` functions in Flutter?
 
     - the `main()` function is the entry point of a Dart program. It sets up the app and is
       responsible for starting the program.
@@ -558,7 +839,7 @@
     - `runApp()`: This function returns the widgets that are attached to the screen as a root of the
       widget tree. It inflates the given widget and attaches it to the screen.
 
-15. What's the difference between a method and a function?
+18. What's the difference between a method and a function?
 
     - A method is on an object or is static in class. It is associated with a class. Methods are
       called using the dot notation (e.g. object.method()). Methods can be used to modify the state
@@ -567,7 +848,7 @@
       a class. Functions are called using their name (e.g. function()). Functions cannot modify the
       state of an object.
 
-16. Types of Keys in Flutter.
+19. Types of Keys in Flutter.
 
     - `ValueKey`: A key based on a specific value, such as a string or an integer. Useful when the
       value uniquely identifies the widget.
@@ -598,13 +879,13 @@
     Accessing Specific Widgets: Global keys can be used to access or control specific widgets from
     anywhere in the app.
 
-17. What is future.wait?
+20. What is future.wait?
 
     - the Future.wait() method allows you to wait for multiple Future objects to complete. It takes
       a list of Future objects as an argument and returns a new Future that completes when all the
       input Future objects complete
 
-18. What is the Flutter Hot Reload feature, and how does it benefit developers during app
+21. What is the Flutter Hot Reload feature, and how does it benefit developers during app
     development?
 
     - Flutter's hot reload feature enables developers to see the changes they make to the code
@@ -616,7 +897,7 @@
       fields and functions, the Flutter framework automatically rebuilds the widget tree, allowing
       you to quickly view the effects of your changes.
 
-19. Describe the structure of a Flutter app, including the main components like MaterialApp,
+22. Describe the structure of a Flutter app, including the main components like MaterialApp,
     Scaffold, and Widgets.
 
     1. **`MaterialApp`:**
@@ -633,7 +914,7 @@
         - These are your app's building blocks, like furniture and decorations. They can be buttons,
           text, images, or anything you need to create your UI.
 
-20. Difference between Set and List.
+23. Difference between Set and List.
 
     `Set:`
     - Elements must be unique.
@@ -646,7 +927,7 @@
     // Set Set<int> mySet = {1, 2, 3, 4, 5, 5}; // The duplicate element 5 will be removed. // List
     List<int> myList = [1, 2, 3, 4, 5, 5]; // The duplicate element 5 will remain.
 
-21. what is the stream in Dart? Types of streams and diff between types?
+24. what is the stream in Dart? Types of streams and diff between types?
 
     - stream is a way to receive data over time. It can be used to implement a variety of features,
       such as real-time data updates, progress bars, and loading spinners.
@@ -657,39 +938,39 @@
     - `Broadcast streams:` These streams can be listened to by multiple subscribers. When a
       broadcast stream emits an event, all of its subscribers are notified.
 
-22. what is the list?
+25. what is the list?
 
     - List is used to representing a collection of objects.
 
-23. what is hasMap?
+26. what is hasMap?
 
     - A HashMap is an implementation of a map based on a hashtable. A map is a collection of
       key-value pairs. Each value is associated with a key. A HashMap is an unordered collection of
       key-value pairs. The keys of a HashMap must have Object.
 
-24. what is set?
+27. what is set?
 
     - Sets in Dart is a special case in List where all the inputs are unique i.e it doesn't contain
       any repeated input.
 
-25. what is iterable?
+28. what is iterable?
 
     - An Iterable is a collection of elements that can be accessed sequentially. In Dart, an
       Iterable is an abstract class, meaning that you can't instantiate it directly. However, you
       can create a new Iterable by creating a new List or Set .
 
-26. what is instance?
+29. what is instance?
 
     - Dart is an object-oriented language with classes and mixin-based inheritance. Every object is
       an instance of a class
 
-27. what is internal?
+30. what is internal?
 
     - The _`internal` construction is just a name often given to constructors that are private to
       the class (the name is not required to be ._internal you can create a private constructor
       using any Class._someName construction).
 
-28. What is extend?
+31. What is extend?
 
     - the `extends` keyword is used to change the behavior of a class using inheritance. Inheritance
       is the ability of a class to derive properties and characteristics from another class.
@@ -697,14 +978,14 @@
         - Car extending vehicle: The class car could extend the class vehicle.
         - Class B extending class A: Class B inherits all properties and methods from class A.
 
-29. What is implement?
+32. What is implement?
 
     - A class can use the `implements` keyword to implement an abstract class. An abstract class is
       a class that defines a set of methods that must be implemented by subclasses. For example, the
       Shape class is an abstract class, which means that any class that extends the Shape class must
       implement the draw() method.
 
-30. `extends` versus `implements` versus `with`.
+33. `extends` versus `implements` versus `with`.
 
     - **1. `extends`:**
         - **Usage:**
@@ -771,19 +1052,20 @@
     - Use `with` when you want to incorporate the functionality of multiple classes into a single
       class without establishing inheritance, promoting code reusability and flexibility.
 
-31. main() is static or dynamic?
+34. main() is static or dynamic?
 
     - the `main()` function is static. It is the entry point of your application and is where the
       execution of your program begins.
-    
-32. What is a constructor? Name types of constructor in dart?
+
+35. What is a constructor? Name types of constructor in dart?
     - a constructor is a special method that is used to initialize objects when they are created.
-    - It is called when an object is instantiated, and it sets the initial state of the object by assigning values to its properties.
-    - https://dart.dev/language/constructors#generative-constructors 
+    - It is called when an object is instantiated, and it sets the initial state of the object by
+      assigning values to its properties.
+    - https://dart.dev/language/constructors#generative-constructors
     - https://codingwithtashi.medium.com/dart-interview-questions-and-answers-866d5c6a5141
     - ///todo <- takes info from that and write here
 
-33. what is fromJson and toJson?
+36. what is fromJson and toJson?
 
     **`fromJson` in Dart:**
     - It's a method used to convert JSON (text) into Dart objects. It's like telling Dart how to
@@ -793,13 +1075,13 @@
     - It's a method used to convert Dart objects into JSON (text). It's like saying, "Hey Dart, take
       this object and turn it into something we can send over the internet or save to a file."
 
-34. what is a factory?
+37. what is a factory?
 
     - It's a constructor you use when creating a new object every time isn't necessary or is
       expensive. It's like a smart way to decide whether to make a new object or reuse an existing
       one.
 
-35. what is override and overLoading in dart?
+38. what is override and overLoading in dart?
 
     **Override in Dart:**
     - It's when you use the same method name in a child class as in its parent class, but with a
@@ -810,17 +1092,17 @@
       like having a method that can do slightly different things depending on what you give it.
     - Dart does not support function overloading.
 
-36. what is super in dart?
+39. what is super in dart?
 
     - It's like a shortcut to access the features or methods of the parent class from within the
       child class. It helps you refer to the superclass and use its functionalities.
 
-37. what is typeDef in dart?
+40. what is typeDef in dart?
 
     - It's like giving a nickname to a function type, making it easier to reuse and understand. It's
       a way of defining custom types for functions.
 
-38. what is Anonymous Functions?
+41. what is Anonymous Functions?
 
     - An anonymous function in Dart is like a named function but they do not have names associated
       with it. An anonymous function can have zero or more parameters with optional type
@@ -843,14 +1125,14 @@
     In this example, `addNumbers` is an anonymous function that adds two numbers. It's defined and
     used right where it's needed.
 
-39. Can we send data from the get request to the server?
+42. Can we send data from the get request to the server?
 
     - Generally, in a GET request, data is sent as part of the URL parameters.
     - send data through get request limit is 2048 characters.
     - Example:
       GET `/api/resource?param1=value1&param2=value2`
 
-40. types of api methods
+43. types of api methods
 
     - `GET` /api/users to retrieve data of all users.
     - `POST` /api/users to create a new user.
@@ -859,25 +1141,25 @@
     - `DELETE` /api/users/:id to delete the user with the specified ID.
     - OPTIONS /api/users to retrieve the supported HTTP methods for the /api/users endpoint.
 
-41. Constant Constructor in Dart:
+44. Constant Constructor in Dart:
 
     - a constant constructor creates a constant object. A constant object is an object whose value
       cannot be changed.
     - To declare a constant constructor, use the keyword const. For
       example, `const BlueSquare(size: 50)`
 
-42. what is sealed class?
+45. what is sealed class?
 
     - Sealed classes are used to restrict the users from inheriting the class. A class can be sealed
       by using the sealed keyword. The keyword tells the compiler that the class is sealed, and
       therefore, cannot be extended. No class can be derived from a sealed class.
 
-43. what is the immutable and mutable class?
+46. what is the immutable and mutable class?
 
     - An immutable object is an object whose state cannot be changed after it is created. A mutable
       object can be changed after it is created.
 
-44. What’s the difference between `hot reload` and `hot restart`?
+47. What’s the difference between `hot reload` and `hot restart`?
 
     Hot reload maintains the app state while updating the UI almost instantaneously whereas Hot
     restart resets the app state to its initial conditions before updating the UI.
@@ -890,13 +1172,13 @@
     - Hot restart doesn’t preserve the app state. It loads code changes into the VM and restarts the
       Flutter app.
 
-45. Which widget allows us to refresh the screen?
+48. Which widget allows us to refresh the screen?
 
     - RefreshIndicator Widget enables us to refresh the screen. When the user pulls down on the
       widget, the onRefresh callback is triggered, which typically involves fetching new data from a
       server or updating the UI in some way.
 
-46. What are the different build modes in Flutter?
+49. What are the different build modes in Flutter?
 
     The Flutter tooling supports three modes when compiling your app, and a headless mode for
     testing. You choose a compilation mode depending on where you are in the development cycle. The
@@ -912,7 +1194,7 @@
     production deployment.It is used for deploying the app on marketplaces. “Flutter run - -
     release”
 
-47. What is the difference between `NetworkImage` and `Image.network` in flutter?
+50. What is the difference between `NetworkImage` and `Image.network` in flutter?
 
     - `NetworkImage` class creates an object the provides an image from the src URL passed to it. It
       is not a widget and does not output an image to the screen.
@@ -921,42 +1203,18 @@
       constructor on the Image class (a stateful widget). It sets the image property using the
       NetworkImage . This image property is used finally to display the image.
 
-48. What is use of `Navigation.push` and `Navigation.pop` function?
+51. What is use of `Navigation.push` and `Navigation.pop` function?
 
     The `push` method is used to add a route to the stack of routes managed by the navigator.
     The `pop` method is used to remove the current route from the stack of routes managed by the
     navigator.
 
-49. When do you use double.INFINITY?
+52. When do you use double.INFINITY?
 
     `double.INFINITY` is used to by the child widget to occupy the remaining height of the parent
     widget.
 
-50. What is the difference between Expanded and Flexible widgets?
-
-    `Expanded` is just a shorthand for `Flexible`
-
-    Using expanded this way:
-    ```dart
-    Expanded(
-        child: Foo(),
-    );
-    ```
-    is strictly equivalent to:
-    ```dart
-    Flexible(
-        fit: FlexFit.tight,
-        child: Foo(),
-    );
-    ```
-
-    You may want to use `Flexible` over `Expanded` when you want a different `fit`, useful in some
-    responsive layouts.
-
-    The difference between `FlexFit.tight` and `FlexFit.loose` is that loose will allow its child to
-    have a maximum size while tight forces that child to fill all the available space.
-
-51. What is Fat Arrow Notation in Dart and when do you use it?
+53. What is Fat Arrow Notation in Dart and when do you use it?
 
     The fat arrow syntax is simply a short hand for returning an expression and is similar
     to `(){ return expression; }`.
@@ -979,7 +1237,7 @@
     void function2(int a) => print('arg was ${a == 3 ? '' : 'not '}3');
     ```
 
-52. What is ***ScopedModel/BLoC Pattern?***
+54. What is ***ScopedModel/BLoC Pattern?***
 
     `ScopedModel` and `BLoC (Business Logic Components)` are common Flutter app architecture
     patterns to help separate business logic from UI code and using fewer Stateful Widgets.
@@ -994,7 +1252,7 @@
       should be represented as stream of events: widgets submit events; other widgets will respond.
       BLoC sits in the middle, managing the conversation.
 
-53. What is `BuildContext` and how is it useful?
+55. What is `BuildContext` and how is it useful?
 
     - BuildContexts are used to identify or locate widgets in widget trees. Each widget has its own
       BuildContext, i.e., one BuildContext per widget. Basically, we're using it to find references
@@ -1006,7 +1264,7 @@
     - Scaffold.of(context), where context is the build context. of() searches up the tree until it
       finds the nearest scaffold.
 
-54. What is the difference between `WidgetsApp` and `MaterialApp`?
+56. What is the difference between `WidgetsApp` and `MaterialApp`?
 
     - `WidgetsApp` provides basic navigation. Together with the `widgets` library, it includes many
       of the foundational widgets that Flutter uses.
@@ -1018,7 +1276,7 @@
       to make iOS users feel at home, or you can even build your own set of custom widgets to fit
       your brand.
 
-55. Can you nest a `Scaffold`? Why or why not?
+57. Can you nest a `Scaffold`? Why or why not?
 
     - Yes, you can absolutely nest a `Scaffold`. That’s the beauty of Flutter. You control the
       entire UI.
@@ -1026,14 +1284,36 @@
           a `Scaffold`,
         - you can layer drawers, snack bars and bottom sheets.
 
-56. What is the purpose of `SafeArea` in Flutter?
+58. What is the purpose of `SafeArea` in Flutter?
 
     `SafeArea` is an important and useful widget in Flutter which makes UI dynamic and adaptive to a
     wide variety of devices. While designing the layout of widgets, we consider different types of
     devices and their pre-occupied constraints of screen like status bar, notches, navigation bar,
     etc.
 
-57. How does Flutter handle platform-specific code and integrate with native features in iOS and
+59. Method channel vs Event Channel. These channels are used to communicate between native code (
+    plugins or native code inside of your project) and the Flutter framework.
+
+    ### MethodChannel
+
+    A **`MethodChannel`** is used for "[communicating with platform plugins using *asynchronous
+    method calls*](https://docs.flutter.io/flutter/services/MethodChannel-class.html)". This means
+    that you use this channel
+    to [invoke methods](https://docs.flutter.io/flutter/services/MethodChannel/invokeMethod.html) on
+    the native side and can return back a value and vise versa.  
+    You can e.g. call a method that retrieves the device name this way.
+
+    ### EventChannel
+
+    An [**`EventChannel`**](https://docs.flutter.io/flutter/services/EventChannel-class.html) is
+    used to *stream* data. This results
+    in [having a `Stream`](https://docs.flutter.io/flutter/services/EventChannel/receiveBroadcastStream.html)
+    on the *Dart* side of things and being able to feed that stream from the native side.  
+    This is useful if you want to send data every time a particular *event* occurs, e.g. when the
+    wifi connection of a device changes.
+
+
+60. How does Flutter handle platform-specific code and integrate with native features in iOS and
     Android?
 
     Flutter handles platform-specific code and integrates with native features through the following
@@ -1072,14 +1352,14 @@
       method channels. It allows seamless integration with native features on iOS and Android,
       enabling developers to build cross-platform apps with a native look and feel.
 
-58. How to call native methods in flutter web?
+61. How to call native methods in flutter web?
 
     - Native methods cannot be called directly in Flutter web
     - Flutter web does not support platform channels
     - Use JavaScript interop to communicate with web APIs
     - Consider using conditional imports to switch between web and native implementations
 
-59. How do you `talk to native code` from within a Flutter app?
+62. How do you `talk to native code` from within a Flutter app?
 
     - One type of platform channel is a method channel. Data is serialized on the Dart side and then
       sent to the native side. You can write native code to interact with the platform before
@@ -1088,7 +1368,7 @@
     - The second type of platform channel is the event channel, which you use to send a stream of
       data from the native platform back to Flutter. This is useful for monitoring sensor data.
 
-60. What is the use of having `Android and iOS folders` in the Flutter project?
+63. What is the use of having `Android and iOS folders` in the Flutter project?
 
     - `Android`:  This folder is meant for holding an entire Android project. This will come into
       usage when you want to build a Flutter application for the Android platform. When you compile
@@ -1101,7 +1381,7 @@
       Android iOS project and gives you a native Android application. Building a Flutter application
       will only be possible when you work on Xcode IDE and macOS.
 
-61. Explain `async`, `await`, `then`, `whenComplete` and `Future` in Dart?
+64. Explain `async`, `await`, `then`, `whenComplete` and `Future` in Dart?
 
     - `Async` means that this function is asynchronous and you might need to wait a bit to get its
       result.
@@ -1114,7 +1394,7 @@
     - `.whenComplete` will fire a function either when the Future completes with an error or not,
       instead.
 
-62. What is future builder in flutter?
+65. What is future builder in flutter?
 
     - FutureBuilder in Flutter is a widget that helps you to display data from an asynchronous
       operation. It allows you to specify a widget to be displayed while the operation is in
@@ -1125,7 +1405,7 @@
     - `Done`: The Future has completed successfully and its value is available.
     - `Error`: The Future has completed with an error.
 
-63. what is the stream builder flutter
+66. what is the stream builder flutter
 
     - StreamBuilder is a widget in Flutter that helps you build UIs that respond to asynchronous
       operations. It takes a Future or a Stream as an argument and builds a widget based on the
@@ -1138,7 +1418,7 @@
     - To display a list of messages as they are received from a server.
     - To display the progress of a long-running operation, such as uploading a file.
 
-64. difference between Futurebuilder and streambuilder.
+67. difference between Futurebuilder and streambuilder.
 
     **FutureBuilder:**
 
@@ -1165,7 +1445,7 @@
     This includes scenarios like live chat conversations, real-time sensor readings, or dynamic data
     updates.
 
-65. What is chanel socket?
+68. What is chanel socket?
 
     - A channel socket in Flutter is a communication channel between two Flutter applications or
       between a Flutter application and a native platform. It can be used to send and receive data
@@ -1183,13 +1463,13 @@
        such as Android or iOS. For example, you could use channel sockets to access the device's
        camera or microphone.
 
-66. What is a method channel?
+69. What is a method channel?
 
     - A method channel in Flutter is a way for Dart code to communicate with native code on Android
       and iOS. This allows Flutter developers to access platform-specific features, such as device
       sensors, GPS, and camera, without having to write native code.
 
-67. How does MVVM structure work?
+70. How does MVVM structure work?
 
     MVVM, or Model-View-ViewModel, is a software design pattern that separates the application's
     business logic from its presentation layer. This makes the application easier to maintain and
@@ -1214,7 +1494,7 @@
     - Diagram:
       `[View] <---> [ViewModel] <---> [Model]`
 
-68. How does MVC structure work?
+71. How does MVC structure work?
 
     MVC, or Model-View-Controller, is another software design pattern that separates the
     application's business logic from its presentation layer. It is similar to the MVVM pattern, but
@@ -1234,7 +1514,7 @@
     - Diagram:
       `[View] <---> [Controller] <---> [Model]`
 
-69. What is the Bloc and why we should use it as state management tool
+72. What is the Bloc and why we should use it as state management tool
 
     - BLoC, or Business Logic Component, is a state management pattern for Flutter apps. It
       separates the app's business logic from its presentation layer, making it easier to test and
@@ -1246,7 +1526,7 @@
       the user interacts with the UI, it will dispatch events to the BLoC. The BLoC will then update
       its state and emit a new event.
 
-70. How many threads are used by flutter
+73. How many threads are used by flutter
 
     - Flutter uses a single thread for the main UI and multiple threads for background tasks. The
       main UI thread is responsible for rendering the widget tree and handling user input. The
@@ -1257,13 +1537,17 @@
     - Flutter also uses isolates to isolate background tasks from the main UI thread. This helps to
       improve performance and prevent the app from crashing if a background task fails.
 
-71. Yield and yield*
+74. What's the difference between async and async* in Dart?
+    - async gives you a Future
+    - async* gives you a Stream.
+
+75. Yield and yield*
     - the `yield` keyword returns a single value from a generator function. It also pauses the
       function's execution until the next value is requested.
 
     - `yield*` provides multiple values from another Iterable or Stream.
 
-72. Yield and return
+76. Yield and return
     - the `yield` keyword is used to return a value from a generator function and pause the
       function's execution until the next value is requested.
         - Ex: It's akin to a storyteller concluding a tale, offering the resolution or final
@@ -1272,7 +1556,7 @@
         - Ex: Picture a teacher distributing one question at a time during an exam, allowing
           students to respond gradually. Each question "yields" an answer.
 
-73. In Dart, what are the main differences between a var, final, and const variable declaration, and
+77. In Dart, what are the main differences between a var, final, and const variable declaration, and
     when would you choose to use each of them in your code?
 
     **var:**
@@ -1299,7 +1583,7 @@
     - **final:** Use for variables whose value is fixed and should not be reassigned.
     - **const:** Use for constant values that are known at compile time and never change.
 
-74. What is a "callback function," and how does it relate to asynchronous programming in Dart?
+78. What is a "callback function," and how does it relate to asynchronous programming in Dart?
 
     - It's like telling Dart, "When you're done with this task, here's a function to call." In
       asynchronous programming, it helps handle tasks that take time, like fetching data or reading
@@ -1309,7 +1593,7 @@
     it's called back when a specific task is complete, making it crucial in asynchronous operations
     in Dart.
 
-75. Explain the concept of "dependency injection" and how it can be implemented in Dart
+79. Explain the concept of "dependency injection" and how it can be implemented in Dart
     applications.
 
     **Dependency Injection in Dart:**
@@ -1320,7 +1604,7 @@
     In Dart, you can implement dependency injection by either manually passing dependencies as
     parameters or using packages like `get_it` or built-in tools like `Provider` for Flutter.
 
-76. Dart provides a rich standard library. Name and briefly explain the purpose of three built-in
+80. Dart provides a rich standard library. Name and briefly explain the purpose of three built-in
     libraries in Dart.
 
     1. **`dart:core`:**
@@ -1338,7 +1622,7 @@
           programming, including futures, streams, and timers. It's crucial for handling tasks that
           take time without blocking the program's flow.
 
-77. How does Dart handle memory management and garbage collection? Is manual memory management
+81. How does Dart handle memory management and garbage collection? Is manual memory management
     required in Dart?
 
     - Dart uses automatic memory management and has a garbage collector. You don't need to manually
@@ -1346,7 +1630,7 @@
       memory that is no longer in use, making memory management more convenient and less
       error-prone.
 
-78. what is firebase? And How You use it in your App?
+82. what is firebase? And How You use it in your App?
 
     - Google Firebase is a set of cloud-based development tools that helps mobile app developers
       build, deploy and scale their apps.
@@ -1361,13 +1645,13 @@
     - Cloud Storage: Store and serve user-generated content like images and videos.
     - Hosting: Deploy web apps and serve them through Firebase Hosting.
 
-79. What is `profile mode` and when do you use it?
+83. What is `profile mode` and when do you use it?
 
     - In profile mode, some debugging ability is maintained—enough to profile your app’s
       performance. Profile mode is disabled on the emulator and simulator, because their behavior is
       not representative of real performance.
 
-80. What types of `tests` can you perform?
+84. What types of `tests` can you perform?
 
     There are three main kinds of tests:
     - unit tests, widget tests and integration tests.
@@ -1375,23 +1659,23 @@
     - **`Widget tests`** are for making sure UI widgets have the components that you expect them to.
     - **`Integration tests`** check that your app is working as a whole.
 
-81. What is the difference between debug mode, profile mode and release mode?
+85. What is the difference between debug mode, profile mode and release mode?
 
     * Use debug mode during development, when you want to use hot reload. This mode is for debugging
       apps on a device or a simulator.
     * Use profile mode when you want to analyze performance.
     * Use release mode when you are ready to release your app.
 
-82. Deploy Flutter app on playstore
+86. Deploy Flutter app on playstore
     - [https://medium.com/@bernes.dev/deploying-flutter-apps-to-the-playstore-1bd0cce0d15c](https://medium.com/@bernes.dev/deploying-flutter-apps-to-the-playstore-1bd0cce0d15c)
-83. Deploy Flutter app on Appstore
+87. Deploy Flutter app on Appstore
     - [https://www.instabug.com/blog/how-to-release-your-flutter-app-for-ios-and-android](https://www.instabug.com/blog/how-to-release-your-flutter-app-for-ios-and-android)
-84. From your application to AWS how you can call the API securely?
+88. From your application to AWS how you can call the API securely?
     - Use AWS Signature Version 4 (SigV4): SigV4 is a signing algorithm that ensures that your API
       calls are authentic and authorized. When you make an API call, you must sign the request using
       your AWS access key ID and secret access key.
 
-85. What is ipv4?
+89. What is ipv4?
     - IPv4, or Internet Protocol version 4, is the fourth version of the Internet Protocol. It is
       the most widely used version of the protocol today.
 
@@ -1399,7 +1683,7 @@
       IPv4 address is typically written in dotted decimal format, where each octet is represented by
       a number between 0 and 255. For example, 192.168.1.1 is a valid IPv4 address.
 
-86. what is MQTT? How it works?
+90. what is MQTT? How it works?
 
     - MQTT is a way for devices to talk to each other over low-bandwidth networks.
 
@@ -1413,7 +1697,7 @@
       subscribe to topics. When a publisher sends a message to a topic, all subscribers to that
       topic will receive the message.
 
-87. What is Sqflite? pros and cons in comparison to another database like Hive.
+91. What is Sqflite? pros and cons in comparison to another database like Hive.
 
     - Sqflite is a relational database management system (RDBMS) that is lightweight, easy to use,
       and supports a wide range of SQL features. Hive is a NoSQL database that is lightweight, fast,
@@ -1424,7 +1708,7 @@
     - `Sqflite` is a good choice for complex applications that require a wide range of SQL features.
     - `Hive` is a good choice for simple applications that need a lightweight and fast database.
 
-88. Explain the role of state management in Flutter, and discuss some popular state management
+92. Explain the role of state management in Flutter, and discuss some popular state management
     approaches or libraries.
 
     **Role of State Management in Flutter:**
@@ -1448,7 +1732,7 @@
         - It's like a Swiss Army knife for state management. It provides a simple and powerful way
           to manage state, routes, dependencies, and more.
 
-89. How can you use Flutter to create responsive and adaptive user interfaces for different screen
+93. How can you use Flutter to create responsive and adaptive user interfaces for different screen
     sizes and orientations?
 
     - Media Query. Media Query can be used to get the real-time size (width/height) and
@@ -1460,7 +1744,7 @@
     - Fractionally Sized Box Widgets
     - Custom MutiChild Layout Class.
 
-90. What do you understand about tween animation?
+94. What do you understand about tween animation?
 
     - The shortened version of in-between animation is tween animation. The start and endpoints of
       an animation must be specified in tween animation. Using this method, the animation can begin
@@ -1470,7 +1754,7 @@
     - Ex: The Tween class specifies a range of values for opacity, typically from 0.0 (completely
       transparent) to 1.0 (fully opaque).
 
-91. Write the difference between SizedBox Vs Container.
+95. Write the difference between SizedBox Vs Container.
     - **`Container`**: In this parent widget, multiple child widgets can be easily controlled and
       handled by adjusting their size, padding, and color efficiently. We can wrap a widget in a
       container widget if it needs any styling, like a color, a shape, or a size constraint, etc.
@@ -1478,18 +1762,18 @@
       decoration, unlike Container. In this case, we only need to resize the widget that is passed
       as a child. In other words, it forces its child widget to have a specific size.
 
-92. Can you tell us what you know about Rune In Dart?
+96. Can you tell us what you know about Rune In Dart?
 
     - A rune can be defined as an integer used to represent any Unicode code point. As a Dart string
       is a simple sequence of UTF-16 code units, 32-bit Unicode values in a string are represented
       using a special syntax. The String class in the dart:core library gives ways to access runes.
 
-93. Why do we use a ticker in Flutter?
+97. Why do we use a ticker in Flutter?
 
     - a ticker is a class that updates the user interface (UI) at a fixed interval. Tickers are used
       to create smooth animations and transitions, and to ensure that the UI has a "fluid motion".
 
-94. Explain how you will deploy a Flutter app to the Google Play/App Store?
+98. Explain how you will deploy a Flutter app to the Google Play/App Store?
 
     **Deploying to Google Play Store:**
 
@@ -1507,7 +1791,7 @@
     - Submit your app for review
     - Publish your app
 
-95. What's new in flutter 3.16?
+99. What's new in flutter 3.16?
 
     **Performance Enhancements**
 
