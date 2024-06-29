@@ -1,3 +1,7 @@
+Crashalytics vs Analytics
+MQTT vs web socket in deep why ios not use websocket
+https://www.ambitionbox.com/profiles/flutter-developer/interview-questions
+
 # 🎨 Object-Oriented Programming (OOPS) Concepts 🚀
 
 1. Classes and Object:
@@ -12,7 +16,9 @@
       another class.
     - In Simple, one class can inherit another class. i.e dart can create a new class from an
       existing class. We make use of extend keyword to do so.
-        - Example: class child_class extends parent_class{ }.
+        - ```dart 
+          class child_class extends parent_class{ }
+          ```
 
    *Types of Inheritance:*
 
@@ -20,6 +26,9 @@
       at a time.
     - Multiple Inheritance: Dart doesn't support multiple inheritance, which means a class cannot
       extend more than one class.
+        - ```dart 
+          class child_class extends parent_class,second_class { }
+          ```
     - Multilevel Inheritance: a class can inherit from another class and that class can also inherit
       from another class.
         - Example is as below:
@@ -109,8 +118,7 @@
    frontend user interfaces for the web and mobile apps. It is an important language for creating
    Flutter apps. The Dart language can be compiled both AOT (Ahead-of-Time) and JIT (Just-in-Time).
 
-
-1. What is role of `sdk` in the flutter and it's features?
+3. What is role of `sdk` in the flutter and it's features?
     - The Flutter SDK provides tools, libraries, and resources to create user interfaces for Android
       and iOS. It uses a single codebase to help developers build high-performance, scalable
       applications.
@@ -125,7 +133,7 @@
         - Flutter and Dart command-line tools to develop, build, test and compile your apps across
           platforms.
 
-2. Why `Flutter` uses `Dart` as Programming Language and Why does it generally take a long time to
+4. Why `Flutter` uses `Dart` as Programming Language and Why does it generally take a long time to
    develop a Flutter app??
 
     - Flutter uses Dart as its programming language because Dart is declarative and programmatic,
@@ -141,11 +149,11 @@
       takes substantially longer the first time. This method, which normally takes a long time, uses
       Xcode and Gradle to build a file.
 
-3. Tell the full form of API.
+5. Tell the full form of API.
 
     - Application Programming Interface.
 
-4. Diff between the Package and plugin in Flutter?
+6. Diff between the Package and plugin in Flutter?
     - A `plugin` is a special kind of package that involves native `Kotlin`/`Java`(for Android)
       or `swift`/`Objective-C`(for iOS) code.
     - A package contains only dart code.
@@ -176,7 +184,7 @@
 
    From the examples it should be clear why plugin require native code.
 
-6. Dart is known for its "Ahead of Time" (AOT) and "Just in Time" (JIT) compilation. Can you explain
+7. Dart is known for its "Ahead of Time" (AOT) and "Just in Time" (JIT) compilation. Can you explain
    the differences between these two compilation modes and when each is typically used in Dart
    development?
 
@@ -204,47 +212,47 @@
     - JIT is easier to debug due to runtime state access.
     - AOT code is smaller because it excludes the JIT compiler.
 
-7. What are the `Flutter widgets`?
+8. What are the `Flutter widgets`?
 
    In Flutter, a widget is a basic unit of the user interface (UI). Widgets are reusable pieces of
    code that describe how a part of the UI should be displayed. They can be combined and nested to
    create a dynamic UI.
 
-8. Can you tell us the four main elements of Flutter? and Explain the flutter architecture.
+9. Can you tell us the four main elements of Flutter? and Explain the flutter architecture.
     - Flutter engine, Widgets, Design-specific widgets, Foundation Library
     - `Upper layers`: The Dart-based platform that takes care of app widgets, gestures, animations,
       illustrations, and materials;
     - `Flutter engine`: Handles the display and formatting of text.
     - `Built-in service`: Used for the management of plugins, packages, and event loops.
 
-9. Explain an `interface` in dart with an example?
-    - Unlike other languages dart does not have any interface keyword, You can implement it with an
-      abstract keyword.
+10. Explain an `interface` in dart with an example?
+     - Unlike other languages dart does not have any interface keyword, You can implement it with an
+       abstract keyword.
 
-10. Difference between GraphQl vs Rest. with pros and cons in short
+11. Difference between GraphQl vs Rest. with pros and cons in short
 
     `GraphQL:-`
 
-    - GraphQL is an API query language as well as a runtime for answering those queries with
-      existing data.
-    - GraphQL’s central feature is its ability to request and receive only the specific data
-      requested — nothing more. This makes it much simpler to scale your APIs along with your app.
-    - The most exciting part of GraphQL is its ability to provide you with all the data in one
-      endpoint.
+     - GraphQL is an API query language as well as a runtime for answering those queries with
+       existing data.
+     - GraphQL’s central feature is its ability to request and receive only the specific data
+       requested — nothing more. This makes it much simpler to scale your APIs along with your app.
+     - The most exciting part of GraphQL is its ability to provide you with all the data in one
+       endpoint.
 
     `RESTful:-`
 
-    - `Data control`: REST APIs are more limited in data control because each request needs to be
-      tailored for the specific data being requested.
-      `Communication`: REST uses a set of endpoints that respond to specific HTTP requests.
-      `Data formats`: REST can present data in XML and YAML formats.
-      `Drawbacks`: REST relies on rigid endpoints and data structures.
+     - `Data control`: REST APIs are more limited in data control because each request needs to be
+       tailored for the specific data being requested.
+       `Communication`: REST uses a set of endpoints that respond to specific HTTP requests.
+       `Data formats`: REST can present data in XML and YAML formats.
+       `Drawbacks`: REST relies on rigid endpoints and data structures.
 
-11. What is an extension?
+12. What is an extension?
     - to add new methods to existing classes or interfaces without changing their original
       implementation.
 
-12. Dart – Standard `Input` `Output`.
+13. Dart – Standard `Input` `Output`.
     - Input: In Dart programming language, you can take standard input from the user through the
       console via the use of .readLineSync() function. To take input from the console you need to
       import a library, named dart:io from libraries of Dart.
@@ -275,15 +283,14 @@
     }
     ```
 
-
-13. What is the `late` keyword used for?
+14. What is the `late` keyword used for?
     - In Dart, the late keyword is used to declare a non-nullable variable that will be initialized
       later. It was introduced in Dart 2.12 as a way to support lazy initialization of variables.
     - When you declare a variable as late, you are promising the compiler that the variable will be
       initialized before it is used. If the variable is not initialized before it is used, a
       LateInitializationError will be thrown at runtime.
 
-14. What is generic in dart?
+15. What is generic in dart?
     - In Dart, generics are a way to create reusable functions, classes, and types that can work
       with multiple data types, while still providing type safety.
     - We can achieve using T operator.
@@ -365,11 +372,11 @@
           widget's configuration, such as updating the UI when the parent widget passes new data.
 
 
-17. What does mean context.mounted = false?
+18. What does mean context.mounted = false?
     - When context.mounted is false, it means that the widget is no longer part of the widget tree
       and has been disposed or removed.
 
-18. What is `as` and `is` in Dart?
+19. What is `as` and `is` in Dart?
     - `as` keyword: The as keyword is used for type casting, which means it converts an object of
       one type to another type.
         ```dart
@@ -588,7 +595,7 @@
      }
      ```
 
-22. 
+22.
 23. Push vs pushnamed methods.
     - `push` requires a Route object, while `pushNamed` requires a String argument (the name of the
       route).
