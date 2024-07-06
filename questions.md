@@ -1,5 +1,5 @@
 Crashalytics vs Analytics
-MQTT vs web socket in deep why ios not use websocket
+MQTT vs web socket in deep.
 https://www.ambitionbox.com/profiles/flutter-developer/interview-questions
 
 # 🎨 Object-Oriented Programming (OOPS) Concepts 🚀
