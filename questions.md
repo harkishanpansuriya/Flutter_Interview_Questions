@@ -183,7 +183,7 @@ void main() {
 }
 ```
 
-# SOLID Principles in Dart
+# 🎨 SOLID Principles in Dart 🚀
 
 The SOLID principles are a set of design principles that can help developers create more
 maintainable, understandable, and flexible software. Here are the SOLID principles with examples of
