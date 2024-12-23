@@ -26,9 +26,9 @@ rendering engine), and Dart, an object-oriented language.
 
 ## 2. Flutter Inspector
 
-The **Flutter Inspector** is a powerful tool for Flutter applications, allowing you to visualize the
-blueprint of your widgets and their properties. It helps diagnose layout issues and understand the
-current layout.
+The Flutter Inspector is a tool in Flutter that helps you inspect and debug your app's UI. It allows you to look at the structure of your app's widgets and see how they are arranged on the screen. You can check properties, layout details, and the widget tree to find issues with how your UI is built or displayed. It’s useful for understanding how widgets are rendered and for identifying problems during development.
+
+In simple terms, it's like a magnifying glass for your app's design, showing how each part is laid out.
 
 ### Features of Flutter Inspector:
 
