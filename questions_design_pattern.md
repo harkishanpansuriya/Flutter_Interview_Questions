@@ -1,4 +1,29 @@
-## Which design patterns are used in Flutter?
+## What is design pattern and basic understanding?
+
+A **software design pattern** is a general repeatable solution to a commonly occurring problem in
+software design. It provides a template for solving problems that software developers face
+frequently, allowing for easier communication, faster development, and improved maintainability.
+These patterns help to structure code in a way that is scalable, flexible, and reusable.
+
+Design patterns typically fall into three main categories:
+
+- **Creational Patterns**: Deal with object creation mechanisms, trying to create objects in a way
+  that is suitable for the situation.
+- Example: Singleton, Factory, Abstract Factory, Builder
+
+- **Structural Patterns**: Concern the composition of classes or objects to form larger structures
+  while keeping them flexible and efficient.
+- Example: Adapter, Composite, Decorator, Facade, Proxy
+
+- **Behavioral Patterns**: Focus on communication between objects, how they interact, and how
+  responsibilities are distributed.
+- Example: Observer, Strategy, Command, State, Chain of Responsibility
+
+
+## Which design pattern is best for Flutter?
+- Singleton, MVC, MVVM,Builder, Factory, Decorator and State Management are some of the most commonly used design patterns in Flutter.
+
+## Which design patterns are used in Flutter?--
 
 | **Pattern**            | **Description**                                                                                                                                                                                                                                                                                                                                                                                                                                                |
 |------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
