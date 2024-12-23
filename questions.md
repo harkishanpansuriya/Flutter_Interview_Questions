@@ -3237,4 +3237,5 @@ PENDING QUESTIONS
 - Caching mechanism in Flutter
 - What you'll do for Performance optimization in Flutter
 - Which design pattern is best for Flutter?
-- What is the architecture pattern in Flutter?
+- What is the architecture design pattern in Flutter (https://docs.flutter.dev/app-architecture/design-patterns)?
+- telescopy constructor in flutter
