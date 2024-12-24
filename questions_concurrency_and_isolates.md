@@ -1,6 +1,3 @@
-Okay, this is a significant amount of text, but I've processed it all and converted it to Markdown.
-Here's the result:
-
 # Concurrency and Isolates
 
 ## Isolates
@@ -17,15 +14,20 @@ Here's the result:
   another isolate allows these intensive computations to run concurrently without making the app
   feel slow, taking advantage of multi-core processors.
 
-### Key Differences between Isolates and Threads:
+### Definition:
+- Isolates: Independent execution units in Dart that don’t share memory, designed for safe, parallel
+  task execution.
+- Threads: Lightweight processes within the same application that share memory and are used for
+  multitasking.
 
-* **Memory Boundaries:** Isolates keep their data completely separate. This prevents common
-  concurrency issues, such as race conditions, which can happen when multiple threads try to access
-  and change the same data at the same time.
-* **Communication:** Instead of directly accessing shared data, isolates communicate via messages,
-  which makes things more predictable and less prone to errors.
-* **Parallel Execution:** Isolates can run truly in parallel on modern multi-core processors, which
-  means they can use the full potential of the device's hardware to speed up your app.
+### Key Differences between Isolates and Threads (Simplified):
+
+- **Memory Boundaries:** Isolates don’t share memory, while threads can access shared data, which
+  may lead to race conditions.
+- **Communication:** Isolates use messages to communicate, whereas threads directly share data,
+  making isolates safer and less error-prone.
+- **Parallel Execution:** Isolates run independently on multiple cores, similar to threads, but with
+  stricter separation for better predictability.
 
 ## To create isolates in Dart, you can use:
 
@@ -151,6 +153,61 @@ Future<void> _readAndParseJsonService(SendPort p) async {
   }
   print('Spawned isolate finished.');
   Isolate.exit();
+}
+```
+
+* `compute`: If you're working with Flutter, you can use the `compute` function to run a function in
+  a separate isolate. This is a convenient way to offload work from the main thread without dealing
+  with isolates directly.
+
+```dart
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: BodyWidget(),
+      ),
+    );
+  }
+}
+
+class BodyWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          CircularProgressIndicator(),
+          ElevatedButton(
+            child: Text('start'),
+            onPressed: () async {
+              // final sum = computationallyExpensiveTask(1000000000);
+              final sum = await compute(computationallyExpensiveTask, 1000000000);
+              print(sum);
+            },
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+int computationallyExpensiveTask(int value) {
+  var sum = 0;
+  for (var i = 0; i <= value; i++) {
+    sum += i;
+  }
+  print('finished');
+  return sum;
 }
 ```
 
