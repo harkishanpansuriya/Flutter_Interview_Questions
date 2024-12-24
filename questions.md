@@ -3240,3 +3240,4 @@ PENDING QUESTIONS
 - What is the architecture design pattern in Flutter (https://docs.flutter.dev/app-architecture/design-patterns)?
 - telescopy constructor in flutter
 - Why we need class in dart?
+- Flutter bloc vs using cubit.
