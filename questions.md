@@ -3239,3 +3239,4 @@ PENDING QUESTIONS
 - Which design pattern is best for Flutter?
 - What is the architecture design pattern in Flutter (https://docs.flutter.dev/app-architecture/design-patterns)?
 - telescopy constructor in flutter
+- Why we need class in dart?
