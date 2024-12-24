@@ -3241,3 +3241,4 @@ PENDING QUESTIONS
 - telescopy constructor in flutter
 - Why we need class in dart?
 - Flutter bloc vs using cubit.
+- copyWith what is the use of it?
