@@ -14,15 +14,20 @@
   another isolate allows these intensive computations to run concurrently without making the app
   feel slow, taking advantage of multi-core processors.
 
-### Key Differences between Isolates and Threads:
+### Definition:
+- Isolates: Independent execution units in Dart that don’t share memory, designed for safe, parallel
+  task execution.
+- Threads: Lightweight processes within the same application that share memory and are used for
+  multitasking.
 
-* **Memory Boundaries:** Isolates keep their data completely separate. This prevents common
-  concurrency issues, such as race conditions, which can happen when multiple threads try to access
-  and change the same data at the same time.
-* **Communication:** Instead of directly accessing shared data, isolates communicate via messages,
-  which makes things more predictable and less prone to errors.
-* **Parallel Execution:** Isolates can run truly in parallel on modern multi-core processors, which
-  means they can use the full potential of the device's hardware to speed up your app.
+### Key Differences between Isolates and Threads (Simplified):
+
+- **Memory Boundaries:** Isolates don’t share memory, while threads can access shared data, which
+  may lead to race conditions.
+- **Communication:** Isolates use messages to communicate, whereas threads directly share data,
+  making isolates safer and less error-prone.
+- **Parallel Execution:** Isolates run independently on multiple cores, similar to threads, but with
+  stricter separation for better predictability.
 
 ## To create isolates in Dart, you can use:
 
