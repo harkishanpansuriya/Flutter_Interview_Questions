@@ -1,6 +1,3 @@
-Okay, this is a significant amount of text, but I've processed it all and converted it to Markdown.
-Here's the result:
-
 # Concurrency and Isolates
 
 ## Isolates
@@ -151,6 +148,61 @@ Future<void> _readAndParseJsonService(SendPort p) async {
   }
   print('Spawned isolate finished.');
   Isolate.exit();
+}
+```
+
+* `compute`: If you're working with Flutter, you can use the `compute` function to run a function in
+  a separate isolate. This is a convenient way to offload work from the main thread without dealing
+  with isolates directly.
+
+```dart
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
+
+void main() => runApp(MyApp());
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      home: Scaffold(
+        body: BodyWidget(),
+      ),
+    );
+  }
+}
+
+class BodyWidget extends StatelessWidget {
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: <Widget>[
+          CircularProgressIndicator(),
+          ElevatedButton(
+            child: Text('start'),
+            onPressed: () async {
+              // final sum = computationallyExpensiveTask(1000000000);
+              final sum = await compute(computationallyExpensiveTask, 1000000000);
+              print(sum);
+            },
+          )
+        ],
+      ),
+    );
+  }
+}
+
+
+int computationallyExpensiveTask(int value) {
+  var sum = 0;
+  for (var i = 0; i <= value; i++) {
+    sum += i;
+  }
+  print('finished');
+  return sum;
 }
 ```
 
