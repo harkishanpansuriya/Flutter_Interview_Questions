@@ -1,10 +1,12 @@
 https://www.ambitionbox.com/profiles/flutter-developer/interview-questions
 https://github.com/thecodexhub/flutter-interview-questions?tab=readme-ov-file#q45-what-is-isolate-in-flutter
 https://triyono.gitbook.io/fluttercheatsheet/interview-question/kumpulan-pertannyaan-interview/interview-question
-
 https://triyono.gitbook.io/fluttercheatsheet/my-note/interview-flutter
-
+https://www.lambdatest.com/learning-hub/flutter-interview-questions
+https://medium.com/@gauravswarankar/flutter-interview-questions-6baa5b32dd3a
+https://www.turing.com/interview-questions/flutter
 https://triyono.gitbook.io/fluttercheatsheet
+https://www.adaface.com/blog/flutter-interview-questions/
 
 # Flutter FAQ : https://docs.flutter.dev/resources/faq (check questions and answers)
 
@@ -26,9 +28,14 @@ rendering engine), and Dart, an object-oriented language.
 
 ## 2. Flutter Inspector
 
-The Flutter Inspector is a tool in Flutter that helps you inspect and debug your app's UI. It allows you to look at the structure of your app's widgets and see how they are arranged on the screen. You can check properties, layout details, and the widget tree to find issues with how your UI is built or displayed. It’s useful for understanding how widgets are rendered and for identifying problems during development.
+The Flutter Inspector is a tool in Flutter that helps you inspect and debug your app's UI. It allows
+you to look at the structure of your app's widgets and see how they are arranged on the screen. You
+can check properties, layout details, and the widget tree to find issues with how your UI is built
+or displayed. It’s useful for understanding how widgets are rendered and for identifying problems
+during development.
 
-In simple terms, it's like a magnifying glass for your app's design, showing how each part is laid out.
+In simple terms, it's like a magnifying glass for your app's design, showing how each part is laid
+out.
 
 ### Features of Flutter Inspector:
 
@@ -3237,7 +3244,8 @@ PENDING QUESTIONS
 - Caching mechanism in Flutter
 - What you'll do for Performance optimization in Flutter
 - Which design pattern is best for Flutter?
-- What is the architecture design pattern in Flutter (https://docs.flutter.dev/app-architecture/design-patterns)?
+- What is the architecture design pattern in
+  Flutter (https://docs.flutter.dev/app-architecture/design-patterns)?
 - telescopy constructor in flutter
 - Why we need class in dart?
 - Flutter bloc vs using cubit.
