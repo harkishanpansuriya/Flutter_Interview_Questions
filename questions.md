@@ -8,6 +8,9 @@ https://www.turing.com/interview-questions/flutter
 https://triyono.gitbook.io/fluttercheatsheet
 https://www.adaface.com/blog/flutter-interview-questions/
 
+https://github.com/bizz84/flutter-tips-and-tricks/tree/main
+https://github.com/vandadnp/flutter-tips-and-tricks
+
 # Flutter FAQ : https://docs.flutter.dev/resources/faq (check questions and answers)
 
 # 🚀 Flutter Interview Questions and Answers 💡
