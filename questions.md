@@ -17,7 +17,7 @@ https://github.com/vandadnp/flutter-tips-and-tricks
 
 # Flutter Overview and Key Concepts
 
-### 1. What is Flutter? How Does It Work? Is It a Language?
+## 1. What is Flutter? How Does It Work? Is It a Language?
 
 Flutter is a free, open-source UI framework by Google for building cross-platform apps from a single
 codebase. It uses **Dart** as its programming language and runs on a custom rendering engine called
@@ -27,7 +27,7 @@ codebase. It uses **Dart** as its programming language and runs on a custom rend
 🔹 **Works across platforms** – Build apps for Android, iOS, web, desktop, and more.  
 🔹 **Fast & smooth UI** – Uses its own widgets instead of native components for high performance.
 
-### 2. What is Flutter Inspector?
+## 2. What is Flutter Inspector?
 
 Flutter Inspector is a built-in tool that helps **debug and analyze** your app's UI. It shows the *
 *widget tree**, layout details, and helps you fix design issues.
@@ -45,7 +45,7 @@ structured and rendered.
 - Enable slow animations
 - Show/hide performance overlay
 
-### 3. Advantages of Flutter 🚀
+## 3. Advantages of Flutter 🚀
 
 ✅ **Beautiful UI** – Customizable widgets with smooth animations.  
 ✅ **Fast Development** – *Hot reload* lets you see changes instantly.  
@@ -56,7 +56,7 @@ structured and rendered.
 
 ---
 
-### 4. Features of Flutter ✨
+## 4. Features of Flutter ✨
 
 🔹 **Hot Reload** – See updates instantly without restarting the app.  
 🔹 **Flexible & Scalable** – Works for mobile, web, and desktop.  
@@ -66,14 +66,14 @@ structured and rendered.
 
 ---
 
-### 5. Limitations of Flutter ⚠️
+## 5. Limitations of Flutter ⚠️
 
 ❌ **Large App Size** – Includes its own engine, making apps bigger.  
 ❌ **Limited Native API Access** – Custom platform code may be needed.  
 ❌ **Performance for Heavy Graphics** – Not ideal for advanced 3D/AR apps.  
 ❌ **Library Gaps** – Some native features require custom plugins.
 
-### 6. What is Dart?
+## 6. What is Dart?
 
 Dart is a **general-purpose, object-oriented** programming language developed by **Google** in 2011.
 It’s designed for building web and mobile apps and is the **core language** of Flutter.
@@ -85,7 +85,7 @@ production.
 
 ---
 
-### 7. What is Flutter SDK?
+## 7. What is Flutter SDK?
 
 Flutter SDK (Software Development Kit) provides **everything** needed to build Flutter apps across *
 *Android, iOS, web, and desktop** from a **single codebase**.
@@ -98,7 +98,7 @@ Flutter SDK (Software Development Kit) provides **everything** needed to build F
 
 ---
 
-### 8. Why Does Flutter Use Dart?
+## 8. Why Does Flutter Use Dart?
 
 Flutter **chose Dart** because it’s:
 
@@ -111,7 +111,7 @@ iOS)** and **Gradle (Android)**.
 
 ---
 
-### 9. Full Form of API
+## 9. Full Form of API
 
 🔹 **API** – Application Programming Interface
 
