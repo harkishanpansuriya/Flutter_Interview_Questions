@@ -87,16 +87,9 @@ production.
 
 ## 7. What is Flutter SDK?
 
-Flutter SDK (Software Development Kit) provides **everything** needed to build Flutter apps across *
-*Android, iOS, web, and desktop** from a **single codebase**.
-
-🔹 **Includes Dart SDK** for writing Flutter apps.  
-🔹 **Rendering engine** for UI and animations.  
-🔹 **Compilation tools** to convert Dart code into native machine code.  
-🔹 **Testing & debugging tools** like **Dart DevTools**.  
-🔹 **Command-line tools** for building, testing, and deployment.
-
----
+- The Flutter SDK (Software Development Kit) is a framework developed by Google for building
+cross-platform mobile applications. It provides a complete set of tools, libraries, and resources to
+create native-like user interfaces (UI) for both Android and iOS platforms using a single codebase.
 
 ## 8. Why Does Flutter Use Dart?
 
