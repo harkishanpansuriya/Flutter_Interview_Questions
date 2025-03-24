@@ -860,7 +860,7 @@ class MyWidget extends StatelessWidget {
 
 ### **📌 Example 2: Using Multiple Spacers**
 
-```dart
+```
 Row
 (
 children: [
