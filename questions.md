@@ -87,16 +87,11 @@ production.
 
 ## 7. What is Flutter SDK?
 
-Flutter SDK (Software Development Kit) provides **everything** needed to build Flutter apps across *
-*Android, iOS, web, and desktop** from a **single codebase**.
-
-🔹 **Includes Dart SDK** for writing Flutter apps.  
-🔹 **Rendering engine** for UI and animations.  
-🔹 **Compilation tools** to convert Dart code into native machine code.  
-🔹 **Testing & debugging tools** like **Dart DevTools**.  
-🔹 **Command-line tools** for building, testing, and deployment.
-
----
+- The Flutter SDK (Software Development Kit) is a framework developed by Google for building
+  cross-platform mobile applications. It provides a complete set of tools, libraries, and resources
+  to
+  create native-like user interfaces (UI) for both Android and iOS platforms using a single
+  codebase.
 
 ## 8. Why Does Flutter Use Dart?
 
@@ -137,30 +132,35 @@ iOS)** and **Gradle (Android)**.
 
 ## 11. Dart Compilation Modes: AOT and JIT
 
-### JIT (Just-in-Time) Compilation:
+### **JIT (Just-in-Time) Compilation**
 
-- Slower startup time
-- Better peak performance
-- Compiles code at runtime
-- Offers debugging tools and hot reload
-- Suited for development and testing
-- Uses more memory but allows quicker iteration
+✅ **Pros:**
 
-### AOT (Ahead-of-Time) Compilation:
+- Allows **hot reload** for fast development.
+- Provides **runtime debugging tools**.
+- Offers **better peak performance** in long-running apps.
 
-- Faster startup times
-- Consistent performance
-- Compiles code before runtime
-- Lacks debugging tools
-- Designed for production
-- Smaller binary sizes, conserving memory
+❌ **Cons:**
 
-### Additional Notes:
+- **Slower startup time** due to runtime compilation.
+- Uses **more memory** as it includes the JIT compiler.
 
-- JIT-compiled code may have superior peak performance but slower startup.
-- AOT-compiled code prioritizes fast startup and lower memory usage.
-- JIT is easier to debug due to runtime state access.
-- AOT code is smaller because it excludes the JIT compiler.
+🔹 **Best for:** Development and testing.
+
+### **AOT (Ahead-of-Time) Compilation**
+
+✅ **Pros:**
+
+- **Faster startup times**, ideal for production.
+- Produces **smaller binaries**, reducing memory usage.
+- Ensures **consistent performance** without runtime overhead.
+
+❌ **Cons:**
+
+- **No debugging tools** at runtime.
+- **No hot reload**, requiring full rebuilds for changes.
+
+🔹 **Best for:** Production releases.
 
 ## 12. Flutter Widgets:
 
