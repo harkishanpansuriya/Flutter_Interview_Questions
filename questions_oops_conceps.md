@@ -2,9 +2,11 @@
 
 ## 1. Classes and Objects:
 
-- **Class:** A class is a blueprint for creating objects. It is a collection of data methods and
-  functions, which includes fields, getters, setters, constructors, and functions.
-- **Object:** An object is an instance of a class. It is used to access the class's properties.
+- **Class:**
+    - A class is a blueprint for creating objects.
+    - A class is a collection of constructors, fields, getters, setters, and methods (functions).
+- **Object:** An object is an instance of a class. It is used to store data in the class's fields
+  and access its methods and properties.
 
 ### Example:
 
@@ -28,10 +30,7 @@ void main() {
 
 ## 2. Inheritance:
 
-- In Dart, you can create a new class based on an existing one by using the `extends` keyword. This
-  process is known as inheritance, where one class inherits the properties and methods of another
-  class.
-- Simply put, one class can inherit another class. We make use of the `extends` keyword to do so.
+- One class can inherit from another class using the extends keyword in Dart.
 
 ### Example:
 
@@ -86,12 +85,15 @@ void main() {
 
 ## 3. Abstraction:
 
-- Abstract classes are classes that cannot be instantiated. They are used to define the behavior of
-  the class that can be inherited by another class. An abstract class is declared using
-  the `abstract` keyword.
-- Abstract class objects cannot be created but can be extended.
-- Abstract classes can contain abstract methods (without implementation) and concrete methods (with
-  implementation).
+- Abstraction is the process of hiding implementation details and showing only the essential
+  features of an object.
+- An abstract class is defined using the `abstract` keyword and cannot be instantiated directly.
+- You cannot create objects of an abstract class, but it can be extended by other classes.
+- Abstract classes are typically used as a base class to define common behaviors that can be
+  inherited and implemented by subclasses.
+- An abstract class can have:
+    - Abstract methods: Methods without implementation, which must be implemented by subclasses.
+    - Concrete methods: Methods with an implementation that can be used as-is or overridden.
 
 ### Example:
 
@@ -117,13 +119,22 @@ void main() {
 }
 ```
 
+Here's the explanation in Markdown format:
+
 ## 4. Polymorphism:
 
-- Polymorphism is updating or modifying a feature, function, or implementation that already exists
-  in the parent class.
-- A subclass can override the behavior of the parent class.
+- **Polymorphism** allows a subclass to **modify** or **replace** a method from the parent class.
+- This means the **same method name** can behave differently in different classes.
+- It enables us to write **more flexible** and **reusable code**.
+- In short, **subclasses can override** the behavior of the parent class.
 
-### Example:
+    - **Method Overriding**: The subclass provides its own implementation of a method that is
+      already defined in the parent class.
+    - **Method Overloading** (not directly supported in Dart): In languages like Java, it allows
+      creating multiple methods with the same name but different parameters. Dart doesn’t support
+      method overloading directly, but you can simulate it with optional parameters.
+
+### Example of **Method Overriding**:
 
 ```dart
 class Animal {
@@ -146,18 +157,48 @@ void main() {
   Dog dog = Dog();
   dog.sound(); // Dog barks
 }
+````
+
+### Example of **Simulating Method Overloading** in Dart:
+
+Since Dart doesn’t support **method overloading** directly, we can use **optional parameters** to
+achieve similar behavior.
+
+```dart
+class Calculator {
+  // Method with optional parameters
+  int add(int a, [int b = 0]) {
+    return a + b;
+  }
+}
+
+void main() {
+  Calculator calc = Calculator();
+
+  print(calc.add(5)); // Output: 5
+  print(calc.add(5, 3)); // Output: 8
+}
 ```
+
+### Key Concepts:
+
+* **Overriding**: Subclasses change the behavior of a parent class method.
+* **Overloading**: Multiple methods with the same name but different parameters (simulated in Dart
+  with optional parameters).
 
 ## 5. Encapsulation:
 
-- Encapsulation is the concept of bundling data and methods within a class, hiding the internal
-  implementation details from outside the class.
+- **Encapsulation** is the concept of bundling data (fields) and methods within a class, while
+  hiding the internal implementation details from outside the class.
+- It ensures that the internal workings of a class are protected, and you can only interact with the
+  class's data through its **public methods** (getters and setters).
 
 ### How to Achieve Encapsulation in Dart?
 
-- Providing public getter and setter methods to access and update the value of private property.
-- Getter methods are used to access the value of private property. Setter methods are used to update
-  the value of private property.
+- Encapsulation is achieved by:
+    - **Private fields** (using `_` to prefix the field name) to restrict direct access to data.
+    - **Getter methods** to access the value of private properties.
+    - **Setter methods** to update the value of private properties.
 
 ### Example:
 
@@ -165,16 +206,17 @@ void main() {
 class Student {
   String _name; // Private property
 
-  String get name => _name; // Getter method
+  // Getter method to access the private property
+  String get name => _name;
 
+  // Setter method to update the private property
   set name(String name) {
-    _name = name; // Setter method
+    _name = name;
   }
 }
 
 void main() {
   Student student = Student();
-  student.name = "Alice"; // Using setter
-  print(student.name); // Using getter
+  student.name = "Alice"; // Using setter to set the value
+  print(student.name);    // Using getter to retrieve the value
 }
-```
