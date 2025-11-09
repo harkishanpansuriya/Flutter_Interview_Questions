@@ -15,6 +15,222 @@ https://github.com/vandadnp/flutter-tips-and-tricks
 
 # Flutter FAQ : https://docs.flutter.dev/resources/faq (check questions and answers)
 
+Here is the list of questions from the document, formatted as requested.
+
+## Please give a brief introduction about your technical experience & projects.
+## Do you have experience in Native development? Yes, then how much experience?
+## What type of project have you done in your career?
+## What are the different launch modes in Android?
+## What are ViewModel and LiveData?
+## What is the difference between dp, sp, and px?
+## What are the different types of Broadcast Receivers?
+## What is the difference between Serializable and Parcelable?
+## What is ProGuard, and why is it used?
+## How would you design a booking service system and how to manage slot selection and booking logic in your flutter?
+## R you worked with the Wallet app
+## How do you securely store and retrieve a user's private key in a Flutter wallet app?
+## How do you handle API rate limits in OpenAl's ChatGPT API?
+## How can you optimise Al responses for speed and cost efficiency?
+## QR code-based supported payments or Not?
+## How to manage wallet app is secure against attacks?
+## What are the advantages of using Firebase Realtime Database?
+## How do you handle real-time data updates in Flutter?
+## What are the limitations of Firebase Realtime Database?
+## What is the difference between Firebase Realtime Database and Firestore for real-time data in Flutter?
+## If your Flutter app is crashing only in release mode, how do you debug it?
+## How would you optimise a list of 10,000+ items in a Flutter app?
+## Explain how isolate works in Flutter and when you would use it.
+## What is your approach to testing a Flutter application?
+## What are some performance optimization techniques you've applied in production apps?
+## How would you architect a Flutter app with multiple modules or teams working on it?
+## What is the difference between Future, async/await, and Stream in Dart?
+## How do you handle background tasks and notifications on Android?
+## How do you reduce APK or IPA size?
+## Describe your process when upgrading a Flutter project to a new version.
+## What is the role of keys in Flutter?
+## What is the use of const in Flutter widgets?
+## What is the purpose of mainAxis Alignment and crossAxisAlignment?
+## What is the WillPopScope widget used for?
+## Material Vs Cupertino Widget?
+## What is the difference between Method and function?
+## Difference between deactivate and dispose?
+## What are custom widgets in Flutter, and why are they important?
+## What is the difference between GetBuilder, Obx, and GetX in GetX?
+## How do you pass arguments between screens in GetX?
+## What are Bindings in GetX?
+## What are the core components of the Bloc architecture?
+## How do you integrate Stripe in a Flutter app? Like Using SDK or WEB
+## What is a Paymentintent in Stripe?
+## Have you used social login? If yes, how to apply social logins?
+## Please tell me some important steps for Firebase auth
+## What are the common issues faced while implementing social login in Flutter?
+## What permissions are required for location services in Flutter?
+## How do you track the user's live location in Flutter?
+## How do you calculate the distance between two locations in Flutter?
+## Have you worked on an iOS app? If yes, how and where to add permissions?
+## How to generate profiles and a certificate? Difference between certificate and profiles.
+## What are the different build modes in Flutter?
+## What happens if you call setState() inside build()?
+## What are the types of widgets present in Flutter?
+## What is the difference between setState(), Provider, and Bloc for state management in Flutter?
+## What are Flutter's best practices for writing clean and maintainable code?
+## What is the difference between InkWell and GestureDetector in Flutter?
+## Which are the most popular apps that use Flutter?
+## What do you mean by keys in flutter? When one should use it.
+## What is the purpose of GlobalKey?
+## Explain BuildContext.
+## Write the difference between SizedBox Vs Container.
+## What do you mean by Widget testing?
+## What is an AspectRatio widget used for?
+## Differentiate between Stream and Future in Flutter.
+## What is the purpose of the dispose() method in a StatefulWidget?
+## how to build an app with responsive UI in Flutter
+## How do you handle platform-specific code in Flutter?
+## Do you know how to communicate with Native code?
+## What is the difference between Method Channel and EventChannel?
+## What is the use of Mixins?
+## Explain the difference between BlocBuilder and BlocConsumer.
+## Which widget allows us to refresh the screen?
+## How do you upload a **1GB+ video** without blocking the UI?
+## How do you handle **multiple large image uploads** in Flutter?
+## What is the difference between **obfuscation and encryption** in Flutter?
+## How do extension methods in Dart improve code reusability?
+## Talk about listviews in Flutter, what is the difference between listview builder widgets and SliverList.builder?
+## Talk about listviews in flutter, what is the difference between widgets and slivers.
+## How can building an Instagram Reels-like feature using PageView with video_player in Flutter?
+## However, when scrolling quickly, videos do not load in time, leading to a blank screen for a few seconds.
+## How do you ensure smooth playback with proper video initialization when the user stops scrolling?
+## What is Flutter In-App Purchase?
+## What types of in-app purchases are supported in Flutter?
+## What is the difference between **consumable, non-consumable, and subscription** purchases?
+## How do you get directions between two locations in Flutter?
+## How would you execute multiple asynchronous tasks in parallel and wait for all of them to complete?
+## How would you cancel a running asynchronous operation in Flutter?
+## How do you enable background location tracking in Flutter for Android and iOS?
+## What is the difference between foreground and background location tracking?
+## How would you solve the "setState() called after dispose()" error?
+## I will share the number list in chat Please tell me how to get an odd number list from this list
+## I will share the code in chat Please tell me what output is for the below code
+## What will be the output of the following code?
+## What is the output of this code?
+## What happens if you use setState() inside initState()?
+## What will be the output of the following List code?
+## What will be printed in this async code?
+## Can I use the global key on multiple widgets?
+## How would you troubleshoot a deep linking issue in iOS?
+## What is BLE (Bluetooth Low Energy)
+## What permissions are required for BLE in Flutter (Android & iOS)?
+## What is the difference between Write Without Response and Write With Response in BLE?
+## What are GATT services and characteristics in BLE?
+## Why do some BLE operations require a delay between them?
+## Why is ACCESS_FINE_LOCATION required for BLE scanning on Android?
+## How do you differentiate between multiple BLE devices of the same type?
+## What is an MTU in BLE, and how do you set it in Flutter?
+## What are the different types of notifications supported by Flutter Local Notifications?
+## What are notification channels, and why are they needed in Android?
+## What is MQTT, and why is it used in loT?
+## What is the difference between MQTT and HTTP in AWS IoT?
+## What are the limitations of AWS IoT Core with MQTT?
+## What is SQLite, and why is it used in Flutter?
+## How do you check if a table exists in SQLite?
+## How do you handle migrations in SQLite with Flutter?
+## How do you ensure data synchronization between a local SQLite database and a remote server?
+## How do you handle offline mode with SQLite and synchronize when back online?
+## Which method is used to upload a file or image in Flutter?
+## What is setState in Flutter?
+## What is the difference between StatelessWidget and StatefulWidget?
+## What is the purpose of pubspec.yaml?
+## What is initState() and when is it called?
+## How do you navigate between screens in Flutter?
+## Difference between final, const, and var in Dart?
+## What is the default axis for Column and Row widgets?
+## What is a Future in Dart?
+## How do you handle null safety in Dart?
+## Have you used social login in Flutter? How do you implement it?
+## How do you handle API calls efficiently in Flutter?
+## What is the difference between FutureBuilder and Stream Builder?
+## Difference between async-await and async* yield?
+## What is BLOC, and how does it differ from Provider?
+## How do you optimize list rendering in Flutter?
+## What is the purpose of GlobalKey?
+## How to manage dependencies in a Flutter project?
+## Explain the difference between get, post, put, and delete HTTP methods.
+## What is deep linking in Flutter?
+## Have you worked on an iOS app? Where do you add permissions?
+## How do you generate iOS profiles and certificates?
+## Difference between certificates and profiles in iOS?
+## What is isolate in Dart, and how does it help in performance?
+## How does Flutter handle memory management?
+## How to prevent widget rebuilding in Flutter?
+## Explain how to handle background tasks in Flutter.
+## How do you handle socket connections in Flutter?
+## How do you implement push notifications in Flutter?
+## How would you debug performance issues in Flutter?
+## Reverse a string without using built-in functions.
+## Find the second largest number in an array.
+## Check if a number is a palindrome.
+## Print Fibonacci series up to N terms.
+## Swap two numbers without using a temporary variable.
+## Find duplicate elements in a list.
+## Check if two strings are anagrams.
+## Implement a basic debounce function in Dart.
+## Convert a JSON string to a Dart model.
+## Write a function to validate an email format.
+## Optimize a large list to avoid excessive memory usage.
+## How would you design an offline-first app?
+## Implement a custom animation in Flutter.
+## How would you ensure security in a Flutter app?
+## Design a rate-limiting mechanism in Dart.
+## What is Kotlin, and how is it different from Java?
+## What are the key features of Kotlin?
+## What is the difference between val and var in Kotlin?
+## What is a data class in Kotlin?
+## What is an Activity and Fragment in Android?
+## What is the Android Manifest file?
+## How do you request runtime permissions in Android?
+## What is ViewModel in Android?
+## How do you handle click events in Kotlin?
+## What is a RecyclerView, and why is it better than ListView?
+## Explain the Android Activity lifecycle.
+## What is the difference between onPause() and onStop()?
+## What is LiveData in Android?
+## What is the difference between startActivity() and startActivityForResult()?
+## How do you implement a RecyclerView adapter in Kotlin?
+## What are Coroutines in Kotlin? Why use them?
+## What is the difference between launch and async in Coroutines?
+## How do you make an API call using Retrofit in Kotlin?
+## What is SharedPreferences in Android?
+## How to implement dark mode in Android?
+## What is WorkManager, and why use it?
+## What is the difference between Service and JobIntentService?
+## How do you prevent memory leaks in Android?
+## What is ProGuard, and how does it help in Android?
+## How do you handle deep linking in Android?
+## What is the difference between BroadcastReceiver and LocalBroadcastManager?
+## What is Jetpack Compose, and why use it?
+## What is Dependency Injection in Android?
+## How does Paging Library improve performance?
+## How do you implement WebSockets in Android?
+## Reverse a string in Kotlin without using built-in functions.
+## Find the second largest element in an array.
+## Check if a number is prime.
+## Write a function to detect a loop in a linked list.
+## What is Swift, and how is it different from Objective-C?
+## What are optionals in Swift?
+## What is the difference between let and var?
+## What is a closure in Swift?
+## How do you navigate from one ViewController to another?
+## What are the different ways to pass data between ViewControllers?
+## What is Codable in Swift, and why is it useful?
+## Explain the difference between weak, strong, and unowned references.
+## What is Grand Central Dispatch (GCD) in iOS?
+## What is Auto Layout, and how does it work?
+## What is the difference between struct and class in Swift?
+## How do you handle memory management in iOS?
+## Explain MVVM and its benefits.
+## What is Combine Framework, and why is it used?
+## How does Dependency Injection work in iOS?
+
 # 🚀 Flutter Interview Questions and Answers 💡
 
 # Flutter Overview and Key Concepts
