@@ -1,10 +1,12 @@
 # 🎨 Object-Oriented Programming (OOPS) Concepts 🚀
 
+## https://dart-tutorial.com/object-oriented-programming/polymorphism-in-dart/
+
 ## 1. Classes and Objects:
 
 - **Class:**
     - A class is a blueprint for creating objects.
-    - A class is a collection of constructors, fields, getters, setters, and methods (functions).
+    - A class is a collection of constructors, fields, getters, setters, and methods.
 - **Object:** An object is an instance of a class. It is used to store data in the class's fields
   and access its methods and properties.
 
@@ -35,22 +37,20 @@ void main() {
 ### Example:
 
 ```dart
-class Parent {
-  void display() {
-    print("This is the Parent class");
-  }
-}
+class Car {
+  String brand;
+  int speed;
 
-class Child extends Parent {
-  void show() {
-    print("This is the Child class");
+  Car(this.brand, this.speed);
+
+  void drive() {
+    print("$brand is driving at $speed km/h");
   }
 }
 
 void main() {
-  Child child = Child();
-  child.display(); // This is the Parent class
-  child.show(); // This is the Child class
+  Car myCar = Car("Tesla", 120);
+  myCar.drive(); // Tesla is driving at 120 km/h
 }
 ```
 
@@ -119,22 +119,23 @@ void main() {
 }
 ```
 
-Here's the explanation in Markdown format:
+## 4. Polymorphism
 
-## 4. Polymorphism:
+- **Polymorphism** means a child class can **change** or **give new behavior** to a method that comes from the parent class.  
+- So the **same method name** can work in **different ways** depending on which class uses it.  
+- This helps us write **flexible** and **reusable** code.  
+- In simple terms, the child class can **override** what the parent class does.
 
-- **Polymorphism** allows a subclass to **modify** or **replace** a method from the parent class.
-- This means the **same method name** can behave differently in different classes.
-- It enables us to write **more flexible** and **reusable code**.
-- In short, **subclasses can override** the behavior of the parent class.
+**Note:** In the real world, polymorphism is when you **update or modify** a feature, function, or implementation that already exists in the parent class.
 
-    - **Method Overriding**: The subclass provides its own implementation of a method that is
-      already defined in the parent class.
-    - **Method Overloading** (not directly supported in Dart): In languages like Java, it allows
-      creating multiple methods with the same name but different parameters. Dart doesn’t support
-      method overloading directly, but you can simulate it with optional parameters.
 
-### Example of **Method Overriding**:
+### Types of Polymorphism
+
+#### 1. Method Overriding (Supported in Dart)
+
+The child class gives its **own version** of a method that already exists in the parent class.
+
+**Example:**
 
 ```dart
 class Animal {
@@ -151,72 +152,80 @@ class Dog extends Animal {
 }
 
 void main() {
-  Animal animal = Animal();
-  animal.sound(); // Animal makes a sound
-
-  Dog dog = Dog();
-  dog.sound(); // Dog barks
+  Animal obj = Dog();
+  obj.sound(); // Output: Dog barks
 }
 ````
 
-### Example of **Simulating Method Overloading** in Dart:
 
-Since Dart doesn’t support **method overloading** directly, we can use **optional parameters** to
-achieve similar behavior.
+#### 2. Method Overloading (Not supported directly in Dart)
+
+Some languages like Java allow the same method name with different parameters.
+Dart doesn't support this directly, but we can **simulate** it using optional parameters.
+
+**Example (Simulated Overloading):**
 
 ```dart
 class Calculator {
-  // Method with optional parameters
-  int add(int a, [int b = 0]) {
-    return a + b;
+  int add(int a, [int? b, int? c]) {
+    if (b != null && c != null) {
+      return a + b + c;
+    } else if (b != null) {
+      return a + b;
+    } else {
+      return a; // Only one value given
+    }
   }
 }
 
 void main() {
   Calculator calc = Calculator();
 
-  print(calc.add(5)); // Output: 5
-  print(calc.add(5, 3)); // Output: 8
+  print(calc.add(5));      // Output: 5
+  print(calc.add(5, 10));  // Output: 15
+  print(calc.add(5, 10, 3)); // Output: 18
 }
 ```
 
-### Key Concepts:
+Here you go, friend. I kept your structure intact but made the wording cleaner, easier, and a bit more complete. Nothing over the top, just smooth and simple.
 
-* **Overriding**: Subclasses change the behavior of a parent class method.
-* **Overloading**: Multiple methods with the same name but different parameters (simulated in Dart
-  with optional parameters).
+---
 
-## 5. Encapsulation:
+## 5. Encapsulation
 
-- **Encapsulation** is the concept of bundling data (fields) and methods within a class, while
-  hiding the internal implementation details from outside the class.
-- It ensures that the internal workings of a class are protected, and you can only interact with the
-  class's data through its **public methods** (getters and setters).
+* Encapsulation means hiding the class properties so they cannot be changed directly from outside the class.
+* It restricts direct access to those properties.
+* Outside code must use getter and setter methods to safely read or update the data.
 
-### How to Achieve Encapsulation in Dart?
+### How to Achieve Encapsulation in Dart
 
-- Encapsulation is achieved by:
-    - **Private fields** (using `_` to prefix the field name) to restrict direct access to data.
-    - **Getter methods** to access the value of private properties.
-    - **Setter methods** to update the value of private properties.
+* In Dart, you use:
 
-### Example:
+  * **Private fields** (adding `_` before the name) to block direct access from other files.
+  * **Getters** to read the values of private properties.
+  * **Setters** to update private properties, often with validation or custom logic.
+
+### Example
 
 ```dart
-class Student {
-  String _name; // Private property
+class BankAccount {
+  double _balance = 0;  // Hidden property (private)
 
-  // Getter method to access the private property
-  String get name => _name;
+  // Getter to read the balance
+  double get balance => _balance;
 
-  // Setter method to update the private property
-  set name(String name) {
-    _name = name;
+  // Setter to update the balance safely
+  set deposit(double amount) {
+    if (amount > 0) {
+      _balance += amount;
+    }
   }
 }
 
 void main() {
-  Student student = Student();
-  student.name = "Alice"; // Using setter to set the value
-  print(student.name);    // Using getter to retrieve the value
+  BankAccount acc = BankAccount();
+
+  acc.deposit = 500;     // Using setter
+  print(acc.balance);    // Using getter
 }
+```

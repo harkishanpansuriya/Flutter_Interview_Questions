@@ -11,6 +11,8 @@ https://www.adaface.com/blog/flutter-interview-questions/
 https://github.com/bizz84/flutter-tips-and-tricks/tree/main
 https://github.com/vandadnp/flutter-tips-and-tricks
 
+# REFINE QUESTIONS AND ANSWER FOR 2026 for new updates and also re-look above urls and also add native connection from flutter.
+
 # Flutter FAQ : https://docs.flutter.dev/resources/faq (check questions and answers)
 
 # 🚀 Flutter Interview Questions and Answers 💡
