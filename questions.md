@@ -1,54 +1,73 @@
 https://www.ambitionbox.com/profiles/flutter-developer/interview-questions
-https://github.com/thecodexhub/flutter-interview-questions?tab=readme-ov-file#q45-what-is-isolate-in-flutter
-https://triyono.gitbook.io/fluttercheatsheet/interview-question/kumpulan-pertannyaan-interview/interview-question
-https://triyono.gitbook.io/fluttercheatsheet/my-note/interview-flutter
-https://www.lambdatest.com/learning-hub/flutter-interview-questions
-https://medium.com/@gauravswarankar/flutter-interview-questions-6baa5b32dd3a
-https://www.turing.com/interview-questions/flutter
-https://triyono.gitbook.io/fluttercheatsheet
-https://www.adaface.com/blog/flutter-interview-questions/
 
-https://github.com/bizz84/flutter-tips-and-tricks/tree/main
-https://github.com/vandadnp/flutter-tips-and-tricks
-
-# REFINE QUESTIONS AND ANSWER FOR 2026 for new updates and also re-look above urls and also add native connection from flutter.
 
 # Flutter FAQ : https://docs.flutter.dev/resources/faq (check questions and answers)
 
 Here is the list of questions from the document, formatted as requested.
 
 ## Please give a brief introduction about your technical experience & projects.
+
 ## Do you have experience in Native development? Yes, then how much experience?
-## What type of project have you done in your career?
+
 ## What are the different launch modes in Android?
-## What are ViewModel and LiveData?
-## What is the difference between dp, sp, and px?
-## What are the different types of Broadcast Receivers?
-## What is the difference between Serializable and Parcelable?
+ - standard, singleTop, singleTask, singleInstance, and singleInstancePerTask
+
 ## What is ProGuard, and why is it used?
+ - ProGuard is a tool that shrinks, optimizes, and obfuscates Android code. It helps reduce APK size, improves performance, and provides security by making code harder to reverse engineer.
+
 ## How would you design a booking service system and how to manage slot selection and booking logic in your flutter?
-## R you worked with the Wallet app
+ - I would design the booking system with a backend that manages slot availability and performs final booking validation using transactions to prevent double-booking. In Flutter, I fetch available slots, show them in a selectable UI (chips/grid), manage selection using state management (Provider/Bloc/Riverpod), and confirm booking by calling an API. The backend re-verifies the slot before creating the booking to ensure accuracy and avoid conflicts.
+
 ## How do you securely store and retrieve a user's private key in a Flutter wallet app?
-## How do you handle API rate limits in OpenAl's ChatGPT API?
-## How can you optimise Al responses for speed and cost efficiency?
-## QR code-based supported payments or Not?
+ - I store the private key using platform-secure storage (flutter_secure_storage), which uses Android Keystore and iOS Keychain. The key is encrypted at rest and only decrypted in memory when needed for signing. I also protect access with biometrics, avoid logging, and clear the key from memory immediately after use. Never store private keys in SharedPreferences or local storage.
+
 ## How to manage wallet app is secure against attacks?
+ - I keep a wallet app secure by storing private keys in the device’s secure hardware (Keystore/Keychain), protecting the app with biometrics or a PIN, and encrypting all sensitive data. I also block rooted/jailbroken devices, prevent screenshots, use secure network calls, and make sure private keys never leave the device.Use HTTPS for API communication (TLS encryption). Implement 2FA (Two-Factor Authentication). Use Secure Storage instead of SharedPreferences.Enforce Strong Authentication (PIN, Biometrics). Monitor Suspicious Transactions and enforce rate limits.
+
 ## What are the advantages of using Firebase Realtime Database?
+ - ● Real-time sync: Data is synchronized across all connected devices in real time. ● Offline capabilities: Data is cached locally, allowing offline access. ● Automatic scaling: Handles large amounts of data without needing manual server management. ● NoSQL database: Uses JSON-based key-value storage for quick access.
+
 ## How do you handle real-time data updates in Flutter?
+ - Streams & StreamBuilder: Used to listen to real-time changes asynchronously. WebSockets: Establishes a persistent connection for real-time communication. Firebase Firestore: Provides real-time updates via snapshots. Provider, Riverpod, Bloc: State management solutions to manage real-time data efficiently
+
 ## What are the limitations of Firebase Realtime Database?
+ - No complex queries: Limited to simple key-value lookups. Scalability issues: Becomes slow with a large number of concurrent users. Data structure needs careful design: Poor structuring can lead to performance issues. No built-in analytics: Unlike Firestore, it lacks detailed analytics tools.
+
 ## What is the difference between Firebase Realtime Database and Firestore for real-time data in Flutter?
+ ![alt text](<Screenshot From 2025-11-22 19-24-59.png>)
+ 
 ## If your Flutter app is crashing only in release mode, how do you debug it?
+ - Use flutter run --release with connected device logs via adb logcat. ● Ensure you're not using assert statements (they don't run in release mode). ● Avoid using debug-only code. ● Try using Sentry/Firebase Crashlytics for release crash reports
+
 ## How would you optimise a list of 10,000+ items in a Flutter app?
+ - Use ListView.builder with item count. Use const widgets wherever possible to prevent unnecessary rebuilds. Implement AutomaticKeepAliveClientMixin if items have state. Consider pagination or lazy loading.
+
 ## Explain how isolate works in Flutter and when you would use it.
+ - Isolates are Flutter’s way of handling multithreading. They don't share memory. Use cases: ● Heavy computation like parsing large files, encryption, or image processing. ● Use compute() for simple, one-off tasks. For complex or long-lived tasks, use Isolate.spawn.
+
 ## What is your approach to testing a Flutter application?
+ - Unit tests for business logic and pure functions. ● Widget tests for UI and interaction logic using WidgetTester. ● Integration tests (e.g., using integration_test or flutter_driver) for end-to-end flows. ● Use mocks for dependencies (e.g., mockito, mocktail). ● Automate testing with CI tools like GitHub Actions or Bitrise.
+
 ## What are some performance optimization techniques you've applied in production apps?
+ - ● Use const widgets. ● Avoid rebuilding large widget trees (use shouldRebuild, selector, etc.). ● Use image caching (cached_network_image). ● Compress images, limit FPS in animations. ● Use RepaintBoundary to isolate heavy rendering areas.
+
 ## How would you architect a Flutter app with multiple modules or teams working on it?
-## What is the difference between Future, async/await, and Stream in Dart?
+ - Use feature-based folder structure (features/user, features/dashboard). ● Apply clean architecture with proper data separation. ● Use internal packages or mono-repo (packages/feature_x) to separate concerns. Shared components in a core module or shared library
+
 ## How do you handle background tasks and notifications on Android?
+ - Tools: WorkManager, Foreground Services, AlarmManager for scheduled tasks.
+Example: "Used WorkManager to schedule recurring pill reminders, handling both exact time
+and battery optimization constraints."
+
 ## How do you reduce APK or IPA size?
+ - Remove unused assets and fonts. ● Use flutter build apk --split-per-abi. ● Compress images using tools like TinyPNG. ● Use deferred components or code-splitting where supported. ● Avoid large third-party libraries unless necessary.
+
 ## Describe your process when upgrading a Flutter project to a new version.
-## What is the role of keys in Flutter?
+ - ● Run flutter upgrade. ● Check pubspec.yaml for outdated packages. ● Use flutter pub outdated and update dependencies. ● Run app and resolve breaking changes. ● Check Flutter migration guides
+
 ## What is the use of const in Flutter widgets?
+ - Using const in Flutter makes widgets immutable, reduces rebuilds, and improves performance by reusing the same widget instance.
+ 
 ## What is the purpose of mainAxis Alignment and crossAxisAlignment?
 ## What is the WillPopScope widget used for?
 ## Material Vs Cupertino Widget?
