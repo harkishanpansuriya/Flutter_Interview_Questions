@@ -665,7 +665,7 @@ iOS)** and **Gradle (Android)**.
 
 ## 9. Flutter architecture
 
-![img_2.png](img_2.png)
+ - ![alt text](image.png)
 
 ## Framework Layer (Dart)
 
