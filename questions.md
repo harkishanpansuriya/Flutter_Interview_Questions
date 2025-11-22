@@ -1,4 +1,8 @@
 https://www.ambitionbox.com/profiles/flutter-developer/interview-questions
+https://medium.com/@kalidoss.shanmugam/flutter-interview-questions-and-answers-for-experienced-developers-171a7cbbfef5
+flutter architecture interview questions
+https://github.com/thisissandipp/flutter-interview-questions
+
 
 
 # Flutter FAQ : https://docs.flutter.dev/resources/faq (check questions and answers)
@@ -399,6 +403,80 @@ await db.execute("ALTER TABLE users ADD COLUMN email TEXT");
 },
 );
 }
+
+1. What is Flutter’s architecture?
+
+Answer: Flutter uses a layered architecture:
+
+Framework Layer: Widgets, rendering, gestures, animation.
+
+Engine Layer: Skia-based rendering engine, C++ code for graphics, text, and platform channels.
+
+Embedder Layer: Platform-specific code for Android, iOS, Web, Desktop.
+
+2. What are the main layers in Flutter?
+
+Widget Layer – UI components.
+
+Rendering Layer – Handles layout, painting.
+
+Foundation Layer – Basic classes, async, collections, and services.
+
+Engine Layer – Skia rendering and platform interface.
+
+Embedder Layer – Runs the engine on different platforms.
+
+3. Explain the Flutter widget tree.
+
+Answer: Flutter builds a widget tree, where every UI element is a widget. Widgets are lightweight and immutable; the tree is rebuilt on state changes, and the framework efficiently updates only affected parts via Element and RenderObject trees.
+
+4. Difference between StatefulWidget and StatelessWidget
+
+StatelessWidget – Immutable, doesn’t maintain state.
+
+StatefulWidget – Maintains state in a separate State object, can trigger rebuilds with setState().
+
+5. What is the difference between Element tree and RenderObject tree?
+
+Element Tree – Manages widget instances and their lifecycle.
+
+RenderObject Tree – Handles layout, painting, and positioning on the screen.
+
+6. Explain Flutter state management approaches
+
+Answer: Flutter separates UI and state. Common approaches:
+
+setState – Simple local state.
+
+Provider / ChangeNotifier – Lightweight reactive state.
+
+Bloc / Cubit – Event-driven state with separation of UI and logic.
+
+Riverpod – Improved dependency injection and reactive state.
+
+7. What is the difference between InheritedWidget and Provider?
+
+InheritedWidget – Built-in Flutter widget for sharing data down the widget tree.
+
+Provider – A wrapper over InheritedWidget offering simpler syntax, dependency injection, and rebuild management.
+
+8. What is the role of Flutter Engine?
+
+Answer: The engine handles rendering (Skia), platform channels, text layout, and low-level graphics, providing the bridge between Dart code and native platforms.
+
+9. Explain reactive programming in Flutter
+
+Answer: UI reacts to state changes automatically. Streams, ValueNotifier, or RxDart can notify listeners when data changes, triggering UI rebuilds.
+
+10. How do you structure a large Flutter project?
+
+Answer: Common approaches:
+
+Feature-based: Separate folders per feature (screens, models, providers/blocs).
+
+Layered: Separate UI, business logic, and data layers.
+
+Clean Architecture: Layers like presentation, domain, data; separation of concerns and testable code.
 
 ## how to improve app perfomance to make it fast
  - To make a Flutter app fast, use const widgets, efficient state management to rebuild only necessary widgets, lazy-load lists, cache images and data, and offload heavy computations to isolates. Profiling with DevTools helps find and fix performance bottlenecks.
