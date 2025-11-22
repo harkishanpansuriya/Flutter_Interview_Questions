@@ -67,188 +67,443 @@ and battery optimization constraints."
 
 ## What is the use of const in Flutter widgets?
  - Using const in Flutter makes widgets immutable, reduces rebuilds, and improves performance by reusing the same widget instance.
- 
+
 ## What is the purpose of mainAxis Alignment and crossAxisAlignment?
+ - Used to align children in Row and Column widgets.
+
 ## What is the WillPopScope widget used for?
+ - WillPopScope is used to control or prevent the back button action, allowing you to decide whether the screen should be popped or not.
+
 ## Material Vs Cupertino Widget?
-## What is the difference between Method and function?
+ - Material widgets follow Android’s design guidelines, while Cupertino widgets provide iOS-style UI components—use Material for Android look and Cupertino for iOS look.
+
 ## Difference between deactivate and dispose?
+ - deactivte: Called when this object is removed from the tree. deactivate is called when a widget may be dispose. But that is not guaranteed. Dispose: Called when this object is removed from the tree permanently. By understanding both sentences, you%E2%80%99ll see that deactivate will be called for widgets that are removed from the tree, temporarily or permanently, whereas dispose will only be called for widgets being removed permanently.
+
 ## What are custom widgets in Flutter, and why are they important?
+ - Custom widgets in Flutter are user-defined widgets that allow developers to encapsulate UI components for reusability and maintainability. They help in: ● Reducing code duplication ● Improving readability ● Enhancing modularity ● Simplifying complex UI structures Custom widgets can be StatelessWidget or StatefulWidget, depending on whether they need to manage the state.
+
 ## What is the difference between GetBuilder, Obx, and GetX in GetX?
+ - GetBuilder – Uses GetBuilder<T>() and updates only when update() is called manually. Uses less memory. Obx – Uses Rx variables and automatically updates when the variable changes. GetX – A combination of both Obx and GetBuilder with additional dependency management features.
+
 ## How do you pass arguments between screens in GetX?
+ - Get.to(NextScreen(), arguments: "Hello GetX"); var data = Get.arguments
+
 ## What are Bindings in GetX?
+ - Bindings help manage dependencies automatically when a screen is opened.
+
 ## What are the core components of the Bloc architecture?
+ - Bloc/Cubit – Business logic component.
+Events – User actions that trigger state changes.
+States – UI states returned by Bloc/Cubit.
+BlocProvider – Provides the Bloc instance to widgets.
+BlocBuilder – Rebuilds UI when state changes.
+BlocListener – Listens for state changes without rebuilding UI.
+
 ## How do you integrate Stripe in a Flutter app? Like Using SDK or WEB
+ - You integrate Stripe in Flutter either by using the official Stripe Flutter SDK for native payments or by using a WebView/Stripe Checkout page. The SDK gives native UI and better control, while the web approach is simpler and PCI-compliant using Stripe’s hosted payment page."
+
 ## What is a Paymentintent in Stripe?
+ - A PaymentIntent represents a payment that a customer intends to make. It handles authentication, processing, and confirmation of payments. ● Created on the server to ensure security. ● Client receives a client_secret to process the payment. ● Supports SCA (Strong Customer Authentication
+
 ## Have you used social login? If yes, how to apply social logins?
+ - Yes, social logins are added by using platform SDKs like Google Sign-In, Apple Sign-In, or Facebook Login, then exchanging the obtained token with Firebase or your backend for authentication. In Flutter, packages like google_sign_in or sign_in_with_apple handle the login flow and return user credentials."
+
 ## Please tell me some important steps for Firebase auth
+ - For Firebase Auth, I first enable the login providers in the Firebase console, add Firebase to my Flutter app, and install firebase_auth. Then I initialize Firebase, implement login/signup methods, handle errors, listen to auth state changes, and secure backend access using Firebase security rules.
+
 ## What are the common issues faced while implementing social login in Flutter?
+ - Invalid SHA-1 or SHA-256 keys (Google Sign-In)
+Facebook Login App not configured properly
+Platform-specific setup issues (missing Info.plist or AndroidManifest.xml configurations)
+Expired OAuth tokens
+Handling errors when the user denies permissions
+
 ## What permissions are required for location services in Flutter?
+ - <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+<uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+<uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+<uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+<key>NSLocationWhenInUseUsageDescription</key>
+<string>We need your location to show nearby places.</string>
+<key>NSLocationAlwaysUsageDescription</key>
+<string>We need your location to provide accurate results.</string>
+
 ## How do you track the user's live location in Flutter?
+ - StreamSubscription<Position>? positionStream;
+void startLocationTracking() {
+positionStream = Geolocator.getPositionStream(
+locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+).listen((Position position) {
+print("Live Location: ${position.latitude}, ${position.longitude}");
+});
+}
+void stopLocationTracking() {
+positionStream?.cancel();
+}
+
 ## How do you calculate the distance between two locations in Flutter?
-## Have you worked on an iOS app? If yes, how and where to add permissions?
-## How to generate profiles and a certificate? Difference between certificate and profiles.
-## What are the different build modes in Flutter?
+ - Use the Geolocator.distanceBetween() method:
+
+## Have you worked on an iOS app? If yes, how and where to add permissions? How to generate profiles and a certificate? Difference between certificate and profiles.
+ - yes, I’ve worked on iOS apps. iOS permissions are added inside the Info.plist file (e.g., camera, location, photos). For app signing, I generate an iOS certificate and provisioning profile from Apple Developer Portal. The certificate is used to sign the app, while the provisioning profile defines the device/app permissions and links the app ID with the signing certificate.
+
 ## What happens if you call setState() inside build()?
-## What are the types of widgets present in Flutter?
+ - This will cause an infinite loop because setState() triggers build(), and build() calls setState() again. ● Instead, update the state before calling build(), like in a FutureBuilder or an event callback.
+
 ## What is the difference between setState(), Provider, and Bloc for state management in Flutter?
+ - setState(): Used for managing the local state of a widget. It triggers a rebuild of the
+widget but does not persist state across widget re-creations.
+● Provider: A simple and scalable solution for state management. It helps manage
+app-wide state efficiently using dependency injection.
+● Bloc (Business Logic Component): Uses the Stream pattern to handle state changes
+reactively. It is ideal for complex applications with structured state management.
+
 ## What are Flutter's best practices for writing clean and maintainable code?
-## What is the difference between InkWell and GestureDetector in Flutter?
+ - Follow MVVM or Clean Architecture for separation of concerns.
+Use Dart linting for maintaining code standards.
+Write reusable widgets to avoid duplication.
+Implement dependency injection with get_it or riverpod.
+Use async/await properly to handle asynchronous operations.
+Keep widgets small and modular for better readability
+
 ## Which are the most popular apps that use Flutter?
-## What do you mean by keys in flutter? When one should use it.
-## What is the purpose of GlobalKey?
-## Explain BuildContext.
-## Write the difference between SizedBox Vs Container.
-## What do you mean by Widget testing?
+ - Google Ads, Alibaba, Hamilton, Hookle
+
 ## What is an AspectRatio widget used for?
-## Differentiate between Stream and Future in Flutter.
+ - The AspectRatio widget in Flutter is used to ensure that a widget maintains a specific aspectratio, regardless of the size of the parent container. This can be useful in cases where you wanta widget to have a specific shape, such as a square or a rectangle with a fixed width-to-heightratio.The aspect ratio is defined as the width of the widget divided by its height. The AspectRatiowidget takes the aspect ratio as an argument and sets the width or height of the widget suchthat the aspect ratio is maintained. The other dimension is automatically adjusted to match.For example, if you want to create a square widget, you can wrap the widget in an AspectRatiowidget with an aspect ratio of 1.0, and the widget will always be square, regardless of the size ofthe parent container.
+
 ## What is the purpose of the dispose() method in a StatefulWidget?
+ - dispose() is used to clean up resources like controllers, streams, or animations when a StatefulWidget is permanently removed from the widget tree.
+
 ## how to build an app with responsive UI in Flutter
-## How do you handle platform-specific code in Flutter?
-## Do you know how to communicate with Native code?
-## What is the difference between Method Channel and EventChannel?
-## What is the use of Mixins?
+ - To build a responsive UI in Flutter:
+Use MediaQuery – Get screen size and adapt UI accordingly.
+double width = MediaQuery.of(context).size.width;
+1.
+Use LayoutBuilder – Adjust layout based on available constraints.
+LayoutBuilder(builder: (context, constraints) {
+return constraints.maxWidth > 600 ? TabletView() : MobileView();
+})
+2. Use Flexible & Expanded – Allow widgets to resize dynamically.
+3. Use FittedBox – Scale widgets to fit within constraints.
+Use flutter_screenutil package – Manage scalable dimensions and fonts.
+ScreenUtil().setSp(16) // Scalable font size
+4. Use SizedBox & AspectRatio – Maintain proportional spacing and layout.
+5. You can use the responsive_builder package to create a responsive UI in Flutter.
+Why responsive_builder?
+● Provides ScreenTypeLayout for different devices.
+● Uses ResponsiveBuilder to customize breakpoints.
+● Lightweight and easy to implement.
+
+## How do you handle platform-specific code in Flutter? or Do you know how to communicate with Native code?
+ - I handle platform-specific code using platform channels, where Flutter communicates with native Android (Kotlin/Java) and iOS (Swift/Obj-C) code to access device-specific features.
+● By Using Method channel.
+What is the difference between MethodChannel and EventChannel?
+● MethodChannel: Used for one-time method calls between Flutter and native.
+● EventChannel: Used for continuous data streams (e.g., sensor data, location updates)
+
 ## Explain the difference between BlocBuilder and BlocConsumer.
+ - BlocBuilder handles building widgets based on state changes and is used for UI rendering. BlocConsumer is a combination of a BlocBuilder and a BlocListener, allowing it to both build widgets and execute side effects (like showing a Snackbar or navigation) based on state changes.
+
 ## Which widget allows us to refresh the screen?
+ - The RefreshIndicator Widget enables us to refresh the screen. When the user pulls down on the
+widget, the onRefresh callback is triggered, which typically involves fetching new data from a
+server or updating the UI somehow
+
 ## How do you upload a **1GB+ video** without blocking the UI?
+ - - Use `Isolate` for background processing.
+- Implement **chunked uploading** with `dio` or `http`.
+- Store the temporary file in the cache (`path_provider`).
+- Use Firebase Storage, AWS S3, or Cloudflare R2 for resumable uploads.
+
 ## How do you handle **multiple large image uploads** in Flutter?
+ - - Use `flutter_image_compress` to reduce size.
+- Batch process images in `compute()` to avoid UI freeze.
+- Optimize network calls with `dio` using parallel requests (`Future.wait`).
+
 ## What is the difference between **obfuscation and encryption** in Flutter?
-## How do extension methods in Dart improve code reusability?
-## Talk about listviews in Flutter, what is the difference between listview builder widgets and SliverList.builder?
+ - **Obfuscation** scrambles method/class names to prevent reverse engineering.
+ - **Encryption** protects data at runtime using AES/RSA algorithms
+
+## what is the difference between listview builder widgets and SliverList.builder? (check on google again)
+ - ListView.builder: A high-level, standalone widget for displaying a scrollable list. Efficient for large lists — it builds items on demand (lazy loading). Handles its own scrolling, viewport, and padding. More limited in customization: doesn’t easily support advanced scroll effects (like collapsing app bars).
+  - sliverlist builder: A low-level sliver, meaning it’s a piece of a scrollable area — not a full widget on its own. Must be used inside a CustomScrollView via its slivers list. Allows combining with other slivers (SliverAppBar, SliverGrid, SliverToBoxAdapter) for advanced scroll effects. Uses SliverChildBuilderDelegate to lazily build its children, making it efficient for large or dynamic lists. 
+
+
 ## Talk about listviews in flutter, what is the difference between widgets and slivers.
-## How can building an Instagram Reels-like feature using PageView with video_player in Flutter?
-## However, when scrolling quickly, videos do not load in time, leading to a blank screen for a few seconds.
-## How do you ensure smooth playback with proper video initialization when the user stops scrolling?
+ - ListViews in Flutter are used to display scrollable lists. Regular ListView widgets are high-level, standalone scrollable lists that handle their own scrolling. Slivers, like SliverList, are low-level building blocks that represent a piece of a scrollable area inside a CustomScrollView, allowing advanced scroll effects and combining multiple scrollable components.
+
+## How can building an Instagram Reels-like feature using PageView with video_player in Flutter? However, when scrolling quickly, videos do not load in time, leading to a blank screen for a few seconds. How do you ensure smooth playback with proper video initialization when the user stops scrolling?
+ - Use a PageController with onPageChanged to detect when the user stops on a page. Preload videos for the current, previous, and next pages (buffered preloading) to reduce loading delays. Dispose old video controllers for off-screen pages to free resources. Initialize and start playing the video only when scrolling stops on the current page.
+
 ## What is Flutter In-App Purchase?
-## What types of in-app purchases are supported in Flutter?
-## What is the difference between **consumable, non-consumable, and subscription** purchases?
+ - Flutter In-App Purchase allows apps to sell digital content, subscriptions, or features directly inside the app on iOS and Android. You use platform-specific stores (Google Play Store, Apple App Store) via packages like in_app_purchase to handle purchase flow, verify transactions, and deliver content securely.
+
+## What types of in-app purchases are supported in Flutter? What is the difference between **consumable, non-consumable, and subscription** purchases?
+ - Flutter supports two main types of in-app purchases via the in_app_purchase package: Consumable – Items that can be bought, used, and bought again (e.g., coins, tokens). Non-Consumable – One-time purchases that unlock permanent features (e.g., premium upgrade, ad remova). Subscriptions – Recurring purchases for time-based access to content or features (e.g., monthly or yearly plans)."
+
 ## How do you get directions between two locations in Flutter?
+ - Use the Google Directions API.
+
 ## How would you execute multiple asynchronous tasks in parallel and wait for all of them to complete?
-## How would you cancel a running asynchronous operation in Flutter?
+ - Use Future.wait():
+Future<void> fetchAllData() async {
+List responses = await Future.wait([
+fetchData1(),
+fetchData2(),
+fetchData3(),
+]);
+}
+
 ## How do you enable background location tracking in Flutter for Android and iOS?
+ - Add permissions in AndroidManifest.xml: (ACCESS_COARSE_LOCATION,
+ACCESS_FINE_LOCATION, ACCESS_BACKGROUND_LOCATION)
+ Add the foregroundServiceType="location" inside <service>:
+ Add the following keys in Info.plist:
+ <key>NSLocationWhenInUseUsageDescription</key>
+ <string>We use your location to provide better services</string>
+ <key>NSLocationAlwaysUsageDescription</key>
+ <string>We need background location access to track your movement</string>
+ <key>UIBackgroundModes</key>
+ <array>
+ <string>location</string>
+ </array>
+
 ## What is the difference between foreground and background location tracking?
+ - ![alt text](<Screenshot From 2025-11-22 22-45-19.png>)
+
 ## How would you solve the "setState() called after dispose()" error?
+ - if (mounted) {
+setState(() {
+data = newData;
+});}
+Or use a Completer to ensure async operations are complete before the widget is disposed.
+
 ## I will share the number list in chat Please tell me how to get an odd number list from this list
+ - List<int> numbers = [1, 2, 3, 4, 5];
+List<int> numbers = [1, 2, 3, 4, 5];
+numbers.removeWhere((num) => num.isEven);
+print(numbers)
+
 ## I will share the code in chat Please tell me what output is for the below code
-## What will be the output of the following code?
-## What is the output of this code?
+ - String text = "Flutter";
+text.replaceAll("F", "D");
+print(text)
+
 ## What happens if you use setState() inside initState()?
-## What will be the output of the following List code?
-## What will be printed in this async code?
+ - Using setState() inside initState() is generally unnecessary and can cause errors because the widget is still being initialized. If needed, you should schedule it using WidgetsBinding.instance.addPostFrameCallback to update state after the first build.
+
 ## Can I use the global key on multiple widgets?
+ - Runtime error: Multiple widgets cannot have the same GlobalKey.
+A GlobalKey must be unique per widget.
+
 ## How would you troubleshoot a deep linking issue in iOS?
+ - To troubleshoot deep linking issues in iOS, I first check that the URL scheme or Universal Link is correctly configured in the Xcode project and Info.plist. Then I verify that the associated domain is set up properly and the apple-app-site-association file is accessible. I also test the link in Safari, ensure the app delegate handles the URL correctly, and use logs to confirm the deep link is received and parsed as expected.
+
 ## What is BLE (Bluetooth Low Energy)
+ - BLE (Bluetooth Low Energy) is a wireless communication protocol designed for low-power
+applications, such as IoT devices, smartwatches, fitness trackers, and medical sensors. It
+consumes significantly less power than Classic Bluetooth, making it ideal for applications
+requiring prolonged battery life.
+
 ## What permissions are required for BLE in Flutter (Android & iOS)?
+ - <uses-permission android:name="android.permission.BLUETOOTH" />
+<uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
+<uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
+<uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+For iOS:
+<key>NSBluetoothAlwaysUsageDescription</key>
+<string>App needs Bluetooth access</string>
+
 ## What is the difference between Write Without Response and Write With Response in BLE?
+ - Write With Response: The device acknowledges the data sent. Reliable but slower.
+Write Without Response: The device does not send an acknowledgment. Faster but may cause
+data loss
+
 ## What are GATT services and characteristics in BLE?
+ - GATT (Generic Attribute Profile) defines how BLE devices communicate.
+Service: A collection of characteristics (e.g., Heart Rate Service).
+Characteristic: A specific data point (e.g., Heart Rate Measuremen
+
 ## Why do some BLE operations require a delay between them?
+ - BLE communication is asynchronous, and some operations (like reading characteristics or
+writing values) require time to process. Without delays, multiple requests may overlap and fail.
+
 ## Why is ACCESS_FINE_LOCATION required for BLE scanning on Android?
+ - Android considers BLE scanning as a location-based activity, so it requires location permissions
+for scanning nearby BLE devices.
+Android 6+ (API 23+): Requires ACCESS_FINE_LOCATION
+Android 10+ (API 29+): ACCESS_BACKGROUND_LOCATION (for background scanning)
+Android 12+ (API 31+): BLUETOOTH_SCAN and BLUETOOTH_CONNECT
+
 ## How do you differentiate between multiple BLE devices of the same type?
+ - You can distinguish devices using:
+Device ID (MAC address on Android, UUID on iOS)
+Service UUIDs (e.g., Heart Rate Service, Battery Service)
+RSSI (Signal Strength) - To estimate proximity.
+
 ## What is an MTU in BLE, and how do you set it in Flutter?
-## What are the different types of notifications supported by Flutter Local Notifications?
+ - MTU (Maximum Transmission Unit) defines the maximum size of a single BLE packet.
+● The default MTU is 23 bytes, but can be increased for faster data transfer.
+flutterReactiveBle.requestMtu(deviceId: deviceId, mtu: 512).then((mtu) {
+print('MTU set to: $mtu');
+});
+Higher MTU = Faster data transfer, but depends on device support
+
 ## What are notification channels, and why are they needed in Android?
+ - Notification channels are used in Android 8.0 (API 26+) to categorize notifications. Every notification must be assigned to a channel, which defines its behavior, such as importance, sound, and vibration. They help users control notification settings per category and ensure consistent notification management across the app.
+
 ## What is MQTT, and why is it used in loT?
+ - MQTT (Message Queuing Telemetry Transport) is a lightweight, publish-subscribe messaging
+protocol designed for low-bandwidth, high-latency, and unreliable networks, making it ideal for
+IoT applications. It ensures efficient communication between IoT devices and cloud services
+while consuming minimal power.
+
 ## What is the difference between MQTT and HTTP in AWS IoT?
+ - MQTT: Lightweight, publish/subscribe protocol designed for real-time messaging. Maintains a persistent connection, supports bidirectional communication. Efficient for devices with limited bandwidth or battery. HTTP: Request/response protocol, stateless. Each message requires a new connection. Less efficient for frequent or real-time updates. Key Difference: MQTT is ideal for real-time, low-latency IoT communication, while HTTP is better for occasional, request-driven data exchange.
+
 ## What are the limitations of AWS IoT Core with MQTT?
+ - Message size limit: Maximum payload size is 128 KB.
+Limited topic depth: AWS IoT allows up to 7-level topic hierarchy.
+Connection limits: Each account has a quota on concurrent connections.
+Cost considerations: Frequent high-volume messaging can lead to increased costs.
+No retained messages: AWS IoT Core does not support MQTT retained messages.
+
 ## What is SQLite, and why is it used in Flutter?
+ - SQLite is a lightweight, embedded database that does not require a separate server process. In
+Flutter, SQLite is used for local data storage when offline persistence is required. The sqflite
+package is commonly used to interact with SQLite databases in Flutter
+
 ## How do you check if a table exists in SQLite?
+ - Future<bool> doesTableExist(Database db, String tableName) async {
+final result = await db.rawQuery(
+"SELECT name FROM sqlite_master WHERE type='table' AND name=?",
+[tableName]
+);
+return result.isNotEmpty;
+}
+
 ## How do you handle migrations in SQLite with Flutter?
+ - Migrations are handled using the onUpgrade callback in openDatabase:
+Future<Database> initDB() async {
+String path = join(await getDatabasesPath(), 'my_database.db');
+return await openDatabase(
+path,
+version: 2, // Increment version
+onUpgrade: (db, oldVersion, newVersion) async {
+if (oldVersion < 2) {
+await db.execute("ALTER TABLE users ADD COLUMN email TEXT");
+}
+},
+);
+}
+
 ## How do you ensure data synchronization between a local SQLite database and a remote server?
+ - Timestamp-based Sync:
+Store a last_updated timestamp in the local database.
+Fetch new/updated records from the server based on last_updated.
+Two-way Sync Strategy:
+Send local changes to the server.
+Pull new data from the server.
+Merge conflicts if the same record is modified on both sides.
+Use Background Services:
+Use workmanager or flutter_background_fetch to sync periodically.
+REST API-based Sync:
+Use the http or dio package to fetch data and update the local database
+
 ## How do you handle offline mode with SQLite and synchronize when back online?
+ - Detect Network Status:
+Use connectivity_plus to check internet availability.
+final connectivityResult = await Connectivity().checkConnectivity();
+Queue Offline Requests:
+Store unsynced requests in SQLite with a sync_status column (0 for pending, 1 for
+synced).
+Sync When Online:
+When online, send pending requests to the server and update sync_status.
+Use a Background Sync Service:
+Implement workmanager to sync data periodically in the background
+
+
+
 ## Which method is used to upload a file or image in Flutter?
-## What is setState in Flutter?
-## What is the difference between StatelessWidget and StatefulWidget?
-## What is the purpose of pubspec.yaml?
-## What is initState() and when is it called?
+ - In Flutter, you typically use the http package’s MultipartRequest or Dio package to upload files or images to a server.
+
 ## How do you navigate between screens in Flutter?
-## Difference between final, const, and var in Dart?
+ - Navigator.push()
+
 ## What is the default axis for Column and Row widgets?
-## What is a Future in Dart?
+ - Column: Vertical (MainAxisAlignment.vertical).
+ - Row: Horizontal (MainAxisAlignment.horizontal).
+
 ## How do you handle null safety in Dart?
+ - In Dart, null safety is handled by using non-nullable types by default, adding ? for nullable types, and using the ! operator to assert non-null values. You also use null-aware operators like ?., ??, and ??= to safely work with nullable variables.
+ 
 ## Have you used social login in Flutter? How do you implement it?
+ - Yes, using firebase_auth, google_sign_in, flutter_facebook_auth, etc
+
 ## How do you handle API calls efficiently in Flutter?
-## What is the difference between FutureBuilder and Stream Builder?
-## Difference between async-await and async* yield?
+ - Using Dio or http, caching responses, and handling errors with try-catch.
+
 ## What is BLOC, and how does it differ from Provider?
+ - BLoC uses streams and events, while Provider is a simpler state management solution.
+
 ## How do you optimize list rendering in Flutter?
-## What is the purpose of GlobalKey?
+ - Using ListView.builder, const widgets, and AutomaticKeepAliveClientMixin
+
 ## How to manage dependencies in a Flutter project?
-## Explain the difference between get, post, put, and delete HTTP methods.
+ - Using pubspec.yaml and dependency_overrides if needed.
+
 ## What is deep linking in Flutter?
+ - It allows opening a specific screen in an app from an external URL.
+
 ## Have you worked on an iOS app? Where do you add permissions?
+ - Yes, in ios/Runner/Info.plist
+
 ## How do you generate iOS profiles and certificates?
-## Difference between certificates and profiles in iOS?
+ - Using Apple Developer Account → Certificates, Identifiers & Profiles
+
 ## What is isolate in Dart, and how does it help in performance?
+ - Isolate is used for parallel execution to avoid blocking the main UI thread.
+
 ## How does Flutter handle memory management?
+ - Using Dart's garbage collector and efficient widget rebuilding.
+
 ## How to prevent widget rebuilding in Flutter?
+ - Use const widgets, ValueKey, AutomaticKeepAliveClientMixin, and select() in state management.
+
 ## Explain how to handle background tasks in Flutter.
+ - Using workmanager or flutter_background_service packages.
+
 ## How do you handle socket connections in Flutter?
+ - Using web_socket_channel or socket.io-client-dart.
+
 ## How do you implement push notifications in Flutter?
+ - Using firebase_messaging or onesignal_flutter
+
 ## How would you debug performance issues in Flutter?
-## Reverse a string without using built-in functions.
-## Find the second largest number in an array.
-## Check if a number is a palindrome.
-## Print Fibonacci series up to N terms.
-## Swap two numbers without using a temporary variable.
-## Find duplicate elements in a list.
-## Check if two strings are anagrams.
-## Implement a basic debounce function in Dart.
+ - Using Flutter DevTools, Performance Overlay, and profiling tools.
+
+## what is debounce in dart.
+ - In Dart, debounce is a technique to delay executing a function until a certain period has passed since the last call, preventing it from being called too frequently—commonly used with search inputs or scroll events. 
+
 ## Convert a JSON string to a Dart model.
-## Write a function to validate an email format.
+ - To convert a JSON string to a Dart model, you first create a model class with a fromJson factory constructor, then use jsonDecode from dart:convert.
+
 ## Optimize a large list to avoid excessive memory usage.
+ - Use lazy loading (pagination) with ListView.builder().
+
 ## How would you design an offline-first app?
-## Implement a custom animation in Flutter.
+ - Use hive or sqflite for local storage.
+ - Cache API responses using dio_cache_interceptor.
+ - Sync data with the server when online
+
 ## How would you ensure security in a Flutter app?
-## Design a rate-limiting mechanism in Dart.
-## What is Kotlin, and how is it different from Java?
-## What are the key features of Kotlin?
-## What is the difference between val and var in Kotlin?
-## What is a data class in Kotlin?
-## What is an Activity and Fragment in Android?
+ - Use HTTPS for API calls. ○ Store sensitive data in Flutter Secure Storage instead of SharedPreferences. ○ Obfuscate Dart code using dart compile options
+
 ## What is the Android Manifest file?
-## How do you request runtime permissions in Android?
-## What is ViewModel in Android?
-## How do you handle click events in Kotlin?
-## What is a RecyclerView, and why is it better than ListView?
-## Explain the Android Activity lifecycle.
-## What is the difference between onPause() and onStop()?
-## What is LiveData in Android?
-## What is the difference between startActivity() and startActivityForResult()?
-## How do you implement a RecyclerView adapter in Kotlin?
-## What are Coroutines in Kotlin? Why use them?
-## What is the difference between launch and async in Coroutines?
-## How do you make an API call using Retrofit in Kotlin?
-## What is SharedPreferences in Android?
-## How to implement dark mode in Android?
-## What is WorkManager, and why use it?
-## What is the difference between Service and JobIntentService?
-## How do you prevent memory leaks in Android?
-## What is ProGuard, and how does it help in Android?
-## How do you handle deep linking in Android?
-## What is the difference between BroadcastReceiver and LocalBroadcastManager?
-## What is Jetpack Compose, and why use it?
-## What is Dependency Injection in Android?
-## How does Paging Library improve performance?
-## How do you implement WebSockets in Android?
-## Reverse a string in Kotlin without using built-in functions.
-## Find the second largest element in an array.
-## Check if a number is prime.
-## Write a function to detect a loop in a linked list.
-## What is Swift, and how is it different from Objective-C?
-## What are optionals in Swift?
-## What is the difference between let and var?
-## What is a closure in Swift?
-## How do you navigate from one ViewController to another?
-## What are the different ways to pass data between ViewControllers?
-## What is Codable in Swift, and why is it useful?
-## Explain the difference between weak, strong, and unowned references.
-## What is Grand Central Dispatch (GCD) in iOS?
-## What is Auto Layout, and how does it work?
-## What is the difference between struct and class in Swift?
-## How do you handle memory management in iOS?
-## Explain MVVM and its benefits.
-## What is Combine Framework, and why is it used?
-## How does Dependency Injection work in iOS?
+ - A configuration file (AndroidManifest.xml) that declares permissions, activities, services, and app metadata.
 
 # 🚀 Flutter Interview Questions and Answers 💡
 
@@ -1009,6 +1264,7 @@ known values.
 
 ### 28. **📌 Why Mixins in Dart?**
 
+ - Mixins are a way to reuse a class's code in multiple class hierarchies.
 ✅ **Dart doesn’t support multiple inheritance** – Mixins provide reusable functionality without
 affecting class hierarchy.  
 ✅ **Used to share behavior between classes** without creating a base class.
@@ -1112,7 +1368,7 @@ Text('C'),
 
 📌 **Behavior:** `B` is positioned **twice as far** from `C` as `A` is from `B`.
 
-### **📌 14. Stateful vs Stateless Widget in Flutter**
+### **📌 14. Stateful vs Stateless Widget in Flutter** or What are the types of widgets present in Flutter?
 
 ---
 
