@@ -400,6 +400,9 @@ await db.execute("ALTER TABLE users ADD COLUMN email TEXT");
 );
 }
 
+## how to improve app perfomance to make it fast
+ - To make a Flutter app fast, use const widgets, efficient state management to rebuild only necessary widgets, lazy-load lists, cache images and data, and offload heavy computations to isolates. Profiling with DevTools helps find and fix performance bottlenecks.
+
 ## How do you ensure data synchronization between a local SQLite database and a remote server?
  - Timestamp-based Sync:
 Store a last_updated timestamp in the local database.
