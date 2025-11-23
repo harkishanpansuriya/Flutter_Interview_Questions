@@ -116,33 +116,60 @@ To secure a wallet app:
 - Keep shared components in a **core module** or shared library.
 
 ## How do you handle background tasks and notifications on Android?
- - Tools: WorkManager, Foreground Services, AlarmManager for scheduled tasks.
-Example: "Used WorkManager to schedule recurring pill reminders, handling both exact time
-and battery optimization constraints."
+
+- Use **WorkManager**, **Foreground Services**, or **AlarmManager** for scheduled/background tasks.  
+- Example: Schedule recurring tasks like pill reminders with WorkManager, respecting exact time and battery optimization constraints.
 
 ## How do you reduce APK or IPA size?
- - Remove unused assets and fonts. ● Use flutter build apk --split-per-abi. ● Compress images using tools like TinyPNG. ● Use deferred components or code-splitting where supported. ● Avoid large third-party libraries unless necessary.
+
+- Remove unused assets and fonts.  
+- Use `flutter build apk --split-per-abi`.  
+- Compress images (e.g., TinyPNG).  
+- Use deferred components or code-splitting where supported.  
+- Avoid large third-party libraries unless necessary.
 
 ## Describe your process when upgrading a Flutter project to a new version.
- - ● Run flutter upgrade. ● Check pubspec.yaml for outdated packages. ● Use flutter pub outdated and update dependencies. ● Run app and resolve breaking changes. ● Check Flutter migration guides
+
+- Run `flutter upgrade`.  
+- Check `pubspec.yaml` for outdated packages.  
+- Use `flutter pub outdated` and update dependencies.  
+- Run the app and resolve breaking changes.  
+- Follow Flutter migration guides for major updates.
 
 ## What is the use of const in Flutter widgets?
- - Using const in Flutter makes widgets immutable, reduces rebuilds, and improves performance by reusing the same widget instance.
 
-## What is the purpose of mainAxis Alignment and crossAxisAlignment?
- - Used to align children in Row and Column widgets.
+Using `const` makes widgets **immutable**, reduces unnecessary rebuilds, and improves performance by reusing the same widget instance.
+
+## What is the purpose of mainAxisAlignment and crossAxisAlignment?
+
+Used to **align children** inside `Row` and `Column` widgets along the main and cross axes.
 
 ## What is the WillPopScope widget used for?
- - WillPopScope is used to control or prevent the back button action, allowing you to decide whether the screen should be popped or not.
 
-## Material Vs Cupertino Widget?
- - Material widgets follow Android’s design guidelines, while Cupertino widgets provide iOS-style UI components—use Material for Android look and Cupertino for iOS look.
+`WillPopScope` is used to **control or prevent the back button action**, allowing you to decide whether the screen should be popped.
+
+## Material vs Cupertino Widget
+
+- **Material widgets:** Follow Android’s design guidelines.  
+- **Cupertino widgets:** Provide iOS-style UI components.  
+- Use **Material** for Android look and **Cupertino** for iOS look.
 
 ## What are custom widgets in Flutter, and why are they important?
- - Custom widgets in Flutter are user-defined widgets that allow developers to encapsulate UI components for reusability and maintainability. They help in: ● Reducing code duplication ● Improving readability ● Enhancing modularity ● Simplifying complex UI structures Custom widgets can be StatelessWidget or StatefulWidget, depending on whether they need to manage the state.
+
+Custom widgets are **user-defined widgets** that encapsulate UI components for **reusability and maintainability**.  
+Benefits:  
+- Reduce code duplication  
+- Improve readability  
+- Enhance modularity  
+- Simplify complex UI  
+
+They can be `StatelessWidget` or `StatefulWidget` depending on state management needs.
 
 ## What is the difference between GetBuilder, Obx, and GetX in GetX?
- - GetBuilder – Uses GetBuilder<T>() and updates only when update() is called manually. Uses less memory. Obx – Uses Rx variables and automatically updates when the variable changes. GetX – A combination of both Obx and GetBuilder with additional dependency management features.
+
+- **GetBuilder:** Updates UI only when `update()` is called manually; memory-efficient.  
+- **Obx:** Automatically updates UI when an Rx variable changes.  
+- **GetX:** Combines features of `Obx` and `GetBuilder` with additional dependency management.
 
 ## How do you pass arguments between screens in GetX?
  - Get.to(NextScreen(), arguments: "Hello GetX"); var data = Get.arguments
@@ -151,12 +178,13 @@ and battery optimization constraints."
  - Bindings help manage dependencies automatically when a screen is opened.
 
 ## What are the core components of the Bloc architecture?
- - Bloc/Cubit – Business logic component.
-Events – User actions that trigger state changes.
-States – UI states returned by Bloc/Cubit.
-BlocProvider – Provides the Bloc instance to widgets.
-BlocBuilder – Rebuilds UI when state changes.
-BlocListener – Listens for state changes without rebuilding UI.
+
+- **Bloc/Cubit:** Handles business logic.  
+- **Events:** Trigger state changes.  
+- **States:** Represent UI states emitted by Bloc/Cubit.  
+- **BlocProvider:** Provides the Bloc instance to widgets.  
+- **BlocBuilder:** Rebuilds UI when state changes.  
+- **BlocListener:** Listens to state changes without rebuilding UI.
 
 ## How do you integrate Stripe in a Flutter app? Like Using SDK or WEB
  - You integrate Stripe in Flutter either by using the official Stripe Flutter SDK for native payments or by using a WebView/Stripe Checkout page. The SDK gives native UI and better control, while the web approach is simpler and PCI-compliant using Stripe’s hosted payment page."
@@ -171,92 +199,146 @@ BlocListener – Listens for state changes without rebuilding UI.
  - For Firebase Auth, I first enable the login providers in the Firebase console, add Firebase to my Flutter app, and install firebase_auth. Then I initialize Firebase, implement login/signup methods, handle errors, listen to auth state changes, and secure backend access using Firebase security rules.
 
 ## What are the common issues faced while implementing social login in Flutter?
- - Invalid SHA-1 or SHA-256 keys (Google Sign-In)
-Facebook Login App not configured properly
-Platform-specific setup issues (missing Info.plist or AndroidManifest.xml configurations)
-Expired OAuth tokens
-Handling errors when the user denies permissions
+
+- Invalid **SHA-1** or **SHA-256** keys (Google Sign-In).  
+- Facebook app not configured properly.  
+- Platform-specific setup issues (missing `Info.plist` or `AndroidManifest.xml` entries).  
+- Expired OAuth tokens.  
+- Handling errors when users deny permissions.
 
 ## What permissions are required for location services in Flutter?
- - <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+**Android permissions:**
+
+```xml
+<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
 <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION"/>
+```
+
+**iOS permissions (Info.plist):**
+
+```xml
 <key>NSLocationWhenInUseUsageDescription</key>
 <string>We need your location to show nearby places.</string>
 <key>NSLocationAlwaysUsageDescription</key>
 <string>We need your location to provide accurate results.</string>
+```
 
 ## How do you track the user's live location in Flutter?
- - StreamSubscription<Position>? positionStream;
+
+Use the **Geolocator** package to get a stream of location updates:
+
+```dart
+StreamSubscription<Position>? positionStream;
+
 void startLocationTracking() {
-positionStream = Geolocator.getPositionStream(
-locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
-).listen((Position position) {
-print("Live Location: ${position.latitude}, ${position.longitude}");
-});
+  positionStream = Geolocator.getPositionStream(
+    locationSettings: LocationSettings(accuracy: LocationAccuracy.high),
+  ).listen((Position position) {
+    print("Live Location: ${position.latitude}, ${position.longitude}");
+  });
 }
+
 void stopLocationTracking() {
-positionStream?.cancel();
+  positionStream?.cancel();
 }
+```
 
 ## How do you calculate the distance between two locations in Flutter?
- - Use the Geolocator.distanceBetween() method:
+
+Use the **Geolocator.distanceBetween()** method:
+
+```dart
+double distanceInMeters = Geolocator.distanceBetween(
+  startLatitude, startLongitude,
+  endLatitude, endLongitude
+);
+```
 
 ## Have you worked on an iOS app? If yes, how and where to add permissions? How to generate profiles and a certificate? Difference between certificate and profiles.
- - yes, I’ve worked on iOS apps. iOS permissions are added inside the Info.plist file (e.g., camera, location, photos). For app signing, I generate an iOS certificate and provisioning profile from Apple Developer Portal. The certificate is used to sign the app, while the provisioning profile defines the device/app permissions and links the app ID with the signing certificate.
+
+* iOS permissions are added in **Info.plist** (e.g., camera, location, photos).
+* For app signing, generate an iOS **certificate** and **provisioning profile** from Apple Developer Portal.
+
+  * **Certificate:** Used to sign the app.
+  * **Provisioning profile:** Defines device/app permissions and links the app ID with the signing certificate.
 
 ## What happens if you call setState() inside build()?
- - This will cause an infinite loop because setState() triggers build(), and build() calls setState() again. ● Instead, update the state before calling build(), like in a FutureBuilder or an event callback.
+
+* Causes an **infinite loop** because `setState()` triggers `build()`, which calls `setState()` again.
+* Update state in a **FutureBuilder** or an event callback instead.
 
 ## What is the difference between setState(), Provider, and Bloc for state management in Flutter?
- - setState(): Used for managing the local state of a widget. It triggers a rebuild of the
-widget but does not persist state across widget re-creations.
-● Provider: A simple and scalable solution for state management. It helps manage
-app-wide state efficiently using dependency injection.
-● Bloc (Business Logic Component): Uses the Stream pattern to handle state changes
-reactively. It is ideal for complex applications with structured state management.
+
+* **setState():** Manages local widget state; triggers rebuilds but doesn’t persist state across widget recreation.
+* **Provider:** Simple, scalable solution for app-wide state using dependency injection.
+* **Bloc (Business Logic Component):** Uses streams to handle state changes reactively; ideal for complex applications with structured state management.
 
 ## What are Flutter's best practices for writing clean and maintainable code?
- - Follow MVVM or Clean Architecture for separation of concerns.
-Use Dart linting for maintaining code standards.
-Write reusable widgets to avoid duplication.
-Implement dependency injection with get_it or riverpod.
-Use async/await properly to handle asynchronous operations.
-Keep widgets small and modular for better readability
+
+* Follow **MVVM** or **Clean Architecture** for separation of concerns.
+* Use **Dart linting** for consistent code standards.
+* Write **reusable widgets** to avoid duplication.
+* Implement **dependency injection** with `get_it` or `riverpod`.
+* Use **async/await** properly for asynchronous operations.
+* Keep widgets **small and modular** for better readability.
 
 ## Which are the most popular apps that use Flutter?
- - Google Ads, Alibaba, Hamilton, Hookle
+
+* Google Ads, Alibaba, Hamilton, Hookle
 
 ## What is an AspectRatio widget used for?
- - The AspectRatio widget in Flutter is used to ensure that a widget maintains a specific aspectratio, regardless of the size of the parent container. This can be useful in cases where you wanta widget to have a specific shape, such as a square or a rectangle with a fixed width-to-heightratio.The aspect ratio is defined as the width of the widget divided by its height. The AspectRatiowidget takes the aspect ratio as an argument and sets the width or height of the widget suchthat the aspect ratio is maintained. The other dimension is automatically adjusted to match.For example, if you want to create a square widget, you can wrap the widget in an AspectRatiowidget with an aspect ratio of 1.0, and the widget will always be square, regardless of the size ofthe parent container.
 
-## how to build an app with responsive UI in Flutter
- - To build a responsive UI in Flutter:
-Use MediaQuery – Get screen size and adapt UI accordingly.
+* The **AspectRatio widget** in Flutter is a powerful tool that allows us to control the **aspect ratio** of a child widget.
+* It's particularly useful for maintaining a **width-to-height ratio**, ensuring consistent proportions across different screen sizes and orientations.
+* Example: For a square widget:
+
+```dart
+AspectRatio(
+  aspectRatio: 1.0,
+  child: Container(color: Colors.blue),
+)
+```
+## How to build an app with responsive UI in Flutter
+
+To build a responsive UI in Flutter, follow these best practices:
+
+* **MediaQuery:** Get screen size and adapt UI accordingly.
+
+```dart
 double width = MediaQuery.of(context).size.width;
-1.
-Use LayoutBuilder – Adjust layout based on available constraints.
-LayoutBuilder(builder: (context, constraints) {
-return constraints.maxWidth > 600 ? TabletView() : MobileView();
-})
-2. Use Flexible & Expanded – Allow widgets to resize dynamically.
-3. Use FittedBox – Scale widgets to fit within constraints.
-Use flutter_screenutil package – Manage scalable dimensions and fonts.
-ScreenUtil().setSp(16) // Scalable font size
-4. Use SizedBox & AspectRatio – Maintain proportional spacing and layout.
-5. You can use the responsive_builder package to create a responsive UI in Flutter.
-Why responsive_builder?
-● Provides ScreenTypeLayout for different devices.
-● Uses ResponsiveBuilder to customize breakpoints.
-● Lightweight and easy to implement.
+```
 
-## How do you handle platform-specific code in Flutter? or Do you know how to communicate with Native code?
- - I handle platform-specific code using platform channels, where Flutter communicates with native Android (Kotlin/Java) and iOS (Swift/Obj-C) code to access device-specific features.
-● By Using Method channel.
-What is the difference between MethodChannel and EventChannel?
-● MethodChannel: Used for one-time method calls between Flutter and native.
-● EventChannel: Used for continuous data streams (e.g., sensor data, location updates)
+* **LayoutBuilder:** Adjust layout based on available constraints.
+
+```dart
+LayoutBuilder(builder: (context, constraints) {
+  return constraints.maxWidth > 600 ? TabletView() : MobileView();
+})
+```
+
+* **Flexible & Expanded:** Allow widgets to resize dynamically.
+* **FittedBox:** Scale widgets to fit within constraints.
+* **flutter_screenutil package:** Manage scalable dimensions and fonts.
+
+```dart
+ScreenUtil().setSp(16) // Scalable font size
+```
+
+* **SizedBox & AspectRatio:** Maintain proportional spacing and layout.
+* **responsive_builder package:** Simplifies creating responsive UI.
+
+  * Provides **ScreenTypeLayout** for different devices.
+  * Uses **ResponsiveBuilder** to customize breakpoints.
+  * Lightweight and easy to implement.
+
+## How do you handle platform-specific code in Flutter?
+
+* Use **Platform Channels** to communicate between Flutter and native Android (Kotlin/Java) or iOS (Swift/Obj-C) code for accessing device-specific features.
+* **MethodChannel:** For one-time method calls, e.g., fetching current battery level or device name.
+* **EventChannel:** For continuous data streams, e.g., sensor data, location updates.
 
 ## Explain the difference between BlocBuilder and BlocConsumer.
  - BlocBuilder handles building widgets based on state changes and is used for UI rendering. BlocConsumer is a combination of a BlocBuilder and a BlocListener, allowing it to both build widgets and execute side effects (like showing a Snackbar or navigation) based on state changes.
