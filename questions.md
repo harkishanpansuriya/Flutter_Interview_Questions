@@ -81,9 +81,6 @@ and battery optimization constraints."
 ## Material Vs Cupertino Widget?
  - Material widgets follow Android’s design guidelines, while Cupertino widgets provide iOS-style UI components—use Material for Android look and Cupertino for iOS look.
 
-## Difference between deactivate and dispose?
- - deactivte: Called when this object is removed from the tree. deactivate is called when a widget may be dispose. But that is not guaranteed. Dispose: Called when this object is removed from the tree permanently. By understanding both sentences, you%E2%80%99ll see that deactivate will be called for widgets that are removed from the tree, temporarily or permanently, whereas dispose will only be called for widgets being removed permanently.
-
 ## What are custom widgets in Flutter, and why are they important?
  - Custom widgets in Flutter are user-defined widgets that allow developers to encapsulate UI components for reusability and maintainability. They help in: ● Reducing code duplication ● Improving readability ● Enhancing modularity ● Simplifying complex UI structures Custom widgets can be StatelessWidget or StatefulWidget, depending on whether they need to manage the state.
 
@@ -176,9 +173,6 @@ Keep widgets small and modular for better readability
 
 ## What is an AspectRatio widget used for?
  - The AspectRatio widget in Flutter is used to ensure that a widget maintains a specific aspectratio, regardless of the size of the parent container. This can be useful in cases where you wanta widget to have a specific shape, such as a square or a rectangle with a fixed width-to-heightratio.The aspect ratio is defined as the width of the widget divided by its height. The AspectRatiowidget takes the aspect ratio as an argument and sets the width or height of the widget suchthat the aspect ratio is maintained. The other dimension is automatically adjusted to match.For example, if you want to create a square widget, you can wrap the widget in an AspectRatiowidget with an aspect ratio of 1.0, and the widget will always be square, regardless of the size ofthe parent container.
-
-## What is the purpose of the dispose() method in a StatefulWidget?
- - dispose() is used to clean up resources like controllers, streams, or animations when a StatefulWidget is permanently removed from the widget tree.
 
 ## how to build an app with responsive UI in Flutter
  - To build a responsive UI in Flutter:
@@ -438,12 +432,6 @@ Embedder Layer – Runs the engine on different platforms.
 3. Explain the Flutter widget tree.
 
 Answer: Flutter builds a widget tree, where every UI element is a widget. Widgets are lightweight and immutable; the tree is rebuilt on state changes, and the framework efficiently updates only affected parts via Element and RenderObject trees.
-
-4. Difference between StatefulWidget and StatelessWidget
-
-StatelessWidget – Immutable, doesn’t maintain state.
-
-StatefulWidget – Maintains state in a separate State object, can trigger rebuilds with setState().
 
 5. What is the difference between Element tree and RenderObject tree?
 
@@ -1341,20 +1329,6 @@ void main() {
   greet(null); // Assertion fails, throws AssertionError with message
 }
 ```
-
-### 27. **📌 Final vs Const in Dart**
-
-| Feature              | `final`                                | `const`                             |
-|----------------------|----------------------------------------|-------------------------------------|
-| **Mutability**       | Can’t be reassigned                    | Can’t be reassigned                 |
-| **When Initialized** | At **runtime**                         | At **compile-time**                 |
-| **Use Case**         | When value is known at runtime         | When value is known at compile-time |
-| **Example**          | `final int age = DateTime.now().year;` | `const int year = 2024;`            |
-
-📌 **Key Difference:** `final` allows runtime initialization, while `const` requires compile-time
-known values.
-
----
 
 ### 28. **📌 Why Mixins in Dart?**
 
@@ -2788,18 +2762,6 @@ enabling things like context-based theming and state management.
 - **Purpose:** Ensures that child widgets are positioned within safe areas of device screens,
   avoiding overlap with system UI elements like status bar and notch.
 
-### 59. Method Channel vs Event Channel in Flutter
-
-- **Method Channel:** Used for asynchronous method calls between Flutter and platform-specific
-  code (e.g., Android/iOS).
-    - the native side and can return back a value and vise versa.You can e.g. call a method that
-      retrieves the device name this way.
-- **Event Channel:** Used for establishing a data stream from platform-specific code to Flutter,
-  providing continuous updates or events.
-    - on the *Dart* side of things and being able to feed that stream from the native side.  
-      This is useful if you want to send data every time a particular *event* occurs, e.g. when the
-      wifi connection of a device changes.
-
 ### 63. Android and iOS folders in Flutter Project
 
 - **Android Folder:** Contains the entire Android project necessary for building a Flutter
@@ -2861,11 +2823,6 @@ enabling things like context-based theming and state management.
     - **Stream Channels:** Asynchronous communication channels for streaming data between Flutter
       and native platform.
 
-### 69. Method Channel in Flutter
-
-- **Purpose:** Facilitates synchronous communication between Dart (Flutter) code and
-  platform-specific native code (e.g., Android, iOS).
-- **Usage:** Enables Flutter applications to access platform-specific features and functionalities.
 
 ### 70. MVVM (Model-View-ViewModel) Structure
 
