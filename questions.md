@@ -11,52 +11,109 @@ Here is the list of questions from the document, formatted as requested.
 
 ## Please give a brief introduction about your technical experience & projects.
 
-## Do you have experience in Native development? Yes, then how much experience?
-
 ## What are the different launch modes in Android?
- - standard, singleTop, singleTask, singleInstance, and singleInstancePerTask
+
+Android provides different launch modes to control how activities are created and managed in the back stack:
+
+- **standard** – Default mode. A new instance of the activity is created every time it is launched.
+- **singleTop** – If an instance of the activity is already at the top of the stack, no new instance is created; otherwise, a new one is created.
+- **singleTask** – Only one instance of the activity exists in the system. If it exists, it is brought to the front, and all activities above it are cleared.
+- **singleInstance** – The activity is launched in its own separate task. No other activities can be part of this task.
+- **singleInstancePerTask** – Similar to `singleInstance`, but allows multiple instances across different tasks while ensuring only one per task.
 
 ## What is ProGuard, and why is it used?
- - ProGuard is a tool that shrinks, optimizes, and obfuscates Android code. It helps reduce APK size, improves performance, and provides security by making code harder to reverse engineer.
 
-## How would you design a booking service system and how to manage slot selection and booking logic in your flutter?
- - I would design the booking system with a backend that manages slot availability and performs final booking validation using transactions to prevent double-booking. In Flutter, I fetch available slots, show them in a selectable UI (chips/grid), manage selection using state management (Provider/Bloc/Riverpod), and confirm booking by calling an API. The backend re-verifies the slot before creating the booking to ensure accuracy and avoid conflicts.
+ProGuard is an Android tool that **shrinks, optimizes, and obfuscates code** to reduce APK size, improve performance, and make reverse engineering harder.
+
+## How would you design a booking service system and manage slot selection in Flutter?
+
+I would design the booking system with a backend that manages slot availability and validates bookings using transactions to prevent double-booking. In Flutter, I would:
+
+- Fetch available slots from the backend.  
+- Display slots in a selectable UI (chips/grid).  
+- Manage selection using state management (Provider, Bloc, or Riverpod).  
+- Confirm booking by calling an API, letting the backend re-verify the slot to ensure accuracy and prevent conflicts.
 
 ## How do you securely store and retrieve a user's private key in a Flutter wallet app?
- - I store the private key using platform-secure storage (flutter_secure_storage), which uses Android Keystore and iOS Keychain. The key is encrypted at rest and only decrypted in memory when needed for signing. I also protect access with biometrics, avoid logging, and clear the key from memory immediately after use. Never store private keys in SharedPreferences or local storage.
 
-## How to manage wallet app is secure against attacks?
- - I keep a wallet app secure by storing private keys in the device’s secure hardware (Keystore/Keychain), protecting the app with biometrics or a PIN, and encrypting all sensitive data. I also block rooted/jailbroken devices, prevent screenshots, use secure network calls, and make sure private keys never leave the device.Use HTTPS for API communication (TLS encryption). Implement 2FA (Two-Factor Authentication). Use Secure Storage instead of SharedPreferences.Enforce Strong Authentication (PIN, Biometrics). Monitor Suspicious Transactions and enforce rate limits.
+Store the private key using **platform-secure storage** (`flutter_secure_storage`), which relies on Android Keystore and iOS Keychain. Encrypt the key at rest, decrypt it only in memory when needed, protect access with biometrics, avoid logging, and clear it from memory immediately after use. **Never store private keys in SharedPreferences or local storage.**
+
+## How to keep a wallet app secure against attacks?
+
+To secure a wallet app:
+
+- Store private keys in device secure hardware (Keystore/Keychain).  
+- Protect the app with PIN or biometrics.  
+- Encrypt all sensitive data and use HTTPS/TLS for network calls.  
+- Block rooted/jailbroken devices and prevent screenshots.  
+- Implement 2FA and rate limits, and monitor suspicious transactions.  
+- Never store private keys in SharedPreferences; use secure storage.
 
 ## What are the advantages of using Firebase Realtime Database?
- - ● Real-time sync: Data is synchronized across all connected devices in real time. ● Offline capabilities: Data is cached locally, allowing offline access. ● Automatic scaling: Handles large amounts of data without needing manual server management. ● NoSQL database: Uses JSON-based key-value storage for quick access.
+
+- **Real-time sync:** Data updates are synchronized across all connected devices instantly.  
+- **Offline capabilities:** Data is cached locally for offline access.  
+- **Automatic scaling:** Handles large datasets without manual server management.  
+- **NoSQL database:** Uses JSON-based key-value storage for fast and flexible access.
 
 ## How do you handle real-time data updates in Flutter?
- - Streams & StreamBuilder: Used to listen to real-time changes asynchronously. WebSockets: Establishes a persistent connection for real-time communication. Firebase Firestore: Provides real-time updates via snapshots. Provider, Riverpod, Bloc: State management solutions to manage real-time data efficiently
+
+- **Streams & StreamBuilder:** Listen to real-time changes asynchronously.  
+- **WebSockets:** Establish persistent connections for real-time communication.  
+- **Firebase Firestore:** Provides real-time updates via snapshots.  
+- **State management (Provider, Riverpod, Bloc):** Efficiently manage and update UI with real-time data.
 
 ## What are the limitations of Firebase Realtime Database?
- - No complex queries: Limited to simple key-value lookups. Scalability issues: Becomes slow with a large number of concurrent users. Data structure needs careful design: Poor structuring can lead to performance issues. No built-in analytics: Unlike Firestore, it lacks detailed analytics tools.
+
+- **Limited queries:** Supports only simple key-value lookups.  
+- **Scalability issues:** Can become slow with a large number of concurrent users.  
+- **Data structure sensitivity:** Poor structuring can impact performance.  
+- **No built-in analytics:** Lacks detailed analytics tools compared to Firestore.
 
 ## What is the difference between Firebase Realtime Database and Firestore for real-time data in Flutter?
  ![alt text](<Screenshot From 2025-11-22 19-24-59.png>)
  
 ## If your Flutter app is crashing only in release mode, how do you debug it?
- - Use flutter run --release with connected device logs via adb logcat. ● Ensure you're not using assert statements (they don't run in release mode). ● Avoid using debug-only code. ● Try using Sentry/Firebase Crashlytics for release crash reports
+
+- Run `flutter run --release` and check device logs via `adb logcat`.  
+- Ensure no `assert` statements or debug-only code is being used.  
+- Use crash reporting tools like **Sentry** or **Firebase Crashlytics** to capture release crashes.
 
 ## How would you optimise a list of 10,000+ items in a Flutter app?
- - Use ListView.builder with item count. Use const widgets wherever possible to prevent unnecessary rebuilds. Implement AutomaticKeepAliveClientMixin if items have state. Consider pagination or lazy loading.
+
+- Use `ListView.builder` with `itemCount` for lazy loading.  
+- Use `const` widgets to avoid unnecessary rebuilds.  
+- Implement `AutomaticKeepAliveClientMixin` if list items maintain state.  
+- Consider pagination or lazy loading to reduce memory usage.
 
 ## Explain how isolate works in Flutter and when you would use it.
- - Isolates are Flutter’s way of handling multithreading. They don't share memory. Use cases: ● Heavy computation like parsing large files, encryption, or image processing. ● Use compute() for simple, one-off tasks. For complex or long-lived tasks, use Isolate.spawn.
+
+- **Isolates** provide multithreading in Flutter; they do not share memory.  
+- **Use cases:** Heavy computations like parsing large files, encryption, or image processing.  
+- Use `compute()` for simple one-off tasks and `Isolate.spawn` for complex or long-lived tasks.
 
 ## What is your approach to testing a Flutter application?
- - Unit tests for business logic and pure functions. ● Widget tests for UI and interaction logic using WidgetTester. ● Integration tests (e.g., using integration_test or flutter_driver) for end-to-end flows. ● Use mocks for dependencies (e.g., mockito, mocktail). ● Automate testing with CI tools like GitHub Actions or Bitrise.
+
+- **Unit tests:** For business logic and pure functions.  
+- **Widget tests:** For UI and interaction using `WidgetTester`.  
+- **Integration tests:** End-to-end flows with `integration_test` or `flutter_driver`.  
+- **Mocks:** Use `mockito` or `mocktail` for dependencies.  
+- **CI automation:** Run tests via GitHub Actions, Bitrise, or other CI tools.
 
 ## What are some performance optimization techniques you've applied in production apps?
- - ● Use const widgets. ● Avoid rebuilding large widget trees (use shouldRebuild, selector, etc.). ● Use image caching (cached_network_image). ● Compress images, limit FPS in animations. ● Use RepaintBoundary to isolate heavy rendering areas.
+
+- Use `const` widgets to reduce rebuilds.  
+- Avoid rebuilding large widget trees (use `shouldRebuild`, `Selector`, etc.).  
+- Cache images using `cached_network_image`.  
+- Compress images and limit FPS in animations.  
+- Use `RepaintBoundary` to isolate heavy rendering areas.
 
 ## How would you architect a Flutter app with multiple modules or teams working on it?
- - Use feature-based folder structure (features/user, features/dashboard). ● Apply clean architecture with proper data separation. ● Use internal packages or mono-repo (packages/feature_x) to separate concerns. Shared components in a core module or shared library
+
+- Use a **feature-based folder structure** (e.g., `features/user`, `features/dashboard`).  
+- Apply **clean architecture** with proper separation of data, domain, and presentation layers.  
+- Use **internal packages** or a **monorepo** (`packages/feature_x`) for modularization.  
+- Keep shared components in a **core module** or shared library.
 
 ## How do you handle background tasks and notifications on Android?
  - Tools: WorkManager, Foreground Services, AlarmManager for scheduled tasks.
