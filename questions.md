@@ -546,7 +546,7 @@ await db.execute("ALTER TABLE users ADD COLUMN email TEXT");
  5. Painting Phase Each RenderObject paints itself onto a canvas. The painting is batched into layers for efficient compositing. 
  6. Compositing & Rasterization The Flutter Engine (C++ layer with Skia) composites layers and converts them into pixels. These pixels are sent to the GPU for rendering on the screen. Summary Flow Widget tree → Element tree → RenderObject tree → Layout → Paint → Compositing → Screen pixels
 
-1. What is Flutter’s architecture?
+## What is Flutter’s architecture?
 
 Answer: Flutter uses a layered architecture:
 
@@ -556,7 +556,7 @@ Engine Layer: Skia-based rendering engine, C++ code for graphics, text, and plat
 
 Embedder Layer: Platform-specific code for Android, iOS, Web, Desktop.
 
-2. What are the main layers in Flutter?
+## What are the main layers in Flutter?
 
 Widget Layer – UI components.
 
@@ -568,17 +568,17 @@ Engine Layer – Skia rendering and platform interface.
 
 Embedder Layer – Runs the engine on different platforms.
 
-3. Explain the Flutter widget tree.
+## Explain the Flutter widget tree.
 
 Answer: Flutter builds a widget tree, where every UI element is a widget. Widgets are lightweight and immutable; the tree is rebuilt on state changes, and the framework efficiently updates only affected parts via Element and RenderObject trees.
 
-5. What is the difference between Element tree and RenderObject tree?
+## What is the difference between Element tree and RenderObject tree?
 
 Element Tree – Manages widget instances and their lifecycle.
 
 RenderObject Tree – Handles layout, painting, and positioning on the screen.
 
-6. Explain Flutter state management approaches
+## Explain Flutter state management approaches
 
 Answer: Flutter separates UI and state. Common approaches:
 
@@ -590,21 +590,21 @@ Bloc / Cubit – Event-driven state with separation of UI and logic.
 
 Riverpod – Improved dependency injection and reactive state.
 
-7. What is the difference between InheritedWidget and Provider?
+## What is the difference between InheritedWidget and Provider?
 
 InheritedWidget – Built-in Flutter widget for sharing data down the widget tree.
 
 Provider – A wrapper over InheritedWidget offering simpler syntax, dependency injection, and rebuild management.
 
-8. What is the role of Flutter Engine?
+## What is the role of Flutter Engine?
 
 Answer: The engine handles rendering (Skia), platform channels, text layout, and low-level graphics, providing the bridge between Dart code and native platforms.
 
-9. Explain reactive programming in Flutter
+## Explain reactive programming in Flutter
 
 Answer: UI reacts to state changes automatically. Streams, ValueNotifier, or RxDart can notify listeners when data changes, triggering UI rebuilds.
 
-10. How do you structure a large Flutter project?
+## How do you structure a large Flutter project?
 
 Answer: Common approaches:
 
