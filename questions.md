@@ -572,12 +572,6 @@ Embedder Layer – Runs the engine on different platforms.
 
 Answer: Flutter builds a widget tree, where every UI element is a widget. Widgets are lightweight and immutable; the tree is rebuilt on state changes, and the framework efficiently updates only affected parts via Element and RenderObject trees.
 
-## What is the difference between Element tree and RenderObject tree?
-
-Element Tree – Manages widget instances and their lifecycle.
-
-RenderObject Tree – Handles layout, painting, and positioning on the screen.
-
 ## Explain Flutter state management approaches
 
 Answer: Flutter separates UI and state. Common approaches:
@@ -4039,21 +4033,11 @@ In short:
     - **Navigator.pushAndRemoveUntil():** Pushes a new route and removes all previous routes until a
       given predicate is true.
 
-### 119. How to pass values in between flutter screens?
+## How to pass values between Flutter screens?
 
-- **Navigator.push (Imperative)**: Pass data via the constructor when navigating to a new screen.
-    - Example:
-      `Navigator.push(context, MaterialPageRoute(builder: (context) => SecondScreen(data: 'Hello')));`
-
-- **Navigator.pushNamed (Named Routes)**: Pass data using route arguments in named routes.
-    - Example: `Navigator.pushNamed(context, '/second', arguments: 'Hello');`
-
-- **Provider (State Management)**: Share data across multiple screens using a state management
-  solution like `Provider`.
-    - Example: `context.read<DataProvider>().updateData('New Data');`
-
-- **ModalRoute (Dialogs)**: Pass data with dialogs or modal popups using route settings.
-    - Example: `ModalRoute.of(context)?.settings.arguments;`
+* **Via Navigator:** Pass data using the constructor when navigating to the next screen.
+* **Named Routes:** Use `arguments` and retrieve them with `ModalRoute.of(context)!.settings.arguments`.
+* **State Management:** Use tools like GetX, Provider, or Bloc to share data reactively across screens.
 
 ### 120. What are they ??, ??=, ?., …? in Dart?
 
