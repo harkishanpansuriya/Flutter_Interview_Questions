@@ -1,7 +1,15 @@
 https://www.ambitionbox.com/profiles/flutter-developer/interview-questions
 https://medium.com/@kalidoss.shanmugam/flutter-interview-questions-and-answers-for-experienced-developers-171a7cbbfef5
 flutter architecture interview questions
-https://github.com/thisissandipp/flutter-interview-questions
+https://github.com/thisissandipp/flutter-interview-questions (Great questinons included).
+https://www.interviewbit.com/flutter-interview-questions/
+https://www.wecreateproblems.com/interview-questions/flutter-interview-questions#heading-2 (Great questinons included).
+https://www.turing.com/interview-questions/flutter
+
+https://devharshmittal.medium.com/flutter-interview-questions-2025-from-zero-to-hero-part-1-the-foundations-c934a46785d0
+https://devharshmittal.medium.com/flutter-interview-questions-2025-from-zero-to-hero-part-2-the-core-skills-8e8ee6d8787a
+https://devharshmittal.medium.com/building-a-scalable-design-system-in-flutter-part-3-265d2f97909a
+https://devharshmittal.medium.com/flutter-interview-questions-2025-part-3-the-pro-level-364f5fc54ee7
 
 
 

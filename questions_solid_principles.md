@@ -14,22 +14,19 @@
 
 > **"A class should have only one reason to change."**
 
-This means every class should focus on a **single purpose**. Avoid combining multiple concerns (e.g., UI and business logic) into one class.
-If a class handles too many tasks, it becomes harder to maintain, test, and extend.
+Core Idea: Give each class only one job, so changes in one area don’t break everything else.
 
 ---
 
-## ❌ Bad Example — One Class Doing Too Much
+## ❌ Bad Example — Combining UI, validation, networking, persistence, and navigation in one class ((Too many responsibilities)).
 
 ```dart
 class UserManager {
-  void saveUser(User user) {
-    // Save logic
-  }
-
-  bool validateUser(User user) {
-    return user.name.isNotEmpty && user.email.contains('@');
-  }
+  void showUserUI() {}          // UI
+  bool validateUser() => true;  // Validation
+  void saveToDb() {}            // Data persistence
+  void callApi() {}             // Networking
+  void navigate() {}            // Navigation
 }
 ```
 
@@ -40,16 +37,20 @@ class UserManager {
 ## ✅ Good Example — Split Responsibilities
 
 ```dart
-class UserService {
-  void saveUser(User user) {
-    // Logic for saving user
-  }
+class UserValidator {
+  bool validateUser() => true;
 }
 
-class UserValidator {
-  bool isValid(User user) {
-    return user.name.isNotEmpty && user.email.contains('@');
-  }
+class UserRepository {
+  void saveToDb() {}
+}
+
+class UserApiService {
+  void callApi() {}
+}
+
+class UserNavigator {
+  void navigate() {}
 }
 ```
 
@@ -61,7 +62,7 @@ Each class has **one reason to change** → clean, testable, maintainable.
 
 > **"Open for extension, closed for modification."**
 
-You should be able to **add new functionality** without **modifying existing code**.
+You should be able to **add new feature** without **modifying existing code**.
 
 In Dart:
 Use **inheritance, interfaces, or polymorphism** to extend behavior instead of editing original classes.
@@ -116,6 +117,8 @@ Extend by creating **new classes**, no modification needed.
 
 > **"Subclasses should behave like their parent without breaking logic."**
 
+Core Idea: You should be able to use a child class wherever the parent class is expected — without errors or surprises.
+
 Definition:
 Objects of a superclass should be replaceable with objects of their subclass without breaking the application.
 
@@ -127,48 +130,49 @@ If a base class variable expects a parent type, passing a child type should beha
 ## ❌ Bad Example — Subclass Breaking Parent Behavior
 
 ```dart
-class Bird {
-  void fly() => print("Flying");
+class FileReader {
+  String read() => "Reading file...";
 }
 
-class Ostrich extends Bird {
+class EncryptedFileReader extends FileReader {
   @override
-  void fly() => throw Exception("Ostrich can't fly!");
+  String read() {
+    throw Exception("Cannot read encrypted file directly!");
+  }
 }
 ```
 
-Now replacing `Bird` with `Ostrich` breaks the program → violates LSP.
+Why is this bad?
+Anywhere you expect a FileReader, substituting EncryptedFileReader will break the program, violating LSP.
 
 ---
 
 ## ✅ Good Example — Refactor Hierarchy Properly
 
 ```dart
-abstract class Bird {}
-
-abstract class FlyingBird extends Bird {
-  void fly();
+abstract class FileReader {
+  String read();
 }
 
-class Sparrow extends FlyingBird {
+class PlainFileReader extends FileReader {
   @override
-  void fly() => print("Sparrow flying");
+  String read() => "Reading normal file...";
 }
 
-class Ostrich extends Bird {
-  // Ostrich doesn't fly, so no fly method
+class EncryptedFileReader extends FileReader {
+  @override
+  String read() => "Decrypting and reading encrypted file...";
 }
 ```
 
-Hierarchy respects natural behavior → LSP satisfied.
-
+Why is this good?
+Both subclasses follow the contract — they successfully “read” the file.
+No unexpected errors → LSP satisfied.
 ---
 
 # 4. Interface Segregation Principle (ISP)
 
-Definition:
-Clients should not be forced to depend on interfaces they do not use.
-Use smaller, more specific interfaces instead of large ones.
+Core IDEA: Use small, focused interfaces so classes only implement what they actually need.
 
 In Dart:
 A class should only implement methods it actually needs.
@@ -178,19 +182,12 @@ A class should only implement methods it actually needs.
 ## ❌ Bad Example — Forced to Implement Unused Methods
 
 ```dart
-abstract class NotificationService {
-  void sendEmail();
-  void sendSMS();
-}
-
-class SMSNotification implements NotificationService {
-  @override
-  void sendEmail() => throw UnimplementedError();
-
-  @override
-  void sendSMS() {
-    print("Sending SMS...");
-  }
+abstract class AuthRepository {
+  Future<void> loginEmail(String e, String p);
+  Future<void> loginGoogle();
+  Future<void> loginPhone(String phone);
+  Future<void> getUserReport();
+  Future<void> exportUserData();
 }
 ```
 
@@ -201,26 +198,15 @@ class SMSNotification implements NotificationService {
 ## ✅ Good Example — Split Interfaces
 
 ```dart
-abstract class EmailSender {
-  void sendEmail();
+abstract class EmailAuth {
+  Future<void> loginEmail(String e, String p);
 }
 
-abstract class SmsSender {
-  void sendSMS();
+abstract class SocialAuth {
+  Future<void> loginGoogle();
 }
-
-class EmailNotification implements EmailSender {
-  @override
-  void sendEmail() {
-    print("Sending Email...");
-  }
-}
-
-class SmsNotification implements SmsSender {
-  @override
-  void sendSMS() {
-    print("Sending SMS...");
-  }
+abstract class AdminAuthOps {
+  Future<void> getUserReport();
 }
 ```
 
@@ -232,28 +218,31 @@ Each class implements only what it needs → clean & flexible.
 
 Definition:
 High-level modules should not depend on low-level modules; both should depend on abstractions.
-This reduces tight coupling and makes code easy to swap & test.
+
+Core IDEA: Depend on abstract interfaces, not concrete classes — making the system flexible, testable, and easy to replace or extend.
 
 In Dart:
 Use **abstract classes or interfaces** for dependencies.
 
 ---
 
-## ❌ Bad Example — High-Level Depends on Low-Level
+## ❌ BAD Example: UI depends directly on Dio.
 
 ```dart
-class FirebaseDatabase {
-  void saveData(String data) {
-    print("Saving to Firebase: $data");
-  }
+class ProductPage extends StatefulWidget {
+  const ProductPage({super.key});
+  @override
+  State<ProductPage> createState() => _ProductPageState();
 }
 
-class AppService {
-  FirebaseDatabase db = FirebaseDatabase();
-
-  void save(String data) {
-    db.saveData(data);
+class _ProductPageState extends State<ProductPage> {
+  final Dio _dio = Dio();
+  Future<void> fetchProducts() async {
+    final response = await _dio.get('https://api.my-shop.com/products');
+    print(response.data);
   }
+  @override
+  Widget build(BuildContext context) => Container();
 }
 ```
 
@@ -261,36 +250,46 @@ Hard to replace database → tight coupling.
 
 ---
 
-## ✅ Good Example — Depend on Abstraction
+## ✅ GOOD Example: Depend on repository abstraction.
 
 ```dart
-abstract class Database {
-  void saveData(String data);
+abstract class ProductRepository {
+  Future<List<String>> fetchProducts();
 }
 
-class FirebaseDatabase implements Database {
+class DioProductRepository implements ProductRepository {
+  final Dio _dio = Dio();
   @override
-  void saveData(String data) {
-    print("Saving data to Firebase: $data");
+  Future<List<String>> fetchProducts() async {
+    final response = await _dio.get('https://api.my-shop.com/products');
+    return (response.data as List).map((e) => e.toString()).toList();
   }
 }
-
-class AppService {
-  final Database database;
-  AppService(this.database);
-
-  void save(String data) {
-    database.saveData(data);
+class ProductPage extends StatelessWidget {
+  final ProductRepository repository;
+  const ProductPage({super.key, required this.repository});
+  void loadData() async {
+    final products = await repository.fetchProducts();
+    print(products);
   }
-}
-
-void main() {
-  Database firebaseDB = FirebaseDatabase();
-  AppService appService = AppService(firebaseDB);
-  appService.save("Some data");
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: loadData,
+      child: const Text('Load Products'),
+    );
+  }
 }
 ```
 
 Now the database can easily be replaced with MongoDB, LocalDB, MockDB, etc.
 
 ---
+
+Tips for Flutter developers:
+
+Apply SRP first: small, focused classes.
+Use OCP for UI components and feature extensions.
+Follow LSP when designing inheritance hierarchies.
+Break fat interfaces into minimal, client-specific contracts (ISP).
+Depend on abstractions and inject dependencies (DIP) for testable, flexible code.
