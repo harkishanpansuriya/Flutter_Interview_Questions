@@ -6,9 +6,8 @@
 
 - **Class:**
     - A class is a blueprint for creating objects.
-    - A class is a collection of constructors, fields, getters, setters, and methods.
-- **Object:** An object is an instance of a class. It is used to store data in the class's fields
-  and access its methods and properties.
+    - A class can contain constructors, variables, getters, setters, and methods.
+- **Object:** An object is an instance of a class. It is used to store data and access class methods.
 
 ### Example:
 
@@ -33,6 +32,7 @@ void main() {
 ## 2. Inheritance:
 
 - One class can inherit from another class using the extends keyword in Dart.
+- Inheritance allows one class to reuse properties and methods of another class using extends.
 
 ### Example:
 
@@ -65,7 +65,7 @@ void main() {
 2. **Multiple Inheritance:** Dart doesn't support multiple inheritance, which means a class cannot
    extend more than one class.
    ```dart
-   // class Child extends Parent, SecondParent {} // This is not allowed in Dart.
+   // class Child extends Parent, SecondParent {} // not allowed in Dart.
    ```
 
 3. **Multilevel Inheritance:** A class can inherit from another class, and that class can also
@@ -88,7 +88,7 @@ void main() {
 - Abstraction is the process of hiding implementation details and showing only the essential
   features of an object.
 - An abstract class is defined using the `abstract` keyword and cannot be instantiated directly.
-- You cannot create objects of an abstract class, but it can be extended by other classes.
+- You cannot create objects of an abstract class, but it can be extended (inherited) by other classes.
 - Abstract classes are typically used as a base class to define common behaviors that can be
   inherited and implemented by subclasses.
 - An abstract class can have:
@@ -121,19 +121,16 @@ void main() {
 
 ## 4. Polymorphism
 
-- **Polymorphism** means a child class can **change** or **give new behavior** to a method that comes from the parent class.  
-- So the **same method name** can work in **different ways** depending on which class uses it.  
-- This helps us write **flexible** and **reusable** code.  
-- In simple terms, the child class can **override** what the parent class does.
-
-**Note:** In the real world, polymorphism is when you **update or modify** a feature, function, or implementation that already exists in the parent class.
-
+- Polymorphism means "one interface, multiple implementations".
+- Polymorphism means one method behaves differently depending on the object type.
+- It allows same method name, different behavior.
 
 ### Types of Polymorphism
 
 #### 1. Method Overriding (Supported in Dart)
 
-The child class gives its **own version** of a method that already exists in the parent class.
+- Child class gives its own implementation of parent method.
+- This is runtime polymorphism.
 
 **Example:**
 
@@ -153,15 +150,15 @@ class Dog extends Animal {
 
 void main() {
   Animal obj = Dog();
-  obj.sound(); // Output: Dog barks
+  obj.sound(); // Dog barks
 }
 ````
 
 
 #### 2. Method Overloading (Not supported directly in Dart)
 
-Some languages like Java allow the same method name with different parameters.
-Dart doesn't support this directly, but we can **simulate** it using optional parameters.
+- Dart does NOT support true method overloading.
+- We can achieve similar behavior using optional or named parameters.
 
 **Example (Simulated Overloading):**
 
@@ -193,6 +190,7 @@ Here you go, friend. I kept your structure intact but made the wording cleaner, 
 
 ## 5. Encapsulation
 
+* Encapsulation means hiding data and controlling access using getters and setters.
 * Encapsulation means hiding the class properties so they cannot be changed directly from outside the class.
 * It restricts direct access to those properties.
 * Outside code must use getter and setter methods to safely read or update the data.
