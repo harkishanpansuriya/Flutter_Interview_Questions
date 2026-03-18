@@ -193,9 +193,8 @@ Here you go, friend. I kept your structure intact but made the wording cleaner, 
 
 ## 5. Encapsulation
 
-* Encapsulation means hiding the class properties so they cannot be changed directly from outside the class.
-* It restricts direct access to those properties.
-* Outside code must use getter and setter methods to safely read or update the data.
+* Encapsulation hides class properties to prevent direct access from outside the class.
+* Data can be accessed or modified only through getters and setters, ensuring safe and controlled handling.
 
 ### How to Achieve Encapsulation in Dart
 
