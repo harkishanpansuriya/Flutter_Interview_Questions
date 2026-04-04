@@ -84,6 +84,8 @@ To secure a wallet app:
 ## If your Flutter app is crashing only in release mode, how do you debug it?
 
 - Run `flutter run --release` and check device logs via `adb logcat`.  
+- Android: Use the Android Studio Logcat or the command line adb logcat to catch native-level crashes.
+- iOS: Use the Xcode Device Console to view system logs for your connected iPhone.
 - Ensure no `assert` statements or debug-only code is being used.  
 - Use crash reporting tools like **Sentry** or **Firebase Crashlytics** to capture release crashes.
 
@@ -92,7 +94,7 @@ To secure a wallet app:
 - Use `ListView.builder` with `itemCount` for lazy loading.  
 - Use `const` widgets to avoid unnecessary rebuilds.  
 - Implement `AutomaticKeepAliveClientMixin` if list items maintain state.  
-- Consider pagination or lazy loading to reduce memory usage.
+- Consider pagination: Do not fetch all 10,000 items from your backend at once. Use a package like infinite_scroll_pagination to load data in smaller chunks (e.g., 20–50 items) as the user reaches the bottom of the list. to reduce memory usage.
 
 ## Explain how isolate works in Flutter and when you would use it.
 
@@ -112,6 +114,7 @@ To secure a wallet app:
 
 - Use `const` widgets to reduce rebuilds.  
 - Avoid rebuilding large widget trees (use `shouldRebuild`, `Selector`, etc.).  
+- Lazy Loading Lists: For large datasets, use ListView.builder or GridView.builder to ensure only visible items are built. or use pagination
 - Cache images using `cached_network_image`.  
 - Compress images and limit FPS in animations.  
 - Use `RepaintBoundary` to isolate heavy rendering areas.
@@ -131,16 +134,19 @@ To secure a wallet app:
 ## How do you reduce APK or IPA size?
 
 - Remove unused assets and fonts.  
-- Use `flutter build apk --split-per-abi`.  
+- If you must distribute APKs directly, use the split flag to create separate files for each CPU architecture (e.g., ARM, ARM64). Use `flutter build apk --split-per-abi`.  
+- Enable ProGuard/R8: In android/app/build.gradle, set minifyEnabled and shrinkResources to true to remove unused native code and resources.
 - Compress images (e.g., TinyPNG).  
+- Tree Shaking: Use the --tree-shake-icons flag during release builds to strip out unused icons from icon fonts like Material Icons.
 - Use deferred components or code-splitting where supported.  
 - Avoid large third-party libraries unless necessary.
 
 ## Describe your process when upgrading a Flutter project to a new version.
 
-- Run `flutter upgrade`.  
+- Backup and Branching: Always commit your current code and create a new Git branch before starting to allow for easy reversal if the upgrade fails.
+- Execute `flutter upgrade` in your terminal to fetch the latest stable release of the Flutter and Dart SDKs.
 - Check `pubspec.yaml` for outdated packages.  
-- Use `flutter pub outdated` and update dependencies.  
+- Identify Outdated Packages: Run `flutter pub outdated` to see which dependencies have newer versions and identify potential breaking changes.
 - Run the app and resolve breaking changes.  
 - Follow Flutter migration guides for major updates.
 
@@ -154,7 +160,7 @@ Used to **align children** inside `Row` and `Column` widgets along the main and 
 
 ## What is the WillPopScope widget used for?
 
-`WillPopScope` is used to **control or prevent the back button action**, allowing you to decide whether the screen should be popped.
+- The `WillPopScope` widget in Flutter is used to handle the system back button or back gesture, allowing you to decide whether the screen should be popped.
 
 ## Material vs Cupertino Widget
 
@@ -175,44 +181,109 @@ They can be `StatelessWidget` or `StatefulWidget` depending on state management 
 
 ## What is the difference between GetBuilder, Obx, and GetX in GetX?
 
-- **GetBuilder:** Updates UI only when `update()` is called manually; memory-efficient.  
-- **Obx:** Automatically updates UI when an Rx variable changes.  
-- **GetX:** Combines features of `Obx` and `GetBuilder` with additional dependency management.
+- **GetBuilder:** use GetBuilder when you want to update the state of a widget manually from your controller, with update(),
+- **Obx:** Obx stands for Observer Widget. It automatically updates the UI when an Rx (observable) variable changes.no need to call update() manually.
+- **GetX:** GetX is similar to Obx but provides more structure and additional features, like initializing and managing the controller within the widget.Use GetX when you need reactive state management along with dependency handling in a more organized way.
 
 ## How do you pass arguments between screens in GetX?
  - Get.to(NextScreen(), arguments: "Hello GetX"); var data = Get.arguments
 
 ## What are Bindings in GetX?
- - Bindings help manage dependencies automatically when a screen is opened.
+ - Bindings help manage dependencies automatically when a screen is opened. They allow you to initialize and inject controllers or services at the right time, without manually creating them inside your UI.
 
 ## What are the core components of the Bloc architecture?
 
-- **Bloc/Cubit:** Handles business logic.  
-- **Events:** Trigger state changes.  
-- **States:** Represent UI states emitted by Bloc/Cubit.  
-- **BlocProvider:** Provides the Bloc instance to widgets.  
-- **BlocBuilder:** Rebuilds UI when state changes.  
-- **BlocListener:** Listens to state changes without rebuilding UI.
+- **Bloc / Cubit:**  
+  Handles the **business logic** and manages state.
+    - `Bloc` uses **events** to trigger state changes.
+    - `Cubit` is a simpler version that updates state directly without events.
 
-## How do you integrate Stripe in a Flutter app? Like Using SDK or WEB
- - You integrate Stripe in Flutter either by using the official Stripe Flutter SDK for native payments or by using a WebView/Stripe Checkout page. The SDK gives native UI and better control, while the web approach is simpler and PCI-compliant using Stripe’s hosted payment page."
+- **Events (Bloc only):**  
+  Represent **user actions or triggers** (e.g., button clicks) that cause state changes.
 
-## What is a Paymentintent in Stripe?
- - A PaymentIntent represents a payment that a customer intends to make. It handles authentication, processing, and confirmation of payments. ● Created on the server to ensure security. ● Client receives a client_secret to process the payment. ● Supports SCA (Strong Customer Authentication
+- **States:**  
+  Represent the **different UI states** emitted by the Bloc or Cubit (e.g., loading, success, error).
+
+- **BlocProvider:**  
+  Provides the Bloc or Cubit instance to the widget tree, making it accessible to child widgets.
+
+- **BlocBuilder:**  
+  Rebuilds the UI in response to **new states**.
+
+- **BlocListener:**  
+  Listens to state changes and is used for **side effects** (e.g., navigation, showing dialogs) without rebuilding the UI.
+
+## How do you integrate Stripe in a Flutter app?
+
+You can integrate Stripe in a Flutter app in two main ways:
+
+- **Using Stripe Flutter SDK (Native Integration):**  
+  Use the official Stripe Flutter SDK to build **native payment flows**.
+    - Provides better UI/UX
+    - Gives more control over the payment process
+    - Supports features like Apple Pay / Google Pay
+
+- **Using Web (Stripe Checkout / WebView):**  
+  Redirect users to a **Stripe-hosted payment page** or open it in a WebView.
+    - Easier to implement
+    - Fully **PCI-compliant** (Stripe handles sensitive data)
+    - Less customization compared to SDK
+
+---
+
+## What is a PaymentIntent in Stripe?
+
+- A **PaymentIntent** represents a payment that a customer intends to make.
+- It manages the **entire payment lifecycle**, including authentication, processing, and confirmation.
+
+#### Key Points:
+- Created on the **server-side** for security
+- The client receives a **`client_secret`** to complete the payment
+- Supports **SCA (Strong Customer Authentication)**
+- Tracks payment status (e.g., requires_payment_method, succeeded, failed)
 
 ## Have you used social login? If yes, how to apply social logins?
- - Yes, social logins are added by using platform SDKs like Google Sign-In, Apple Sign-In, or Facebook Login, then exchanging the obtained token with Firebase or your backend for authentication. In Flutter, packages like google_sign_in or sign_in_with_apple handle the login flow and return user credentials."
 
-## Please tell me some important steps for Firebase auth
- - For Firebase Auth, I first enable the login providers in the Firebase console, add Firebase to my Flutter app, and install firebase_auth. Then I initialize Firebase, implement login/signup methods, handle errors, listen to auth state changes, and secure backend access using Firebase security rules.
+- **Yes**, social login can be implemented using platform-specific SDKs such as:
+    - Google Sign-In
+    - Apple Sign-In
+    - Facebook Login
 
-## What are the common issues faced while implementing social login in Flutter?
+- The general flow:
+    - Use platform SDKs to authenticate the user
+    - Obtain an **authentication token**
+    - Send the token to **Firebase or your backend** for verification
 
-- Invalid **SHA-1** or **SHA-256** keys (Google Sign-In).  
-- Facebook app not configured properly.  
-- Platform-specific setup issues (missing `Info.plist` or `AndroidManifest.xml` entries).  
-- Expired OAuth tokens.  
-- Handling errors when users deny permissions.
+- In Flutter:
+    - Packages like `google_sign_in` and `sign_in_with_apple` handle the login flow
+    - They return user credentials after successful authentication
+
+---
+
+## Important steps for Firebase Authentication
+
+- Enable required **login providers** in the Firebase Console
+- Add **Firebase configuration** to your Flutter app
+- Install the `firebase_auth` package
+- Initialize Firebase in your app
+- Implement **login and signup methods**
+- Handle **authentication errors** properly
+- Listen to **auth state changes** (e.g., user logged in/out)
+- Secure backend access using **Firebase Security Rules**
+
+---
+
+## Common issues faced while implementing social login in Flutter
+
+- Invalid **SHA-1** or **SHA-256** keys (especially for Google Sign-In)
+- Incorrect **Facebook app configuration**
+- Platform-specific setup issues:
+    - Missing entries in `Info.plist` (iOS)
+    - Missing configuration in `AndroidManifest.xml` (Android)
+- Expired or invalid **OAuth tokens**
+- Not handling cases where users **deny permissions**
+
+---
 
 ## What permissions are required for location services in Flutter?
 
@@ -265,18 +336,24 @@ double distanceInMeters = Geolocator.distanceBetween(
 );
 ```
 
-## Have you worked on an iOS app? If yes, how and where to add permissions? How to generate profiles and a certificate? Difference between certificate and profiles.
+## Have you worked on an iOS app? Permissions, certificates & profiles?
 
-* iOS permissions are added in **Info.plist** (e.g., camera, location, photos).
-* For app signing, generate an iOS **certificate** and **provisioning profile** from Apple Developer Portal.
+- Permissions are added in **Info.plist** (camera, location, etc.)
 
-  * **Certificate:** Used to sign the app.
-  * **Provisioning profile:** Defines device/app permissions and links the app ID with the signing certificate.
+- For app signing:
+    - Create **certificate** and **provisioning profile** in Apple Developer Portal
+
+- **Certificate:** Signs the app
+- **Provisioning profile:** Links app ID, certificate, and allowed devices
+
+---
 
 ## What happens if you call setState() inside build()?
 
-* Causes an **infinite loop** because `setState()` triggers `build()`, which calls `setState()` again.
-* Update state in a **FutureBuilder** or an event callback instead.
+- Causes an **infinite loop** (build → setState → build...)
+- Avoid it by updating state in:
+    - Callbacks (e.g., button click)
+    - Async widgets like **FutureBuilder**
 
 ## What is the difference between setState(), Provider, and Bloc for state management in Flutter?
 
@@ -378,9 +455,13 @@ server or updating the UI somehow
 
 ## Talk about listviews in flutter, what is the difference between widgets and slivers.
  - ListViews in Flutter are used to display scrollable lists. Regular ListView widgets are high-level, standalone scrollable lists that handle their own scrolling. Slivers, like SliverList, are low-level building blocks that represent a piece of a scrollable area inside a CustomScrollView, allowing advanced scroll effects and combining multiple scrollable components.
+## Building Instagram Reels-like feature with PageView & video_player
 
-## How can building an Instagram Reels-like feature using PageView with video_player in Flutter? However, when scrolling quickly, videos do not load in time, leading to a blank screen for a few seconds. How do you ensure smooth playback with proper video initialization when the user stops scrolling?
- - Use a PageController with onPageChanged to detect when the user stops on a page. Preload videos for the current, previous, and next pages (buffered preloading) to reduce loading delays. Dispose old video controllers for off-screen pages to free resources. Initialize and start playing the video only when scrolling stops on the current page.
+- Use **PageController** with `onPageChanged` to detect the active page
+- **Preload videos** for current, previous, and next pages to reduce loading delays
+- **Dispose** off-screen `VideoPlayerController`s to free resources
+- **Initialize and play** the video only when scrolling stops on the current page
+- Optionally, show a **loading indicator** until the video is ready
 
 ## What is Flutter In-App Purchase?
  - Flutter In-App Purchase allows apps to sell digital content, subscriptions, or features directly inside the app on iOS and Android. You use platform-specific stores (Google Play Store, Apple App Store) via packages like in_app_purchase to handle purchase flow, verify transactions, and deliver content securely.
@@ -499,12 +580,17 @@ Higher MTU = Faster data transfer, but depends on device support
 
 ## What are notification channels, and why are they needed in Android?
  - Notification channels are used in Android 8.0 (API 26+) to categorize notifications. Every notification must be assigned to a channel, which defines its behavior, such as importance, sound, and vibration. They help users control notification settings per category and ensure consistent notification management across the app.
+ - for example: news_alerts (news alerts), reminders, promotions.
 
-## What is MQTT, and why is it used in loT?
- - MQTT (Message Queuing Telemetry Transport) is a lightweight, publish-subscribe messaging
-protocol designed for low-bandwidth, high-latency, and unreliable networks, making it ideal for
-IoT applications. It ensures efficient communication between IoT devices and cloud services
-while consuming minimal power.
+## What is MQTT, and why is it used in IoT?
+
+- **MQTT (Message Queuing Telemetry Transport):**  
+  A lightweight **publish-subscribe messaging protocol**
+
+- **Why used in IoT:**
+    - Designed for **low-bandwidth, high-latency, and unreliable networks**
+    - Enables **efficient communication** between IoT devices and cloud services
+    - **Minimal power consumption**, ideal for battery-powered devices
 
 ## What is the difference between MQTT and HTTP in AWS IoT?
  - MQTT: Lightweight, publish/subscribe protocol designed for real-time messaging. Maintains a persistent connection, supports bidirectional communication. Efficient for devices with limited bandwidth or battery. HTTP: Request/response protocol, stateless. Each message requires a new connection. Less efficient for frequent or real-time updates. Key Difference: MQTT is ideal for real-time, low-latency IoT communication, while HTTP is better for occasional, request-driven data exchange.
@@ -517,9 +603,13 @@ Cost considerations: Frequent high-volume messaging can lead to increased costs.
 No retained messages: AWS IoT Core does not support MQTT retained messages.
 
 ## What is SQLite, and why is it used in Flutter?
- - SQLite is a lightweight, embedded database that does not require a separate server process. In
-Flutter, SQLite is used for local data storage when offline persistence is required. The sqflite
-package is commonly used to interact with SQLite databases in Flutter
+
+- **SQLite:**  
+  A lightweight, embedded database **no separate server needed**
+
+- **Use in Flutter:**
+    - Provides **local data storage** for offline persistence
+    - Commonly used via the `sqflite` package to **interact with the database**
 
 ## How do you check if a table exists in SQLite?
  - Future<bool> doesTableExist(Database db, String tableName) async {
@@ -1217,6 +1307,33 @@ void main() {
 - Use **`Future`** for general asynchronous operations.
 
 ---
+
+### What is `FutureOr` in Dart/Flutter?
+
+- FutureOr = maybe async, maybe sync
+- **Definition:**  
+  `FutureOr<T>` is a type that **can hold either a value of type `T` or a `Future<T>`**.
+
+- **Use case:**  
+  Useful when a function might **return immediately** (synchronously) or **return later** (asynchronously) without creating two different function signatures.
+
+#### Example:
+
+```dart
+import 'dart:async';
+
+FutureOr<int> getValue(bool async) {
+  if (async) {
+    return Future.value(42); // async
+  }
+  return 42;                 // sync
+}
+
+void main() async {
+  print(await getValue(true));  // 42 (from Future)
+  print(getValue(false));       // 42 (sync value)
+}
+```
 
 ### **19. Queues in Dart**
 
