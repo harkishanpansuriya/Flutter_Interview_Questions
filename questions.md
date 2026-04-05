@@ -372,7 +372,7 @@ double distanceInMeters = Geolocator.distanceBetween(
 
 ## Which are the most popular apps that use Flutter?
 
-* Google Ads, Alibaba, Hamilton, Hookle
+* NotebookLM · Google Pay · Google Earth · Google Ads · Google Classroom · YouTube Create · Google Cloud · Google One
 
 ## What is an AspectRatio widget used for?
 
@@ -3671,13 +3671,6 @@ double screenHeight = screenSize.height;
   build process. It is also the code elimination technique used for optimizing our application.
 - Command to run the tree shaking in Flutter:
   `flutter build apk --split-debug-info=app --tree-shake-icons`
-
-### 101. Name some famous applications that use Flutter?
-
-- **Google Ads:** Google Ads is a popular advertising platform that uses Flutter for its mobile app.
-- **Alibaba:** Alibaba, the Chinese e-commerce giant, uses Flutter for its Xianyu app.
-- **Reflectly:** Reflectly, a popular journaling app, is built using Flutter.
-- **GPay:** Google Pay, the digital payment platform, uses Flutter for its mobile app development.
 
 ### 102. What is the difference between InkWell and GestureDetector ?
 
