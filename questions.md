@@ -21,7 +21,22 @@ https://devharshmittal.medium.com/building-a-scalable-design-system-in-flutter-p
 
 https://devharshmittal.medium.com/flutter-interview-questions-2025-part-3-the-pro-level-364f5fc54ee7
 
+https://www.linkedin.com/posts/gauhun_flutter-interview-question-activity-7334813458800005120-JQOn
 
+https://webandcrafts.com/interview-questions/flutter
+
+https://github.com/justsandip/flutter-interview-questions
+
+https://github.com/Devinterview-io/flutter-interview-questions
+
+https://shirsh94.medium.com/top-100-flutter-interview-questions-and-answers-2026-775b5fb5e4dc
+
+Flutter Interview Guide 2026
+https://github.com/debasmitasarkar/flutter_interview_guide_2026
+
+https://github.com/Nada-gaber/flutter_interview_questions
+
+https://www.linkedin.com/pulse/top-flutter-interview-questions-andanswers-anand-gaur-air5c
 
 # Flutter FAQ : https://docs.flutter.dev/resources/faq (check questions and answers)
 
