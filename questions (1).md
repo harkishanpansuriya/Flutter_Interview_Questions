@@ -2471,95 +2471,107 @@ start execution.
 
 ---
 
-## **📌 35. Constructor & Types in Dart**
+## Constructor & Types in Dart
 
-### **📌 What is a Constructor?**
 
-✅ **Definition:** A special method that initializes an object when it is created.  
-✅ **Purpose:** Sets initial values for object properties.
-
-### **📌 Types of Constructors**
-
-1️⃣ **Default Constructor** → Auto-generated if no constructor is defined.  
-2️⃣ **Parameterized Constructor** → Accepts arguments to initialize properties.  
-3️⃣ **Named Constructor** → Allows multiple constructors with different names.  
-4️⃣ **Constant Constructor** → Creates **immutable** objects.
+> A **constructor** is a special method used to **create and initialize an object**.
 
 ---
 
-### **📌 Example**
+### Types of Constructors in Dart
 
-```dart
-class MyClass {
-  int number;
+#### 1. 🔹 Default Constructor
 
-  // ✅ Parameterized Constructor
-  MyClass(this.number);
+* Automatically created if not defined
 
-  // ✅ Named Constructor
-  MyClass.fromValue(int value) : number = value * 2;
-
-  // ✅ Constant Constructor
-  const MyClass.constant(this.number);
+```dart id="c1"
+class Person {
+  String name = "Unknown";
 }
 
 void main() {
-  MyClass obj1 = MyClass(42); // Using Parameterized Constructor
-  MyClass obj2 = MyClass.fromValue(21); // Using Named Constructor
-  const MyClass obj3 = MyClass.constant(10); // Using Constant Constructor
+  var p = Person();
 }
 ```
 
-📌 **Key Points:**
+---
 
-- `main()` is **static**.
-- Constructors **initialize objects**.
-- Named & constant constructors **provide flexibility**.
+#### 2. 🔹 Parameterized Constructor
 
-### 36. What is `fromJson` and `toJson`?
+* Takes values while creating object
+
+```dart id="c2"
+class Person {
+  String name;
+
+  Person(this.name);
+}
+```
+
+---
+
+#### 3. 🔹 Named Constructor
+
+* Multiple constructors with different names
+
+```dart id="c3"
+class Person {
+  String name;
+
+  Person(this.name);
+
+  Person.guest() : name = "Guest";
+}
+```
+
+---
+
+#### 4. 🔹 Constant Constructor
+
+* Creates compile-time constant object
+
+```dart id="c4"
+class Person {
+  final String name;
+
+  const Person(this.name);
+}
+```
+
+---
+
+### 5. 🔹 Factory Constructor
+
+* Controls object creation (can return existing object)
+
+```dart id="c5"
+class Logger {
+  factory Logger() {
+    return Logger._internal();
+  }
+
+  Logger._internal();
+}
+```
+
+---
+
+## One-line (Interview Ready)
+
+> A constructor is used to initialize objects in Dart, and types include default, parameterized, named, constant, and factory constructors.
+
+
+## What is `fromJson` and `toJson`?
 
 #### `fromJson` and `toJson` in Dart
 
 - **`fromJson`:** Method used to convert JSON (text) into Dart objects.
 - **`toJson`:** Method used to convert Dart objects into JSON (text).
 
-### Example
+## What is a Factory?
 
-```dart
-class User {
-  String name;
-  int age;
-
-  User(this.name, this.age);
-
-  // Convert JSON to User object
-  factory User.fromJson(Map<String, dynamic> json) {
-    return User(json['name'], json['age']);
-  }
-
-  // Convert User object to JSON
-  Map<String, dynamic> toJson() =>
-      {
-        'name': name,
-        'age': age,
-      };
-}
-
-void main() {
-  // JSON to Dart object
-  Map<String, dynamic> json = {'name': 'John', 'age': 30};
-  User user = User.fromJson(json);
-
-  // Dart object to JSON
-  Map<String, dynamic> userJson = user.toJson();
-}
-```
-
-## **📌 37. What is a Factory?**
-
-✅ **Definition:** A `factory` constructor returns an instance of a class **without always creating a
-new object**.  
-✅ **Usage:** Used for **object caching** or **singleton patterns**.
+- A factory constructor is used to control object creation.
+- It may return an existing object or a new one, instead of always creating a new instance.
 
 ---
 
@@ -2586,13 +2598,7 @@ void main() {
 }
 ```
 
-📌 **Key Points:**
-
-- **`factory` avoids new object creation** if an instance already exists.
-- **Ensures a single instance (Singleton pattern).**
-- **Useful for caching and object reusability.**
-
-## **📌 38. Override vs Overloading in Dart**
+##  Override vs Overloading in Dart
 
 ### **✅ Override**
 
@@ -2645,72 +2651,26 @@ void main() {
 ✅ **Override** allows modifying superclass methods.  
 ❌ **Overloading** is **not supported**, but **optional/named parameters** provide flexibility.
 
-## **📌 39. What is `super` in Dart?**
+## What is `super` in Dart?
 
-### **✅ Definition**
-
-📌 `super` refers to the **superclass (parent class)** of a subclass (child class).  
-📌 It is used to **access superclass methods, properties, or constructors** from within the subclass.
-
----
-
-### **📝 Example: Using `super` for Methods**
+- super is used to access properties and methods of the parent (base) class.
 
 ```dart
 class Animal {
-  void speak() {
-    print('Animal speaks');
-  }
+  String type = "Animal";
 }
 
 class Dog extends Animal {
-  @override
-  void speak() {
-    print('Dog barks');
-    super.speak(); // Calls superclass method
+  void printType() {
+    print(super.type);
   }
 }
-
-void main() {
-  Dog dog = Dog();
-  dog.speak();
-  // Output:
-  // Dog barks
-  // Animal speaks
-}
 ```
 
----
+## What is a Typedef in Dart?
 
-### **📝 Example: Using `super` for Constructor**
-
-```dart
-class Animal {
-  String name;
-
-  Animal(this.name);
-}
-
-class Dog extends Animal {
-  Dog(String name) : super(name); // Calls Animal constructor
-}
-
-void main() {
-  Dog dog = Dog('Buddy');
-  print(dog.name); // Output: Buddy
-}
-```
-
-📌 **Key Takeaways:**  
-✅ **super.method()** → Calls a method from the superclass.  
-✅ **super.property** → Accesses a property from the superclass.  
-✅ **super(arguments)** → Calls the superclass constructor.
-
-### 40. What is a Typedef in Dart?
-
-- A typedef (or type alias) in Dart allows you to create a custom name for a function type (not only
-  though). This can be super useful when you're dealing with complex function signatures or when you
-  want to make your code more expressive.
+- Typedef is used to create a custom name for a type (usually a function) to make code simpler.
+- This can be super useful when you’re dealing with complex function signatures or when you want to make your code more expressive.
 
 ### Example
 
@@ -2720,9 +2680,7 @@ typedef Compare<T> = int Function(T a, T b);
 int sort(int a, int b) => a - b;
 
 void main() {
-  List<int> numbers = [3, 1, 2];
-  numbers.sort(sort); // Using the typedef
-  print(numbers); // Output: [1, 2, 3]
+  assert(sort is Compare<int>); // True!
 }
 ```
 
@@ -2730,10 +2688,9 @@ In this example, `typedef` `Compare<T>` is defined as a function type that takes
 type `T` and returns an `int`. It simplifies the use of the `sort` function in the `List.sort()`
 method.
 
-### 41. What are Anonymous Functions?
+## What are Anonymous Functions?
 
-- **Definition:** In Dart, an anonymous function is a function without a name.
-- **Usage:** Used for short, one-time operations where a full function definition is not necessary.
+- Anonymous functions (also called lambdas or closures) are functions in Dart that do not have a name. Since Dart treats functions as first-class objects, they can be assigned to variables, passed as arguments, or returned from other functions.
 
 ### Example
 
@@ -2752,88 +2709,45 @@ void main() {
 In this example, `addNumbers` is an anonymous function that adds two numbers. It's defined and used
 right where it's needed.
 
-### 42. Can we send data from a GET request to the server?
+## Can we send data from a GET request to the server?
 
-- **Answer:** Yes, in a GET request, data can be sent as part of the URL parameters.
-- **Limitation:** Typically limited to a maximum length (e.g., 2048 characters) depending on server
-  configurations and browser limits.
-
-### Example
+- Yes, you can send data in a GET request, but it is sent through the URL as query parameters, not in the request body.
 
 ```
 GET /api/resource?param1=value1&param2=value2
 ```
 
-### 43. Types of API Methods
+## Types of API Methods
 
-- **GET:** Retrieves data of all users or specific resources.
-- **POST:** Creates a new user or resource.
-- **PUT:** Updates an existing user or resource with the specified ID.
-- **PATCH:** Partially updates an existing user or resource.
-- **DELETE:** Deletes a user or resource with the specified ID.
-- **OPTIONS:** Retrieves supported HTTP methods for a specific endpoint.
+- **GET** → Read (Fetch data from server)
+- **POST** → Create (Send new data to server)
+- **PUT** → Update (Replace entire resource)
+- **PATCH** → Update (Modify partial data)
+- **DELETE** → Remove (Delete data from server)
 
-### 44. Constant Constructor in Dart
+## Constant Constructor in Dart
 
-- **Definition:** A constant constructor in Dart creates a constant object whose value cannot be
-  changed after initialization.
-- **Usage:** Used for objects that are immutable and have constant values.
+- A constant constructor in Dart allows you to create compile-time constant objects, meaning the object's value is determined at compile time rather than at runtime. This improves performance and memory usage by reusing instances when possible.
 
-### Example
+## Sealed Class
 
-```dart
-class Circle {
-  final double radius;
-  static const double pi = 3.14;
+- A sealed class prevents it from being extended, implemented, or mixed in outside its own library.
+- All subclasses must be defined within the same library or file.
+- Sealed classes are implicitly abstract, so they cannot be instantiated directly.
 
-  const Circle(this.radius);
+A sealed class restricts inheritance to a fixed set of subclasses, which must be declared in the same file.
 
-  double calculateArea() {
-    return pi * radius * radius;
-  }
-}
+## Immutable vs Mutable Class
 
-void main() {
-  const Circle circle = Circle(5.0);
-  print('Area of circle: ${circle.calculateArea()}'); // Output: Area of circle: 78.5
-}
-```
+- **Immutable Class:** 
+  - An immutable class is a class whose objects cannot be changed after creation.
+  - Once created → data stays the same
+  - All fields are final, no setters, value set only via constructor.
+- **Mutable Class:** 
+  - A mutable class allows its object data to change after creation
+  - Fields are not final, Has setters or direct modification.
 
-### 45. Sealed Class
-
-- **Definition:** A sealed class restricts the inheritance hierarchy such that all subclasses of the
-  sealed class must be declared in the same file where the sealed class is declared.
-- **Usage:** It provides a way to define a closed set of possible types, ensuring exhaustive
-  handling of all possible cases without allowing extension outside of the defined set.
-- **Example:**
-
-```dart
-sealed class Result {
-  const Result();
-}
-
-class Success extends Result {
-  final String message;
-
-  Success(this.message);
-}
-
-class Failure extends Result {
-  final String errorMessage;
-
-  Failure(this.errorMessage);
-}
-```
-
-In this example, `Result` is a sealed class with `Success` and `Failure` as its subclasses. No other
-subclasses can be created outside of this file.
-
-## Immutable and Mutable Class
-
-- **Immutable Class:** An object whose state cannot be modified after it is created. All fields in
-  an immutable class should be `final`.
-- **Mutable Class:** An object whose state can be modified after it is created, allowing its fields
-  to change values.
+Immutable classes cannot be modified after creation, while mutable classes allow changes to their data after the object is created.
 
 ## RefreshIndicator Widget
 
@@ -2886,37 +2800,30 @@ development or production needs.”**
 
 ## `NetworkImage` vs `Image.network` in Flutter
 
-- **`NetworkImage`:** A class that represents an image obtained from a URL, used to fetch an image
-  programmatically but not directly display it on the screen.
-- **`Image.network`:** A widget that displays an image obtained from a URL. It internally
-  uses `NetworkImage` to fetch the image and display it on the screen.
+- Image.network:
+  - It is a widget.
+  - Used directly to display an image from the internet
+  - Simple and quick to use: `Image.network("https://example.com/image.png");`
+  
+- NetworkImage:
+  - It is an ImageProvider. 
+  - It only provides the image data, does NOT display it. 
+  - Used inside other widgets like:
+    - Image
+    - DecorationImage (for BoxDecoration)
+    - CircleAvatar (backgroundImage)
 
-## `Navigator.push` and `Navigator.pop` Function
-
-- **`Navigator.push`:** Adds a route to the stack of routes managed by the navigator, navigating to
-  a new screen.
-- **`Navigator.pop`:** Removes the current route from the stack of routes managed by the navigator,
-  returning to the previous screen.
+Image.network is a widget used to display an image directly from a URL, while NetworkImage is an ImageProvider used to supply image data to other widgets.
 
 ## `double.INFINITY`
 
-- **Usage:** Represents positive infinity in Dart's `double` type.
-- **Purpose:** Used to indicate an unbounded or infinitely large value, often in mathematical
-  computations or when calculating maximum values.
+- In Flutter, double.infinity represents an infinite value and is used to make a widget expand to the maximum size allowed by its parent constraints.
 
 ## Fat Arrow Notation in Dart
 
-- **Syntax:** `=>`
-- **Purpose:** Provides a concise syntax for defining short, one-line functions or expressions that
-  immediately return a value.
-- **Example:** `void function(int a) => print('Value is $a');`
-
-## ScopedModel/BLoC Pattern
-
-- **ScopedModel:** A state management pattern and library that allows passing data down the widget
-  tree without rebuilding parent widgets.
-- **BLoC (Business Logic Components):** A pattern for managing state and handling data flow using
-  streams and reactive programming.
+- In Dart, the fat arrow (`=>`) is a shorthand syntax used to write functions that contain only a single expression.
+- It automatically returns the result of that expression.
+- No need to use the return keyword.
 
 ## `BuildContext` in Flutter
 
@@ -2930,16 +2837,15 @@ development or production needs.”**
 - **`MaterialApp`:** Builds upon `WidgetsApp` by implementing Material Design, offering additional
   widgets and styling for consistent UI across platforms.
 
-## Nesting `Scaffold` in Flutter
-
-- **Feasibility:** Yes, you can nest `Scaffold` widgets.
-- **Purpose:** Allows building complex UI structures with multiple layers of material components
-  like app bars, drawers, and bottom sheets.
+in short, WidgetsApp is a basic app configuration widget, while MaterialApp extends it by adding Material Design UI and ready-to-use components.
 
 ## `SafeArea` Widget in Flutter
 
-- **Purpose:** Ensures that child widgets are positioned within safe areas of device screens,
-  avoiding overlap with system UI elements like status bar and notch.
+- SafeArea is a widget that keeps your UI inside the visible and safe part of the screen, avoiding areas like: Notch, status bar, Bottom navigation gestures (like iPhone swipe area).
+- SafeArea automatically adds padding so your content is not hidden behind system UI.
+- Without SafeArea Your UI can go under the notch or status bar
+
+in short, SafeArea is a Flutter widget that prevents UI from overlapping with system areas like the notch, status bar, and gesture areas by automatically adding padding.
 
 ## Android and iOS folders in Flutter Project
 
