@@ -2338,132 +2338,23 @@ void main() {
 
 📌 **Each instance is independent with its own data.**
 
-## **📌 30. What is `internal` in Dart?**
+## What is `internal` in Dart?
 
-✅ **Definition:** Used to restrict access to **members within a library/package**.  
-✅ **Usage:** Prevents access to constructors, methods, or variables **outside the library**.
+- Dart does not have an internal keyword. 
+- Instead, Dart uses library-level privacy using _ (underscore) to restrict access within a file (library).
 
-### **📌 Example**
+## `extends` vs `implements` vs `with` in Dart
 
-```dart
-class MyClass {
-  MyClass._internal(); // Private constructor
+- `extends`:
+  - extends is used to create a child class that inherits properties and methods from a parent class. 
+  - Used for inheritance, Child class gets all features of parent class, Child can override methods.
 
-  factory MyClass() {
-    return MyClass._internal(); // Accessible inside the library
-  }
-}
-```
+in short, extends is used in Dart for inheritance, allowing a child class to reuse and override properties and methods of a parent class.
 
-📌 **`_internal` makes the constructor private**, ensuring controlled instance creation.
+- `implements`:
+  - 
 
-## **📌 31. What is `extends` in Dart?**
-
-✅ **Definition:** `extends` is used for **inheritance**, allowing a subclass to inherit properties
-and methods from a superclass.  
-✅ **Usage:** Helps **reuse** and **extend** functionality.
-
-### **📌 Example**
-
-```dart
-class Animal {
-  void sleep() => print('Animal is sleeping');
-}
-
-class Dog extends Animal {
-  void bark() => print('Dog is barking');
-}
-
-void main() {
-  Dog dog = Dog();
-  dog.sleep(); // ✅ Inherited method
-  dog.bark(); // ✅ Own method
-}
-```
-
-📌 **`Dog` inherits `sleep()` from `Animal` but also has `bark()`.**
-
-## **📌 32. What is `implements` in Dart?**
-
-✅ **Definition:** `implements` forces a class to provide its **own implementation** of all methods
-from an interface.  
-✅ **Usage:** Ensures the class **adheres to a contract** without inheriting default behavior.
-
-### **📌 Example**
-
-```dart
-abstract class Animal {
-  void eat();
-}
-
-class Dog implements Animal {
-  @override
-  void eat() => print('Dog is eating');
-}
-
-void main() {
-  Dog dog = Dog();
-  dog.eat(); // ✅ Output: Dog is eating
-}
-```
-
-📌 **Unlike `extends`, `implements` does not inherit methods—it just enforces their presence.**
-
-## **📌 33. `extends` vs `implements` vs `with` in Dart**
-
-### **📌 `extends`** (Inheritance)
-
-✅ **Purpose:** Inherits properties and methods from a superclass.  
-✅ **Use Case:** When a class is a specialized version of another.
-
-```dart
-class A {
-  void methodA() => print('A');
-}
-
-class B extends A {} // ✅ B inherits methodA from A
-```
-
----
-
-### **📌 `implements`** (Interface Implementation)
-
-✅ **Purpose:** Forces a class to **provide its own version** of all interface methods.  
-✅ **Use Case:** When a class must follow a contract but not inherit behavior.
-
-```dart
-class C {
-  void methodC();
-}
-
-class D implements C {
-  @override
-  void methodC() => print('D');
-}
-```
-
----
-
-### **📌 `with`** (Mixin Composition)
-
-✅ **Purpose:** Allows **code reuse** without inheritance.  
-✅ **Use Case:** When multiple classes need shared functionality.
-
-```dart
-mixin M {
-  void methodM() => print('M');
-}
-
-class E with M {} // ✅ E gets methodM from mixin M
-```
-
-📌 **Key Differences:**
-
-- `extends` → Inherits from **one superclass**.
-- `implements` → Provides **own implementation** of an interface.
-- `with` → Mixes in **reusable code** from multiple mixins.
-
-## **📌 34. Is `main()` Static or Dynamic?**
+## Is `main()` Static or Dynamic?
 
 ✅ **Answer:** `main()` is **static** in Dart.  
 ✅ **Reason:** It acts as the **entry point** of a Dart program and is called by the Dart runtime to
@@ -2472,7 +2363,6 @@ start execution.
 ---
 
 ## Constructor & Types in Dart
-
 
 > A **constructor** is a special method used to **create and initialize an object**.
 
