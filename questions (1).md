@@ -1025,12 +1025,12 @@ code.
 
 # Flutter Overview and Key Concepts
 
-## 1. What is Flutter? Is It a Language?
+## What is Flutter? Is It a Language?
 
 - Flutter is a free, open-source Software Development Kit (SDK) and UI framework created by Google for building natively compiled applications for mobile, web, desktop, and embedded devices from a single codebase. 
 - No, Flutter is not a programming language. It is a toolkit or framework.
 
-## 2. What is Flutter Inspector?
+## What is Flutter Inspector?
 
 Flutter Inspector is a built-in tool that helps **debug and analyze** your app's UI. It shows the *
 *widget tree**, layout details, and helps you fix design issues.
@@ -1048,7 +1048,7 @@ structured and rendered.
 - Enable slow animations
 - Show/hide performance overlay
 
-## 3. Advantages of Flutter 🚀
+## Advantages of Flutter 🚀
 
 ✅ **Beautiful UI** – Customizable widgets with smooth animations.  
 ✅ **Fast Development** – *Hot reload* lets you see changes instantly.  
@@ -1059,7 +1059,7 @@ structured and rendered.
 
 ---
 
-## 4. Features of Flutter ✨
+## Features of Flutter ✨
 
 🔹 **Hot Reload** – See updates instantly without restarting the app.  
 🔹 **Flexible & Scalable** – Works for mobile, web, and desktop.  
@@ -1069,14 +1069,14 @@ structured and rendered.
 
 ---
 
-## 5. Limitations of Flutter ⚠️
+## Limitations of Flutter ⚠️
 
 ❌ **Large App Size** – Includes its own engine, making apps bigger.  
 ❌ **Limited Native API Access** – Custom platform code may be needed.  
 ❌ **Performance for Heavy Graphics** – Not ideal for advanced 3D/AR apps.  
 ❌ **Library Gaps** – Some native features require custom plugins.
 
-## 6. What is Dart?
+## What is Dart?
 
 Dart is a **general-purpose, object-oriented** programming language developed by **Google** in 2011.
 It’s designed for building web and mobile apps and is the **core language** of Flutter.
@@ -1088,7 +1088,7 @@ production.
 
 ---
 
-## 7. What is Flutter SDK?
+## What is Flutter SDK?
 
 - The Flutter SDK (Software Development Kit) is a framework developed by Google for building
   cross-platform mobile applications. It provides a complete set of tools, libraries, and resources
@@ -1096,7 +1096,7 @@ production.
   create native-like user interfaces (UI) for both Android and iOS platforms using a single
   codebase.
 
-## 8. Why Does Flutter Use Dart?
+## Why Does Flutter Use Dart?
 
 Flutter **chose Dart** because it’s:
 
@@ -1109,7 +1109,7 @@ iOS)** and **Gradle (Android)**.
 
 ---
 
-## 9. Full Form of API
+## Full Form of API
 
 🔹 **API** – Application Programming Interface
 
@@ -1213,7 +1213,7 @@ class Dog implements Animal {
 }
 ```
 
-### 11. GraphQL vs REST
+## GraphQL vs REST
 
 🔹 **GraphQL** → Flexible API that allows clients to request specific data from a single endpoint.  
 ✅ Efficient data fetching  
@@ -1228,7 +1228,7 @@ class Dog implements Animal {
 **Key Difference:** GraphQL gives **exact data** as requested, while REST may return **fixed,
 predefined data** from multiple endpoints.
 
-### 12. What is an Extension?
+## What is an Extension?
 
 An **extension** allows you to **add new methods** to existing classes **without modifying** their
 original code.
@@ -1248,7 +1248,7 @@ void main() {
 }
 ```
 
-## 13. Dart – Standard Input and Output
+## Dart – Standard Input and Output
 
 ### Input
 
@@ -1279,7 +1279,7 @@ void main() {
 }
 ```
 
-## 14. What is the `late` keyword used for?
+## What is the `late` keyword used for?
 
 The `late` keyword in Dart is used to declare a non-nullable variable that will be initialized
 later. It supports lazy initialization of variables and throws a `LateInitializationError` if the
@@ -1294,7 +1294,7 @@ void main() {
 }
 ```
 
-## 15. What is Generic in Dart?
+## What is Generic in Dart?
 
 Generics in Dart allow you to create reusable functions, classes, and types that can work with
 multiple data types, while still providing type safety.
@@ -1318,7 +1318,7 @@ safety and reusability.
 
 # Dart and Flutter Key Concepts
 
-### 15. What is `Expanded` and `Flexible` in Flutter?
+## What is `Expanded` and `Flexible` in Flutter?
 
 🔹 **Expanded** → Forces the child to take **all available space** in a `Row`, `Column`, or `Flex`.  
 🔹 **Flexible** → Allows the child to **take space if needed**, but doesn’t force it to fill
@@ -1338,7 +1338,7 @@ everything.
 **Key Difference:** `Expanded` fills **all** space, while `Flexible` only takes **as much as needed
 **.
 
-### 16. `Flex` Widget in Flutter
+## `Flex` Widget in Flutter
 
 🔹 **Definition:** `Flex` arranges its children **horizontally** (`Axis.horizontal`) or **vertically
 ** (`Axis.vertical`), similar to `Row` and `Column`.
@@ -1361,7 +1361,7 @@ Flex(
 **When to Use?**  
 ✅ When dynamically deciding between **horizontal or vertical** layout.
 
-### 17. **`didChangeDependencies()` vs `didUpdateWidget()` (Short & Clear)**
+## `didChangeDependencies()` vs `didUpdateWidget()` (Short & Clear)
 
 🔹 **`didChangeDependencies()`** → Called when **dependencies change** (like `Theme.of(context)`,
 `MediaQuery`, or `Provider`).  
@@ -1382,14 +1382,14 @@ Flex(
 - Use **`didChangeDependencies()`** for **theme, locale, provider changes**.
 - Use **`didUpdateWidget()`** when **parent widget updates child props**.
 
-### **18. What Does `context.mounted = false` Mean?**
+## What Does `context.mounted = false` Mean?
 
 - **Meaning:** It means the widget is **no longer in the widget tree** (removed or disposed).
 - **Why Important?** Before calling `setState()`, check `if (context.mounted)` to avoid errors.
 
 ---
 
-### **19. `as` vs `is` in Dart**
+## `as` vs `is` in Dart
 
 🔹 **`as` (Type Casting)** → Converts an object from one type to another.  
 ✅ Use when **you’re sure** the object is of that type.
@@ -1416,51 +1416,54 @@ if (obj is String) {
 
 # Dart and Flutter Key Concepts
 
-### **15. What is State & Why Use State Management Instead of `setState`?**
+## What is State & Why Use State Management Instead of `setState`?
 
-#### **State in Flutter**
-
-- State is **data** that affects a widget’s **appearance and behavior**.
-- Example: A button’s color changing after being clicked is a **state change**.
-
-#### **Using `setState()`**
-
-- ✅ **Directly updates** state and **rebuilds** the widget.
-- ❌ **Inefficient** for large apps because it rebuilds the **entire widget tree**.
-
-#### **Why Use State Management?**
-
-- **Efficient** → Only updates **specific widgets**, not the whole tree.
-- **Scalable** → Works well for **large apps**.
-- **Popular Solutions** → `Provider`, `Riverpod`, `Bloc`.
+- **State:**
+  - **Definition:** State is the **data or information** that controls how a widget looks and behaves.
+  - When state changes, the UI updates automatically.
 
 ---
 
-### **16. `var` vs `dynamic` in Dart**
+#### **Using `setState()`**
 
-🔹 **`var` (Type Inference)** → **Type is fixed** after assignment.  
-✅ Value **can change**, but **type cannot**.
+- ✅ Directly updates state and rebuilds the widget
+- ⚠️ Rebuilds the **entire widget subtree** (not whole app)
+- Suitable for **small and simple UI updates**
 
+---
+
+#### **Why Use State Management?**
+
+- **Efficient** → Updates only the **required widgets**
+- **Scalable** → Better for **large and complex apps**
+- **Maintainable** → Keeps business logic separate from UI
+- **Popular Solutions** → `Provider`, `Riverpod`, `Bloc`
+
+---
+
+In short, state controls the UI, `setState` is useful for simple local updates, and state management is used for efficient, scalable, and maintainable apps.
+
+## `var` vs `dynamic` vs `final` in Dart
+
+- dynamic: can change TYPE of the variable, & can change VALUE of the variable later in code.
+- var: can't change TYPE of the variable, but can change VALUE of the variable later in code.
+- final: can't change TYPE of the variable, & can't change VALUE of the variable later in code.
+
+```dart
+dynamic v = 123;   // v is of type int.
+v = 456;           // changing value of v from 123 to 456.
+v = 'abc';         // changing type of v from int to String.
+
+var v = 123;       // v is of type int.
+v = 456;           // changing value of v from 123 to 456.
+v = 'abc';         // ERROR: can't change type of v from int to String.
+
+final v = 123;       // v is of type int.
+v = 456;           // ERROR: can't change value of v from 123 to 456.
+v = 'abc';         // ERROR: can't change type of v from int to String.
 ```
-var name = 'Flutter';
-name = 'Dart'; // ✅ Allowed
-// name = 123; // ❌ Error: Can't assign int to a String variable
-```
 
-🔹 **`dynamic` (Flexible Type)** → **Type and value can change** anytime.  
-✅ Useful when **type is unknown** at compile time.
-
-```
-dynamic value = 'Hello';
-value = 42; // ✅ Allowed (Type changed from String to int)
-```
-
-🚀 **Rule of Thumb:**
-
-- Use **`var`** when type is **known**.
-- Use **`dynamic`** when type is **uncertain**.
-
-### **17. `Future` vs `Future.microtask` in Flutter**
+## `Future` vs `Future.microtask` in Flutter**
 
 #### **`Future`**
 
@@ -1527,41 +1530,41 @@ void main() async {
 }
 ```
 
-### **19. Queues in Dart**
+## Queue in Dart
 
-🔹 **Definition:**
+- **Definition:** A `Queue` is a collection that follows the **FIFO (First In, First Out)** principle.
+- Elements are added at the **end** and removed from the **front**.
+- It is available in `dart:collection`.
 
-- A **FIFO (First-In-First-Out)** data structure.
-- Elements are **processed in order** of addition.
+---
 
-🔹 **Example:**
+### 📌 When to use
+- When you need to process items in **order**
+- Task scheduling (e.g., handling API calls one by one)
+- Buffering data or events
+- Breadth-first search (BFS) algorithms
+
+---
+
+### 📌 Example
 
 ```dart
 import 'dart:collection';
 
 void main() {
-  Queue<String> queue = Queue<String>();
+  Queue<int> queue = Queue();
 
-  queue.addAll(["A", "B", "C"]);
-  print(queue); // {A, B, C}
+  queue.add(1);
+  queue.add(2);
+  queue.add(3);
 
-  queue.addFirst("First");
-  queue.addLast("Last");
-  print(queue); // {First, A, B, C, Last}
-
-  queue.removeFirst();
-  queue.removeLast();
-  print(queue); // {A, B, C}
-}
+  print(queue.removeFirst()); // 1
+  print(queue.removeFirst()); // 2
 ```
 
-🚀 **When to Use Queues?**
+In short, a Queue in Dart is used to process data in order (FIFO), where elements are added at the end and removed from the front.
 
-- **Task scheduling**
-- **Message processing**
-- **Managing ordered data**
-
-## 21. Routes vs Route Generator in Flutter
+## Routes vs Route Generator in Flutter
 
 - **Routes:**
   - **Definition:** Routes are used to define navigation paths in a Flutter app using a map of route names and widgets.
