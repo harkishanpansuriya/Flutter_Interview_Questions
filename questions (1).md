@@ -2198,96 +2198,132 @@ Future<void> fetchData() async {
 - **How**: You stop and start the run configuration (like pressing the stop ▶️ run button).
 - **Use case**: Needed when changes affect platform channels, native code, or dependencies.
 
-## **📌 23. Difference Between Set and List**
+## Difference Between Set and List in Dart
 
-### **📌 Set**
+#### **List**
 
-✅ **Stores unique elements.**  
-✅ **Unordered collection.**
-
-### **📌 List**
-
-✅ **Can have duplicate elements.**  
-✅ **Ordered collection.**
-
-### **📌 Example**
-
-```dart
-
-Set<int> mySet = {1, 2, 3, 4, 5, 5}; // Removes duplicate 5
-List<int> myList = [1, 2, 3, 4, 5, 5]; // Keeps duplicate 5
-```  
-
-📌 **Use Set for uniqueness, List for maintaining order.**
-
-## 24. Stream and Future in Dart
-
-#### **Stream**
-
-- **Purpose:** Delivers **multiple values** or events over time (e.g., real-time updates).
-- **Types:**
-    - **Single-subscription:** One listener at a time.
-    - **Broadcast:** Multiple listeners can subscribe.
-
-#### **Future**
-
-- **Purpose:** Delivers **one value** (or error) when an asynchronous operation finishes (e.g.,
-  network requests).
+- **Definition:** A `List` is an ordered collection of elements.
 - **Features:**
-    - `Future.value()`: Provides a predefined value.
-    - `Future.error()`: Provides an error.
-    - `.then()`: Runs when completed successfully.
-    - `.catchError()`: Runs when an error occurs.
+  - Allows **duplicate values**
+  - Maintains **insertion order**
+  - Access elements using **index**
+
+---
+
+#### **Set**
+
+- **Definition:** A `Set` is an unordered collection of unique elements.
+- **Features:**
+  - Does **not allow duplicates**
+  - Does not guarantee order
+  - No index-based access
+
+---
 
 #### **Key Differences**
 
-- **Stream:** Many values over time, like a video stream, chat messages, etc.
-- **Future:** One result, like downloading a file, fetching data, etc.
+- `List` → Ordered collection, allows duplicates
+- `Set` → Unordered collection, only unique values
 
-## 25. What is a List?
+---
+
+### 📌 Example
+
+```dart
+void main() {
+  List<int> list = [1, 2, 2, 3];
+  Set<int> set = {1, 2, 2, 3};
+
+  print(list); // [1, 2, 2, 3]
+  print(set);  // {1, 2, 3}
+}
+```
+
+## Stream vs Future in Dart
+
+#### **Stream**
+
+- **Definition:** A `Stream` delivers a sequence of values (events) over time.
+- **Purpose:** Used for real-time or continuous data (e.g., chat messages, live updates).
+- **Types:**
+  - **Single-subscription:** Supports only one listener.
+  - **Broadcast:** Supports multiple listeners.
+
+---
+
+#### **Future**
+
+- **Definition:** A `Future` represents a single value that will be available in the future.
+- **Purpose:** Used for one-time asynchronous operations (e.g., API calls, file loading).
+- **Features:**
+  - `Future.value()` → returns a predefined value
+  - `Future.error()` → returns an error
+  - `.then()` → executes on success
+  - `.catchError()` → executes on error
+
+---
+
+#### **Key Differences**
+
+- `Stream` → Provides **multiple values over time** (continuous data)
+- `Future` → Provides **a single value once** (one-time result)
+
+---
+
+In short, `Stream` is used for handling continuous data or events, while `Future` is used for a single asynchronous result.
+
+## What is a List?
 
 - **Definition:** A collection of objects that can include duplicates and maintains order.
 
-## 26. What is a HashMap?
+## What is a HashMap?
 
 - **Definition:** An unordered collection of key-value pairs based on a hashtable. Keys must be
   unique objects.
 - In summary, a HashMap is an efficient, unordered collection in Dart that allows for quick access
   to values using unique keys, making it ideal for many use cases where fast lookups are required.
 
-## 27. What is a Set?
+## What is a Set?
 
 - **Definition:** A collection of unique elements; no duplicates allowed.
 
-## 28. What is an Iterable?
+## What is an Iterable?
 
 - **Definition:** A collection of elements that can be accessed sequentially.
 - **Usage:** Abstract class; can be instantiated by creating a List or Set.
 
-### 29. Flutter `Future` vs `Completer`
+## Flutter `Future` vs `Completer`
 
 #### `Future`
 
-- **Definition:** Represents a delayed computation or result that will be available in the future.
-- **Usage:** Used to retrieve results from asynchronous operations.
+- **Definition:** A `Future` represents a result that will be available in the future.
+- **Usage:** Used to handle asynchronous operations like API calls or delays.
+- It completes **automatically** when the async task finishes.
+
+---
 
 #### `Completer`
 
-- **Definition:** A way to create and control a `Future` manually.
-- **Usage:** Allows you to complete a `Future` with a value or an error programmatically.
+- **Definition:** A `Completer` is used to **create and control a Future manually**.
+- **Usage:** Allows you to complete a Future with a value or error at any time.
+- It gives **full control** over when the Future completes.
 
-### Example
+---
+
+### 📌 Example
 
 ```dart
+import 'dart:async';
+
 void main() {
-  // Example Future usage
+  // Future example
   Future<int> fetchData() {
     return Future.delayed(Duration(seconds: 2), () => 42);
   }
 
   fetchData().then((value) => print('Fetched data: $value'));
 
-  // Example Completer usage
+  // Completer example
   Completer<int> completer = Completer<int>();
 
   fetchDataWithCompleter(completer);
@@ -2300,19 +2336,8 @@ void fetchDataWithCompleter(Completer<int> completer) {
     completer.complete(84);
   });
 }
-```
 
-### Output
-
-```
-Fetched data: 42
-Completed with completer: 84
-```
-
-In this example, `fetchData` returns a `Future` that completes after a delay,
-while `fetchDataWithCompleter` uses a `Completer` to manually complete a `Future`.
-
-## **📌 30. What is an Instance?**
+## What is an Instance?
 
 ✅ **Definition:** An **instance** is an object created from a class.  
 ✅ **Usage:** Holds **its own state & behavior** based on class properties & methods.
@@ -2336,7 +2361,7 @@ void main() {
 }
 ```
 
-📌 **Each instance is independent with its own data.**
+**Each instance is independent with its own data.**
 
 ## What is `internal` in Dart?
 
@@ -2345,20 +2370,40 @@ void main() {
 
 ## `extends` vs `implements` vs `with` in Dart
 
-- `extends`:
-  - extends is used to create a child class that inherits properties and methods from a parent class. 
-  - Used for inheritance, Child class gets all features of parent class, Child can override methods.
+- `extends (Inheritance)`:
+  - **Definition:** `extends` is used to create a child class that inherits properties and methods from a parent class.
+  - It allows code reuse, as the child class gets all the features of the parent class.
+  - The child class can override methods to provide its own implementation.
 
-in short, extends is used in Dart for inheritance, allowing a child class to reuse and override properties and methods of a parent class.
+  In short, `extends` is used for inheritance, allowing a child class to reuse and override properties and methods of a parent class.
 
-- `implements`:
-  - 
+---
+
+- `implements (Contract)`:
+  - **Definition:** `implements` is used when a class needs to follow the structure (contract) of another class.
+  - It does not inherit any implementation from the parent class.
+  - The class must provide its own implementation for all methods and properties.
+
+  In short, `implements` ensures that a class follows a contract by defining all required methods without inheriting code.
+
+---
+
+- `with (Mixins)`:
+  - **Definition:** `with` is used to apply mixins to a class for code reuse.
+  - It allows a class to use methods and properties from multiple mixins.
+  - It helps in adding additional functionality without using inheritance.
+
+  In short, `with` is used to reuse code and add extra features to a class using mixins.
 
 ## Is `main()` Static or Dynamic?
 
-✅ **Answer:** `main()` is **static** in Dart.  
-✅ **Reason:** It acts as the **entry point** of a Dart program and is called by the Dart runtime to
-start execution.
+- **Answer:** `main()` behaves like a **static function** in Dart.
+- **Reason:** It is the **entry point** of a Dart program and is called by the Dart runtime to start execution.
+- It does not require an object or class instance to run.
+
+---
+
+In short, `main()` is not explicitly marked as static, but it behaves like a static function because it runs without needing an object.
 
 ---
 
