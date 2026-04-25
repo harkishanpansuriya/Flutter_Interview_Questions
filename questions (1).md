@@ -1857,57 +1857,11 @@ void main() {
 
 📌 **Key Point:** `with` allows adding mixin functionality to any class.
 
-### 13. **📌 Spacer in Flutter**
+## Spacer in Flutter
 
-✅ **Definition:** A `Spacer` widget is used in a `Row`, `Column`, or `Flex` layout to take up
-available space **between** or **around** widgets.
-
-✅ **Why use `Spacer`?**
-
-- Helps **align** widgets dynamically without using **SizedBox** or **Expanded**.
-- Distributes available space **proportionally** when multiple `Spacer`s are used.
-
----
-
-### **📌 Example 1: Basic Usage**
-
-```dart
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: <Widget>[
-        Text('Start'),
-        Spacer(), // Takes up remaining space
-        Text('End'),
-      ],
-    );
-  }
-}
-```
-
-📌 **Behavior:** `Start` aligns to the left, `End` aligns to the right.
-
----
-
-### **📌 Example 2: Using Multiple Spacers**
-
-```
-Row
-(
-children: [
-Text('A'),
-Spacer(flex: 1), // Takes 1x space
-Text('B'),
-Spacer(flex: 2), // Takes 2x space
-Text('C'),
-],
-);
-```
-
-📌 **Behavior:** `B` is positioned **twice as far** from `C` as `A` is from `B`.
+- The Spacer widget is used to insert a flexible empty space between the children of the Column and Row widget.
+- The Spacer widget takes up all available space in its parent widget. 
+- Use Cases: The Spacer widget is great for creating flexible and customizable layouts.
 
 ## What is state?
 - In Flutter, State is the information or data that can be read synchronously when a widget is built and might change during the lifetime of that widget. Because Flutter is a declarative framework, the User Interface (UI) is a direct reflection of the current state: UI = f(State).
@@ -3088,8 +3042,30 @@ across different devices.
 
 ## SizedBox vs Container
 
-- SizedBox is used for adding fixed space or sizing a widget, while Container is a more powerful
-  widget used for layout, styling, padding, and decoration.
+- **SizedBox** is used for adding fixed space or giving a fixed size to a widget.
+- **Container** is a more powerful widget used for layout, styling, padding, and decoration.
+
+### Use Cases
+
+- **SizedBox:**
+  - When you need **fixed spacing** (e.g., 20px gap between widgets)
+  - When you want to **set fixed width/height**
+  - Lightweight and efficient
+
+- **Container:**
+  - When you need **styling** (color, border, decoration)
+  - When you need **padding or margin**
+  - When combining layout + styling in one widget
+
+## Padding vs Margin in Flutter
+
+- **Padding:**
+  - **Definition:** Adds space **inside** the widget, between the widget’s content and its border.
+  - Affects the **internal layout** of the widget.
+
+- **Margin:**
+  - **Definition:** Adds space **outside** the widget, creating distance from other widgets.
+  - In Flutter, margin is applied using the **`Container` widget**.
 
 ## Runes in Dart
 
