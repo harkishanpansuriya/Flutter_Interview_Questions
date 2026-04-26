@@ -2785,66 +2785,45 @@ Key Takeaway,
 
 ## Difference between `async` and `async*` in Dart
 
-- **`async`:**
-    - You add the async keyword to a function that does some work that might take a long time. It
-      returns the result wrapped in a Future.
-    - In Short: async gives you a Future.
-    - **Example:**
-      ```dart
-      Future<int> fetchData() async {
-        return 42;
-      }
-      ```
-- **`async*`:**
-    - You add the async* keyword to make a function that returns a bunch of future values one at a
-      time. The results are wrapped in a Stream.
-    - In Short: async* gives you a Stream.
-    - **Example:**
-      ```dart
-      Stream<int> fetchMultipleData() async* {
-        yield 1;
-        yield 2;
-        yield 3;
-      }
-      ```
+- async: 
+  - The async keyword is used to define a function that returns a Future. This is useful when you want to perform asynchronous operations, such as network requests or database queries, and then return a single result once the operation is complete.
+  - It returns the result wrapped in a Future.
+  - In Short: async gives you a Future.
+- async*:
+  - The async* keyword is used to define a function that returns a Stream. This is useful when you want to perform asynchronous operations that yield multiple values over time, rather than just a single value.
+  - The results are wrapped in a Stream.
+  - In Short: async* gives you a Stream.
 
-## `yield` and `yield*` in Dart
+In short, `async` is used for a single asynchronous result, while `async*` is used to generate multiple values over time using a Stream.
 
-- **`yield`:**
-    - yield provides a single value in an Iterable or a Stream.
-    - **Example:**
-      ```dart
-      Iterable<int> generateNumbers() sync* {
-        yield 1;
-        yield 2;
-        yield 3;
-      }
-      ```
-    - The yield statement sends each number into the stream, and the function pauses after each
-      yield until it’s called again to fetch the next value.
+## `yield` vs `yield*` in Dart
 
+- yield:
+  - The yield keyword is used inside an async* function to emit a single value to a Stream. This is useful when you want to produce values one by one over time.
+  - It sends one value at a time to the stream.
+  - In Short: yield gives you one value.
 
-- **`yield*`:**
-    - yield* provides multiple values from another Iterable or Stream.
-    - With yield*, you can combine them into one stream or list like this:
-    - ** Example:**
-        ```dart
-        Stream<int> combined() async* {
-            yield* Stream.fromIterable([1, 2]);  // Yield all values from the first stream
-            yield* Stream.fromIterable([3, 4]);  // Yield all values from the second stream
-        }
-        ```
-    - In this example, the combined stream will emit values 1, 2, 3, 4 in sequence.
+- yield*:
+  - The yield* keyword is used to emit all values from another Stream or Iterable into the current Stream. This is useful when you want to forward multiple values without writing a loop manually.
+  - It sends multiple values from another source to the stream.
+  - In Short: yield* gives you multiple values.
+
+In short, `yield` emits one value at a time, while `yield*` forwards all values from another stream or iterable.
 
 ## `yield` vs `return` in Dart
 
-- **`yield`:**
-    - Returns a value from a generator function and suspends the function's execution.
-    - Used for iterative operations that produce a sequence of values.
+- yield:
+  - The yield keyword is used inside an async* function to emit a single value to a Stream. This is useful when you want to produce values one by one over time.
+  - It does not stop the function; it can continue emitting more values.
+  - In Short: yield sends values to a Stream.
 
-- **`return`:**
-    - Terminates the execution of a function and optionally returns a value.
-    - Used to exit from a function once its task is complete.
+- return:
+  - The return keyword is used to send back a value from a function and terminate its execution.
+  - It is used in normal or async functions (Future).
+  - Once return is called, the function stops executing.
+  - In Short: return gives you a final value and ends the function.
+
+In short, `yield` is used to emit multiple values over time in a Stream, while `return` is used to return a single value and end the function.
 
 ## Differences between `var`, `final`, and `const` in Dart
 
@@ -2943,7 +2922,7 @@ Key Takeaway,
 - **Integration Tests:**
     - Integration tests combine unit and widget testing to check how well different parts of the
       application work together. These tests simulate user interactions, connect with databases, and
-      validate the flow of data across various components, such as network requests and UI updates.
+      validate the flow of data across various component  s, such as network requests and UI updates.
       They offer a more comprehensive test but can be more complex and slower to run.
 
   **Example:**
@@ -3016,7 +2995,7 @@ Key Takeaway,
     - Offers fast performance and simplicity, ideal for simpler applications or scenarios requiring
       fast data storage and retrieval.
 
-### Creating Responsive UI in Flutter
+## Creating Responsive UI in Flutter
 
 To build responsive UI, I used LayoutBuilder and MediaQuery to adapt UI based on screen size. I
 implemented breakpoints to switch layouts (single column for mobile, grid for tablet).
