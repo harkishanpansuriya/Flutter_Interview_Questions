@@ -1,5 +1,5 @@
 Architectural patterns in Flutter help organize code by separating UI, business logic, and data for
-better scalability and maintainability.
+better scalability, maintainability and testability.
 
 # Types of app architectural pattern in flutter
 

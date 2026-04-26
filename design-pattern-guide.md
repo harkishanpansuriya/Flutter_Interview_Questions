@@ -1,4 +1,4 @@
-# What are Design Patterns?
+## What are Design Patterns?
 
 - In software architecture, design patterns in Flutter are reusable blueprints for resolving common
   issues.
