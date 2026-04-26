@@ -12,7 +12,7 @@ Architectural patterns define how an application is structured by separating it 
 
 ## 1. MVC (Model–View–Controller)
 
-- MVC stands for Model-View-Controller. MVC is a design pattern that separates an application into
+- MVC stands for Model-View-Controller. MVC is a Architectural pattern that separates an application into
   three main components: Model, View, Controller.
 
 In Flutter, the MVC pattern can be implemented by creating separate classes for the Model, View, and
@@ -88,7 +88,7 @@ lib/
 Riverpod, Bloc, etc.
 
 best to remember:
-MVVM is a design pattern where the UI (View) is separated from business logic (Model) using a
+MVVM is a Architectural pattern where the UI (View) is separated from business logic (Model) using a
 ViewModel that manages state and provides data to the UI.
 
 ### Why Use MVVM in Flutter?
@@ -165,7 +165,7 @@ to the View in a reactive way.
 
 ## 3. Clean Architecture (Most Scalable)
 
-- Clean Architecture in Flutter is a software design pattern that organizes code into independent
+- Clean Architecture in Flutter is a architectural approach or principles that organizes code into independent
   layers to achieve separation of concerns such as UI, business logic, and data layers.
 - It helps in building a modular, scalable, testable, and maintainable codebase.
 - The main idea is that **business logic should not depend on UI or frameworks**.
