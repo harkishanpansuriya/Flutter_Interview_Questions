@@ -1,6 +1,8 @@
 Architectural patterns in Flutter help organize code by separating UI, business logic, and data for
 better scalability, maintainability and testability.
 
+Architectural patterns define how an application is structured by separating it into layers like UI, business logic, and data, and by defining how these components interact, making the app scalable, maintainable, and testable
+
 # Types of app architectural pattern in flutter
 
 1. MVC (Model–View–Controller)
