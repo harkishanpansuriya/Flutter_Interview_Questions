@@ -161,6 +161,18 @@ To secure a wallet app:
 - Compress images and limit FPS in animations.
 - Use `RepaintBoundary` to isolate heavy rendering areas.
 
+## What is copyWith?
+- Create a new object by copying existing values while updating specific properties.
+- In simple terms, instead of modifying the original object, we create a new object with updated fields. This keeps data safe and predictable.
+
+So copyWith helps us update only what is needed while keeping the rest same.
+
+## Memory leaks in Flutter.
+- Memory leak in Flutter means some objects stay in memory even when they are no longer needed.
+- In simple terms, the app keeps holding resources like controllers, streams, or listeners, so memory keeps increasing and performance becomes slow.
+
+In Flutter, memory is managed automatically (garbage collection), but if we don’t clean up things like controllers or streams, they won’t be removed. So we must manually dispose them when the widget is removed.
+
 ## How would you architect a Flutter app with multiple modules or teams working on it?
 
 - Use a **feature-based folder structure** (e.g., `features/user`, `features/dashboard`).
@@ -3150,11 +3162,12 @@ hot reload, a feature that lets you make changes to your running code without re
 see a "debug" banner in the top right-hand corner of your app when running in this mode, to remind
 you that performance is not characteristic of the finished release app.
 
-## What is Inherited Widget and how to use it?
+## Differance between InheritedWidget & InheritedModel
 
-- InheritedWidget:
-    - InheritedWidget is used to share data across the widget tree efficiently. It allows child
-      widgets to access and listen to data changes without passing data through constructors.
+- InheritedWidget and InheritedModel are both used to share data down the widget tree, but InheritedModel is more optimized for selective rebuilds.
+- In simple terms, InheritedWidget rebuilds all dependent widgets when data changes, while InheritedModel rebuilds only the widgets that depend on a specific part of the data.
+
+With InheritedWidget, if any value changes, all widgets using it will rebuild. But with InheritedModel, we can divide data into parts (called aspects), and only widgets that use that specific aspect will rebuild.
 
 Provider is built on top of InheritedWidget to simplify its usage.
 
