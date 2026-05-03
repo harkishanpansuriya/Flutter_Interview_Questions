@@ -211,6 +211,16 @@ In Flutter, memory is managed automatically (garbage collection), but if we don�
 - Run the app and resolve breaking changes.
 - Follow Flutter migration guides for major updates.
 
+## Web renderers
+- https://docs.flutter.dev/platform-integration/web/renderers
+
+## Crashalytics vs Analytics
+- Firebase Crashlytics and Google Analytics for Firebase serve distinct, complementary purposes. Crashlytics is a real-time crash reporter used to debug app stability, while Analytics tracks user behavior, engagement, and conversion metrics.
+
+## Caching mechanism in Flutter.
+- Caching in Flutter means storing data locally (memory or device) so we don’t need to fetch it again from network every time.
+- In simple terms, instead of calling API or loading data again and again, we keep a copy and reuse it → faster app and better performance.
+
 ## What is the use of const in Flutter widgets?
 
 Using `const` makes widgets **immutable**, reduces unnecessary rebuilds, and improves performance by
@@ -3451,23 +3461,5 @@ in short, “Time complexity measures execution time, while space complexity mea
 PENDING QUESTIONS
 ---------
 
-- Memory leaks in Flutter
-- what is the issue with multiple inheritence in dart?
-- mixin - handle diffrent class which have same variable.
-- Diff between InheritedWidget & InheritedModel
-- All State management in Flutter
-- how to optimize the performance of a Flutter app
-- Web render types and it's benifits
-- Mediaquery.of(context) vs Mediaquery.sizeOf(context).
-- Crashalytics vs Analytics
-- MQTT vs web socket in deep.
 - flutter inside - how it's works like tress, render, etc...
-- Caching mechanism in Flutter
-- What you'll do for Performance optimization in Flutter
-- Which design pattern is best for Flutter?
-- What is the architecture design pattern in
-  Flutter (https://docs.flutter.dev/app-architecture/design-patterns)?
-- telescopy constructor in flutter
-- Why we need class in dart?
-- Flutter bloc vs using cubit.
-- copyWith what is the use of it?
+
