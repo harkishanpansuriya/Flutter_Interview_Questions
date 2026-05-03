@@ -877,6 +877,18 @@ code.
   sits at the top of the rendering pipeline, which eventually translates widgets into elements,
   render objects, and finally pixels on the screen.
 
+## What are the reusable widgets?
+- Reusable widgets are UI components that we create once and use multiple times in different parts of the app.
+- In Flutter, everything is a widget, so we can create our own custom widgets and reuse them anywhere.
+- For example, if I have the same button design used in many screens, instead of writing the same code again and again, I create one custom button widget and reuse it.
+- In Flutter, reusable widgets are usually created using StatelessWidget or StatefulWidget, depending on whether the UI needs to change or not.
+- The main purpose of reusable widgets is to avoid repeating the same code again and again, and to make the code clean, maintainable, and consistent.  
+
+## What is feature first architecture in flutter?
+- Feature-first architecture in Flutter means we organize the project based on features instead of technical layers.
+- In simple words, all the code related to one feature is kept in one place.
+- For example, if we have a login feature, then everything related to login like UI, logic, API calls, and models will be inside one folder called ‘auth’ or ‘login’. So Each feature folder contains its own screens, widgets, logic, and data.
+
 ## how to improve app perfomance to make it fast
 
 - To make a Flutter app fast, use const widgets, efficient state management to rebuild only
@@ -2735,7 +2747,7 @@ in short, SafeArea is a Flutter widget that prevents UI from overlapping with sy
   the iOS platform. It includes configurations, resources, and native code components specific to
   iOS.
 
-## 64. `async`, `await`, `.then()`, `.whenComplete()` and `Future` in Dart
+## `async`, `await`, `.then()`, `.whenComplete()` and `Future` in Dart
 
 - **`async`:** Keyword used to mark a function as asynchronous, allowing it to use `await`.
 - **`await`:** Pauses the execution of a function marked with `async` until a `Future` is complete,
@@ -2747,6 +2759,12 @@ in short, SafeArea is a Flutter widget that prevents UI from overlapping with sy
   an error.
 - **`Future`:** Represents a value or error that will be available at some point in the future. It
   allows asynchronous operations to be performed and provides a way to retrieve their results.
+  
+## Async vs Isolate vs Compute – Flutter Concurrency Made Simple
+- Async: Runs on the main thread using a non-blocking event loop. Best for lightweight tasks like API calls, database operations, and file I/O.
+- Isolate: Runs on a completely separate thread with its own memory. Best for heavy CPU tasks like image processing or large JSON parsing. Enables true parallel execution without blocking UI.
+- Compute: Compute is a helper function provided by Flutter to simplify using isolates. Instead of manually creating and managing an isolate, we just use compute, and it handles everything internally.
+
 
 ## Difference between FutureBuilder and StreamBuilder
 
