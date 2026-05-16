@@ -3463,3 +3463,20 @@ PENDING QUESTIONS
 
 - flutter inside - how it's works like tress, render, etc...
 
+Some Flutter questions that should be asked in interviews—but rarely are!!
+- How do you manage responsive UI across 20+ device sizes?
+- What’s your strategy when a plugin breaks after a Flutter upgrade?
+- How do you keep code clean when 5 developers are working on the same screen?
+- Ever had a widget rebuild too often? How did you catch that?
+- What’s your real-world approach to offline-first design?
+- How do you debug janky animations or dropped frames in Flutter?
+- How do you handle Firebase Auth state across app restarts?
+- What’s your approach to feature flags or environment configs in Flutter?
+- How do you deal with deep linking in a large app?
+- What do you do when your app size exceeds 100MB?
+- How do you structure a Flutter project for scale (like 10+ devs)?
+- How do you ensure app security (code obfuscation, API keys, etc.)?
+- What do you test—and what do you not bother testing in your Flutter code?
+- How do you handle back navigation when using nested navigators (e.g., BottomNav + routes)?
+
+Questions about state management: https://medium.com/@thedevwriter/how-well-do-you-know-flutter-state-management-20-questions-to-test-you-87f8e65b87e8
