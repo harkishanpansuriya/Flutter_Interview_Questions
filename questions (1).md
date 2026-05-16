@@ -2,6 +2,9 @@ https://www.ambitionbox.com/profiles/flutter-developer/interview-questions
 
 https://medium.com/@kalidoss.shanmugam/flutter-interview-questions-and-answers-for-experienced-developers-171a7cbbfef5
 
+See some of questions and copy it: https://medium.com/@anandgaur2207/top-flutter-interview-questions-and-answers-e7fbe9db7390
+
+
 flutter architecture interview questions
 
 https://www.scribd.com/document/991599607/Flutter-Interview-Question-Bank - based on this we can seperate files
