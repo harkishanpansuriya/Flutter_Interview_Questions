@@ -4,4 +4,6 @@
 - https://github.com/mo7amedaliEbaid/dart-flutter-interview-questions-preparation/blob/main/bloc.md
 - 
 
+### Provider interview questions:
+- https://medium.com/@radheyjat/flutter-provider-interview-questions-and-answers-a2ce23661f59
 - 
