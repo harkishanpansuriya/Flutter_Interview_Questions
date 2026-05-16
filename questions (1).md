@@ -4,6 +4,8 @@ https://medium.com/@kalidoss.shanmugam/flutter-interview-questions-and-answers-f
 
 flutter architecture interview questions
 
+https://www.scribd.com/document/991599607/Flutter-Interview-Question-Bank - based on this we can seperate files
+
 https://github.com/thisissandipp/flutter-interview-questions (Great questinons included).
 
 https://www.interviewbit.com/flutter-interview-questions/
