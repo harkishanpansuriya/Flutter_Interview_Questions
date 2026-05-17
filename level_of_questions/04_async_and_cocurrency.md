@@ -3,3 +3,270 @@
 - Isolate: Runs on a completely separate thread with its own memory. Best for heavy CPU tasks like image processing or large JSON parsing. Enables true parallel execution without blocking UI.
 - Compute: Compute is a helper function provided by Flutter to simplify using isolates. Instead of manually creating and managing an isolate, we just use compute, and it handles everything internally.
 
+## `async`, `await`, `.then()`, `.whenComplete()` and `Future` in Dart
+
+- **`async`:** Keyword used to mark a function as asynchronous, allowing it to use `await`.
+- **`await`:** Pauses the execution of a function marked with `async` until a `Future` is complete,
+  and then returns the result.
+- **`.then((value) { ... })`:** Method called on a `Future` object that registers a callback to be
+  executed when the `Future` completes successfully.
+- **`.whenComplete(() { ... })`:** Method called on a `Future` object that registers a callback to
+  be executed when the `Future` completes, regardless of whether it completes successfully or with
+  an error.
+- **`Future`:** Represents a value or error that will be available at some point in the future. It
+  allows asynchronous operations to be performed and provides a way to retrieve their results.
+
+## Difference between `async` and `async*` in Dart
+
+- async: 
+  - The async keyword is used to define a function that returns a Future. This is useful when you want to perform asynchronous operations, such as network requests or database queries, and then return a single result once the operation is complete.
+  - It returns the result wrapped in a Future.
+  - In Short: async gives you a Future.
+- async*:
+  - The async* keyword is used to define a function that returns a Stream. This is useful when you want to perform asynchronous operations that yield multiple values over time, rather than just a single value.
+  - The results are wrapped in a Stream.
+  - In Short: async* gives you a Stream.
+
+In short, `async` is used for a single asynchronous result, while `async*` is used to generate multiple values over time using a Stream.
+
+## `yield` vs `yield*` in Dart
+
+- yield:
+  - The yield keyword is used inside an async* function to emit a single value to a Stream. This is useful when you want to produce values one by one over time.
+  - It sends one value at a time to the stream.
+  - In Short: yield gives you one value.
+
+- yield*:
+  - The yield* keyword is used to emit all values from another Stream or Iterable into the current Stream. This is useful when you want to forward multiple values without writing a loop manually.
+  - It sends multiple values from another source to the stream.
+  - In Short: yield* gives you multiple values.
+
+In short, `yield` emits one value at a time, while `yield*` forwards all values from another stream or iterable.
+
+## `yield` vs `return` in Dart
+
+- yield:
+  - The yield keyword is used inside an async* function to emit a single value to a Stream. This is useful when you want to produce values one by one over time.
+  - It does not stop the function; it can continue emitting more values.
+  - In Short: yield sends values to a Stream.
+
+- return:
+  - The return keyword is used to send back a value from a function and terminate its execution.
+  - It is used in normal or async functions (Future).
+  - Once return is called, the function stops executing.
+  - In Short: return gives you a final value and ends the function.
+
+In short, `yield` is used to emit multiple values over time in a Stream, while `return` is used to return a single value and end the function.
+
+## Stream vs Future in Dart
+
+#### **Stream**
+
+- **Definition:** A `Stream` delivers a sequence of values (events) over time.
+- **Purpose:** Used for real-time or continuous data (e.g., chat messages, live updates).
+- **Types:**
+  - **Single-subscription:** Supports only one listener.
+  - **Broadcast:** Supports multiple listeners.
+
+---
+
+#### **Future**
+
+- **Definition:** A `Future` represents a single value that will be available in the future.
+- **Purpose:** Used for one-time asynchronous operations (e.g., API calls, file loading).
+- **Features:**
+  - `Future.value()` → returns a predefined value
+  - `Future.error()` → returns an error
+  - `.then()` → executes on success
+  - `.catchError()` → executes on error
+
+---
+
+#### **Key Differences**
+
+- `Stream` → Provides **multiple values over time** (continuous data)
+- `Future` → Provides **a single value once** (one-time result)
+
+---
+
+In short, `Stream` is used for handling continuous data or events, while `Future` is used for a single asynchronous result.
+
+## Differences between streams and sockets in Flutter?
+
+- Sockets is a real time technology related to server side which enables your back-end to push data
+  to your client side without the need for continuous polling your server.
+
+- Streams in flutter is an object that hold reference to changing data that you can tap into it and
+  react to the change.
+
+## `Future` vs `Future.microtask` in Flutter**
+
+#### **`Future`**
+
+- Runs **after all microtasks** are completed.
+- Used for **asynchronous operations** (e.g., API calls, file reading).
+
+```dart
+void main() {
+  Future(() => print('future 1'));
+  Future(() => print('future 2'));
+  print('main');
+  // Output: main, future 1, future 2
+}
+```
+
+#### **`Future.microtask`**
+
+- Runs **before any `Future`** tasks.
+- Useful for **high-priority small tasks** (e.g., state updates).
+
+```dart
+void main() {
+  Future(() => print('future 1'));
+  Future(() => print('future 2'));
+  Future.microtask(() => print('microtask 1'));
+  Future.microtask(() => print('microtask 2'));
+  print('main');
+  // Output: main, microtask 1, microtask 2, future 1, future 2
+}
+```
+
+🚀 **Rule of Thumb:**
+
+- Use **`Future.microtask`** for small high-priority tasks.
+- Use **`Future`** for general asynchronous operations.
+
+---
+
+### What is `FutureOr` in Dart/Flutter?
+
+- FutureOr = maybe async, maybe sync
+- **Definition:**  
+  `FutureOr<T>` is a type that **can hold either a value of type `T` or a `Future<T>`**.
+
+- **Use case:**  
+  Useful when a function might **return immediately** (synchronously) or **return later** (
+  asynchronously) without creating two different function signatures.
+
+#### Example:
+
+```dart
+import 'dart:async';
+
+FutureOr<int> getValue(bool async) {
+  if (async) {
+    return Future.value(42); // async
+  }
+  return 42; // sync
+}
+
+void main() async {
+  print(await getValue(true)); // 42 (from Future)
+  print(getValue(false)); // 42 (sync value)
+}
+```
+
+## Flutter `Future` vs `Completer`
+
+#### `Future`
+
+- **Definition:** A `Future` represents a result that will be available in the future.
+- **Usage:** Used to handle asynchronous operations like API calls or delays.
+- It completes **automatically** when the async task finishes.
+
+---
+
+#### `Completer`
+
+- **Definition:** A `Completer` is used to **create and control a Future manually**.
+- **Usage:** Allows you to complete a Future with a value or error at any time.
+- It gives **full control** over when the Future completes.
+
+---
+
+### 📌 Example
+
+```dart
+import 'dart:async';
+
+void main() {
+  // Future example
+  Future<int> fetchData() {
+    return Future.delayed(Duration(seconds: 2), () => 42);
+  }
+
+  fetchData().then((value) => print('Fetched data: $value'));
+
+  // Completer example
+  Completer<int> completer = Completer<int>();
+
+  fetchDataWithCompleter(completer);
+
+  completer.future.then((value) => print('Completed with completer: $value'));
+}
+
+void fetchDataWithCompleter(Completer<int> completer) {
+  Future.delayed(Duration(seconds: 3), () {
+    completer.complete(84);
+  });
+}
+
+## What is an Instance?
+
+✅ **Definition:** An **instance** is an object created from a class.  
+✅ **Usage:** Holds **its own state & behavior** based on class properties & methods.
+
+### **📌 Example**
+
+```dart
+class Car {
+  String model;
+
+  Car(this.model); // Constructor
+
+  void showModel() {
+    print('Car model: $model');
+  }
+}
+
+void main() {
+  Car myCar = Car('Tesla'); // Creating an instance
+  myCar.showModel(); // Output: Car model: Tesla
+}
+```
+
+**Each instance is independent with its own data.**
+
+## Future.wait in Dart
+
+- Future.wait in Dart is a way to run multiple asynchronous operations at the same time and wait
+  until all of them are complete.
+- **Why use**: Future.wait is useful when you need to perform multiple asynchronous operations and
+  proceed only when all of them are complete.
+    - **For example**: Loading data from multiple sources (e.g.,
+      network requests, file reads) before displaying it.
+    - Performing multiple database operations.
+- **Output**: It returns a list of results in the same order as the futures.
+- If any future completes with an error, then the returned future completes with that error. If
+  further futures also complete with errors, those errors are discarded.
+
+### Example
+
+```dart
+Future<void> fetchData() async {
+  List<String> results = await Future.wait([
+    fetchUser(),
+    fetchPosts(),
+  ]);
+
+  print(results); // ['User data loaded', 'Posts loaded']
+}
+```
+
+## Callback Functions and Asynchronous Programming in Dart
+
+- **Callback Function:**
+    - A function passed as an argument to another function, to be executed later when a specific
+      event or condition occurs.
+    - Essential in Dart's asynchronous programming to handle tasks that complete at a later time,
+      like fetching data or I/O operations.
