@@ -86,3 +86,30 @@ apps.”
 **Key Difference:** GraphQL gives **exact data** as requested, while REST may return **fixed,
 predefined data** from multiple endpoints.
 
+## What is MQTT, and why is it used in IoT?
+
+- **MQTT (Message Queuing Telemetry Transport):**  
+  A lightweight **publish-subscribe messaging protocol**
+
+- **Why used in IoT:**
+    - Designed for **low-bandwidth, high-latency, and unreliable networks**
+    - Enables **efficient communication** between IoT devices and cloud services
+    - **Minimal power consumption**, ideal for battery-powered devices
+
+## What is the difference between MQTT and HTTP in AWS IoT?
+
+- MQTT: Lightweight, publish/subscribe protocol designed for real-time messaging. Maintains a
+  persistent connection, supports bidirectional communication. Efficient for devices with limited
+  bandwidth or battery. HTTP: Request/response protocol, stateless. Each message requires a new
+  connection. Less efficient for frequent or real-time updates. Key Difference: MQTT is ideal for
+  real-time, low-latency IoT communication, while HTTP is better for occasional, request-driven data
+  exchange.
+
+## What are the limitations of AWS IoT Core with MQTT?
+
+- Message size limit: Maximum payload size is 128 KB.
+  Limited topic depth: AWS IoT allows up to 7-level topic hierarchy.
+  Connection limits: Each account has a quota on concurrent connections.
+  Cost considerations: Frequent high-volume messaging can lead to increased costs.
+  No retained messages: AWS IoT Core does not support MQTT retained messages.
+
