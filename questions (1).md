@@ -1767,68 +1767,6 @@ void main() {
 - The Spacer widget takes up all available space in its parent widget. 
 - Use Cases: The Spacer widget is great for creating flexible and customizable layouts.
 
-## What is state?
-- In Flutter, State is the information or data that can be read synchronously when a widget is built and might change during the lifetime of that widget. Because Flutter is a declarative framework, the User Interface (UI) is a direct reflection of the current state: UI = f(State).
-
-## Stateful vs Stateless Widget in Flutter & Lifecycle
-
-#### Stateless Widget:
-- A widget that does not change its UI once built.
-- Rebuild: Only rebuilt when parent widget updates.
-- State: Immutable (cannot change after creation)
-- Use Cases: Static UI elements like Text, Icon, ElevatedButton
-
-in short, “A Stateless Widget is a widget whose UI depends only on the input data and does not change during its lifecycle.”
-
-#### Stateful Widget:
-- A widget that can change its UI during runtime.
-- Rebuild: Can rebuild itself using setState().
-- State: Mutable (changes when `setState()` is called).  
-- Use Cases: Dynamic UI like counters, forms, API data, animations.
-
-### Stateful Widget Lifecycle in Flutter
-
-- **Definition:** The lifecycle defines the **sequence of methods** called when a StatefulWidget is created, updated, and removed.
-
-#### Lifecycle Methods
-
-1. **createState()**
-   - Creates the State object
-   - Called once when widget is inserted
-
-2. **initState()**
-   - Called once when the State is created
-   - Used for initialization (API calls, controllers)
-
-3. **didChangeDependencies()**
-   - Called after `initState()`
-   - Called again when dependencies (like InheritedWidget) change
-
-4. **build()**
-   - Builds the UI
-   - Called multiple times (whenever state changes)
-
-5. **didUpdateWidget()**
-   - Called when parent widget updates this widget
-   - Used to respond to new configuration
-
-6. **setState()**
-   - Updates state and triggers `build()`
-   - Used for UI updates
-
-7. **deactivate()**
-   - Called when widget is removed from tree temporarily
-   - Can be reinserted later
-
-8. **dispose()**
-   - Called when widget is removed from tree
-   - Used to clean up resources (controllers, streams)
-
----
-
-#### In short
-Stateful widget lifecycle starts with creation, initializes data, builds UI, updates on changes, and finally cleans up resources when removed.
-
 ### What is `setState()` in Flutter?
 
 - `setState()` is used to update the state of a StatefulWidget and trigger a UI rebuild.
@@ -2016,34 +1954,8 @@ Future<void> fetchData() async {
 }
 ```
 
-## Difference Between Hot Reload, Hot Restart, and Full Restart in Flutter
 
-### Hot Reload
 
-- **What it does**: Injects updated source code into the Dart VM and rebuilds the widget tree.
-- **State**: Preserves current app state (variables, navigation, scroll position).
-- **Does not rerun**: `main()` or `initState()`.
-- **Use case**: Quick UI changes, small logic tweaks.
-- **Example**: Changing a `Text` widget’s content updates instantly without resetting the app.
-
----
-
-### Hot Restart
-
-- **What it does**: Loads code changes into the VM and restarts the Flutter app.
-- **State**: Loses app state (everything resets), but **keeps the same Dart VM instance**.
-- **Does rerun**: `main()` and all initializers.
-- **Use case**: When you change global variables, initialization logic, or need a clean slate.
-- **Example**: Modifying `main()` or app‑level configuration requires hot restart.
-
----
-
-### Full Restart
-
-- **What it does**: Completely recompiles and restarts the app, including native code.
-- **State**: Entire app and VM are reset.
-- **How**: You stop and start the run configuration (like pressing the stop ▶️ run button).
-- **Use case**: Needed when changes affect platform channels, native code, or dependencies.
 
 ## Difference Between Set and List in Dart
 
