@@ -113,3 +113,8 @@ predefined data** from multiple endpoints.
   Cost considerations: Frequent high-volume messaging can lead to increased costs.
   No retained messages: AWS IoT Core does not support MQTT retained messages.
 
+## Convert a JSON string to a Dart model.
+
+- To convert a JSON string to a Dart model, you first create a model class with a fromJson factory
+  constructor, then use jsonDecode from dart:convert.
+
