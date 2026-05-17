@@ -425,3 +425,66 @@ child: Text('Submit'),
 - Column: Vertical (MainAxisAlignment.vertical).
 - Row: Horizontal (MainAxisAlignment.horizontal).
 
+## What is `Expanded` and `Flexible` in Flutter?
+
+🔹 **Expanded** → Forces the child to take **all available space** in a `Row`, `Column`, or `Flex`.  
+🔹 **Flexible** → Allows the child to **take space if needed**, but doesn’t force it to fill
+everything.
+
+**Example:**
+
+```
+ Row(
+      children: [
+        Expanded(child: Container(color: Colors.red)), // Takes full space
+        Flexible(child: Container(color: Colors.blue)), // Takes only needed space
+      ],
+    );
+```
+
+**Key Difference:** `Expanded` fills **all** space, while `Flexible` only takes **as much as needed
+**.
+
+## `Flex` Widget in Flutter
+
+🔹 **Definition:** `Flex` arranges its children **horizontally** (`Axis.horizontal`) or **vertically
+** (`Axis.vertical`), similar to `Row` and `Column`.
+
+🔹 **Key Difference:** Unlike `Row` and `Column`, `Flex` **requires** an explicit `direction`.
+
+**Example:**
+
+```
+Flex(
+  direction: Axis.horizontal, // Change to Axis.vertical for vertical layout
+  children: [
+    Container(width: 100, height: 100, color: Colors.red),
+    Container(width: 200, height: 100, color: Colors.green),
+    Container(width: 50, height: 100, color: Colors.blue),
+  ],
+)
+```  
+
+**When to Use?**  
+✅ When dynamically deciding between **horizontal or vertical** layout.
+
+## `didChangeDependencies()` vs `didUpdateWidget()` 
+🔹 **`didChangeDependencies()`** → Called when **dependencies change** (like `Theme.of(context)`,
+`MediaQuery`, or `Provider`).  
+✅ Runs **after `initState()`** and when an **inherited widget updates**.
+
+🔹 **`didUpdateWidget()`** → Called when **the parent widget passes new props** (like updated
+`counter` value).  
+✅ Runs when **the parent rebuilds with new data**.
+
+| Feature             | `didChangeDependencies()`         | `didUpdateWidget()`                     |
+|---------------------|-----------------------------------|-----------------------------------------|
+| **Triggered When?** | Theme, locale, provider changes   | Parent widget updates props             |
+| **Runs After?**     | `initState()` & dependency change | Parent `setState()` updates child props |
+| **Use Case?**       | Listen for external changes       | Handle new props from parent            |
+
+🚀 **Rule of Thumb:**
+
+- Use **`didChangeDependencies()`** for **theme, locale, provider changes**.
+- Use **`didUpdateWidget()`** when **parent widget updates child props**.
+

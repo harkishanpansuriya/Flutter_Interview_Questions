@@ -21,3 +21,21 @@
     - Provides **local data storage** for offline persistence
     - Commonly used via the `sqflite` package to **interact with the database**
 
+
+## How do you handle migrations in SQLite with Flutter?
+
+- Migrations are handled using the onUpgrade callback in openDatabase:
+  ```dart
+  Future<Database> initDB() async {
+  String path = join(await getDatabasesPath(), 'my_database.db');
+  return await openDatabase(
+  path,
+  version: 2, // Increment version
+  onUpgrade: (db, oldVersion, newVersion) async {
+  if (oldVersion < 2) {
+  await db.execute("ALTER TABLE users ADD COLUMN email TEXT");
+  }
+  },
+  );
+  }
+  ```

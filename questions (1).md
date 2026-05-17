@@ -636,28 +636,6 @@ For iOS:
   return result.isNotEmpty;
   }
 
-## How do you handle migrations in SQLite with Flutter?
-
-- Migrations are handled using the onUpgrade callback in openDatabase:
-  Future<Database> initDB() async {
-  String path = join(await getDatabasesPath(), 'my_database.db');
-  return await openDatabase(
-  path,
-  version: 2, // Increment version
-  onUpgrade: (db, oldVersion, newVersion) async {
-  if (oldVersion < 2) {
-  await db.execute("ALTER TABLE users ADD COLUMN email TEXT");
-  }
-  },
-  );
-  }
-
-
----
-
-
-
-
 
 ## Explain Flutter state management approaches
 
@@ -731,12 +709,6 @@ code.
 - In Flutter, you typically use the http package’s MultipartRequest or Dio package to upload files
   or images to a server.
 
-
-
-
-
-
-
 ## Have you used social login in Flutter? How do you implement it?
 
 - Yes, using firebase_auth, google_sign_in, flutter_facebook_auth, etc
@@ -748,8 +720,6 @@ code.
 ## What is BLOC, and how does it differ from Provider?
 
 - BLoC uses streams and events, while Provider is a simpler state management solution.
-
-
 
 ## How to manage dependencies in a Flutter project?
 
@@ -770,10 +740,6 @@ code.
 ## What is isolate in Dart, and how does it help in performance?
 
 - Isolate is used for parallel execution to avoid blocking the main UI thread.
-
-
-
-
 
 ## Explain how to handle background tasks in Flutter.
 
@@ -861,105 +827,14 @@ code.
 ---
 
 ### 🎯 In short
-A package is written in pure Dart for reusable functionality, while a plugin includes native code to interact with platform-specific features.s
-
-
-
-
-
-
-
-## GraphQL vs REST
-
-🔹 **GraphQL** → Flexible API that allows clients to request specific data from a single endpoint.  
-✅ Efficient data fetching  
-✅ Scalable & flexible  
-❌ Requires learning & setup
-
-🔹 **REST** → Uses multiple fixed endpoints (GET, POST, etc.) to serve data.  
-✅ Simple & widely used  
-✅ Easy to cache  
-❌ Can over-fetch or under-fetch data
-
-**Key Difference:** GraphQL gives **exact data** as requested, while REST may return **fixed,
-predefined data** from multiple endpoints.
-
-
+A package is written in pure Dart for reusable functionality, while a plugin includes native code to interact with platform-specific features.
 
 # Dart and Flutter Key Concepts
-
-## What is `Expanded` and `Flexible` in Flutter?
-
-🔹 **Expanded** → Forces the child to take **all available space** in a `Row`, `Column`, or `Flex`.  
-🔹 **Flexible** → Allows the child to **take space if needed**, but doesn’t force it to fill
-everything.
-
-**Example:**
-
-```
- Row(
-      children: [
-        Expanded(child: Container(color: Colors.red)), // Takes full space
-        Flexible(child: Container(color: Colors.blue)), // Takes only needed space
-      ],
-    );
-```
-
-**Key Difference:** `Expanded` fills **all** space, while `Flexible` only takes **as much as needed
-**.
-
-## `Flex` Widget in Flutter
-
-🔹 **Definition:** `Flex` arranges its children **horizontally** (`Axis.horizontal`) or **vertically
-** (`Axis.vertical`), similar to `Row` and `Column`.
-
-🔹 **Key Difference:** Unlike `Row` and `Column`, `Flex` **requires** an explicit `direction`.
-
-**Example:**
-
-```
-Flex(
-  direction: Axis.horizontal, // Change to Axis.vertical for vertical layout
-  children: [
-    Container(width: 100, height: 100, color: Colors.red),
-    Container(width: 200, height: 100, color: Colors.green),
-    Container(width: 50, height: 100, color: Colors.blue),
-  ],
-)
-```  
-
-**When to Use?**  
-✅ When dynamically deciding between **horizontal or vertical** layout.
-
-## `didChangeDependencies()` vs `didUpdateWidget()` (Short & Clear)
-
-🔹 **`didChangeDependencies()`** → Called when **dependencies change** (like `Theme.of(context)`,
-`MediaQuery`, or `Provider`).  
-✅ Runs **after `initState()`** and when an **inherited widget updates**.
-
-🔹 **`didUpdateWidget()`** → Called when **the parent widget passes new props** (like updated
-`counter` value).  
-✅ Runs when **the parent rebuilds with new data**.
-
-| Feature             | `didChangeDependencies()`         | `didUpdateWidget()`                     |
-|---------------------|-----------------------------------|-----------------------------------------|
-| **Triggered When?** | Theme, locale, provider changes   | Parent widget updates props             |
-| **Runs After?**     | `initState()` & dependency change | Parent `setState()` updates child props |
-| **Use Case?**       | Listen for external changes       | Handle new props from parent            |
-
-🚀 **Rule of Thumb:**
-
-- Use **`didChangeDependencies()`** for **theme, locale, provider changes**.
-- Use **`didUpdateWidget()`** when **parent widget updates child props**.
 
 ## What Does `context.mounted = false` Mean?
 
 - **Meaning:** It means the widget is **no longer in the widget tree** (removed or disposed).
 - **Why Important?** Before calling `setState()`, check `if (context.mounted)` to avoid errors.
-
----
-
-
 
 # Dart and Flutter Key Concepts
 
@@ -990,96 +865,6 @@ Flex(
 
 In short, state controls the UI, `setState` is useful for simple local updates, and state management is used for efficient, scalable, and maintainable apps.
 
-
-
-## Routes vs Route Generator in Flutter
-
-- **Routes:**
-  - **Definition:** Routes are used to define navigation paths in a Flutter app using a map of route names and widgets.
-  - It is a simple way to manage navigation using predefined routes.
-  - Best for **small apps** with limited screens.
-
-### Route Generator
-
-- Definition: Route Generator is a centralized function used to handle navigation dynamically.
-- It uses onGenerateRoute to manage all routes in one place.
-- Best for large apps with complex navigation and arguments passing.
-
-#### Example
-
-```dart
-void main() {
-  runApp(
-    MaterialApp(
-      routes: {
-        '/': (_) => HomePage(),
-        '/foo': (_) => FooPage(),
-      },
-      onGenerateRoute: (settings) {
-        if (settings.name == '/bar') {
-          final value = settings.arguments as int;
-          return MaterialPageRoute(builder: (_) => BarPage(value));
-        }
-        return null;
-      },
-    ),
-  );
-}
-```
-
-### HomePage
-
-```dart
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text('HomePage')),
-      body: Center(
-        child: Column(
-          children: [
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/foo'),
-              child: Text('Go to FooPage'),
-            ),
-            ElevatedButton(
-              onPressed: () => Navigator.pushNamed(context, '/bar', arguments: 42),
-              child: Text('Go to BarPage'),
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-```
-
-### FooPage
-
-```dart
-class FooPage extends StatelessWidget {
-  @override
-  Widget build(_) => Scaffold(appBar: AppBar(title: Text('FooPage')));
-}
-```
-
-### BarPage
-
-```dart
-class BarPage extends StatelessWidget {
-  final int value;
-
-  BarPage(this.value);
-
-  @override
-  Widget build(_) => Scaffold(appBar: AppBar(title: Text('BarPage, value = $value')));
-}
-```
-
-
-
-
-
 ### What is `setState()` in Flutter?
 
 - `setState()` is used to update the state of a StatefulWidget and trigger a UI rebuild.
@@ -1102,15 +887,6 @@ class BarPage extends StatelessWidget {
     - Ensures consistency: Guarantees that everyone working on the project uses the same versions,
       avoiding “works on my machine” issues.
 
-
-
-
-
-
-
-
-
-
 ## Can we send data from a GET request to the server?
 
 - Yes, you can send data in a GET request, but it is sent through the URL as query parameters, not in the request body.
@@ -1126,10 +902,6 @@ GET /api/resource?param1=value1&param2=value2
 - **PUT** → Update (Replace entire resource)
 - **PATCH** → Update (Modify partial data)
 - **DELETE** → Remove (Delete data from server)
-
-
-
-
 
 ## **Build Modes in Flutter**
 
@@ -1176,10 +948,6 @@ development or production needs.”**
 👉 Example use: publishing app to Play Store / App Store
 
 
-
-
-
-
 ## Android and iOS folders in Flutter Project
 
 - **Android Folder:** Contains the entire Android project necessary for building a Flutter
@@ -1190,26 +958,6 @@ development or production needs.”**
   the iOS platform. It includes configurations, resources, and native code components specific to
   iOS.
 
-
-  
-
-
-
-
-## Channel Socket in Flutter
-
-- **Definition:** Communication channel facilitating real-time data exchange between Flutter
-  applications or between Flutter and native platform components.
-- **Types:**
-    - **Method Channels:** Synchronous communication channels for invoking methods between Flutter
-      and native platform.
-    - **Stream Channels:** Asynchronous communication channels for streaming data between Flutter
-      and native platform.
-
-
-
-
-
 ## Deploying a Flutter App on Play Store
 
 - For detailed steps on deploying a Flutter app on Google Play Store, you can refer to
@@ -1219,35 +967,6 @@ development or production needs.”**
 
 - For a comprehensive guide on releasing your Flutter app for iOS and Android, you can refer to
   this [Instabug blog post](https://www.instabug.com/blog/how-to-release-your-flutter-app-for-ios-and-android).
-
-## What is IPv4?
-
-- **IPv4 (Internet Protocol version 4):**
-    - Fourth version of the Internet Protocol (IP).
-    - Uses a 32-bit address scheme, typically represented in dotted decimal format (e.g.,
-      192.168.1.1).
-    - Widely used to identify devices on a network and route data packets across the Internet.
-
-## MQTT (Message Queuing Telemetry Transport)
-
-- **MQTT:**
-    - A lightweight messaging protocol for small sensors and mobile devices.
-    - Uses a publish/subscribe architecture.
-    - Efficiently sends messages over low-bandwidth networks, making it ideal for IoT (Internet of
-      Things) applications.
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 ## How does Flutter run the code on Android?
 
@@ -1284,12 +1003,6 @@ you that performance is not characteristic of the finished release app.
 With InheritedWidget, if any value changes, all widgets using it will rebuild. But with InheritedModel, we can divide data into parts (called aspects), and only widgets that use that specific aspect will rebuild.
 
 Provider is built on top of InheritedWidget to simplify its usage.
-
-
-
-
-
----
 
 ## Dependency Injection vs Service Locator
 
@@ -1340,78 +1053,7 @@ internally from a central registry.
 - **Flutter Inspector:** Displays the widget tree and allows you to inspect widget properties and
   layout issues directly within the app.
 
----
 
-
-
----
-
-
-
----
-
-
-
-
----
-
-## `freezed` vs `json_serializable` in Flutter
-
-- In Flutter, both freezed and json_serializable are used to reduce boilerplate code when working
-  with models and APIs, but they solve different problems.
-
-* **freezed**:
-
-    * Used to create **immutable models**
-    * Generates **copyWith, equality, and boilerplate code**
-    * Helps with **state management & data modeling**
-
-* **json_serializable**:
-
-    * Used for **JSON parsing**
-    * Generates `fromJson` and `toJson` methods
-    * Converts **JSON ↔ Dart objects**
-
-### Key Difference
-
-“freezed is for creating models, while json_serializable is for converting JSON data.”
-
-in short, “freezed handles model generation, and json_serializable handles JSON serialization.”
-
----
-
-
-
-
-
-
-
-
-
----
-
-## MQTT vs WebSockets in Flutter
-
-MQTT and WebSockets are both used for real-time communication, but they serve different purposes.
-
-* **MQTT** is a lightweight protocol mainly used for **IoT devices** (sensors, smart homes, low
-  bandwidth systems).
-  It follows a **publish–subscribe model using a broker**.
-
-    * *Example:* A temperature sensor publishes data → mobile app subscribes → receives live
-      updates.
-    * Package: mqtt_client
-
-* **WebSockets** are used for **real-time applications** like chat, notifications, and live
-  tracking.
-  It provides a **direct two-way connection** between client and server.
-
-    * *Example:* In a chat app, messages are delivered instantly without refreshing.
-    * Package: web_socket_channel
-
-In short, “MQTT is used for IoT-based publish–subscribe communication via a broker, while WebSockets
-provide direct real-time communication between client and server, commonly used in chat and live
-apps.”
 
 ---
 

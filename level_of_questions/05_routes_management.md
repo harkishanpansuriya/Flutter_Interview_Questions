@@ -42,3 +42,87 @@
 
 - Navigator.push()
 
+## Routes vs Route Generator in Flutter
+
+- **Routes:**
+  - **Definition:** Routes are used to define navigation paths in a Flutter app using a map of route names and widgets.
+  - It is a simple way to manage navigation using predefined routes.
+  - Best for **small apps** with limited screens.
+
+### Route Generator
+
+- Definition: Route Generator is a centralized function used to handle navigation dynamically.
+- It uses onGenerateRoute to manage all routes in one place.
+- Best for large apps with complex navigation and arguments passing.
+
+#### Example
+
+```dart
+void main() {
+  runApp(
+    MaterialApp(
+      routes: {
+        '/': (_) => HomePage(),
+        '/foo': (_) => FooPage(),
+      },
+      onGenerateRoute: (settings) {
+        if (settings.name == '/bar') {
+          final value = settings.arguments as int;
+          return MaterialPageRoute(builder: (_) => BarPage(value));
+        }
+        return null;
+      },
+    ),
+  );
+}
+```
+
+### HomePage
+
+```dart
+class HomePage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text('HomePage')),
+      body: Center(
+        child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/foo'),
+              child: Text('Go to FooPage'),
+            ),
+            ElevatedButton(
+              onPressed: () => Navigator.pushNamed(context, '/bar', arguments: 42),
+              child: Text('Go to BarPage'),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+```
+
+### FooPage
+
+```dart
+class FooPage extends StatelessWidget {
+  @override
+  Widget build(_) => Scaffold(appBar: AppBar(title: Text('FooPage')));
+}
+```
+
+### BarPage
+
+```dart
+class BarPage extends StatelessWidget {
+  final int value;
+
+  BarPage(this.value);
+
+  @override
+  Widget build(_) => Scaffold(appBar: AppBar(title: Text('BarPage, value = $value')));
+}
+```
+
