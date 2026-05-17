@@ -248,3 +248,29 @@ Stateful widget lifecycle starts with creation, initializes data, builds UI, upd
 - **State**: Entire app and VM are reset.
 - **How**: You stop and start the run configuration (like pressing the stop ▶️ run button).
 - **Use case**: Needed when changes affect platform channels, native code, or dependencies.
+
+## What makes Flutter unique?
+
+- **Single Codebase:** Write once, run anywhere. Flutter allows you to write a single codebase that
+  works for Android, iOS, web, and desktop apps, saving time and effort in development.
+- **Fast Development with Hot Reload:** Flutter's hot reload feature allows developers to instantly
+  see the changes made to the code reflected in the app, speeding up the development process.
+- **Expressive and Customizable UIs:** Flutter offers a rich set of customizable widgets and tools
+  to create visually appealing and interactive user interfaces.
+- **Close-to-Native Performance:** Flutter's architecture and rendering engine enable
+  high-performance apps with smooth animations and transitions, providing a native-like experience
+  across platforms.
+- **No Dependency on Web Browsers:** Unlike some cross-platform frameworks, Flutter doesn't rely on
+  web browser technology nor the set of widgets that ship with each device, ensuring consistent
+  behavior and appearance across platforms.
+
+## What is the role of Flutter Engine?
+
+Answer: The engine handles rendering (Skia), platform channels, text layout, and low-level graphics,
+providing the bridge between Dart code and native platforms.
+
+## Explain reactive programming in Flutter
+
+Answer: UI reacts to state changes automatically. Streams, ValueNotifier, or RxDart can notify
+listeners when data changes, triggering UI rebuilds.
+

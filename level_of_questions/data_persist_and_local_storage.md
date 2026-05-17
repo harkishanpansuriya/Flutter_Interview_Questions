@@ -1,0 +1,23 @@
+## Name the famous database packages utilized in Flutter? and SqFlite and Comparison with Hive
+
+- The Famous and Most used database packages in Flutter are: Firebase Database, SqFlite database ,
+  hive , ObjectBox etc
+
+- **Sqflite:**
+    - A lightweight, SQL-based relational database management system (RDBMS) for Flutter.
+    - Supports a wide range of SQL features and is suitable for complex applications.
+
+- **Hive:**
+    - A lightweight, NoSQL database for Flutter.
+    - Offers fast performance and simplicity, ideal for simpler applications or scenarios requiring
+      fast data storage and retrieval.
+
+## What is SQLite, and why is it used in Flutter?
+
+- **SQLite:**  
+  A lightweight, embedded database **no separate server needed**
+
+- **Use in Flutter:**
+    - Provides **local data storage** for offline persistence
+    - Commonly used via the `sqflite` package to **interact with the database**
+
