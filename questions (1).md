@@ -257,13 +257,7 @@ improve performance, and make reverse engineering harder.
   });
   Higher MTU = Faster data transfer, but depends on device support
 
-## What are notification channels, and why are they needed in Android?
 
-- Notification channels are used in Android 8.0 (API 26+) to categorize notifications. Every
-  notification must be assigned to a channel, which defines its behavior, such as importance, sound,
-  and vibration. They help users control notification settings per category and ensure consistent
-  notification management across the app.
-- for example: news_alerts (news alerts), reminders, promotions.
 
 
 
@@ -286,24 +280,6 @@ InheritedWidget – Built-in Flutter widget for sharing data down the widget tre
 Provider – A wrapper over InheritedWidget offering simpler syntax, dependency injection, and rebuild
 management.
 
-## What is feature first architecture in flutter?
-- Feature-first architecture in Flutter means we organize the project based on features instead of technical layers.
-- In simple words, all the code related to one feature is kept in one place.
-- For example, if we have a login feature, then everything related to login like UI, logic, API calls, and models will be inside one folder called ‘auth’ or ‘login’. So Each feature folder contains its own screens, widgets, logic, and data.
-
-
-## what is debounce in dart.
-
-- In Dart, debounce is a technique to delay executing a function until a certain period has passed
-  since the last call, preventing it from being called too frequently—commonly used with search
-  inputs or scroll events.
-
-
-
-## Optimize a large list to avoid excessive memory usage.
-
-- Use lazy loading (pagination) with ListView.builder().
-
 
 
 ## What is the Android Manifest file?
@@ -317,40 +293,7 @@ management.
 
 🔹 **API** – Application Programming Interface
 
-## Difference Between Package and Plugin in Flutter
 
-- **Package:**
-  - A package contains only **Dart code**.
-  - It is used for reusable logic like APIs, utilities, and state management.
-  - It does not include any platform-specific (native) code.
-
----
-
-- **Plugin:**
-  - A plugin is a special type of package that includes **native platform code**.
-  - It uses Kotlin/Java for Android and Swift/Objective-C for iOS.
-  - It is used to access **device features** like camera, GPS, sensors, etc.
-
----
-
-### 📌 Examples
-
-#### Package:
-- `http` → Used for making HTTP requests
-- `shared_preferences` → Store simple key-value data
-- `intl` → Localization and internationalization
-
----
-
-#### Plugin:
-- `camera` → Access device camera
-- `firebase_messaging` → Handle push notifications
-- `google_maps_flutter` → Display maps using native APIs
-
----
-
-### 🎯 In short
-A package is written in pure Dart for reusable functionality, while a plugin includes native code to interact with platform-specific features.
 
 
 ## What is State & Why Use State Management Instead of `setState`?

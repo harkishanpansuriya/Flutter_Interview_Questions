@@ -628,6 +628,12 @@ behavior.
   Flutter app. The Dart VM provides features like Just-in-Time (JIT) compilation and garbage
   collection to efficiently execute Dart code.
 
+## what is debounce in dart.
+
+- In Dart, debounce is a technique to delay executing a function until a certain period has passed
+  since the last call, preventing it from being called too frequently—commonly used with search
+  inputs or scroll events.
+
 ## Differences between `var`, `final`, and `const` in Dart
 
 - **`var`:**

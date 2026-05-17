@@ -432,3 +432,8 @@ code.
 - **Meaning:** It means the widget is **no longer in the widget tree** (removed or disposed).
 - **Why Important?** Before calling `setState()`, check `if (context.mounted)` to avoid errors.
 
+## What is feature first architecture in flutter?
+- Feature-first architecture in Flutter means we organize the project based on features instead of technical layers.
+- In simple words, all the code related to one feature is kept in one place.
+- For example, if we have a login feature, then everything related to login like UI, logic, API calls, and models will be inside one folder called ‘auth’ or ‘login’. So Each feature folder contains its own screens, widgets, logic, and data.
+
