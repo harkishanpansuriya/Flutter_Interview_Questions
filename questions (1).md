@@ -539,5 +539,9 @@ Some Flutter questions that should be asked in interviews—but rarely are!!
 - How do you ensure app security (code obfuscation, API keys, etc.)?
 - What do you test—and what do you not bother testing in your Flutter code?
 - How do you handle back navigation when using nested navigators (e.g., BottomNav + routes)?
+- what is deep linking?
+- what is FFI (Foreign Function Interface)
+
+Take some question from ananad guar pdf and look
 
 Questions about state management: https://medium.com/@thedevwriter/how-well-do-you-know-flutter-state-management-20-questions-to-test-you-87f8e65b87e8
