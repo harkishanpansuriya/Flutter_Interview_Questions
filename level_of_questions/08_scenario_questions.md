@@ -9,6 +9,19 @@ bookings using transactions to prevent double-booking. In Flutter, I would:
 - Confirm booking by calling an API, letting the backend re-verify the slot to ensure accuracy and
   prevent conflicts.
 
+## If your Flutter app is crashing only in release mode, how do you debug it?
+
+- Run `flutter run --release` and check device logs via `adb logcat`.
+- Android: Use the Android Studio Logcat or the command line adb logcat to catch native-level
+  crashes.
+- iOS: Use the Xcode Device Console to view system logs for your connected iPhone.
+- Ensure no `assert` statements or debug-only code is being used.
+- Use crash reporting tools like **Sentry** or **Firebase Crashlytics** to capture release crashes.
+
+## Caching mechanism in Flutter.
+- Caching in Flutter means storing data locally (memory or device) so we don’t need to fetch it again from network every time.
+- In simple terms, instead of calling API or loading data again and again, we keep a copy and reuse it → faster app and better performance.
+
 ## How do you securely store and retrieve a user's private key in a Flutter wallet app?
 
 Store the private key using **platform-secure storage** (`flutter_secure_storage`), which relies on
