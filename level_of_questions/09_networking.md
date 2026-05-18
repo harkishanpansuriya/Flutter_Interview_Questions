@@ -1,3 +1,24 @@
+## Full Form of API
+
+🔹 **API** – Application Programming Interface
+
+## Can we send data from a GET request to the server?
+
+- Yes, you can send data in a GET request, but it is sent through the URL as query parameters, not
+  in the request body.
+
+```
+GET /api/resource?param1=value1&param2=value2
+```
+
+## Types of API Methods
+
+- **GET** → Read (Fetch data from server)
+- **POST** → Create (Send new data to server)
+- **PUT** → Update (Replace entire resource)
+- **PATCH** → Update (Modify partial data)
+- **DELETE** → Remove (Delete data from server)
+
 ## What is IPv4?
 
 - **IPv4 (Internet Protocol version 4):**
@@ -69,7 +90,6 @@ MQTT and WebSockets are both used for real-time communication, but they serve di
 In short, “MQTT is used for IoT-based publish–subscribe communication via a broker, while WebSockets
 provide direct real-time communication between client and server, commonly used in chat and live
 apps.”
-
 
 ## GraphQL vs REST
 

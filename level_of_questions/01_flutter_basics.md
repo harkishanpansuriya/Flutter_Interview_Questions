@@ -42,6 +42,11 @@
 ❌ **Performance for Heavy Graphics** – Not ideal for advanced 3D/AR apps.  
 ❌ **Library Gaps** – Some native features require custom plugins.
 
+## Which are the most popular apps that use Flutter?
+
+* NotebookLM · Google Pay · Google Earth · Google Ads · Google Classroom · YouTube Create · Google
+  Cloud · Google One
+
 ## What is Dart?
 
 Dart is a **general-purpose, object-oriented** programming language developed by **Google** in 2011.
@@ -51,6 +56,30 @@ It’s designed for building web and mobile apps and is the **core language** of
 🔹 **Fast execution** – Uses **JIT (Just-in-Time)** for development and **AOT (Ahead-of-Time)** for
 production.  
 🔹 **Strong typing** – Helps catch errors early.
+
+## Dart DevTools
+
+- Dart DevTools is a suite of tools for debugging and profiling Flutter apps, offering
+  insights into your app's performance, memory usage, and state management. It helps you visualize
+  what's happening inside your app, making it easier to identify issues and optimize performance.
+  ![img_3.png](img_3.png)
+
+- **Debugger:** Allows you to pause the app, inspect variables, step through the code, and find bugs
+  more easily.
+- **Logging View:** Displays logs and error messages from your app to help track down issues and
+  understand app behavior.
+- **App Size Tool:** Helps you analyze the size of your app, identifying large assets or
+  dependencies that may increase the app size.
+- **CPU Profiler:** Visualizes CPU usage and performance, helping you identify parts of your code
+  that are using excessive CPU time.
+- **Memory View:** Monitors memory usage to detect memory leaks and optimize memory management in
+  your app.
+- **Network View:** Tracks network requests and responses, allowing you to monitor API calls and
+  data flow in your app.
+- **Performance View:** Shows real-time frame rendering performance, helping you detect rendering
+  issues or performance bottlenecks.
+- **Flutter Inspector:** Displays the widget tree and allows you to inspect widget properties and
+  layout issues directly within the app.
 
 ## What is Flutter SDK?
 
@@ -219,6 +248,28 @@ in short, “A Stateless Widget is a widget whose UI depends only on the input d
 
 #### In short
 Stateful widget lifecycle starts with creation, initializes data, builds UI, updates on changes, and finally cleans up resources when removed.
+
+## `pubspec.yaml` vs `pubspec.lock` in Flutter.
+
+- `pubspec.yaml`
+    - This is the project configuration file where you declare:
+        - Project metadata (name, description, version).
+        - Dependencies (packages your app needs).
+        - Dev dependencies (tools for testing, linting, etc.).
+        - Assets (images, fonts, etc.).
+
+- `pubspec.lock` (auto-generated)
+    - This is the lock file generated automatically when you run `flutter pub get`.
+    - Not manually edited: It records the exact versions of all dependencies (including transitive
+      ones).
+    - Ensures consistency: Guarantees that everyone working on the project uses the same versions,
+      avoiding “works on my machine” issues.
+
+## What is `setState()` in Flutter?
+
+- `setState()` is used to update the state of a StatefulWidget and trigger a UI rebuild.
+- Why use: To notify Flutter that the UI needs to be rebuilt after state changes.
+- Without setState?: UI won’t update even if the state changes.
 
 ## Difference Between Hot Reload, Hot Restart, and Full Restart in Flutter
 
