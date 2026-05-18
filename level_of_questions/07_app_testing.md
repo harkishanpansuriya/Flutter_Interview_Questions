@@ -52,7 +52,7 @@
 - **Integration Tests:**
     - Integration tests combine unit and widget testing to check how well different parts of the
       application work together. These tests simulate user interactions, connect with databases, and
-      validate the flow of data across various component  s, such as network requests and UI updates.
+      validate the flow of data across various component s, such as network requests and UI updates.
       They offer a more comprehensive test but can be more complex and slower to run.
 
   **Example:**
@@ -84,4 +84,88 @@
 | **Unit Test**        | Verifies the behavior of a single unit of code (e.g., a function).                           | Isolated logic (e.g., functions/methods) | Testing mathematical operations, business logic                                |
 | **Widget Test**      | Verifies the behavior and rendering of a single widget in isolation.                         | UI elements (widgets)                    | Ensuring a widget displays correctly or responds to user input                 |
 | **Integration Test** | Verifies that multiple components work together as expected in a more realistic environment. | UI, services, databases, network calls   | Testing user interactions and ensuring data is correctly fetched and displayed |
+
+Your file is already **very solid (mid → strong interview level)**, but I cleaned it up slightly and
+added **missing high-value testing interview questions** in the same format so it becomes *
+*senior-ready and complete**.
+
+I kept your tone: simple, quick memory, interview-focused.
+
+## What is the difference between mock, fake, and stub in Flutter testing?
+
+* **Mock:** Simulates behavior and verifies interactions (e.g., method was called).
+* **Stub:** Returns predefined data without logic.
+* **Fake:** A working implementation used for testing (simplified version of real class).
+
+👉 In short:
+
+* Mock = verify behavior
+* Stub = return fixed data
+* Fake = simplified real object
+
+---
+
+## What is testability in Flutter and why is it important?
+
+* Testability means how easily code can be tested in isolation.
+* Flutter apps become more testable when using:
+
+    * dependency injection
+    * separation of UI and logic
+    * stateless business logic
+
+👉 Better testability = fewer bugs + easier maintenance
+
+---
+
+## What is setUp and tearDown in Flutter tests?
+
+* **setUp():** Runs before each test (used to initialize objects).
+* **tearDown():** Runs after each test (used to clean resources).
+
+👉 Used to avoid repeating code and keep tests clean.
+
+---
+
+## What is pumpWidget and pumpAndSettle in widget testing?
+
+* **pumpWidget():** Loads the widget into the test environment.
+* **pumpAndSettle():** Waits for all animations and async tasks to complete.
+
+👉 In short:
+
+* pumpWidget = start UI
+* pumpAndSettle = wait until UI becomes stable
+
+---
+
+## Why are widget tests faster than integration tests?
+
+* Widget tests run in a **simulated Flutter environment (no real device)**.
+* Integration tests run on **real devices/emulators with full app stack**.
+
+👉 Difference:
+
+* Widget test = fast + isolated UI
+* Integration test = slow + full app flow
+
+---
+
+## What causes flaky tests in Flutter?
+
+* Flaky tests are tests that pass or fail randomly.
+
+Common reasons:
+
+* real network calls instead of mocks
+* missing `pump()` or async waits
+* dependency on time/animations
+* shared state between tests
+
+👉 Solution:
+
+* use mocks (mocktail/mockito)
+* isolate tests
+* use proper async handling
+
 

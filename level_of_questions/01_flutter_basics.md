@@ -1,15 +1,20 @@
 ## When was Flutter first announced and by whom?​
+
 - ​Flutter was first announced by ​​Google​​at the ​​Google ​​I/O conference in May 2017​​.​
 - The first​ ​stable release (Flutter 1.0) ​​came in​​ December​ ​2018​​.​
 - Google created Flutter to solve the problem of writing separate apps for Android and​
-​iOS.​
+  ​iOS.​
 
 ## What is Flutter and why is it popular?
-- ​Flutter​​ is an​ ​open-source UI toolkit ​​from Google.​ I​t allows developers to create ​​cross-platform apps​​(Android, iOS, Web, Desktop) with a​
-​single codebase​​.​
+
+- ​Flutter​​ is an​ ​open-source UI toolkit ​​from Google.​ I​t allows developers to create
+  ​​cross-platform apps​​(Android, iOS, Web, Desktop) with a​
+  ​single codebase​​.​
 
 **​Why is it popular?​**
-- 1. ​Fast development ​​with hot reload.​
+
+-
+    1. ​Fast development ​​with hot reload.​
 - ​2.​ ​Beautiful UI​​– built-in Material & Cupertino widgets.​
 - ​3.​ ​Single codebase ​​saves time & cost.​
 - ​4.​ ​High performance​​– runs using its own rendering engine.​
@@ -57,128 +62,35 @@ It’s designed for building web and mobile apps and is the **core language** of
 production.  
 🔹 **Strong typing** – Helps catch errors early.
 
-## Dart DevTools
-
-- Dart DevTools is a suite of tools for debugging and profiling Flutter apps, offering
-  insights into your app's performance, memory usage, and state management. It helps you visualize
-  what's happening inside your app, making it easier to identify issues and optimize performance.
-  ![img_3.png](img_3.png)
-
-- **Debugger:** Allows you to pause the app, inspect variables, step through the code, and find bugs
-  more easily.
-- **Logging View:** Displays logs and error messages from your app to help track down issues and
-  understand app behavior.
-- **App Size Tool:** Helps you analyze the size of your app, identifying large assets or
-  dependencies that may increase the app size.
-- **CPU Profiler:** Visualizes CPU usage and performance, helping you identify parts of your code
-  that are using excessive CPU time.
-- **Memory View:** Monitors memory usage to detect memory leaks and optimize memory management in
-  your app.
-- **Network View:** Tracks network requests and responses, allowing you to monitor API calls and
-  data flow in your app.
-- **Performance View:** Shows real-time frame rendering performance, helping you detect rendering
-  issues or performance bottlenecks.
-- **Flutter Inspector:** Displays the widget tree and allows you to inspect widget properties and
-  layout issues directly within the app.
-
 ## What is Flutter SDK?
 
-- The Flutter SDK (Software Development Kit) is a framework developed by Google for building cross-platform mobile applications. It provides a complete set of tools, libraries, and resources to create native-like user interfaces (UI) for both Android and iOS platforms using a single codebase.
+- The Flutter SDK (Software Development Kit) is a framework developed by Google for building
+  cross-platform mobile applications. It provides a complete set of tools, libraries, and resources
+  to create native-like user interfaces (UI) for both Android and iOS platforms using a single
+  codebase.
 
 ## Explain Flutter’s Architecture
 
 Flutter architecture mainly consists of three layers:
 
-### 1. Framework Layer (Dart)
-
-- Written in Dart
-- Used to build Flutter applications
-- Contains Material widgets, Cupertino widgets, animation, rendering, and gesture libraries
-
-👉 Handles UI and app logic.
-
-### 2. Engine Layer (C++)
-
-- Written in C++
-- Uses Skia Graphics Engine for rendering
-- Handles rendering, animations, text layout, accessibility, and file/network operations
-
-👉 Flutter renders UI itself instead of using native UI components.
-
-### 3. Embedder Layer
-
-- Platform-specific layer for Android, iOS, Web, Windows, macOS, and Linux
-- Connects Flutter engine with the operating system
-- Handles app lifecycle, input events, plugins, and surface rendering
-
-👉 Allows Flutter apps to run on multiple platforms.
-
-### One-line Summary
-
-Flutter uses a layered architecture where the Framework handles UI logic, the Engine renders graphics, and the Embedder connects Flutter to the native platform.
-
-
 ## “Why is Flutter fast?”
 
-“Because Flutter renders UI directly using the Skia engine instead of relying on native OEM widgets, which reduces bridge communication overhead.”
-
-## How does the Flutter app lifecycle work?
-
-Flutter apps follow lifecycle states similar to Android and iOS. These states can be observed using `WidgetsBindingObserver`.
-
-### resumed
-- App is visible and user can interact with it
-- Normal active app state
-- Example: scrolling, typing, clicking buttons
-
-### inactive
-- App is visible but temporarily not receiving user input
-- Example: incoming phone call, notification overlay, control center opened
-
-### paused
-- App goes into background and is no longer visible
-- App is still kept in memory
-- Example: user presses home button or switches to another app
-
-### detached
-- Flutter engine is running but not attached to any UI view
-- Usually happens before app termination
-- Example: system removes app to free resources
-
-### Why it matters
-- Save/restore data → Save form data when app goes background
-- Pause heavy tasks → Stop video/audio when paused
-- Manage resources → Release camera/microphone when inactive
-- Analytics → Track app open/close events
-
-### Flutter vs Native Lifecycle
-- Android → Activity lifecycle (`onCreate`, `onPause`, `onResume`)
-- iOS → UIApplication lifecycle (`applicationDidEnterBackground`)
-- Flutter → Unified lifecycle states (`resumed`, `inactive`, `paused`, `detached`)
-
-### One-line Summary
-Flutter lifecycle manages app states like foreground, background, inactive, and termination states.
+“Because Flutter renders UI directly using the Skia engine instead of relying on native OEM widgets,
+which reduces bridge communication overhead.”
 
 ## What are Widgets in Flutter?
+
 - In Flutter, everything is a widget – UI, layout, even app structure.
 - A widget describes what the UI should look like.
 - Flutter rebuilds widgets when state/data changes.
-
-## What are the main layers in Flutter?
-
-- Widget Layer – UI components.
-- Rendering Layer – Handles layout, painting.
-- Foundation Layer – Basic classes, async, collections, and services.
-- Engine Layer – Skia rendering and platform interface.
-- Embedder Layer – Runs the engine on different platforms.
-
 
 ## What is Flutter Inspector?
 
 Flutter Inspector is a built-in tool that helps **debug and analyze** your app's UI. It shows the *
 *widget tree**, layout details, and helps you fix design issues.
 
-Think of it like a **magnifying glass** for your app's UI—helping you see how everything is structured and rendered.
+Think of it like a **magnifying glass** for your app's UI—helping you see how everything is
+structured and rendered.
 
 #### Features of Flutter Inspector:
 
@@ -193,61 +105,67 @@ Think of it like a **magnifying glass** for your app's UI—helping you see how 
 ## Stateful vs Stateless Widget in Flutter & Lifecycle
 
 #### Stateless Widget:
+
 - A widget that does not change its UI once built.
 - Rebuild: Only rebuilt when parent widget updates.
 - State: Immutable (cannot change after creation)
 - Use Cases: Static UI elements like Text, Icon, ElevatedButton
 
-in short, “A Stateless Widget is a widget whose UI depends only on the input data and does not change during its lifecycle.”
+in short, “A Stateless Widget is a widget whose UI depends only on the input data and does not
+change during its lifecycle.”
 
 #### Stateful Widget:
+
 - A widget that can change its UI during runtime.
 - Rebuild: Can rebuild itself using setState().
-- State: Mutable (changes when `setState()` is called).  
+- State: Mutable (changes when `setState()` is called).
 - Use Cases: Dynamic UI like counters, forms, API data, animations.
 
 ### Stateful Widget Lifecycle in Flutter
 
-- **Definition:** The lifecycle defines the **sequence of methods** called when a StatefulWidget is created, updated, and removed.
+- **Definition:** The lifecycle defines the **sequence of methods** called when a StatefulWidget is
+  created, updated, and removed.
 
 #### Lifecycle Methods
 
 1. **createState()**
-   - Creates the State object
-   - Called once when widget is inserted
+    - Creates the State object
+    - Called once when widget is inserted
 
 2. **initState()**
-   - Called once when the State is created
-   - Used for initialization (API calls, controllers)
+    - Called once when the State is created
+    - Used for initialization (API calls, controllers)
 
 3. **didChangeDependencies()**
-   - Called after `initState()`
-   - Called again when dependencies (like InheritedWidget) change
+    - Called after `initState()`
+    - Called again when dependencies (like InheritedWidget) change
 
 4. **build()**
-   - Builds the UI
-   - Called multiple times (whenever state changes)
+    - Builds the UI
+    - Called multiple times (whenever state changes)
 
 5. **didUpdateWidget()**
-   - Called when parent widget updates this widget
-   - Used to respond to new configuration
+    - Called when parent widget updates this widget
+    - Used to respond to new configuration
 
 6. **setState()**
-   - Updates state and triggers `build()`
-   - Used for UI updates
+    - Updates state and triggers `build()`
+    - Used for UI updates
 
 7. **deactivate()**
-   - Called when widget is removed from tree temporarily
-   - Can be reinserted later
+    - Called when widget is removed from tree temporarily
+    - Can be reinserted later
 
 8. **dispose()**
-   - Called when widget is removed from tree
-   - Used to clean up resources (controllers, streams)
+    - Called when widget is removed from tree
+    - Used to clean up resources (controllers, streams)
 
 ---
 
 #### In short
-Stateful widget lifecycle starts with creation, initializes data, builds UI, updates on changes, and finally cleans up resources when removed.
+
+Stateful widget lifecycle starts with creation, initializes data, builds UI, updates on changes, and
+finally cleans up resources when removed.
 
 ## `pubspec.yaml` vs `pubspec.lock` in Flutter.
 
@@ -315,13 +233,15 @@ Stateful widget lifecycle starts with creation, initializes data, builds UI, upd
   web browser technology nor the set of widgets that ship with each device, ensuring consistent
   behavior and appearance across platforms.
 
-## What is the role of Flutter Engine?
-
-Answer: The engine handles rendering (Skia), platform channels, text layout, and low-level graphics,
-providing the bridge between Dart code and native platforms.
-
 ## Explain reactive programming in Flutter
 
 Answer: UI reacts to state changes automatically. Streams, ValueNotifier, or RxDart can notify
 listeners when data changes, triggering UI rebuilds.
 
+## `main()` vs `runApp()` in Flutter
+
+- `main()`
+    - the entry point of every dart program, including flutter apps.
+
+- `runApp()`
+    - The runApp() function takes the provided widget and makes it the root of the widget tree.

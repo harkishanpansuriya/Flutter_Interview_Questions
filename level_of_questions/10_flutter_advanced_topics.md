@@ -109,3 +109,7 @@ improve performance, and make reverse engineering harder.
   });
   Higher MTU = Faster data transfer, but depends on device support
 
+## Ticker in Flutter
+
+- In Flutter, a Ticker is an object that calls a callback once per animation frame (typically 60
+  times per seco

@@ -1,3 +1,27 @@
+## Dart DevTools
+
+- Dart DevTools is a suite of tools for debugging and profiling Flutter apps, offering
+  insights into your app's performance, memory usage, and state management. It helps you visualize
+  what's happening inside your app, making it easier to identify issues and optimize performance.
+  ![img_3.png](img_3.png)
+
+- **Debugger:** Allows you to pause the app, inspect variables, step through the code, and find bugs
+  more easily.
+- **Logging View:** Displays logs and error messages from your app to help track down issues and
+  understand app behavior.
+- **App Size Tool:** Helps you analyze the size of your app, identifying large assets or
+  dependencies that may increase the app size.
+- **CPU Profiler:** Visualizes CPU usage and performance, helping you identify parts of your code
+  that are using excessive CPU time.
+- **Memory View:** Monitors memory usage to detect memory leaks and optimize memory management in
+  your app.
+- **Network View:** Tracks network requests and responses, allowing you to monitor API calls and
+  data flow in your app.
+- **Performance View:** Shows real-time frame rendering performance, helping you detect rendering
+  issues or performance bottlenecks.
+- **Flutter Inspector:** Displays the widget tree and allows you to inspect widget properties and
+  layout issues directly within the app.
+
 ## How would you optimise a list of 10,000+ items in a Flutter app?
 
 - Use `ListView.builder` with `itemCount` for lazy loading.

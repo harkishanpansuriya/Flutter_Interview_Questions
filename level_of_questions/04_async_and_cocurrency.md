@@ -1,7 +1,35 @@
+## Difference between FutureBuilder and StreamBuilder
+
+In Flutter, both FutureBuilder and StreamBuilder are specialized widgets that help you build UI
+based on asynchronous data, but they differ in the type of async source they listen to.
+
+**FutureBuilder**:
+
+- FutureBuilder is used to handle a single async operation and rebuild UI once when it completes.
+- Use case: One-time async operations like fetching data from an API, reading from a file, or
+  initializing a service.
+
+**StreamBuilder:**
+
+- StreamBuilder is a Flutter widget that listens to a stream of data and rebuilds the UI whenever
+  new data is received, making it useful for real-time updates.
+- Use case: Real-time data sources like WebSockets, Firebase Firestore snapshots, or continuous
+  sensor readings.
+
+Key Takeaway,
+
+- Use FutureBuilder when you need to handle a single async result.
+- Use StreamBuilder when you need to handle multiple async events over time.
+
 ## Async vs Isolate vs Compute – Flutter Concurrency Made Simple
-- Async: Runs on the main thread using a non-blocking event loop. Best for lightweight tasks like API calls, database operations, and file I/O.
-- Isolate: Runs on a completely separate thread with its own memory. Best for heavy CPU tasks like image processing or large JSON parsing. Enables true parallel execution without blocking UI.
-- Compute: Compute is a helper function provided by Flutter to simplify using isolates. Instead of manually creating and managing an isolate, we just use compute, and it handles everything internally.
+
+- Async: Runs on the main thread using a non-blocking event loop. Best for lightweight tasks like
+  API calls, database operations, and file I/O.
+- Isolate: Runs on a completely separate thread with its own memory. Best for heavy CPU tasks like
+  image processing or large JSON parsing. Enables true parallel execution without blocking UI.
+- Compute: Compute is a helper function provided by Flutter to simplify using isolates. Instead of
+  manually creating and managing an isolate, we just use compute, and it handles everything
+  internally.
 
 ## `async`, `await`, `.then()`, `.whenComplete()` and `Future` in Dart
 
@@ -18,45 +46,56 @@
 
 ## Difference between `async` and `async*` in Dart
 
-- async: 
-  - The async keyword is used to define a function that returns a Future. This is useful when you want to perform asynchronous operations, such as network requests or database queries, and then return a single result once the operation is complete.
-  - It returns the result wrapped in a Future.
-  - In Short: async gives you a Future.
+- async:
+    - The async keyword is used to define a function that returns a Future. This is useful when you
+      want to perform asynchronous operations, such as network requests or database queries, and
+      then return a single result once the operation is complete.
+    - It returns the result wrapped in a Future.
+    - In Short: async gives you a Future.
 - async*:
-  - The async* keyword is used to define a function that returns a Stream. This is useful when you want to perform asynchronous operations that yield multiple values over time, rather than just a single value.
-  - The results are wrapped in a Stream.
-  - In Short: async* gives you a Stream.
+    - The async* keyword is used to define a function that returns a Stream. This is useful when you
+      want to perform asynchronous operations that yield multiple values over time, rather than just
+      a single value.
+    - The results are wrapped in a Stream.
+    - In Short: async* gives you a Stream.
 
-In short, `async` is used for a single asynchronous result, while `async*` is used to generate multiple values over time using a Stream.
+In short, `async` is used for a single asynchronous result, while `async*` is used to generate
+multiple values over time using a Stream.
 
 ## `yield` vs `yield*` in Dart
 
 - yield:
-  - The yield keyword is used inside an async* function to emit a single value to a Stream. This is useful when you want to produce values one by one over time.
-  - It sends one value at a time to the stream.
-  - In Short: yield gives you one value.
+    - The yield keyword is used inside an async* function to emit a single value to a Stream. This
+      is useful when you want to produce values one by one over time.
+    - It sends one value at a time to the stream.
+    - In Short: yield gives you one value.
 
 - yield*:
-  - The yield* keyword is used to emit all values from another Stream or Iterable into the current Stream. This is useful when you want to forward multiple values without writing a loop manually.
-  - It sends multiple values from another source to the stream.
-  - In Short: yield* gives you multiple values.
+    - The yield* keyword is used to emit all values from another Stream or Iterable into the current
+      Stream. This is useful when you want to forward multiple values without writing a loop
+      manually.
+    - It sends multiple values from another source to the stream.
+    - In Short: yield* gives you multiple values.
 
-In short, `yield` emits one value at a time, while `yield*` forwards all values from another stream or iterable.
+In short, `yield` emits one value at a time, while `yield*` forwards all values from another stream
+or iterable.
 
 ## `yield` vs `return` in Dart
 
 - yield:
-  - The yield keyword is used inside an async* function to emit a single value to a Stream. This is useful when you want to produce values one by one over time.
-  - It does not stop the function; it can continue emitting more values.
-  - In Short: yield sends values to a Stream.
+    - The yield keyword is used inside an async* function to emit a single value to a Stream. This
+      is useful when you want to produce values one by one over time.
+    - It does not stop the function; it can continue emitting more values.
+    - In Short: yield sends values to a Stream.
 
 - return:
-  - The return keyword is used to send back a value from a function and terminate its execution.
-  - It is used in normal or async functions (Future).
-  - Once return is called, the function stops executing.
-  - In Short: return gives you a final value and ends the function.
+    - The return keyword is used to send back a value from a function and terminate its execution.
+    - It is used in normal or async functions (Future).
+    - Once return is called, the function stops executing.
+    - In Short: return gives you a final value and ends the function.
 
-In short, `yield` is used to emit multiple values over time in a Stream, while `return` is used to return a single value and end the function.
+In short, `yield` is used to emit multiple values over time in a Stream, while `return` is used to
+return a single value and end the function.
 
 ## Stream vs Future in Dart
 
@@ -65,8 +104,8 @@ In short, `yield` is used to emit multiple values over time in a Stream, while `
 - **Definition:** A `Stream` delivers a sequence of values (events) over time.
 - **Purpose:** Used for real-time or continuous data (e.g., chat messages, live updates).
 - **Types:**
-  - **Single-subscription:** Supports only one listener.
-  - **Broadcast:** Supports multiple listeners.
+    - **Single-subscription:** Supports only one listener.
+    - **Broadcast:** Supports multiple listeners.
 
 ---
 
@@ -75,10 +114,10 @@ In short, `yield` is used to emit multiple values over time in a Stream, while `
 - **Definition:** A `Future` represents a single value that will be available in the future.
 - **Purpose:** Used for one-time asynchronous operations (e.g., API calls, file loading).
 - **Features:**
-  - `Future.value()` → returns a predefined value
-  - `Future.error()` → returns an error
-  - `.then()` → executes on success
-  - `.catchError()` → executes on error
+    - `Future.value()` → returns a predefined value
+    - `Future.error()` → returns an error
+    - `.then()` → executes on success
+    - `.catchError()` → executes on error
 
 ---
 
@@ -89,7 +128,8 @@ In short, `yield` is used to emit multiple values over time in a Stream, while `
 
 ---
 
-In short, `Stream` is used for handling continuous data or events, while `Future` is used for a single asynchronous result.
+In short, `Stream` is used for handling continuous data or events, while `Future` is used for a
+single asynchronous result.
 
 ## Differences between streams and sockets in Flutter?
 
@@ -211,14 +251,55 @@ void fetchDataWithCompleter(Completer<int> completer) {
   });
 }
 
-## What is an Instance?
+##
+What is
 
-✅ **Definition:** An **instance** is an object created from a class.  
-✅ **Usage:** Holds **its own state & behavior** based on class properties & methods.
+an Instance
+?
 
-### **📌 Example**
+✅
+*
+*
+Definition:*
+*
+An **
+instance**
+is
 
-```dart
+an object
+
+created from
+a
+
+class
+.
+✅
+*
+*
+Usage:*
+*
+Holds **
+
+its own
+state & behavior**
+
+based on
+
+class properties & methods
+.
+
+##
+#
+*
+*
+📌
+Example**
+
+`
+`
+`
+dart
+
 class Car {
   String model;
 
@@ -270,3 +351,109 @@ Future<void> fetchData() async {
       event or condition occurs.
     - Essential in Dart's asynchronous programming to handle tasks that complete at a later time,
       like fetching data or I/O operations.
+
+## What is the Dart Event Loop?
+
+Dart uses a single-threaded event loop to manage async tasks.
+It has 2 queues:
+- Microtask Queue (high priority)
+- Event Queue (normal async tasks)
+
+👉 Execution order:
+
+Synchronous code
+Microtasks
+Event queue tasks
+
+✔ Microtask = high priority
+✔ Event queue = Future, I/O, timers
+
+## What is the difference between Microtask and Event Queue?
+
+Microtask Queue:
+Runs immediately after sync code
+Higher priority
+Example: Future.microtask()
+Event Queue:
+Runs after microtasks
+Used for normal async work
+
+👉 Example:
+Microtask always runs BEFORE Future
+
+## What is Isolate in Flutter?
+
+Isolate is a separate memory thread
+Used for heavy CPU tasks
+
+👉 Examples:
+
+JSON parsing
+Image processing
+Encryption
+
+✔ Each isolate has its own memory
+✔ No shared variables (avoids race conditions)
+
+## What is difference between Isolate and Async?
+
+async/await:
+Runs on main thread
+Non-blocking but NOT parallel
+Isolate:
+Runs in separate thread
+True parallel execution
+
+👉 Simple rule:
+
+Async = concurrency
+Isolate = parallel processing
+
+## What is the Event Loop execution order in Dart?
+
+👉 Order always follows:
+
+Sync code
+Microtask queue
+Event queue
+
+👉 Example output rule:
+
+print() first
+microtask second
+future last
+
+✔ Important for interview trick questions
+
+## What is the difference between Future.any and Future.wait?
+
+Future.wait:
+Waits for ALL futures
+Returns list of results
+Future.any:
+Returns FIRST completed future
+Ignores rest
+
+👉 Use case:
+
+wait = batch loading
+any = fastest response
+
+## What causes UI jank in Flutter async code?
+
+Heavy work on main thread blocks UI
+
+👉 Problems:
+
+Large JSON parsing
+Complex loops
+Image processing
+
+✔ Solution:
+
+Use Isolate / compute()
+Break tasks into chunks
+Use async properly
+
+## Why does UI freeze even in async code?
+- Because async does NOT mean parallel execution in Dart — it only schedules work in event loop.
