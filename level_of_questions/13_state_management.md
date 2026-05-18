@@ -1,9 +1,13 @@
+## What are the core components of the Bloc architecture and also look for other state management?
+
+- TODO
+
 ## What is State & Why Use State Management Instead of `setState`?
 
 - **State:**
-  - **Definition:** State is the **data or information** that controls how a widget looks and
-    behaves.
-  - When state changes, the UI updates automatically.
+    - **Definition:** State is the **data or information** that controls how a widget looks and
+      behaves.
+    - When state changes, the UI updates automatically.
 
 ---
 

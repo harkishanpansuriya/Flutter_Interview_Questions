@@ -1,3 +1,15 @@
+## How do you deal with deep linking in a large app?
+
+- TODO
+
+## How do you handle back navigation with nested navigators (BottomNav + routes)?
+
+- TODO
+- 
+## How do you handle back navigation when using nested navigators?
+
+- TODO
+
 ## Differences between Navigator and Router in Flutter
 
 * **Navigator**:
@@ -45,9 +57,10 @@
 ## Routes vs Route Generator in Flutter
 
 - **Routes:**
-  - **Definition:** Routes are used to define navigation paths in a Flutter app using a map of route names and widgets.
-  - It is a simple way to manage navigation using predefined routes.
-  - Best for **small apps** with limited screens.
+    - **Definition:** Routes are used to define navigation paths in a Flutter app using a map of
+      route names and widgets.
+    - It is a simple way to manage navigation using predefined routes.
+    - Best for **small apps** with limited screens.
 
 ### Route Generator
 
@@ -125,4 +138,102 @@ class BarPage extends StatelessWidget {
   Widget build(_) => Scaffold(appBar: AppBar(title: Text('BarPage, value = $value')));
 }
 ```
+
+## What happens internally when you navigate in Flutter?
+
+* Flutter navigation works like a **stack system (LIFO)**.
+* When you push a screen → it goes on top of stack.
+* When you pop → top screen is removed.
+* Navigator rebuilds only affected routes, not whole app.
+* Internally uses **Route objects managed by Navigator widget**.
+
+👉 In short: Flutter navigation = stack of pages.
+
+---
+
+## What is the difference between routes, widgets, and navigation stack?
+
+* **Widget** → UI screen definition
+* **Route** → wrapper around widget used by Navigator
+* **Navigation Stack** → runtime structure that stores routes
+
+👉 In short:
+Widget = screen
+Route = container
+Stack = history of screens
+
+---
+
+## What is `onGenerateRoute` and why is it used?
+
+* It is a **central navigation handler**
+* Used when you want:
+
+    * dynamic routing
+    * passing arguments safely
+    * control over page creation
+
+👉 Better than `routes` when app grows.
+
+---
+
+## How does argument passing work in navigation?
+
+* You can pass data using:
+
+    * constructor (most safe)
+    * `pushNamed(arguments: )`
+    * route generator
+
+👉 Best practice:
+Use **constructor passing for type safety**
+
+---
+
+## What is deep linking in Flutter routing?
+
+* Deep linking means opening a **specific screen directly from URL**
+
+* Example:
+  `/profile/123` opens profile page directly
+
+* Works better with:
+
+    * Navigator 2.0
+    * Router APIs like `go_router`
+
+👉 Used in web + Android app links
+
+---
+
+## What is Navigator 1.0 vs Navigator 2.0 difference?
+
+* **Navigator 1.0**
+
+    * push/pop based
+    * imperative
+    * easy but limited
+
+* **Navigator 2.0**
+
+    * declarative (state-based)
+    * supports deep linking
+    * better for large apps + web
+
+👉 Simple vs scalable architecture
+
+---
+
+## What is route lifecycle in Flutter navigation?
+
+When navigating:
+
+* route is created
+* pushed into stack
+* built and rendered
+* later disposed when popped
+
+👉 Important point:
+Each route has its own lifecycle like a widget
+
 

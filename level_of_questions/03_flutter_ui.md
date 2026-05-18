@@ -1,41 +1,9 @@
-## What is the Flutter rendering pipeline and how does it work? Explain the process from widget creation to rendering on the screen.
-
-- Flutter Rendering Pipeline Flutter’s rendering pipeline is the process by which your widgets are
-  converted into pixels on the screen. It has several layers:
-
-1. Widget Layer You create widgets (StatelessWidget or StatefulWidget). Widgets are immutable
-   configurations describing the UI.
-2. Element Tree Flutter converts widgets into elements. Elements are mutable objects that hold the
-   widget instance and its position in the tree. This tree keeps track of stateful widgets and
-   updates when widgets rebuild.
-3. RenderObject Tree Elements create RenderObjects, which are responsible for layout, painting, and
-   hit-testing. The RenderObject tree is mutable and maintains actual UI layout information.
-4. Layout Phase Each RenderObject calculates its size and position based on constraints from its
-   parent. Flutter traverses the RenderObject tree top-down to determine layout.
-5. Painting Phase Each RenderObject paints itself onto a canvas. The painting is batched into layers
-   for efficient compositing.
-6. Compositing & Rasterization The Flutter Engine (C++ layer with Skia) composites layers and
-   converts them into pixels. These pixels are sent to the GPU for rendering on the screen. Summary
-   Flow Widget tree → Element tree → RenderObject tree → Layout → Paint → Compositing → Screen
-   pixels
-
-## What are the three types of trees in Flutter?
-
-Flutter has three main trees: Widget Tree, Element Tree, and Render Object Tree.
-
-- The Widget Tree: Defines the UI configuration (immutable). It describes what the UI should look
-  like (e.g., text, buttons, layouts) but does not hold state.
-- The Element Tree: Acts as a bridge between widgets and render objects. It manages the lifecycle of
-  widgets
-  and handles updates efficiently.
-- The Render Tree: Responsible for layout, painting, and rendering the UI on the screen.
-  
 ## Material vs Cupertino Widget
 
 - **Material widgets:** Follow Android’s design guidelines.
 - **Cupertino widgets:** Provide iOS-style UI components.
 - Use **Material** for Android look and **Cupertino** for iOS look.
-  
+
 ## What is the use of const in Flutter widgets?
 
 Using `const` makes widgets **immutable**, reduces unnecessary rebuilds, and improves performance by
@@ -69,26 +37,18 @@ They can be `StatelessWidget` or `StatefulWidget` depending on state management 
 - Everything in Flutter is a **widget**, including layout, styling, and structure.
 - Widgets describe how the UI should **look and behave**.
 
-## Explain the role of widgets in Flutter's architecture.
-
-- Widgets are the basic building blocks of Flutter’s UI. They are immutable descriptions of the
-  interface, defining how the UI should look and behave. Flutter’s architecture uses the widget tree
-  to manage these descriptions, and whenever state changes, widgets are rebuilt. The widget layer
-  sits at the top of the rendering pipeline, which eventually translates widgets into elements,
-  render objects, and finally pixels on the screen.
-
 ## What are the reusable widgets?
-- Reusable widgets are UI components that we create once and use multiple times in different parts of the app.
-- In Flutter, everything is a widget, so we can create our own custom widgets and reuse them anywhere.
-- For example, if I have the same button design used in many screens, instead of writing the same code again and again, I create one custom button widget and reuse it.
-- In Flutter, reusable widgets are usually created using StatelessWidget or StatefulWidget, depending on whether the UI needs to change or not.
-- The main purpose of reusable widgets is to avoid repeating the same code again and again, and to make the code clean, maintainable, and consistent.  
 
-## Explain the Flutter widget tree.
-
-Answer: Flutter builds a widget tree, where every UI element is a widget. Widgets are lightweight
-and immutable; the tree is rebuilt on state changes, and the framework efficiently updates only
-affected parts via Element and RenderObject trees.
+- Reusable widgets are UI components that we create once and use multiple times in different parts
+  of the app.
+- In Flutter, everything is a widget, so we can create our own custom widgets and reuse them
+  anywhere.
+- For example, if I have the same button design used in many screens, instead of writing the same
+  code again and again, I create one custom button widget and reuse it.
+- In Flutter, reusable widgets are usually created using StatelessWidget or StatefulWidget,
+  depending on whether the UI needs to change or not.
+- The main purpose of reusable widgets is to avoid repeating the same code again and again, and to
+  make the code clean, maintainable, and consistent
 
 ## what is the difference between listview builder widgets and SliverList.builder? (check on google again)
 
@@ -114,7 +74,6 @@ affected parts via Element and RenderObject trees.
 - The RefreshIndicator Widget enables us to refresh the screen. When the user pulls down on the
   widget, the onRefresh callback is triggered, which typically involves fetching new data from a
   server or updating the UI somehow
-
 
 ## What is an AspectRatio widget used for?
 
@@ -179,25 +138,24 @@ gestures.
 ### Use Cases
 
 - **SizedBox:**
-  - When you need **fixed spacing** (e.g., 20px gap between widgets)
-  - When you want to **set fixed width/height**
-  - Lightweight and efficient
+    - When you need **fixed spacing** (e.g., 20px gap between widgets)
+    - When you want to **set fixed width/height**
+    - Lightweight and efficient
 
 - **Container:**
-  - When you need **styling** (color, border, decoration)
-  - When you need **padding or margin**
-  - When combining layout + styling in one widget
+    - When you need **styling** (color, border, decoration)
+    - When you need **padding or margin**
+    - When combining layout + styling in one widget
 
 ## Padding vs Margin in Flutter
 
 - **Padding:**
-  - **Definition:** Adds space **inside** the widget, between the widget’s content and its border.
-  - Affects the **internal layout** of the widget.
+    - **Definition:** Adds space **inside** the widget, between the widget’s content and its border.
+    - Affects the **internal layout** of the widget.
 
 - **Margin:**
-  - **Definition:** Adds space **outside** the widget, creating distance from other widgets.
-  - In Flutter, margin is applied using the **`Container` widget**.
-
+    - **Definition:** Adds space **outside** the widget, creating distance from other widgets.
+    - In Flutter, margin is applied using the **`Container` widget**.
 
 ## Creating Responsive UI in Flutter
 
@@ -216,30 +174,6 @@ across different devices.
     - **Fractionally Sized Box Widgets:** Size widgets as fractions of the available space.
     - **Custom MultiChild Layouts:** Create custom layouts for different screen sizes.
 
-
-## Difference between FutureBuilder and StreamBuilder
-
-In Flutter, both FutureBuilder and StreamBuilder are specialized widgets that help you build UI
-based on asynchronous data, but they differ in the type of async source they listen to.
-
-**FutureBuilder**:
-
-- FutureBuilder is used to handle a single async operation and rebuild UI once when it completes.
-- Use case: One-time async operations like fetching data from an API, reading from a file, or
-  initializing a service.
-
-**StreamBuilder:**
-
-- StreamBuilder is a Flutter widget that listens to a stream of data and rebuilds the UI whenever
-  new data is received, making it useful for real-time updates.
-- Use case: Real-time data sources like WebSockets, Firebase Firestore snapshots, or continuous
-  sensor readings.
-
-Key Takeaway,
-
-- Use FutureBuilder when you need to handle a single async result.
-- Use StreamBuilder when you need to handle multiple async events over time.
-
 ## `BuildContext` in Flutter
 
 - BuildContext is a reference to the location of a widget in the widget tree and is used to access
@@ -252,36 +186,41 @@ Key Takeaway,
 - **`MaterialApp`:** Builds upon `WidgetsApp` by implementing Material Design, offering additional
   widgets and styling for consistent UI across platforms.
 
-in short, WidgetsApp is a basic app configuration widget, while MaterialApp extends it by adding Material Design UI and ready-to-use components.
+in short, WidgetsApp is a basic app configuration widget, while MaterialApp extends it by adding
+Material Design UI and ready-to-use components.
 
 ## `SafeArea` Widget in Flutter
 
-- SafeArea is a widget that keeps your UI inside the visible and safe part of the screen, avoiding areas like: Notch, status bar, Bottom navigation gestures (like iPhone swipe area).
+- SafeArea is a widget that keeps your UI inside the visible and safe part of the screen, avoiding
+  areas like: Notch, status bar, Bottom navigation gestures (like iPhone swipe area).
 - SafeArea automatically adds padding so your content is not hidden behind system UI.
 - Without SafeArea Your UI can go under the notch or status bar
 
-in short, SafeArea is a Flutter widget that prevents UI from overlapping with system areas like the notch, status bar, and gesture areas by automatically adding padding.
+in short, SafeArea is a Flutter widget that prevents UI from overlapping with system areas like the
+notch, status bar, and gesture areas by automatically adding padding.
 
 ## `NetworkImage` vs `Image.network` in Flutter
 
 - Image.network:
-  - It is a widget.
-  - Used directly to display an image from the internet
-  - Simple and quick to use: `Image.network("https://example.com/image.png");`
-  
-- NetworkImage:
-  - It is an ImageProvider. 
-  - It only provides the image data, does NOT display it. 
-  - Used inside other widgets like:
-    - Image
-    - DecorationImage (for BoxDecoration)
-    - CircleAvatar (backgroundImage)
+    - It is a widget.
+    - Used directly to display an image from the internet
+    - Simple and quick to use: `Image.network("https://example.com/image.png");`
 
-Image.network is a widget used to display an image directly from a URL, while NetworkImage is an ImageProvider used to supply image data to other widgets.
+- NetworkImage:
+    - It is an ImageProvider.
+    - It only provides the image data, does NOT display it.
+    - Used inside other widgets like:
+        - Image
+        - DecorationImage (for BoxDecoration)
+        - CircleAvatar (backgroundImage)
+
+Image.network is a widget used to display an image directly from a URL, while NetworkImage is an
+ImageProvider used to supply image data to other widgets.
 
 ## `double.INFINITY`
 
-- In Flutter, double.infinity represents an infinite value and is used to make a widget expand to the maximum size allowed by its parent constraints.
+- In Flutter, double.infinity represents an infinite value and is used to make a widget expand to
+  the maximum size allowed by its parent constraints.
 
 ## RefreshIndicator Widget
 
@@ -400,25 +339,15 @@ child: Text('Submit'),
 - Use **`UniqueKey` for dynamic widgets**.
 - Use **`GlobalKey` when you need widget state access**.
 
-## `main()` vs `runApp()` in Flutter
-
-- `main()`
-    - the entry point of every dart program, including flutter apps.
-
-- `runApp()`
-    - The runApp() function takes the provided widget and makes it the root of the widget tree.
-
 ## Spacer in Flutter
 
-- The Spacer widget is used to insert a flexible empty space between the children of the Column and Row widget.
-- The Spacer widget takes up all available space in its parent widget. 
+- The Spacer widget is used to insert a flexible empty space between the children of the Column and
+  Row widget.
+- The Spacer widget takes up all available space in its parent widget.
 - Use Cases: The Spacer widget is great for creating flexible and customizable layouts.
 
-## Ticker in Flutter
-
-- In Flutter, a Ticker is an object that calls a callback once per animation frame (typically 60
-  times per second). It synchronizes UI updates with the device’s refresh rate to ensure smooth
-  animations.
+nd). It synchronizes UI updates with the device’s refresh rate to ensure smooth
+animations.
 
 ## What is the default axis for Column and Row widgets?
 
@@ -468,7 +397,8 @@ Flex(
 **When to Use?**  
 ✅ When dynamically deciding between **horizontal or vertical** layout.
 
-## `didChangeDependencies()` vs `didUpdateWidget()` 
+## `didChangeDependencies()` vs `didUpdateWidget()`
+
 🔹 **`didChangeDependencies()`** → Called when **dependencies change** (like `Theme.of(context)`,
 `MediaQuery`, or `Provider`).  
 ✅ Runs **after `initState()`** and when an **inherited widget updates**.
@@ -488,3 +418,23 @@ Flex(
 - Use **`didChangeDependencies()`** for **theme, locale, provider changes**.
 - Use **`didUpdateWidget()`** when **parent widget updates child props**.
 
+## Difference between Rebuild and Repaint?
+
+- Rebuild: Creates widget tree again
+- Repaint: Only redraws pixels on screen
+
+## What is CachedNetworkImage and why use it?
+
+- CachedNetworkImage stores images in disk cache
+- Prevents re-downloading images every time
+- Improves performance and reduces data usage
+
+👉 Benefits: Faster image loading, Offline support, Better UX
+
+## What is Scroll Physics in Flutter?
+
+- Controls scroll behavior and movement style. here is the Types:
+    - BouncingScrollPhysics: iOS-style bounce effect
+    - ClampingScrollPhysics: Android-style fixed scroll
+    - NeverScrollableScrollPhysics: disables scrolling
+    - AlwaysScrollableScrollPhysics: always allows scrolling
