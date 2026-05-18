@@ -1,3 +1,15 @@
+## Ever had a widget rebuild too often? How did you catch that?
+
+- TODO
+
+## How do you debug janky animations or dropped frames in Flutter?
+
+- TODO
+
+## What do you do when your app size exceeds 100MB?
+
+- TODO
+
 ## Dart DevTools
 
 - Dart DevTools is a suite of tools for debugging and profiling Flutter apps, offering
@@ -47,13 +59,15 @@
 - Compress images and limit FPS in animations.
 - Use `RepaintBoundary` to isolate heavy rendering areas.
 
-
-
 ## Memory leaks in Flutter.
-- Memory leak in Flutter means some objects stay in memory even when they are no longer needed.
-- In simple terms, the app keeps holding resources like controllers, streams, or listeners, so memory keeps increasing and performance becomes slow.
 
-In Flutter, memory is managed automatically (garbage collection), but if we don’t clean up things like controllers or streams, they won’t be removed. So we must manually dispose them when the widget is removed.
+- Memory leak in Flutter means some objects stay in memory even when they are no longer needed.
+- In simple terms, the app keeps holding resources like controllers, streams, or listeners, so
+  memory keeps increasing and performance becomes slow.
+
+In Flutter, memory is managed automatically (garbage collection), but if we don’t clean up things
+like controllers or streams, they won’t be removed. So we must manually dispose them when the widget
+is removed.
 
 ## What is tree shaking in Flutter?
 
@@ -69,7 +83,6 @@ and improve performance.
   build process. It is also the code elimination technique used for optimizing our application.
 - Command to run the tree shaking in Flutter:
   `flutter build apk --split-debug-info=app --tree-shake-icons`
-
 
 ## Time Complexity vs Space Complexity in Flutter
 

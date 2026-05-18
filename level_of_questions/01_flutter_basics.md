@@ -245,3 +245,11 @@ listeners when data changes, triggering UI rebuilds.
 
 - `runApp()`
     - The runApp() function takes the provided widget and makes it the root of the widget tree.
+
+
+## What is deep linking?
+- Deep linking means opening a **specific screen directly from URL**
+
+## What is FFI (Foreign Function Interface)?
+- FFI is a way for Dart (Flutter) to talk to native code like C / C++ / Rust.
+- FFI allows Dart code to call functions written in other languages (mainly C/C++).

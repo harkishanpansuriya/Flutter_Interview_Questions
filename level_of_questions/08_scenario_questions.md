@@ -1,3 +1,38 @@
+## How do you manage responsive UI across 20+ device sizes?
+
+- TODO
+
+## How do you structure a Flutter project for scale (10+ devs)?
+
+- TODO
+
+## How do you keep code clean when 5 developers are working on the same screen?
+
+- TODO
+
+## What’s your approach to feature flags or environment configs in Flutter?
+
+- TODO
+
+## What’s your real-world approach to offline-first design? (check duplicate within this file)
+
+- TODO
+
+## How do you handle Firebase Auth state across app restarts?
+
+- TODO
+
+## How do you ensure app security (code obfuscation, API keys, etc.)?
+
+- TODO
+
+## What’s your strategy when a plugin breaks after a Flutter upgrade?
+
+- TODO
+
+## How do you structure a Flutter project for scale (like 10+ devs)?
+- TODO
+
 ## How would you design a booking service system and manage slot selection in Flutter?
 
 I would design the booking system with a backend that manages slot availability and validates
@@ -19,8 +54,11 @@ bookings using transactions to prevent double-booking. In Flutter, I would:
 - Use crash reporting tools like **Sentry** or **Firebase Crashlytics** to capture release crashes.
 
 ## Caching mechanism in Flutter.
-- Caching in Flutter means storing data locally (memory or device) so we don’t need to fetch it again from network every time.
-- In simple terms, instead of calling API or loading data again and again, we keep a copy and reuse it → faster app and better performance.
+
+- Caching in Flutter means storing data locally (memory or device) so we don’t need to fetch it
+  again from network every time.
+- In simple terms, instead of calling API or loading data again and again, we keep a copy and reuse
+  it → faster app and better performance.
 
 ## How do you securely store and retrieve a user's private key in a Flutter wallet app?
 
@@ -446,7 +484,11 @@ code.
 - **Why Important?** Before calling `setState()`, check `if (context.mounted)` to avoid errors.
 
 ## What is feature first architecture in flutter?
-- Feature-first architecture in Flutter means we organize the project based on features instead of technical layers.
+
+- Feature-first architecture in Flutter means we organize the project based on features instead of
+  technical layers.
 - In simple words, all the code related to one feature is kept in one place.
-- For example, if we have a login feature, then everything related to login like UI, logic, API calls, and models will be inside one folder called ‘auth’ or ‘login’. So Each feature folder contains its own screens, widgets, logic, and data.
+- For example, if we have a login feature, then everything related to login like UI, logic, API
+  calls, and models will be inside one folder called ‘auth’ or ‘login’. So Each feature folder
+  contains its own screens, widgets, logic, and data.
 

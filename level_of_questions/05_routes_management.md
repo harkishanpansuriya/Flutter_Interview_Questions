@@ -1,3 +1,15 @@
+## How do you deal with deep linking in a large app?
+
+- TODO
+
+## How do you handle back navigation with nested navigators (BottomNav + routes)?
+
+- TODO
+- 
+## How do you handle back navigation when using nested navigators?
+
+- TODO
+
 ## Differences between Navigator and Router in Flutter
 
 * **Navigator**:
