@@ -114,6 +114,8 @@ change during its lifecycle.”
 - State: Mutable (changes when `setState()` is called).
 - Use Cases: Dynamic UI like counters, forms, API data, animations.
 
+in short, A StatefulWidget is a widget that can change over time. It has a mutable state, so when something changes (like user input), the widget rebuilds to reflect that change.
+
 ### Stateless Widget Lifecycle in Flutter
 - build() → Called once when the widget is created.
 
