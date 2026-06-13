@@ -76,17 +76,12 @@ which reduces bridge communication overhead.”
 
 ## What are Widgets in Flutter?
 
-- In Flutter, everything is a widget – UI, layout, even app structure.
-- A widget describes what the UI should look like.
-- Flutter rebuilds widgets when state/data changes.
+In Flutter, everything you see on the screen is a Widget. Widgets are the basic building blocks of the user interface — they describe what the UI should look like and how it should behave. 
 
 ## What is Flutter Inspector?
 
-Flutter Inspector is a built-in tool that helps **debug and analyze** your app's UI. It shows the *
-*widget tree**, layout details, and helps you fix design issues.
+Flutter Inspector is a tool that helps developers visualize and debug the widget tree. It’s useful for fixing layout issues, checking widget properties, and improving performance.
 
-Think of it like a **magnifying glass** for your app's UI—helping you see how everything is
-structured and rendered.
 
 #### Features of Flutter Inspector:
 
@@ -98,11 +93,13 @@ structured and rendered.
 - Enable slow animations
 - Show/hide performance overlay
 
+Flutter Inspector is a debugging tool that lets you explore the widget tree visually. You can click on any widget in your app to see its properties, constraints, and layout. For example, if a button looks misaligned, the inspector shows which parent widget is causing the issue. It’s important because it makes debugging UI faster and more accurate.
+
 ## Stateful vs Stateless Widget in Flutter & Lifecycle
 
 #### Stateless Widget:
 
-- A widget that does not change its UI once built.
+- A widget that does not change its UI once created.
 - Rebuild: Only rebuilt when parent widget updates.
 - State: Immutable (cannot change after creation)
 - Use Cases: Static UI elements like Text, Icon, ElevatedButton
@@ -112,10 +109,13 @@ change during its lifecycle.”
 
 #### Stateful Widget:
 
-- A widget that can change its UI during runtime.
-- Rebuild: Can rebuild itself using setState().
+- A widget that can change its UI during runtime using setState.
+- A Stateful widget has two classes: the widget class and the State class.
 - State: Mutable (changes when `setState()` is called).
 - Use Cases: Dynamic UI like counters, forms, API data, animations.
+
+### Stateless Widget Lifecycle in Flutter
+- build() → Called once when the widget is created.
 
 ### Stateful Widget Lifecycle in Flutter
 
