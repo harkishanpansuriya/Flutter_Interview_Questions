@@ -1,6 +1,25 @@
 ## FFI
 
-- TODO
+- **Definition:**  
+  FFI (Foreign Function Interface) in Flutter allows Dart code to call native C, C++, or Rust functions directly. It acts as a bridge between Flutter and native libraries.
+
+- **What it does:**  
+  - Connects Dart with native code for performance-critical tasks.  
+  - Enables reuse of existing native libraries instead of rewriting them in Dart.  
+  - Works across platforms (Android, iOS, desktop, web with WASM).  
+
+- **Example:**  
+  Suppose you have a C library for fast image compression. Instead of writing the logic in Dart, you can use FFI to call the native function directly, making the app faster and more efficient.
+
+- **Why it matters:**  
+  - Boosts performance for heavy computations (e.g., image processing, encryption).  
+  - Saves development time by reusing proven native libraries.  
+  - Ensures Flutter apps can handle system-level tasks smoothly.  
+
+- **Simple Interview Answer:**  
+ FFI in Flutter is the Foreign Function Interface. It lets Dart code call native C or C++ functions. For example, if I need fast image compression, I can use FFI to connect Flutter with a native library instead of writing everything in Dart. It matters because it boosts performance and allows reuse of existing native code.
+
+---
 
 ## Difference Between Package and Plugin in Flutter
 
