@@ -43,6 +43,9 @@ Flutter has three main trees: Widget Tree, Element Tree, and Render Object Tree.
 Answer: The engine handles rendering (Skia), platform channels, text layout, and low-level graphics,
 providing the bridge between Dart code and native platforms.
 
+## Explain Flutter’s Architecture
+Flutter architecture mainly consists of three layers:
+
 ### 1. Framework Layer (Dart)
 
 - Written in Dart

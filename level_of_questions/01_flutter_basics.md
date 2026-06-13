@@ -69,10 +69,6 @@ production.
   to create native-like user interfaces (UI) for both Android and iOS platforms using a single
   codebase.
 
-## Explain Flutter’s Architecture
-
-Flutter architecture mainly consists of three layers:
-
 ## “Why is Flutter fast?”
 
 “Because Flutter renders UI directly using the Skia engine instead of relying on native OEM widgets,
