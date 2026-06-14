@@ -5,35 +5,25 @@
 - Dart provides built-in data types such as `int`, `double`, `String`, `bool`, `List`, `Set`, `Map`, `Runes`, `Symbol`, and `null` for storing and managing different kinds of data.
 
 ## `as` vs `is` in Dart
+- "is" Operator:
+The is operator is used to check if an object is of a specific type. It returns a boolean value (true or false).
+if (x is String) { print('x is a String'); }
 
-🔹 **`as` (Type Casting)** → Converts an object from one type to another.  
-✅ Use when **you’re sure** the object is of that type.
-
-```
-var obj = 'Hello';
-String str = obj as String; // Safe because obj is a String
-```
-
-🔹 **`is` (Type Checking)** → Checks if an object is of a certain type.  
-✅ Returns `true` or `false`.
-
-```
-var obj = 'Hello';
-if (obj is String) {
-  print('obj is a String'); // ✅ True
-}
-```  
-
-🚀 **Rule of Thumb:**
-
-- Use **`is`** to **check** before casting.
-- Use **`as`** when **you’re sure** of the type.
+- "as" Operator:
+The as operator is used to cast an object to a specific type. It throws an exception if the object is not of the specified type.
+dynamic y = 'Hello, Dart!'; 
+String str = y as String;
 
 ## `var` vs `dynamic` vs `final` in Dart
 
-- dynamic: can change TYPE of the variable, & can change VALUE of the variable later in code.
-- var: can't change TYPE of the variable, but can change VALUE of the variable later in code.
-- final: can't change TYPE of the variable, & can't change VALUE of the variable later in code.
+- dynamic: 
+  - can change TYPE of the variable, & can change VALUE of the variable later in code.
+- var: 
+  - Dart automatically determines the type when the variable is first assigned.
+  - can't change TYPE of the variable, but can change VALUE of the variable later in code.
+- final: 
+  - final is used for variables whose value is assigned once and cannot be reassigned afterward.
+  - can't change TYPE of the variable, & can't change VALUE of the variable later in code.
 
 ```dart
 dynamic v = 123;   // v is of type int.
