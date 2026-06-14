@@ -629,13 +629,19 @@ behavior.
     - Used for declaring variables with implicit type inference.
     - Allows the variable's value to change.
 
+in short, var is used when Dart automatically detects the type from the assigned value. The type becomes fixed after assignment, but the value can change.
+
 - **`final`:**
     - Used for declaring variables whose value can be set only once.
     - Typically initialized at runtime and cannot change thereafter.
 
+In Short, final is used for variables whose value is assigned only once at runtime and cannot be changed afterward.
+
 - **`const`:**
     - Used for declaring compile-time constants whose value is known at compile time.
     - Requires the type to be explicitly specified and remains constant throughout the program.
+
+In Short, const is used for compile-time constants, where the value is known and fixed before runtime. The object becomes deeply immutable.
 
 ## Built-in Libraries in Dart
 
@@ -733,13 +739,7 @@ So copyWith helps us update only what is needed while keeping the rest same.
 ## 18. Method vs Function in Dart
 
 - Method:
-    - A method is a function defined inside a class and is associated with an object.
-    - Methods are functions that provide behavior for an object.
-        - Provides behavior for objects.
-    - Location: Declared inside a class body.
-    - Types:
-        - Instance methods (operate on object data)
-        - Static methods (belong to the class, not an instance)
+    - A method is a function that is defined inside a class and is associated with an object. It represents the behavior of that object.
 
 - Function:
     - A function is a top-level function which is declared outside of a class or an inline function
@@ -902,18 +902,22 @@ void main() {
 }
 ```
 
-In short, assert is used to validate conditions during development and helps detect errors early by stopping execution if a condition fails.
+In short, assert is used to validate conditions during development. If the condition is false, it throws an AssertionError, helping developers catch bugs early.
 
 ### 28. **📌 Why Mixins in Dart?**
 
-- Mixins are a way to reuse a class's code in multiple class hierarchies.
-  ✅ **Dart doesn’t support multiple inheritance** – Mixins provide reusable functionality without
-  affecting class hierarchy.  
-  ✅ **Used to share behavior between classes** without creating a base class.
+- Mixins in Dart are used to reuse code across multiple classes without using inheritance. They allow you to share common behavior between classes even when they are not in the same class hierarchy.
+
+🔹 Why we use Mixins
+  - Dart does not support multiple inheritance
+  - Mixins help reuse functionality in multiple classes
+  - Avoids creating deep or complex inheritance chains
+  - Promotes clean and modular code
 
 ---
 
 ### **📌 Mixin Example Using `on`**
+The on keyword restricts a mixin to be used only with a specific class type.
 
 ```dart
 class Musician {
@@ -941,6 +945,7 @@ void main() {
 ---
 
 ### **📌 Mixin Example Using `with`**
+The with keyword is used to apply a mixin to a class.
 
 ```dart
 mixin Musician {
