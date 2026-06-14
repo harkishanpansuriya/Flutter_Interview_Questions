@@ -231,6 +231,8 @@ finally cleans up resources when removed.
 Answer: UI reacts to state changes automatically. Streams, ValueNotifier, or RxDart can notify
 listeners when data changes, triggering UI rebuilds.
 
+In short, Reactive programming in Flutter means the UI automatically reacts to changes in data streams or state. For example, using StreamBuilder, a chat app updates instantly when new messages arrive. It matters because it makes apps more responsive, scalable, and easier to maintain.
+
 ## `main()` vs `runApp()` in Flutter
 
 - `main()`
@@ -244,5 +246,11 @@ listeners when data changes, triggering UI rebuilds.
 - Deep linking means opening a **specific screen directly from URL**
 
 ## What is FFI (Foreign Function Interface)?
-- FFI is a way for Dart (Flutter) to talk to native code like C / C++ / Rust.
-- FFI allows Dart code to call functions written in other languages (mainly C/C++).
+
+- **Definition:** FFI is a way for Dart (Flutter) to call native code written in languages like C, C++, or Rust.  
+- **Purpose:** Lets Flutter reuse existing native libraries and perform performance-critical tasks.  
+- **Example:** Using a C library for fast image compression instead of writing it in Dart.  
+- **Why it matters:** Boosts performance and avoids rewriting complex logic.  
+  
+### Simple Interview Answer
+“FFI in Flutter is the Foreign Function Interface. It allows Dart code to call native C/C++ functions. For example, I can use FFI to connect Flutter with a native library for fast image compression. It matters because it improves performance and reuses native code.”
