@@ -306,10 +306,10 @@ Used for normal async work
 👉 Example:
 Microtask always runs BEFORE Future
 
-## What is Isolate in Flutter?
+Microtasks run before the event queue because they have higher priority in the Dart event loop, which ensures critical async tasks are handled first.
 
-Isolate is a separate memory thread
-Used for heavy CPU tasks
+## What is Isolate in Flutter?
+In Flutter, an Isolate is a separate thread of execution with its own memory and event loop, used to run heavy tasks without blocking the main UI thread.
 
 👉 Examples:
 
@@ -338,7 +338,7 @@ Isolate = parallel processing
 
 👉 Order always follows:
 
-Sync code
+synchronous code
 Microtask queue
 Event queue
 
@@ -355,6 +355,7 @@ future last
 Future.wait:
 Waits for ALL futures
 Returns list of results
+
 Future.any:
 Returns FIRST completed future
 Ignores rest
