@@ -125,6 +125,8 @@ void main() {
   types, and using the ! operator to assert non-null values. You also use null-aware operators
   like ?., ??, and ??= to safely work with nullable variables.
 
+In short, Dart handles null safety by making variables non-nullable by default. If needed, we mark them with ?. We use operators like ?. (null-aware access), ?? (default value), ??= (assign if null), and ! (null assertion) to safely work with nullable variables.  
+
 ## What is Generic in Dart?
 
 Generics in Dart allow you to create reusable functions, classes, and types that can work with
@@ -134,7 +136,7 @@ multiple data types, while still providing type safety.
 class Dropdown<T> {
   final List<T> items;
 
-  Dropdown(this.items);
+  Dropdown(this.items);   
 }
 
 // Using the generic class
@@ -208,11 +210,7 @@ class Dog implements Animal {
 
 ## What is an Extension?
 
-An **extension** allows you to **add new methods** to existing classes **without modifying** their
-original code.
-
-🔹 Useful for adding functionality to built-in types (e.g., `String`, `List`).  
-🔹 Helps keep code **clean** and **organized**.
+In Flutter extensions allowed to you to **add new functionality to existing class without modified their original implementation**.
 
 **Example:**
 
@@ -485,7 +483,8 @@ class Dog extends Animal {
 
 ## What is a Typedef in Dart?
 
-- Typedef is used to create a custom name for a type (usually a function) to make code simpler.
+- A `typedef` in Dart is used to create a **custom name (alias)** for a function type. 
+- **Purpose:** Makes code more readable and easier to maintain when working with complex function signatures.    
 - This can be super useful when you’re dealing with complex function signatures or when you want to make your code more expressive.
 
 ### Example
