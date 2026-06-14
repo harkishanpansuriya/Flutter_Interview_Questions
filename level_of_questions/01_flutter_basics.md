@@ -49,8 +49,7 @@
 
 ## Which are the most popular apps that use Flutter?
 
-* NotebookLM · Google Pay · Google Earth · Google Ads · Google Classroom · YouTube Create · Google
-  Cloud · Google One
+* NotebookLM · Google Pay · Google Earth · Google Ads · Google Classroom · YouTube Create · Google Cloud · Google One · Alibaba · BMW · Toyota · eBay Motors · Dream11 · Hamilton · Philips Hue · Reflectly
 
 ## What is Dart?
 
@@ -64,10 +63,7 @@ production.
 
 ## What is Flutter SDK?
 
-- The Flutter SDK (Software Development Kit) is a framework developed by Google for building
-  cross-platform mobile applications. It provides a complete set of tools, libraries, and resources
-  to create native-like user interfaces (UI) for both Android and iOS platforms using a single
-  codebase.
+- The Flutter SDK is the complete toolkit for building Flutter apps. It includes the Dart SDK, rendering engine, widget libraries, and tools like DevTools and the CLI. For example, when I run flutter create, the SDK sets up everything I need to build and test an app. It matters because it simplifies cross-platform development by providing all tools in one package.
 
 ## “Why is Flutter fast?”
 
@@ -99,9 +95,8 @@ Flutter Inspector is a debugging tool that lets you explore the widget tree visu
 
 #### Stateless Widget:
 
-- A widget that does not change its UI once created.
+- A StatelessWidget is immutable and cannot change once created.
 - Rebuild: Only rebuilt when parent widget updates.
-- State: Immutable (cannot change after creation)
 - Use Cases: Static UI elements like Text, Icon, ElevatedButton
 
 in short, “A Stateless Widget is a widget whose UI depends only on the input data and does not
