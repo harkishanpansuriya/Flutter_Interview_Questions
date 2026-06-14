@@ -33,6 +33,9 @@
 ## How do you structure a Flutter project for scale (like 10+ devs)?
 - TODO
 
+## what is repository pattern in flutter?
+The repository pattern in Flutter separates data access from business logic. Instead of widgets calling APIs directly, they use a repository that provides clean methods. This makes the app easier to test, maintain, and scale.
+
 ## How would you design a booking service system and manage slot selection in Flutter?
 
 I would design the booking system with a backend that manages slot availability and validates

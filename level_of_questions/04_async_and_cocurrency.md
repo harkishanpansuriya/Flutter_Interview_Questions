@@ -33,16 +33,11 @@ Key Takeaway,
 
 ## `async`, `await`, `.then()`, `.whenComplete()` and `Future` in Dart
 
-- **`async`:** Keyword used to mark a function as asynchronous, allowing it to use `await`.
-- **`await`:** Pauses the execution of a function marked with `async` until a `Future` is complete,
-  and then returns the result.
-- **`.then((value) { ... })`:** Method called on a `Future` object that registers a callback to be
-  executed when the `Future` completes successfully.
-- **`.whenComplete(() { ... })`:** Method called on a `Future` object that registers a callback to
-  be executed when the `Future` completes, regardless of whether it completes successfully or with
-  an error.
-- **`Future`:** Represents a value or error that will be available at some point in the future. It
-  allows asynchronous operations to be performed and provides a way to retrieve their results.
+- **`async`:** Keyword used to mark a function as asynchronous, Allows use of await inside it.
+- **`await`:** Waits for a Future to complete and Pauses execution until result comes.
+- **`.then((value) { ... })`:** Handles result of a Future using callback and Alternative to await.
+- **`.whenComplete(() { ... })`:** this code runs after future completes (success or error).
+- **`Future`:** Represents a value that will be available later and Used for async operations like API calls, file reading.
 
 ## Difference between `async` and `async*` in Dart
 
@@ -133,11 +128,13 @@ single asynchronous result.
 
 ## Differences between streams and sockets in Flutter?
 
-- Sockets is a real time technology related to server side which enables your back-end to push data
-  to your client side without the need for continuous polling your server.
+- A Socket is a network connection between a client and a server that enables real-time, two-way communication. It allows the server to push data to the client without continuous polling, making it useful for live features like chat, notifications, and tracking systems.
 
-- Streams in flutter is an object that hold reference to changing data that you can tap into it and
-  react to the change.
+- A Stream is a way to receive continuous data over time inside the app. It is used to handle a sequence of events such as user input, UI updates, or data coming from APIs or sockets.
+
+One-line Interview Answer,
+
+Stream is used to handle continuous data inside the app, while sockets are used for real-time two-way communication between client and server over the network.
 
 ## `Future` vs `Future.microtask` in Flutter**
 
@@ -181,12 +178,9 @@ void main() {
 ### What is `FutureOr` in Dart/Flutter?
 
 - FutureOr = maybe async, maybe sync
-- **Definition:**  
-  `FutureOr<T>` is a type that **can hold either a value of type `T` or a `Future<T>`**.
+- FutureOr<T> means the function can return either a value of type T or a Future<T>.
 
-- **Use case:**  
-  Useful when a function might **return immediately** (synchronously) or **return later** (
-  asynchronously) without creating two different function signatures.
+FutureOr in Dart allows a function to return either a direct value or a Future of that value, making the function flexible for both synchronous and asynchronous results.
 
 #### Example:
 
@@ -251,70 +245,8 @@ void fetchDataWithCompleter(Completer<int> completer) {
   });
 }
 
-##
-What is
-
-an Instance
-?
-
-✅
-*
-*
-Definition:*
-*
-An **
-instance**
-is
-
-an object
-
-created from
-a
-
-class
-.
-✅
-*
-*
-Usage:*
-*
-Holds **
-
-its own
-state & behavior**
-
-based on
-
-class properties & methods
-.
-
-##
-#
-*
-*
-📌
-Example**
-
-`
-`
-`
-dart
-
-class Car {
-  String model;
-
-  Car(this.model); // Constructor
-
-  void showModel() {
-    print('Car model: $model');
-  }
-}
-
-void main() {
-  Car myCar = Car('Tesla'); // Creating an instance
-  myCar.showModel(); // Output: Car model: Tesla
-}
-```
+## What is an Instance ?
+- An instance is an object created from a class. used to access the class properties and methods.
 
 **Each instance is independent with its own data.**
 
@@ -354,26 +286,19 @@ Future<void> fetchData() async {
 
 ## What is the Dart Event Loop?
 
-Dart uses a single-threaded event loop to manage async tasks.
-It has 2 queues:
+Dart uses a single-threaded event loop to handle asynchronous operations without blocking execution.
+
+It manages two main queues:
 - Microtask Queue (high priority)
 - Event Queue (normal async tasks)
-
-👉 Execution order:
-
-Synchronous code
-Microtasks
-Event queue tasks
-
-✔ Microtask = high priority
-✔ Event queue = Future, I/O, timers
 
 ## What is the difference between Microtask and Event Queue?
 
 Microtask Queue:
-Runs immediately after sync code
+Runs immediately after synchronous code
 Higher priority
 Example: Future.microtask()
+
 Event Queue:
 Runs after microtasks
 Used for normal async work
