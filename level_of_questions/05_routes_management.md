@@ -1,14 +1,20 @@
 ## How do you deal with deep linking in a large app?
 
-- TODO
+- In a large Flutter app, I handle deep linking using a centralized routing system. I configure deep links using packages like go_router or uni_links, and map incoming URLs to specific screens with required parameters.
+
+I also ensure proper handling of authenticated and unauthenticated flows, so users are redirected correctly based on app state.
 
 ## How do you handle back navigation with nested navigators (BottomNav + routes)?
 
-- TODO
+- I use a nested navigation structure where each Bottom Navigation tab has its own navigator stack.
+
+This allows each tab to maintain its own history independently. I manage back button behavior using WillPopScope or router-level back handling so that pressing back first pops the current tab stack before exiting the app.
 - 
 ## How do you handle back navigation when using nested navigators?
 
-- TODO
+- In nested navigation, I manage separate navigation stacks for each section of the app. When the user presses back, I first check if the current navigator can pop a route; if not, I switch tabs or exit the app accordingly.
+
+This ensures a smooth and expected back navigation experience.
 
 ## Differences between Navigator and Router in Flutter
 

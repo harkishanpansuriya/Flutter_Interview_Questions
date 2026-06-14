@@ -1,14 +1,44 @@
 ## Ever had a widget rebuild too often? How did you catch that?
 
-- TODO
+- Yes, I have faced this issue in large screens where unnecessary rebuilds were affecting performance.
+
+I caught it using Flutter DevTools (Rebuild Stats + Performance Overlay) and by adding debug logs inside build methods.
+
+To fix it, I used techniques like:
+
+- Splitting widgets into smaller widgets
+- Using const constructors
+- Avoiding unnecessary setState()
+- Using ValueNotifier, Bloc, or Consumer selectively
 
 ## How do you debug janky animations or dropped frames in Flutter?
 
-- TODO
+- I use Flutter DevTools Performance tab to check frame rendering time and identify skipped frames.
+
+Then I analyze:
+
+- Heavy build methods
+- Excessive widget rebuilds
+- Expensive operations in UI thread
+
+To fix it, I optimize:
+
+- Move heavy work to isolates
+- Reduce widget rebuilds
+- Use RepaintBoundary
+- Optimize animations and images
 
 ## What do you do when your app size exceeds 100MB?
 
-- TODO
+- I analyze the APK/AAB using tools like Flutter build report and Android Studio APK Analyzer.
+
+Then I reduce size by:
+
+- Removing unused assets and dependencies
+- Using ProGuard/R8 for code shrinking
+- Compressing images and using WebP
+- Splitting APK using App Bundles
+- Avoiding heavy native libraries
 
 ## Dart DevTools
 
