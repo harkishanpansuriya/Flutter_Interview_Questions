@@ -425,13 +425,19 @@ Flex(
 
 ## What is CachedNetworkImage and why use it?
 
-- CachedNetworkImage stores images in disk cache
-- Prevents re-downloading images every time
-- Improves performance and reduces data usage
+CachedNetworkImage is a Flutter package that downloads and stores images in local cache
+
+🔹 Why we use it
+  - Avoids re-downloading images every time
+  - Loads images faster after first use
+  - Works offline (if already cached)
+  - Reduces network usage
 
 👉 Benefits: Faster image loading, Offline support, Better UX
 
 ## What is Scroll Physics in Flutter?
+
+Scroll Physics control the scrolling behavior and feel of scrollable widgets in Flutter.
 
 - Controls scroll behavior and movement style. here is the Types:
     - BouncingScrollPhysics: iOS-style bounce effect
