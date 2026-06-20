@@ -51,3 +51,15 @@ this [Medium article](https://medium.com/@bernes.dev/deploying-flutter-apps-to-t
 
 - For a comprehensive guide on releasing your Flutter app for iOS and Android, you can refer to
 this [Instabug blog post](https://www.instabug.com/blog/how-to-release-your-flutter-app-for-ios-and-android).
+
+## What is CI/CD?
+- CI/CD helps automate the development workflow. Whenever developers push code to GitHub, the pipeline automatically runs tasks like code analysis, testing, building APK/IPA files, and deployment. This reduces manual work and helps catch issues early.
+
+## Have you used CI/CD?
+- Yes, I have worked with GitHub Actions for CI/CD. We configured workflows using YAML files (.github/workflows/flutter.yml). Whenever code was pushed to a specific branch, the pipeline automatically executed tasks such as Flutter analyze, Flutter test, build APK/AAB, and deployment-related steps.
+
+If you configured it yourself?
+- I created GitHub Action workflows using YAML files to automate code analysis, testing, and APK generation.
+
+https://medium.com/@sharmapraveen91/automate-flutter-ci-cd-with-github-actions-android-ios-testflight-deployment-89a1c903721a
+
