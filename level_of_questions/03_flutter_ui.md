@@ -349,6 +349,12 @@ child: Text('Submit'),
 nd). It synchronizes UI updates with the device’s refresh rate to ensure smooth
 animations.
 
+## when should we use a resizeToAvoidBottomInset?
+- resizeToAvoidBottomInset is used to control whether the Scaffold should resize its body when the keyboard appears. By default, it is true, which helps keep input fields visible. I usually use it for forms and login screens. If I have a custom layout or want to manage keyboard behavior manually, I set it to false.  
+
+## What is TextEditingController?
+- TextEditingController is used to manage and control the text inside a TextField. It allows us to read, update, clear, and listen to text changes programmatically.
+
 ## What is the default axis for Column and Row widgets?
 
 - Column: Vertical (MainAxisAlignment.vertical).

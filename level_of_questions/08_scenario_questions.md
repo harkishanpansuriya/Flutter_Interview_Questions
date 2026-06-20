@@ -56,6 +56,9 @@ bookings using transactions to prevent double-booking. In Flutter, I would:
 - Ensure no `assert` statements or debug-only code is being used.
 - Use crash reporting tools like **Sentry** or **Firebase Crashlytics** to capture release crashes.
 
+## Why does the flutter app take a very long developing time when we run it for the first time?
+- The first build is slow because Flutter needs to compile the app and create the APK/IPA using Gradle (Android) or Xcode (iOS). Later builds are faster because of caching and Hot Reload.
+
 ## Caching mechanism in Flutter.
 
 - Caching in Flutter means storing data locally (memory or device) so we don’t need to fetch it
