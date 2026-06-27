@@ -184,9 +184,35 @@ void main() {
 }
 ```
 
-Here you go, friend. I kept your structure intact but made the wording cleaner, easier, and a bit more complete. Nothing over the top, just smooth and simple.
+## 4. Interface
 
----
+- In Dart, every class implicitly acts as an interface.
+- An interface defines a contract that implementing classes must follow.
+- A class implements an interface using the `implements` keyword.
+- When a class implements another class, it must override all methods and properties.
+- Interfaces are mainly used to enforce a common behavior across multiple classes.
+
+### Example:
+
+```dart
+class Animal {
+  void sound() {
+    print("Animal sound");
+  }
+}
+
+class Dog implements Animal {
+  @override
+  void sound() {
+    print("Dog barks");
+  }
+}
+
+void main() {
+  Dog dog = Dog();
+  dog.sound();
+}
+```
 
 ## 5. Encapsulation
 
