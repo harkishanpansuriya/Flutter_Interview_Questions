@@ -9,6 +9,7 @@ https://docs.flutter.dev/perf/faq
 
 ## What is RepaintBoundary?
 
+- RepaintBoundary is a Flutter widget that prevents unnecessary repaints by treating its child as a separate layer.
 - Prevents unnecessary repainting of widgets
 - Improves performance when only part of UI changes
 - Example:
