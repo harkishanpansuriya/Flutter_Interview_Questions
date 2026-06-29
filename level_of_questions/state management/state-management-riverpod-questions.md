@@ -238,7 +238,7 @@ ref.watch(counterProvider);
 
 ### ref.read()
 
-Reads the current value without rebuilding.
+For callbacks (button onPressed) and Reads the current value without rebuilding.
 
 ```dart
 ref.read(counterProvider.notifier);
@@ -246,7 +246,7 @@ ref.read(counterProvider.notifier);
 
 ### ref.listen()
 
-Listens for changes and performs side effects without rebuilding.
+Listens for changes and performs side effects (snackbar, navigation) without rebuilding.
 
 ```dart
 ref.listen(authProvider, (previous, next) {});
