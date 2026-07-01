@@ -1,15 +1,24 @@
--+ 
-## Android and iOS folders in Flutter Project
+## What are Platform Channels?
 
-- **Android Folder:** Contains the entire Android project necessary for building a Flutter
-  application for the Android platform. It includes configurations, resources, and native code
-  components specific to Android.
+Platform channels allow Flutter to communicate with native platforms (Android and iOS) to access platform-specific APIs (like battery level, sensors, or native UI).
 
-- **iOS Folder:** Contains the entire iOS project necessary for building a Flutter application for
-  the iOS platform. It includes configurations, resources, and native code components specific to
-  iOS.
+### Types of Channels:
+1. **MethodChannel:** Used for sending one-time messages (invoking methods) and receiving a result. (e.g., `getBatteryLevel`).
+2. **EventChannel:** Used for communication via data streams (continuous data). (e.g., listening to accelerometer data).
+3. **BasicMessageChannel:** Used for sending basic messages (strings or semi-structured data) in both directions.
 
-## What is the Android Manifest file?
+## What is a MethodChannel?
 
-- A configuration file (AndroidManifest.xml) that declares permissions, activities, services, and
-  app metadata.
+- It is a named channel that facilitates asynchronous method calls between Dart and native code.
+- **Dart side:** Calls `invokeMethod('methodName')`.
+- **Native side:** Sets a `MethodCallHandler` to listen for the method name and respond with a result or error.
+
+## Common Platform Specific Files
+
+| Feature | Android | iOS |
+| :--- | :--- | :--- |
+| **Main Config** | `AndroidManifest.xml` | `Info.plist` |
+| **Dependencies** | `build.gradle` (Gradle) | `Podfile` (CocoaPods) |
+| **App Icon** | `res/mipmap` | `Assets.xcassets` |
+| **Entry Point** | `MainActivity.kt/java` | `AppDelegate.swift/objc` |
+| **Permissions** | `uses-permission` in Manifest | Usage Descriptions in Plist |

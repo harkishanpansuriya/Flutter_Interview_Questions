@@ -10,6 +10,21 @@ Provider is one of the most widely used state management solutions because it is
 
 ---
 
+## What are the core components of Provider?
+
+The main components are:
+
+* **ChangeNotifier** → A class that holds state and notifies listeners using `notifyListeners()`.
+* **ChangeNotifierProvider** → A widget that provides an instance of `ChangeNotifier` to its descendants.
+* **Consumer** → A widget that listens to a provider and rebuilds only its specific child when state changes.
+* **Selector** → A specialized version of Consumer that filters updates to rebuild only when a specific property changes.
+* **MultiProvider** → A widget that improves readability by merging multiple providers into a single block.
+* **context.watch<T>()** → Listens to a provider and rebuilds the current widget when the state changes.
+* **context.read<T>()** → Accesses a provider without listening to it (useful for calling methods in callbacks).
+* **context.select<T, R>()** → Listens to only a specific part of a provider.
+
+---
+
 ## Why was Provider introduced?
 
 Provider was introduced to simplify state management and avoid manually working with `InheritedWidget`.

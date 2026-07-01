@@ -14,6 +14,21 @@ Because GetX combines all three features in one package, it significantly reduce
 
 ---
 
+## What are the core components of GetX?
+
+The main components are:
+
+* **GetxController** → A class where you write business logic and manage state.
+* **Rx types (.obs)** → Observable variables (e.g., `RxInt`, `RxString`) that trigger UI updates when changed.
+* **Obx** → A widget that automatically rebuilds when any `.obs` variable inside it changes.
+* **GetBuilder** → A widget for simple state management that rebuilds only when `update()` is called.
+* **Get.put()** → Used to inject a dependency (controller/service) into the GetX memory.
+* **Get.find()** → Used to retrieve an injected dependency from anywhere in the app.
+* **Get.to() / Get.off() / Get.offAll()** → Methods for navigation without needing `BuildContext`.
+* **GetMaterialApp** → A replacement for `MaterialApp` that enables GetX's navigation and dependency features.
+
+---
+
 ## What is the difference between reactive state management (Rx variables) and simple state management in GetX?
 
 ### Reactive State Management

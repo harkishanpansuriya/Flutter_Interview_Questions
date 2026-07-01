@@ -7,7 +7,8 @@
 - **Class:**
     - A class is a blueprint for creating objects.
     - A class can contain constructors, variables, getters, setters, and methods.
-- **Object:** An object is an instance of a class. It is used to store data and access class methods.
+- **Object:** An object is an instance of a class. It is used to store data and access class
+  methods.
 
 ### Example:
 
@@ -88,7 +89,8 @@ void main() {
 - Abstraction is the process of hiding implementation details and showing only the essential
   features of an object.
 - An abstract class is defined using the `abstract` keyword and cannot be instantiated directly.
-- You cannot create objects of an abstract class, but it can be extended (inherited) by other classes.
+- You cannot create objects of an abstract class, but it can be extended (inherited) by other
+  classes.
 - Abstract classes are typically used as a base class to define common behaviors that can be
   inherited and implemented by subclasses.
 - An abstract class can have:
@@ -127,7 +129,7 @@ void main() {
 
 ### Types of Polymorphism
 
-#### 1. Method Overriding (Supported in Dart)
+#### 1. Runtime Polymorphism (Method Overriding (Supported in Dart))
 
 - Child class gives its own implementation of parent method.
 - This is runtime polymorphism.
@@ -154,8 +156,7 @@ void main() {
 }
 ````
 
-
-#### 2. Method Overloading (Not supported directly in Dart)
+#### 2. Compile-Time Polymorphism (Method Overloading (Not supported directly in Dart))
 
 - Dart does NOT support true method overloading.
 - We can achieve similar behavior using optional or named parameters.
@@ -178,9 +179,52 @@ class Calculator {
 void main() {
   Calculator calc = Calculator();
 
-  print(calc.add(5));      // Output: 5
-  print(calc.add(5, 10));  // Output: 15
+  print(calc.add(5)); // Output: 5
+  print(calc.add(5, 10)); // Output: 15
   print(calc.add(5, 10, 3)); // Output: 18
+}
+```
+
+### Why Flutter (Dart) does not support method overloading?
+
+- Flutter uses Dart, and Dart does not support method overloading.
+- Method overloading means having multiple methods with the same name but different parameters.
+- Dart avoids this because it can make method calls confusing and harder to maintain.
+- Instead, Dart provides optional parameters and named parameters to achieve the same behavior in a
+  simpler way.
+
+❌ Method Overloading (Not allowed in Dart)
+
+```dart
+class Calculator {
+  int add(int a) {
+    return a;
+  }
+
+  int add(int a, int b) {
+    // ❌ Not allowed in Dart
+    return a + b;
+  }
+}
+```
+
+👉 This is not supported because Dart does not allow multiple methods with the same name.
+
+✅ Dart Alternative (Using optional parameters)
+
+```dart
+class Calculator {
+  int add(int a, [int b = 0, int c = 0]) {
+    return a + b + c;
+  }
+}
+
+void main() {
+  Calculator calc = Calculator();
+
+  print(calc.add(5)); // 5
+  print(calc.add(5, 10)); // 15
+  print(calc.add(5, 10, 3)); // 18
 }
 ```
 
@@ -217,21 +261,22 @@ void main() {
 ## 5. Encapsulation
 
 * Encapsulation hides class properties to prevent direct access from outside the class.
-* Data can be accessed or modified only through getters and setters, ensuring safe and controlled handling.
+* Data can be accessed or modified only through getters and setters, ensuring safe and controlled
+  handling.
 
 ### How to Achieve Encapsulation in Dart
 
 * In Dart, you use:
 
-  * **Private fields** (adding `_` before the name) to block direct access from other files.
-  * **Getters** to read the values of private properties.
-  * **Setters** to update private properties, often with validation or custom logic.
+    * **Private fields** (adding `_` before the name) to block direct access from other files.
+    * **Getters** to read the values of private properties.
+    * **Setters** to update private properties, often with validation or custom logic.
 
 ### Example
 
 ```dart
 class BankAccount {
-  double _balance = 0;  // Hidden property (private)
+  double _balance = 0; // Hidden property (private)
 
   // Getter to read the balance
   double get balance => _balance;
@@ -247,7 +292,8 @@ class BankAccount {
 void main() {
   BankAccount acc = BankAccount();
 
-  acc.deposit = 500;     // Using setter
-  print(acc.balance);    // Using getter
+  acc.deposit = 500; // Using setter
+  print(acc.balance); // Using getter
 }
 ```
+
