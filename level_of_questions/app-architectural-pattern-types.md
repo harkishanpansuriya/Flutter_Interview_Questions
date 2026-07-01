@@ -1,7 +1,9 @@
 Architectural patterns in Flutter help organize code by separating UI, business logic, and data for
 better scalability, maintainability and testability.
 
-Architectural patterns define how an application is structured by separating it into layers like UI, business logic, and data, and by defining how these components interact, making the app scalable, maintainable, and testable
+Architectural patterns define how an application is structured by separating it into layers like UI,
+business logic, and data, and by defining how these components interact, making the app scalable,
+maintainable, and testable
 
 # Types of app architectural pattern in flutter
 
@@ -12,7 +14,8 @@ Architectural patterns define how an application is structured by separating it 
 
 ## 1. MVC (Model–View–Controller)
 
-- MVC stands for Model-View-Controller. MVC is a Architectural pattern that separates an application into
+- MVC stands for Model-View-Controller. MVC is a Architectural pattern that separates an application
+  into
   three main components: Model, View, Controller.
 
 In Flutter, the MVC pattern can be implemented by creating separate classes for the Model, View, and
@@ -165,7 +168,8 @@ to the View in a reactive way.
 
 ## 3. Clean Architecture (Most Scalable)
 
-- Clean Architecture in Flutter is a architectural approach or principles that organizes code into independent
+- Clean Architecture in Flutter is a architectural approach or principles that organizes code into
+  independent
   layers to achieve separation of concerns such as UI, business logic, and data layers.
 - It helps in building a modular, scalable, testable, and maintainable codebase.
 - The main idea is that **business logic should not depend on UI or frameworks**.
@@ -409,76 +413,170 @@ MVP separates UI and logic using a Presenter that acts as a middle layer between
 
 ---
 
-## 🚀 Which Architecture to Use When?
+## Which Architecture to Use When?
 
 ### ✅ Use MVC
 
 - Small apps
-- Simple features (login, form)
-- Learning basics
+- Simple features
+- Learning Flutter architecture
 - Quick prototypes
 
-👉 Example:
+**Example:**
 
-- Basic CRUD app
-- Simple login/register
-
----
-
-### ✅ Use MVVM
-
-- Medium-sized apps
-- When you want clean UI + logic separation
-- When using Provider / Riverpod
-
-👉 Example:
-
-- E-commerce app (basic)
-- Dashboard apps
-
----
-
-### ✅ Use Clean Architecture
-
-- Large-scale apps
-- Team projects
-- Long-term maintainability required
-
-👉 Example:
-
-- Fintech apps
-- Production-level apps
-- Apps with multiple modules/features
+- Calculator app
+- Login/Register app
+- Todo app
 
 ---
 
 ### ✅ Use MVP
 
-- Medium apps
-- When you want better separation than MVC
-- When not using modern state management
-
-👉 Example:
-
+- Small to medium-sized apps
 - Legacy projects
-- Apps where Presenter logic is simple
+- When we want better separation than MVC
+
+**Example:**
+
+- Existing apps using MVP
+- Projects with simple business logic
 
 ---
 
-## 💡 Final Tip (Very Important)
+### ✅ Use MVVM
 
-👉 No architecture is "best"  
-👉 Choose based on:
+- Small to medium-sized apps
+- Apps with moderate business logic
+- When using Provider, Riverpod, or Bloc
+- Faster development with good maintainability
 
-- App size
-- Team size
-- Complexity
-- Scalability needs
+**Example:**
+
+- E-commerce app
+- Chat app
+- Dashboard app
+- Booking app
 
 ---
 
-## 🎯 One-Line Rule (Easy to Remember)
+### ✅ Use Clean Architecture
 
-- Small app → MVC
-- Medium app → MVVM
-- Large app → Clean Architecture  
+- Medium to large-scale apps
+- Apps with complex business logic
+- Long-term and production projects
+- Team projects requiring high scalability and testability
+
+**Example:**
+
+- Banking app
+- Flight booking app
+- Food delivery app
+- Enterprise applications
+
+---
+
+## 💡 Tip
+
+- Small project → MVC
+- Small to Medium project → MVVM
+- Medium to Large project → Clean Architecture
+
+> If we expect the project to grow in the future, it is better to start with **Clean Architecture**
+> to avoid major refactoring later.
+
+## When should we use MVVM and Clean Architecture when starting a project from scratch?
+
+- We use **MVVM** when the project is small to medium-sized and has simple to moderate business
+  logic.
+- MVVM is easier to develop, requires less boilerplate, and is faster to implement.
+- We use **Clean Architecture** when the project is medium to large-scale, has complex business
+  logic, or is expected to grow over time.
+- Clean Architecture provides better scalability, maintainability, and testability.
+- If we expect the project requirements to grow in the future, it is better to start with **Clean
+  Architecture** to avoid major refactoring later.
+
+### Quick Summary
+
+- Small project → MVVM
+- Medium to Large project → Clean Architecture
+- Long-term or enterprise project → Clean Architecture
+
+## What is the difference between MVVM and Clean Architecture?
+
+- **MVVM** is an architectural pattern that separates the UI, business logic, and data using a *
+  *ViewModel**.
+- **Clean Architecture** is an architectural approach that organizes the app into independent layers
+  such as **Presentation**, **Domain**, and **Data**.
+
+### Quick Difference
+
+| MVVM                                      | Clean Architecture                                       |
+|-------------------------------------------|----------------------------------------------------------|
+| Architectural pattern                     | Architectural approach                                   |
+| Uses View, ViewModel, and Model           | Uses Presentation, Domain, and Data layers               |
+| Business logic is mainly in the ViewModel | Business logic is mainly in the Domain layer (Use Cases) |
+| Less boilerplate code                     | More boilerplate code                                    |
+| Easier to learn and develop               | More scalable and maintainable                           |
+| Best for small to medium projects         | Best for medium to large projects                        |
+
+## Why do we choose Clean Architecture over MVVM?
+
+- We choose **Clean Architecture** for medium to large-scale projects.
+- It provides better separation of concerns by dividing the app into Presentation, Domain, and Data
+  layers.
+- Business logic is moved to **Use Cases** instead of keeping everything in the ViewModel.
+- As the project grows, the **ViewModel** in MVVM can become large and difficult to maintain.
+- It reduces tight coupling between the UI, business logic, and data layer.
+- It is easier to test, maintain, and add new features.
+- It is a good choice for long-term and enterprise applications.
+
+## Why do we choose MVVM over Clean Architecture?
+
+- We choose **MVVM** for small to medium-sized projects.
+- It is simpler to understand and implement.
+- It requires less boilerplate code.
+- It allows faster development.
+- Business logic is managed in the **ViewModel**, making it suitable for projects with simple to
+  moderate business logic.
+- It works well with state management solutions like Provider, Riverpod, and Bloc.
+- If the project does not require complex architecture, MVVM is easier to maintain.
+
+## Where is the business logic written in different architectures?
+
+### MVC (Model–View–Controller)
+
+- Business logic is written in the **Controller**.
+- The Controller handles user actions, validation, and communicates with the Model.
+
+---
+
+### MVP (Model–View–Presenter)
+
+- Business logic is written in the **Presenter**.
+- The Presenter receives user actions from the View, processes them, and updates the View.
+
+---
+
+### MVVM (Model–View–ViewModel)
+
+- Business logic is mainly written in the **ViewModel**.
+- The ViewModel manages the UI state, validation, and communicates with the Repository or Service.
+- In large projects, the ViewModel can become large if too much business logic is added.
+
+---
+
+### Clean Architecture
+
+- Business logic is written in the **Domain Layer**, mainly inside **Use Cases**.
+- Each Use Case is responsible for a single business operation (e.g., Login, Register, Get Flights).
+- The ViewModel/Bloc/Cubit only manages the UI state and calls the appropriate Use Case.
+- This keeps the code modular, testable, and easier to maintain.
+
+### Quick Summary
+
+| Architecture       | Business Logic           |
+|--------------------|--------------------------|
+| MVC                | Controller               |
+| MVP                | Presenter                |
+| MVVM               | ViewModel                |
+| Clean Architecture | Domain Layer (Use Cases) |

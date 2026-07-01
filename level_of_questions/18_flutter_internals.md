@@ -19,13 +19,159 @@
    Flow Widget tree → Element tree → RenderObject tree → Layout → Paint → Compositing → Screen
    pixels
 
+## What is the Dart VM?
+
+- The **Dart VM (Virtual Machine)** is a runtime environment that executes Dart code during
+  development.
+- It is mainly used for **debugging, testing, and development**.
+- It supports **Hot Reload** and **Hot Restart**, allowing us to see code changes quickly without
+  rebuilding the app.
+- In **release mode**, Flutter does **not** use the Dart VM. Instead, Dart code is compiled into
+  native machine code using **AOT (Ahead-of-Time) compilation**.
+
+---
+
+## What is the role of the Dart VM in Flutter?
+
+- Executes Dart code during development.
+- Provides **Hot Reload** for faster development.
+- Helps with debugging and error reporting.
+- Performs **JIT (Just-in-Time) compilation**, so code changes can be applied quickly.
+- Improves developer productivity by reducing build time.
+
+### Quick Summary
+
+- **Development Mode** → Uses **Dart VM + JIT** (supports Hot Reload)
+- **Release Mode** → Uses **AOT** (compiled to native code, no Dart VM)
+
+## Why are both JIT and AOT used? Why not just one?
+
+- Flutter uses **JIT** during development because it supports **Hot Reload**, allowing us to see
+  code changes instantly without rebuilding the app.
+- Flutter uses **AOT** for release builds because it compiles the code into native machine code
+  before the app runs.
+- Native code executes faster and provides better startup time and performance.
+
+### Why not use only JIT?
+
+- Slower startup.
+- Lower runtime performance.
+- No native optimization.
+
+### Why not use only AOT?
+
+- Every code change would require a full rebuild.
+- Hot Reload would not be possible.
+- Development would become much slower.
+
+### Quick Summary
+
+- **JIT** → Faster development.
+- **AOT** → Faster application.
+
+## What are the main components of the Dart VM?
+
+### JIT Compiler
+
+- Compiles Dart code while the app is running.
+- Used in Debug mode.
+- Enables Hot Reload.
+
+---
+
+### Garbage Collector (GC)
+
+- Automatically removes unused objects from memory.
+- Helps prevent memory leaks.
+- Frees memory that is no longer needed.
+
+---
+
+### Isolates
+
+- Dart uses **Isolates** instead of shared-memory threads.
+- Each isolate has its own memory and event loop.
+- This avoids data races and improves thread safety.
+
+---
+
+### Event Loop
+
+- Executes asynchronous tasks.
+- Processes events one by one.
+
+---
+
+### Memory Management
+
+- Allocates memory for new objects.
+- Works with the Garbage Collector to reclaim unused memory.
+
+### Quick Summary
+
+| Component         | Purpose                   |
+|-------------------|---------------------------|
+| JIT Compiler      | Runtime compilation       |
+| Garbage Collector | Frees unused memory       |
+| Isolates          | Run code in parallel      |
+| Event Loop        | Executes async tasks      |
+| Memory Manager    | Manages memory allocation |
+
+## What is `compute()` and when should we use Isolates?
+
+- `compute()` is a Flutter helper that runs a function in a **background isolate**.
+- It prevents heavy tasks from blocking the main UI thread.
+- We use it for CPU-intensive work.
+
+### Common Use Cases
+
+- Parsing large JSON files.
+- Image processing.
+- Data encryption.
+- File compression.
+- Large calculations.
+
+> **Note:** `compute()` is suitable for simple background tasks. For long-running or complex tasks,
+> we should create our own Isolate using the `Isolate` API.
+
+## Why does Flutter use JIT in Debug mode and AOT in Release mode?
+
+- Flutter uses **JIT** in Debug mode because it supports **Hot Reload**, making development faster.
+- Flutter uses **AOT** in Release mode because it compiles Dart code into native machine code before
+  the app runs.
+- Native code provides better startup time, faster execution, and improved performance.
+
+### Quick Summary
+
+- **Debug Mode** → JIT → Faster development.
+- **Release Mode** → AOT → Faster application.
+
+## What happens internally when the app moves to the background or resumes?
+
+### When the app goes to the background
+
+- Flutter receives an app lifecycle event from Android or iOS.
+- `didChangeAppLifecycleState()` is called with `AppLifecycleState.paused` or `inactive`.
+- The UI stops receiving user input.
+- Animations and rendering are paused to save resources.
+- The app remains in memory unless the operating system terminates it.
+
+### When the app resumes
+
+- Flutter receives another lifecycle event.
+- `didChangeAppLifecycleState()` is called with `AppLifecycleState.resumed`.
+- Rendering and animations continue.
+- The app becomes interactive again.
+
 ## What are the three types of trees in Flutter?
 
 Flutter has three main trees: Widget Tree, Element Tree, and Render Object Tree.
 
-- **The Widget Tree**: Defines the UI configuration (immutable). It describes what the UI should look
+- **The Widget Tree**: Defines the UI configuration (immutable). It describes what the UI should
+  look
   like (e.g., text, buttons, layouts) but does not hold state.
-- **The Element Tree**: Acts as a bridge between widgets and render objects. It manages the lifecycle of
+- **The Element Tree**: Acts as a bridge between widgets and render objects. It manages the
+  lifecycle of
   widgets
   and handles updates efficiently.
 - **The Render Tree**: Responsible for layout, painting, and rendering the UI on the screen.
@@ -44,6 +190,7 @@ Answer: The engine handles rendering (Skia), platform channels, text layout, and
 providing the bridge between Dart code and native platforms.
 
 ## Explain Flutter’s Architecture
+
 Flutter architecture mainly consists of three layers:
 
 ### 1. Framework Layer (Dart)
@@ -72,44 +219,8 @@ Flutter architecture mainly consists of three layers:
 
 ### One-line Summary
 
-Flutter uses a layered architecture where the Framework handles UI logic, the Engine renders graphics, and the Embedder connects Flutter to the native platform.
-
-## How does the Flutter app lifecycle work?
-
-Flutter apps follow lifecycle states similar to Android and iOS. These states can be observed using `WidgetsBindingObserver`.
-
-### resumed
-- App is visible and user can interact with it
-- Normal active app state
-- Example: scrolling, typing, clicking buttons
-
-### inactive
-- App is visible but temporarily not receiving user input
-- Example: incoming phone call, notification overlay, control center opened
-
-### paused
-- App goes into background and is no longer visible
-- App is still kept in memory
-- Example: user presses home button or switches to another app
-
-### detached
-- Flutter engine is running but not attached to any UI view
-- Usually happens before app termination
-- Example: system removes app to free resources
-
-### Why it matters
-- Save/restore data → Save form data when app goes background
-- Pause heavy tasks → Stop video/audio when paused
-- Manage resources → Release camera/microphone when inactive
-- Analytics → Track app open/close events
-
-### Flutter vs Native Lifecycle
-- Android → Activity lifecycle (`onCreate`, `onPause`, `onResume`)
-- iOS → UIApplication lifecycle (`applicationDidEnterBackground`)
-- Flutter → Unified lifecycle states (`resumed`, `inactive`, `paused`, `detached`)
-
-### One-line Summary
-Flutter lifecycle manages app states like foreground, background, inactive, and termination states.
+Flutter uses a layered architecture where the Framework handles UI logic, the Engine renders
+graphics, and the Embedder connects Flutter to the native platform.
 
 ## Explain the role of widgets in Flutter's architecture.
 

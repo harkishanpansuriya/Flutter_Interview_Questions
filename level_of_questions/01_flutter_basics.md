@@ -97,6 +97,20 @@ on any widget in your app to see its properties, constraints, and layout. For ex
 looks misaligned, the inspector shows which parent widget is causing the issue. It’s important
 because it makes debugging UI faster and more accurate.
 
+## Flutter App Lifecycle
+
+- The Flutter App Lifecycle defines the different states of a Flutter app.
+- We can listen to these states using the `WidgetsBindingObserver` or `AppLifecycleListener`.
+
+### Lifecycle States
+
+- `resumed` – The app is in the foreground and the user can interact with it.
+- `inactive` – The app is inactive due to an interruption, such as a phone call or system dialog.
+- `paused` – The app is in the background and is not receiving user input.
+- `hidden` – The app is hidden from the user but has not been terminated.
+- `detached` – The Flutter engine is running without being attached to a view. This usually occurs
+  before the app is terminated.
+
 ## Stateful vs Stateless Widget in Flutter & Lifecycle
 
 #### Stateless Widget:
@@ -268,3 +282,19 @@ arrive. It matters because it makes apps more responsive, scalable, and easier t
 “FFI in Flutter is the Foreign Function Interface. It allows Dart code to call native C/C++
 functions. For example, I can use FFI to connect Flutter with a native library for fast image
 compression. It matters because it improves performance and reuses native code.”
+
+## What is Flutter In-App Purchase?
+
+- Flutter In-App Purchase allows apps to sell digital content, subscriptions, or features directly
+  inside the app on iOS and Android. You use platform-specific stores (Google Play Store, Apple App
+  Store) via packages like in_app_purchase to handle purchase flow, verify transactions, and deliver
+  content securely.
+
+## What types of in-app purchases are supported in Flutter? What is the difference between *
+
+*consumable, non-consumable, and subscription** purchases?
+
+- Flutter supports two main types of in-app purchases via the in_app_purchase package: Consumable –
+  Items that can be bought, used, and bought again (e.g., coins, tokens). Non-Consumable – One-time
+  purchases that unlock permanent features (e.g., premium upgrade, ad remova). Subscriptions –
+  Recurring purchases for time-based access to content or features (e.g., monthly or yearly plans)."
