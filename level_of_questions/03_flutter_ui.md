@@ -13,54 +13,44 @@ reusing the same widget instance.
 
 Used to **align children** inside `Row` and `Column` widgets along the main and cross axes.
 
-## What is the WillPopScope widget used for?
+## What is the `WillPopScope` widget used for?
 
-- The `WillPopScope` widget in Flutter is used to handle the system back button or back gesture,
-  allowing you to decide whether the screen should be popped.
+- We use the `WillPopScope` widget to control what happens when the user presses the back button or
+  uses the back gesture.
+- We can decide whether the screen should close or stay open.
+- It is commonly used to show an exit confirmation dialog or warn about unsaved changes.
 
 ## What are custom widgets in Flutter, and why are they important?
 
-Custom widgets are **user-defined widgets** that encapsulate UI components for **reusability and
-maintainability**.  
-Benefits:
+- Custom widgets are widgets that you create yourself by combining existing Flutter widgets.
+- They help you reuse code, keep your app organized, and make it easier to maintain and update.
 
-- Reduce code duplication
-- Improve readability
-- Enhance modularity
-- Simplify complex UI
+## What is a widget in Flutter?
 
-They can be `StatelessWidget` or `StatefulWidget` depending on state management needs.
+- A widget is the basic building block of a Flutter app.
+- Everything you see on the screen is a widget, such as text, buttons, images, and layouts.
+- Widgets are used to create and design the user interface (UI) of an app.
 
-## Flutter Widgets
+## What are reusable widgets?
 
-- **Definition:** Widgets are the **basic building blocks of a Flutter UI**.
-- Everything in Flutter is a **widget**, including layout, styling, and structure.
-- Widgets describe how the UI should **look and behave**.
+* Reusable widgets are widgets that you create once and use in multiple places in your app.
+* They help you avoid writing the same code again and again.
+* For example, if the same button is used on many screens, you can create one custom button widget
+  and reuse it everywhere.
+* Reusable widgets are usually created using `StatelessWidget` or `StatefulWidget`, depending on
+  whether the widget needs to update its UI.
+* They make your code cleaner, easier to maintain, and more consistent.
 
-## What are the reusable widgets?
+## What is the difference between `ListView.builder` and `SliverList.builder`?
 
-- Reusable widgets are UI components that we create once and use multiple times in different parts
-  of the app.
-- In Flutter, everything is a widget, so we can create our own custom widgets and reuse them
-  anywhere.
-- For example, if I have the same button design used in many screens, instead of writing the same
-  code again and again, I create one custom button widget and reuse it.
-- In Flutter, reusable widgets are usually created using StatelessWidget or StatefulWidget,
-  depending on whether the UI needs to change or not.
-- The main purpose of reusable widgets is to avoid repeating the same code again and again, and to
-  make the code clean, maintainable, and consistent
-
-## what is the difference between listview builder widgets and SliverList.builder? (check on google again)
-
-- ListView.builder: A high-level, standalone widget for displaying a scrollable list. Efficient for
-  large lists — it builds items on demand (lazy loading). Handles its own scrolling, viewport, and
-  padding. More limited in customization: doesn’t easily support advanced scroll effects (like
-  collapsing app bars).
-- sliverlist builder: A low-level sliver, meaning it’s a piece of a scrollable area — not a full
-  widget on its own. Must be used inside a CustomScrollView via its slivers list. Allows combining
-  with other slivers (SliverAppBar, SliverGrid, SliverToBoxAdapter) for advanced scroll effects.
-  Uses SliverChildBuilderDelegate to lazily build its children, making it efficient for large or
-  dynamic lists.
+* ListView.builder is used when your screen only needs a scrollable list.
+* We use `SliverList.builder` inside a `CustomScrollView`, where it acts as piece of a scrollable
+  area.
+* With `SliverList.builder`, we can combine multiple scrollable widgets, such as a `SliverAppBar`,
+  `SliverGrid`, and `SliverList`, into a single scrolling screen.
+* `ListView.builder` is simpler and is the best choice for most lists.
+* `SliverList.builder` is more flexible and is useful for building complex scrolling layouts.
+* Both widgets build list items only when they are needed, making them efficient for large lists.
 
 ## Talk about listviews in flutter, what is the difference between widgets and slivers.
 
@@ -71,9 +61,9 @@ They can be `StatelessWidget` or `StatefulWidget` depending on state management 
 
 ## Which widget allows us to refresh the screen?
 
-- The RefreshIndicator Widget enables us to refresh the screen. When the user pulls down on the
-  widget, the onRefresh callback is triggered, which typically involves fetching new data from a
-  server or updating the UI somehow
+* We use the `RefreshIndicator` widget to add pull-to-refresh functionality to a screen.
+* When the user pulls down on a scrollable widget, it triggers the `onRefresh` callback.
+* We can use this callback to fetch new data and update the UI.
 
 ## What is an AspectRatio widget used for?
 
@@ -350,10 +340,16 @@ nd). It synchronizes UI updates with the device’s refresh rate to ensure smoot
 animations.
 
 ## when should we use a resizeToAvoidBottomInset?
-- resizeToAvoidBottomInset is used to control whether the Scaffold should resize its body when the keyboard appears. By default, it is true, which helps keep input fields visible. I usually use it for forms and login screens. If I have a custom layout or want to manage keyboard behavior manually, I set it to false.  
+
+- resizeToAvoidBottomInset is used to control whether the Scaffold should resize its body when the
+  keyboard appears. By default, it is true, which helps keep input fields visible. I usually use it
+  for forms and login screens. If I have a custom layout or want to manage keyboard behavior
+  manually, I set it to false.
 
 ## What is TextEditingController?
-- TextEditingController is used to manage and control the text inside a TextField. It allows us to read, update, clear, and listen to text changes programmatically.
+
+- TextEditingController is used to manage and control the text inside a TextField. It allows us to
+  read, update, clear, and listen to text changes programmatically.
 
 ## What is the default axis for Column and Row widgets?
 
@@ -405,48 +401,56 @@ Flex(
 
 ## `didChangeDependencies()` vs `didUpdateWidget()`
 
-🔹 **`didChangeDependencies()`** → Called when **dependencies change** (like `Theme.of(context)`,
-`MediaQuery`, or `Provider`).  
-✅ Runs **after `initState()`** and when an **inherited widget updates**.
+- Both are lifecycle methods of a `StatefulWidget`.
+- We use them for different purposes.
 
-🔹 **`didUpdateWidget()`** → Called when **the parent widget passes new props** (like updated
-`counter` value).  
-✅ Runs when **the parent rebuilds with new data**.
+### `didChangeDependencies()`
 
-| Feature             | `didChangeDependencies()`         | `didUpdateWidget()`                     |
-|---------------------|-----------------------------------|-----------------------------------------|
-| **Triggered When?** | Theme, locale, provider changes   | Parent widget updates props             |
-| **Runs After?**     | `initState()` & dependency change | Parent `setState()` updates child props |
-| **Use Case?**       | Listen for external changes       | Handle new props from parent            |
+- We use `didChangeDependencies()` when an inherited dependency changes.
+- It is called after `initState()`.
+- It is called again if an `InheritedWidget` (such as `Theme`, `MediaQuery`, or `Localizations`)
+  changes.
+- It is useful for updating data that depends on inherited widgets.
 
-🚀 **Rule of Thumb:**
+### `didUpdateWidget()`
 
-- Use **`didChangeDependencies()`** for **theme, locale, provider changes**.
-- Use **`didUpdateWidget()`** when **parent widget updates child props**.
+- We use `didUpdateWidget()` when the parent rebuilds and passes new values to the widget.
+- It is called when the widget configuration changes but the same `State` object is reused.
+- It is useful for comparing old and new values and updating the state if needed.
 
 ## Difference between Rebuild and Repaint?
 
-- Rebuild: Creates widget tree again
-- Repaint: Only redraws pixels on screen
+- **Rebuild** means Flutter calls the `build()` method again to create the widget tree.
+- **Repaint** means Flutter redraws the UI on the screen without rebuilding the widget tree.
+
+- We rebuild when the widget's data or state changes.
+- We repaint when only the visual appearance changes, such as color, animation, or custom painting.
 
 ## What is CachedNetworkImage and why use it?
 
-CachedNetworkImage is a Flutter package that downloads and stores images in local cache
+- `CachedNetworkImage` is a package used to load and cache images from the internet.
+- It stores downloaded images in local storage.
+- The next time the same image is needed, it loads the image from the cache instead of downloading
+  it again.
+- This improves app performance and reduces internet usage.
+- It also provides placeholder and error widgets while loading images.
 
-🔹 Why we use it
-  - Avoids re-downloading images every time
-  - Loads images faster after first use
-  - Works offline (if already cached)
-  - Reduces network usage
+### Why do we use it?
 
-👉 Benefits: Faster image loading, Offline support, Better UX
+- To improve image loading speed.
+- To reduce network requests.
+- To save internet data.
+- To provide a better user experience with loading and error states.
 
-## What is Scroll Physics in Flutter?
+## What is Scroll Physics in Flutter and its types?
 
-Scroll Physics control the scrolling behavior and feel of scrollable widgets in Flutter.
+- Scroll Physics controls how a scrollable widget behaves while scrolling.
+- We use it to enable, disable, or customize scrolling behavior.
 
-- Controls scroll behavior and movement style. here is the Types:
-    - BouncingScrollPhysics: iOS-style bounce effect
-    - ClampingScrollPhysics: Android-style fixed scroll
-    - NeverScrollableScrollPhysics: disables scrolling
-    - AlwaysScrollableScrollPhysics: always allows scrolling
+### Types of Scroll Physics
+
+- `AlwaysScrollableScrollPhysics` – Allows scrolling even if the content does not fill the screen.
+- `NeverScrollableScrollPhysics` – Disables scrolling completely.
+- `BouncingScrollPhysics` – Adds a bounce effect at the edges (default on iOS).
+- `ClampingScrollPhysics` – Stops scrolling at the edges without a bounce effect (default on
+  Android).
