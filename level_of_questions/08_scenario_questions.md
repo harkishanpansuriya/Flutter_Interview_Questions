@@ -31,10 +31,20 @@
 - TODO
 
 ## How do you structure a Flutter project for scale (like 10+ devs)?
+
 - TODO
 
+## When would you choose StatelessWidget over StatefulWidget?
+
+- I always prefer StatelessWidget whenever possible because it's simpler, easier to test, and has
+  less overhead. I use StatefulWidget only when the UI needs to change based on user interaction or
+  dynamic data.
+
 ## what is repository pattern in flutter?
-The repository pattern in Flutter separates data access from business logic. Instead of widgets calling APIs directly, they use a repository that provides clean methods. This makes the app easier to test, maintain, and scale.
+
+The repository pattern in Flutter separates data access from business logic. Instead of widgets
+calling APIs directly, they use a repository that provides clean methods. This makes the app easier
+to test, maintain, and scale.
 
 ## How would you design a booking service system and manage slot selection in Flutter?
 
@@ -57,7 +67,9 @@ bookings using transactions to prevent double-booking. In Flutter, I would:
 - Use crash reporting tools like **Sentry** or **Firebase Crashlytics** to capture release crashes.
 
 ## Why does the flutter app take a very long developing time when we run it for the first time?
-- The first build is slow because Flutter needs to compile the app and create the APK/IPA using Gradle (Android) or Xcode (iOS). Later builds are faster because of caching and Hot Reload.
+
+- The first build is slow because Flutter needs to compile the app and create the APK/IPA using
+  Gradle (Android) or Xcode (iOS). Later builds are faster because of caching and Hot Reload.
 
 ## Caching mechanism in Flutter.
 
