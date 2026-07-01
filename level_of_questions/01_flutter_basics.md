@@ -1,23 +1,20 @@
-## When was Flutter first announced and by whom?​
+## When was Flutter first announced and by whom?
 
-- ​Flutter was first announced by ​​Google​​at the ​​Google ​​I/O conference in May 2017​​.​
-- The first​ ​stable release (Flutter 1.0) ​​came in​​ December​ ​2018​​.​
-- Google created Flutter to solve the problem of writing separate apps for Android and​
-  ​iOS.​
+- Flutter was first announced by Google at the Google I/O conference in May 2017.
+- The first stable release (Flutter 1.0) came in December 2018.
+- Google created Flutter to solve the problem of writing separate apps for Android and iOS.
 
 ## What is Flutter and why is it popular?
 
-- ​Flutter​​ is an​ ​open-source UI toolkit ​​from Google.​ I​t allows developers to create
-  ​​cross-platform apps​​(Android, iOS, Web, Desktop) with a​
-  ​single codebase​​.​
+- Flutter is an open-source UI toolkit from Google. It allows developers to create cross-platform
+  apps (Android, iOS, Web, Desktop) with a single codebase.
 
-**​Why is it popular?​**
+**Why is it popular?**
 
--
-    1. ​Fast development ​​with hot reload.​
-- ​2.​ ​Beautiful UI​​– built-in Material & Cupertino widgets.​
-- ​3.​ ​Single codebase ​​saves time & cost.​
-- ​4.​ ​High performance​​– runs using its own rendering engine.​
+1. **Fast development** with hot reload.
+2. **Beautiful UI** – built-in Material & Cupertino widgets.
+3. **Single codebase** saves time & cost.
+4. **High performance** – runs using its own rendering engine.
 
 #### Advantages of Flutter 🚀
 
@@ -49,7 +46,9 @@
 
 ## Which are the most popular apps that use Flutter?
 
-* NotebookLM · Google Pay · Google Earth · Google Ads · Google Classroom · YouTube Create · Google Cloud · Google One · Alibaba · BMW · Toyota · eBay Motors · Dream11 · Hamilton · Philips Hue · Reflectly
+* NotebookLM · Google Pay · Google Earth · Google Ads · Google Classroom · YouTube Create · Google
+  Cloud · Google One · Alibaba · BMW · Toyota · eBay Motors · Dream11 · Hamilton · Philips Hue ·
+  Reflectly
 
 ## What is Dart?
 
@@ -63,21 +62,25 @@ production.
 
 ## What is Flutter SDK?
 
-- The Flutter SDK is the complete toolkit for building Flutter apps. It includes the Dart SDK, rendering engine, widget libraries, and tools like DevTools and the CLI. For example, when I run flutter create, the SDK sets up everything I need to build and test an app. It matters because it simplifies cross-platform development by providing all tools in one package.
+The Flutter SDK is the complete toolkit for building Flutter apps. It includes the Dart SDK,
+rendering engine, widget libraries, and tools like DevTools and the CLI. For example, when I run
+`flutter create`, the SDK sets up everything I need to build and test an app. It matters because it
+simplifies cross-platform development by providing all tools in one package.
 
-## “Why is Flutter fast?”
+## Why is Flutter fast?
 
-“Because Flutter renders UI directly using the Skia engine instead of relying on native OEM widgets,
-which reduces bridge communication overhead.”
+Because Flutter renders UI directly using the Skia engine instead of relying on native OEM widgets,
+which reduces bridge communication overhead.
 
 ## What are Widgets in Flutter?
 
-In Flutter, everything you see on the screen is a Widget. Widgets are the basic building blocks of the user interface — they describe what the UI should look like and how it should behave. 
+In Flutter, everything you see on the screen is a Widget. Widgets are the basic building blocks of
+the user interface — they describe what the UI should look like and how it should behave.
 
 ## What is Flutter Inspector?
 
-Flutter Inspector is a tool that helps developers visualize and debug the widget tree. It’s useful for fixing layout issues, checking widget properties, and improving performance.
-
+Flutter Inspector is a tool that helps developers visualize and debug the widget tree. It’s useful
+for fixing layout issues, checking widget properties, and improving performance.
 
 #### Features of Flutter Inspector:
 
@@ -89,7 +92,10 @@ Flutter Inspector is a tool that helps developers visualize and debug the widget
 - Enable slow animations
 - Show/hide performance overlay
 
-Flutter Inspector is a debugging tool that lets you explore the widget tree visually. You can click on any widget in your app to see its properties, constraints, and layout. For example, if a button looks misaligned, the inspector shows which parent widget is causing the issue. It’s important because it makes debugging UI faster and more accurate.
+Flutter Inspector is a debugging tool that lets you explore the widget tree visually. You can click
+on any widget in your app to see its properties, constraints, and layout. For example, if a button
+looks misaligned, the inspector shows which parent widget is causing the issue. It’s important
+because it makes debugging UI faster and more accurate.
 
 ## Stateful vs Stateless Widget in Flutter & Lifecycle
 
@@ -99,7 +105,7 @@ Flutter Inspector is a debugging tool that lets you explore the widget tree visu
 - Rebuild: Only rebuilt when parent widget updates.
 - Use Cases: Static UI elements like Text, Icon, ElevatedButton
 
-in short, “A Stateless Widget is a widget whose UI depends only on the input data and does not
+In short, “A Stateless Widget is a widget whose UI depends only on the input data and does not
 change during its lifecycle.”
 
 #### Stateful Widget:
@@ -109,15 +115,17 @@ change during its lifecycle.”
 - State: Mutable (changes when `setState()` is called).
 - Use Cases: Dynamic UI like counters, forms, API data, animations.
 
-in short, A StatefulWidget is a widget that can change over time. It has a mutable state, so when something changes (like user input), the widget rebuilds to reflect that change.
+In short, A StatefulWidget is a widget that can change over time. It has a mutable state, so when
+something changes (like user input), the widget rebuilds to reflect that change.
 
 ### Stateless Widget Lifecycle in Flutter
+
 - build() → Called once when the widget is created.
 
 ### Stateful Widget Lifecycle in Flutter
 
-- **Definition:** The lifecycle defines the **sequence of methods** called when a StatefulWidget is
-  created, updated, and removed.
+**Definition:** The lifecycle defines the **sequence of methods** called when a StatefulWidget is
+created, updated, and removed.
 
 #### Lifecycle Methods
 
@@ -160,7 +168,7 @@ in short, A StatefulWidget is a widget that can change over time. It has a mutab
 Stateful widget lifecycle starts with creation, initializes data, builds UI, updates on changes, and
 finally cleans up resources when removed.
 
-## `pubspec.yaml` vs `pubspec.lock` in Flutter.
+## `pubspec.yaml` vs `pubspec.lock` in Flutter
 
 - `pubspec.yaml`
     - This is the project configuration file where you declare:
@@ -200,7 +208,7 @@ finally cleans up resources when removed.
 - **State**: Loses app state (everything resets), but **keeps the same Dart VM instance**.
 - **Does rerun**: `main()` and all initializers.
 - **Use case**: When you change global variables, initialization logic, or need a clean slate.
-- **Example**: Modifying `main()` or app‑level configuration requires hot restart.
+- **Example**: Modifying `main()` or app-level configuration requires hot restart.
 
 ---
 
@@ -228,29 +236,35 @@ finally cleans up resources when removed.
 
 ## Explain reactive programming in Flutter
 
-Answer: UI reacts to state changes automatically. Streams, ValueNotifier, or RxDart can notify
+**Answer:** UI reacts to state changes automatically. Streams, ValueNotifier, or RxDart can notify
 listeners when data changes, triggering UI rebuilds.
 
-In short, Reactive programming in Flutter means the UI automatically reacts to changes in data streams or state. For example, using StreamBuilder, a chat app updates instantly when new messages arrive. It matters because it makes apps more responsive, scalable, and easier to maintain.
+In short, Reactive programming in Flutter means the UI automatically reacts to changes in data
+streams or state. For example, using StreamBuilder, a chat app updates instantly when new messages
+arrive. It matters because it makes apps more responsive, scalable, and easier to maintain.
 
 ## `main()` vs `runApp()` in Flutter
 
 - `main()`
-    - the entry point of every dart program, including flutter apps.
+    - The entry point of every Dart program, including Flutter apps.
 
 - `runApp()`
-    - The runApp() function takes the provided widget and makes it the root of the widget tree.
-
+    - The `runApp()` function takes the provided widget and makes it the root of the widget tree.
 
 ## What is deep linking?
-- Deep linking means opening a **specific screen directly from URL**
+
+- Deep linking means opening a **specific screen directly from URL**.
 
 ## What is FFI (Foreign Function Interface)?
 
-- **Definition:** FFI is a way for Dart (Flutter) to call native code written in languages like C, C++, or Rust.  
-- **Purpose:** Lets Flutter reuse existing native libraries and perform performance-critical tasks.  
-- **Example:** Using a C library for fast image compression instead of writing it in Dart.  
-- **Why it matters:** Boosts performance and avoids rewriting complex logic.  
-  
+- **Definition:** FFI is a way for Dart (Flutter) to call native code written in languages like C,
+  C++, or Rust.
+- **Purpose:** Lets Flutter reuse existing native libraries and perform performance-critical tasks.
+- **Example:** Using a C library for fast image compression instead of writing it in Dart.
+- **Why it matters:** Boosts performance and avoids rewriting complex logic.
+
 ### Simple Interview Answer
-“FFI in Flutter is the Foreign Function Interface. It allows Dart code to call native C/C++ functions. For example, I can use FFI to connect Flutter with a native library for fast image compression. It matters because it improves performance and reuses native code.”
+
+“FFI in Flutter is the Foreign Function Interface. It allows Dart code to call native C/C++
+functions. For example, I can use FFI to connect Flutter with a native library for fast image
+compression. It matters because it improves performance and reuses native code.”
