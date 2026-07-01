@@ -21,6 +21,21 @@ Because Riverpod is not tied to the widget tree, business logic remains complete
 
 ---
 
+## What are the core components of Riverpod?
+
+The main components are:
+
+* **ProviderScope** → A widget that stores the state of all providers. It must wrap the entire app.
+* **Providers** → Global objects that encapsulate state (e.g., `Provider`, `StateProvider`, `FutureProvider`, `StreamProvider`, `NotifierProvider`).
+* **ConsumerWidget** → A replacement for `StatelessWidget` that provides access to `WidgetRef`.
+* **ConsumerStatefulWidget** → A replacement for `StatefulWidget` that provides access to `WidgetRef` across the lifecycle.
+* **WidgetRef** → An object used by widgets to interact with providers (watch, read, listen).
+* **ref.watch()** → Listens to a provider and rebuilds the widget when the state changes.
+* **ref.read()** → Accesses the state of a provider without listening (best for button clicks).
+* **ref.listen()** → Executes side effects (like navigation or showing a snackbar) when state changes.
+
+---
+
 ## How is Riverpod different from Provider?
 
 The biggest difference is that **Riverpod does not depend on `BuildContext`**, whereas Provider is built on top of Flutter's `InheritedWidget`.
