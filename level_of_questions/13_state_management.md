@@ -1,7 +1,3 @@
-## What are the core components of the Bloc architecture and also look for other state management?
-
-- TODO
-
 ## What is State & Why Use State Management Instead of `setState`?
 
 - **State:**
