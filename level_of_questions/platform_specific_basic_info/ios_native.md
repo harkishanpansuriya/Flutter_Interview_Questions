@@ -12,6 +12,25 @@
   orientations, and other app settings.
 - We also add permission usage descriptions, such as Camera, Location, and Microphone, in this file.
 
+## What is CocoaPods and the `Podfile`?
+
+- **CocoaPods** is the dependency manager for iOS projects (similar to `pub` for Dart).
+- The **`Podfile`** is where iOS-specific dependencies (pods) are defined.
+- When you add a Flutter plugin that has native iOS code, Flutter automatically adds it to the `Podfile`.
+- Running `pod install` creates the `Podfile.lock` to ensure version consistency.
+
+## `Runner.xcworkspace` vs `Runner.xcodeproj`
+
+- **`.xcodeproj`:** The core project file containing settings, targets, and file references.
+- **`.xcworkspace`:** A wrapper that can contain multiple projects and libraries.
+- In Flutter, **always open `.xcworkspace`** because it includes the CocoaPods dependencies. Opening the `.xcodeproj` will lead to build errors regarding missing libraries.
+
+## App Signing and Provisioning Profiles
+
+- **Bundle Identifier:** A unique string (e.g., `com.example.app`) that identifies the app in the App Store.
+- **Certificate:** A digital signature from Apple that verifies your identity as a developer.
+- **Provisioning Profile:** A file that links your developer certificate, devices, and Bundle ID together to allow the app to run on a physical device.
+
 ## Open Xcode from Android Studio
 
 - open ios/Runner.xcworkspace

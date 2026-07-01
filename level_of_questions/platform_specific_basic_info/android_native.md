@@ -11,6 +11,25 @@
 - We use it to declare app permissions, activities, services, receivers, and app metadata.
 - We also define the app name, icon, package name, and launch activity in this file.
 
+## What is `build.gradle`?
+
+Flutter Android projects have two `build.gradle` files:
+1. **Project-level (`android/build.gradle`):** Used for configuration that applies to all modules in the project (e.g., Gradle version, repository locations).
+2. **App-level (`android/app/build.gradle`):** Used to configure app-specific settings like `applicationId`, `minSdkVersion`, `targetSdkVersion`, `versionCode`, and dependencies.
+
+## What is ProGuard/R8 in Flutter?
+
+- **R8** (which replaced ProGuard) is a tool that shrinks, optimizes, and obfuscates your code.
+- **Shrinking:** Removes unused code and resources, reducing the APK size.
+- **Obfuscation:** Renames classes and members to short, cryptic names (e.g., `MainActivity` -> `a`), making it harder to reverse-engineer.
+- In Flutter, it is enabled by default for release builds.
+
+## What is a KeyStore?
+
+- A **KeyStore** is a binary file that contains one or more private keys used for signing the Android app.
+- Android requires all APKs to be digitally signed with a certificate before they can be installed or updated on a device.
+- In Flutter, you configure this in `key.properties` and reference it in the app-level `build.gradle`.
+
 ## Android Activity Lifecycle
 
 - The Android Activity Lifecycle defines the different states of an activity from creation to
