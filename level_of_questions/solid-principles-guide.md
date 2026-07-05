@@ -66,7 +66,7 @@ Each class has one reason to change → clean, testable, and maintainable.
 
 > **"Open for extension, closed for modification."**
 
-Software entities should be open for extension, but closed for modification.
+Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
 
 Example: Create abstract button styles. Add new styles without changing the main CustomButton widget.
 
