@@ -1,8 +1,6 @@
 ## Android folders in Flutter Project
 
-- **Android Folder:** Contains the entire Android project necessary for building a Flutter
-  application for the Android platform. It includes configurations, resources, and native code
-  components specific to Android.
+- The android/ folder contains all the Android-specific native code and configuration required to build and run the Flutter app on Android devices. It is mainly used to configure native settings such as app icons, app name, permissions, deep links, signing configuration, SDK versions, Gradle dependencies, and platform-specific features. When integrating native Android SDKs or Platform Channels, we also write Kotlin/Java code inside this folder.
 
 ## What is the Android Manifest file?
 
