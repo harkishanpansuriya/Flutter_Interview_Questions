@@ -1,38 +1,34 @@
 ## How do you manage responsive UI across 20+ device sizes?
 
-- TODO
+- I don't design for specific devices; I design for responsive layouts. I use MediaQuery or LayoutBuilder, Expanded and Flexible instead of fixed sizes, and packages like flutter_screenutil only when needed. I also test on phones, tablets, and different orientations to ensure the UI adapts properly.
 
 ## How do you structure a Flutter project for scale (10+ devs)?
 
-- TODO
+- I follow a feature-first architecture with Clean Architecture. Each feature has its own presentation, domain, and data layers. Shared code like networking, themes, and common widgets goes into a core module. This keeps features independent and allows multiple developers to work without conflicts.
 
 ## How do you keep code clean when 5 developers are working on the same screen?
 
-- TODO
+- I split the screen into reusable widgets, keep business logic separate using Bloc or Provider, follow coding standards, and create small pull requests. Code reviews, naming conventions, and reusable components help avoid conflicts.
 
 ## What’s your approach to feature flags or environment configs in Flutter?
 
-- TODO
+- I keep separate environments like Development, Staging, and Production using --dart-define or configuration files. Feature flags allow enabling or disabling features without changing the app code, making testing and gradual rollouts easier.
 
 ## What’s your real-world approach to offline-first design? (check duplicate within this file)
 
-- TODO
+- I store important data locally using Hive or SQLite. The app first reads local data for a fast experience, then syncs with the server when the internet is available. Any offline actions are queued and uploaded once the connection is restored.
 
 ## How do you handle Firebase Auth state across app restarts?
 
-- TODO
+- Firebase automatically persists the user's login state. On app startup, I listen to authStateChanges() or check FirebaseAuth.instance.currentUser to decide whether to show the login screen or the home screen.
 
 ## How do you ensure app security (code obfuscation, API keys, etc.)?
 
-- TODO
+- I always use HTTPS, store sensitive data in Flutter Secure Storage instead of SharedPreferences, keep API keys on the backend whenever possible, enable code obfuscation for release builds, and never expose secrets in the app.
 
 ## What’s your strategy when a plugin breaks after a Flutter upgrade?
 
-- TODO
-
-## How do you structure a Flutter project for scale (like 10+ devs)?
-
-- TODO
+- First, I check the plugin's GitHub issues and release notes. Then I update to a compatible version, review migration guides, and test thoroughly. If there's no fix yet, I either downgrade Flutter temporarily or replace the plugin with an alternative.
 
 ## When would you choose StatelessWidget over StatefulWidget?
 
