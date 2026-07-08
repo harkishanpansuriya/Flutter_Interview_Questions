@@ -34,6 +34,21 @@
 
 - TODO
 
+## If 10,000 users use your app at the same time, how would you handle it?
+
+Flutter can easily handle many users because each app runs on the user's own device. The main challenge is handling the **backend**, not Flutter itself.
+
+To support high traffic:
+Use a **scalable backend** with load balancing and auto-scaling.
+Implement **pagination** and **lazy loading** instead of loading all data at once.
+Cache data locally using **Hive**, **SQLite**, or API caching.
+Optimize API calls with **debouncing**, **throttling**, and request batching.
+Use **WebSockets/Firebase** only where real-time updates are required.
+Monitor performance using **Firebase Crashlytics** and **Performance Monitoring**.
+
+**Interview Tip:**  
+"Flutter is not the bottleneck. If 10,000 users are online, the backend architecture, database, caching, and API scalability are the key factors. Flutter should efficiently consume the APIs and avoid unnecessary network calls."
+
 ## When would you choose StatelessWidget over StatefulWidget?
 
 - I always prefer StatelessWidget whenever possible because it's simpler, easier to test, and has
