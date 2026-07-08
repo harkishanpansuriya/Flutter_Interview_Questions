@@ -2,6 +2,12 @@
 
 - TODO
 
+## How would you implement a payment flow (Razorpay/Stripe) with proper error handling?
+- TODO
+
+- ## Know about AI and open ai api and how to optimize tokens usage.
+- TODO
+
 ## How do you structure a Flutter project for scale (10+ devs)?
 
 - TODO
