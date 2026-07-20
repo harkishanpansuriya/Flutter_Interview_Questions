@@ -1,53 +1,47 @@
 ## What are the different ways to declare variables in Dart?
+
 - using var, dynamic, final, const, late and explicit types.
 
 ## What are the built-in data types available in Dart?
-- Dart provides built-in data types such as `int`, `double`, `String`, `bool`, `List`, `Set`, `Map`, `Runes`, `Symbol`, and `null` for storing and managing different kinds of data.
+
+- Dart provides built-in data types such as `int`, `double`, `String`, `bool`, `List`, `Set`, `Map`,
+  `Runes`, `Symbol`, and `null` for storing and managing different kinds of data.
 
 ## `as` vs `is` in Dart
+
 - "is" Operator:
-The is operator is used to check if an object is of a specific type. It returns a boolean value (true or false).
-if (x is String) { print('x is a String'); }
+  The is operator is used to check if an object is of a specific type. It returns a boolean value (
+  true or false).
+  if (x is String) { print('x is a String'); }
 
 - "as" Operator:
-The as operator is used to cast an object to a specific type. It throws an exception if the object is not of the specified type.
-dynamic y = 'Hello, Dart!'; 
-String str = y as String;
+  The as operator is used to cast an object to a specific type. It throws an exception if the object
+  is not of the specified type.
+  dynamic y = 'Hello, Dart!';
+  String str = y as String;
 
 ## `var` vs `dynamic` vs `final` in Dart
 
-- dynamic: 
-  - can change TYPE of the variable, & can change VALUE of the variable later in code.
-- var: 
-  - Dart automatically determines the type when the variable is first assigned.
-  - can't change TYPE of the variable, but can change VALUE of the variable later in code.
-- final: 
-  - final is used for variables whose value is assigned once and cannot be reassigned afterward.
-  - can't change TYPE of the variable, & can't change VALUE of the variable later in code.
-
-```dart
-dynamic v = 123;   // v is of type int.
-v = 456;           // changing value of v from 123 to 456.
-v = 'abc';         // changing type of v from int to String.
-
-var v = 123;       // v is of type int.
-v = 456;           // changing value of v from 123 to 456.
-v = 'abc';         // ERROR: can't change type of v from int to String.
-
-final v = 123;       // v is of type int.
-v = 456;           // ERROR: can't change value of v from 123 to 456.
-v = 'abc';         // ERROR: can't change type of v from int to String.
-```
+- dynamic:
+    - can change TYPE of the variable, & can change VALUE of the variable later in code.
+- var:
+    - Dart automatically determines the type when the variable is first assigned.
+    - can't change TYPE of the variable, but can change VALUE of the variable later in code.
+- final:
+    - final is used for variables whose value is assigned once and cannot be reassigned afterward.
+    - can't change TYPE of the variable, & can't change VALUE of the variable later in code.
 
 ## Queue in Dart
 
-- **Definition:** A `Queue` is a collection that follows the **FIFO (First In, First Out)** principle.
+- **Definition:** A `Queue` is a collection that follows the **FIFO (First In, First Out)**
+  principle.
 - Elements are added at the **end** and removed from the **front**.
 - It is available in `dart:collection`.
 
 ---
 
 ### 📌 When to use
+
 - When you need to process items in **order**
 - Task scheduling (e.g., handling API calls one by one)
 - Buffering data or events
@@ -71,7 +65,8 @@ void main() {
   print(queue.removeFirst()); // 2
 ```
 
-In short, a Queue in Dart is used to process data in order (FIFO), where elements are added at the end and removed from the front.
+In short, a Queue in Dart is used to process data in order (FIFO), where elements are added at the
+end and removed from the front.
 
 ## Dart – Standard Input and Output
 
@@ -119,13 +114,35 @@ void main() {
 }
 ```
 
+## What is null safety in dart and why it was introduced?
+
+- Null Safety is a Dart feature that catches null-related errors at compile time. By default,
+  variables cannot be null unless we use ? to make them nullable.
+- It was introduced to prevent null reference errors, make code safer, and reduce app crashes.
+
+## difference between ?, !, late, ??, ??= in Dart
+
+- ? makes a variable nullable.
+- ! tells Dart the value is definitely not null.
+- late lets us initialize a non-nullable variable later before using it.
+- ?? provides a default value when the variable is null.
+- ??= assigns a value only if the variable is null.
+
+## when would you use late keyword in a real flutter screen?
+
+- I use late when a variable can't be initialized immediately but will definitely be initialized
+  before it's used. For example, I use it for TextEditingController, AnimationController, or
+  ScrollController because they are usually initialized in initState().
+
 ## How do you handle null safety in Dart?
 
 - In Dart, null safety is handled by using non-nullable types by default, adding ? for nullable
   types, and using the ! operator to assert non-null values. You also use null-aware operators
   like ?., ??, and ??= to safely work with nullable variables.
 
-In short, Dart handles null safety by making variables non-nullable by default. If needed, we mark them with ?. We use operators like ?. (null-aware access), ?? (default value), ??= (assign if null), and ! (null assertion) to safely work with nullable variables.  
+In short, Dart handles null safety by making variables non-nullable by default. If needed, we mark
+them with ?. We use operators like ?. (null-aware access), ?? (default value), ??= (assign if null),
+and ! (null assertion) to safely work with nullable variables.
 
 ## What is Generic in Dart?
 
@@ -136,7 +153,7 @@ multiple data types, while still providing type safety.
 class Dropdown<T> {
   final List<T> items;
 
-  Dropdown(this.items);   
+  Dropdown(this.items);
 }
 
 // Using the generic class
@@ -171,23 +188,27 @@ safety and reusability.
 
 ### 🔑 Key Differences
 
-- `AOT` → Compiled before run, fast performance, used in release  
-- `JIT` → Compiled during run, supports hot reload, used in debug  
+- `AOT` → Compiled before run, fast performance, used in release
+- `JIT` → Compiled during run, supports hot reload, used in debug
 
 ---
 
 ### 🎯 In short
-AOT is used for production with high performance, while JIT is used during development for fast coding and hot reload.
+
+AOT is used for production with high performance, while JIT is used during development for fast
+coding and hot reload.
 
 ## Interface in Dart
 
-- **Definition:** In Dart, an interface is a **class used as a contract** that defines what methods a class must implement.
+- **Definition:** In Dart, an interface is a **class used as a contract** that defines what methods
+  a class must implement.
 - Dart does not have a separate `interface` keyword.
 - Every class in Dart can act as an **interface**.
 
 ---
 
 ### 📌 How to use
+
 - Use the `implements` keyword to implement an interface.
 - The class must **override all methods and properties**.
 
@@ -210,7 +231,8 @@ class Dog implements Animal {
 
 ## What is an Extension?
 
-In Flutter extensions allowed to you to **add new functionality to existing class without modified their original implementation**.
+In Flutter extensions allowed to you to **add new functionality to existing class without modified
+their original implementation**.
 
 **Example:**
 
@@ -222,6 +244,7 @@ extension StringExtension on String {
 void main() {
   print('hello'.capitalizeFirst); // Output: Hello
 }
+```
 
 ## What is a List?
 
@@ -245,44 +268,51 @@ void main() {
 
 ## What is `internal` in Dart?
 
-- Dart does not have an internal keyword. 
-- Instead, Dart uses library-level privacy using _ (underscore) to restrict access within a file (library).
+- Dart does not have an internal keyword.
+- Instead, Dart uses library-level privacy using _ (underscore) to restrict access within a file (
+  library).
 
 ## `extends` vs `implements` vs `with` in Dart
 
 - `extends (Inheritance)`:
-  - **Definition:** `extends` is used to create a child class that inherits properties and methods from a parent class.
-  - It allows code reuse, as the child class gets all the features of the parent class.
-  - The child class can override methods to provide its own implementation.
+- **Definition:** `extends` is used to create a child class that inherits properties and methods
+  from a parent class.
+- It allows code reuse, as the child class gets all the features of the parent class.
+- The child class can override methods to provide its own implementation.
 
-  In short, `extends` is used for inheritance, allowing a child class to reuse and override properties and methods of a parent class.
+In short, `extends` is used for inheritance, allowing a child class to reuse and override properties
+and methods of a parent class.
 
 ---
 
 - `implements (Contract)`:
-  - **Definition:** `implements` is used when a class needs to follow the structure (contract) of another class.
-  - It does not inherit any implementation from the parent class.
-  - The class must provide its own implementation for all methods and properties.
+- **Definition:** `implements` is used when a class needs to follow the structure (contract) of
+  another class.
+- It does not inherit any implementation from the parent class.
+- The class must provide its own implementation for all methods and properties.
 
-  In short, `implements` ensures that a class follows a contract by defining all required methods without inheriting code.
+In short, `implements` ensures that a class follows a contract by defining all required methods
+without inheriting code.
 
 ---
 
 - `with (Mixins)`:
-  - **Definition:** `with` is used to apply mixins to a class for code reuse.
-  - It allows a class to use methods and properties from multiple mixins.
-  - It helps in adding additional functionality without using inheritance.
+- **Definition:** `with` is used to apply mixins to a class for code reuse.
+- It allows a class to use methods and properties from multiple mixins.
+- It helps in adding additional functionality without using inheritance.
 
-  In short, `with` is used to reuse code and add extra features to a class using mixins.
+In short, `with` is used to reuse code and add extra features to a class using mixins.
 
 ## Is `main()` Static or Dynamic?
 
 - **Answer:** `main()` behaves like a **static function** in Dart.
-- **Reason:** It is the **entry point** of a Dart program and is called by the Dart runtime to start execution.
+- **Reason:** It is the **entry point** of a Dart program and is called by the Dart runtime to start
+  execution.
 - It does not require an object or class instance to run.
 
 ---
-In short, `main()` is not explicitly marked as static, but it behaves like a static function because it runs without needing an object.
+In short, `main()` is not explicitly marked as static, but it behaves like a static function because
+it runs without needing an object.
 
 ---
 
@@ -372,8 +402,8 @@ class Logger {
 
 ## One-line (Interview Ready)
 
-> A constructor is used to initialize objects in Dart, and types include default, parameterized, named, constant, and factory constructors.
-
+> A constructor is used to initialize objects in Dart, and types include default, parameterized,
+> named, constant, and factory constructors.
 
 ## What is `fromJson` and `toJson`?
 
@@ -412,7 +442,7 @@ void main() {
 }
 ```
 
-##  Override vs Overloading in Dart
+## Override vs Overloading in Dart
 
 ### **✅ Override**
 
@@ -483,9 +513,11 @@ class Dog extends Animal {
 
 ## What is a Typedef in Dart?
 
-- A `typedef` in Dart is used to create a **custom name (alias)** for a function type. 
-- **Purpose:** Makes code more readable and easier to maintain when working with complex function signatures.    
-- This can be super useful when you’re dealing with complex function signatures or when you want to make your code more expressive.
+- A `typedef` in Dart is used to create a **custom name (alias)** for a function type.
+- **Purpose:** Makes code more readable and easier to maintain when working with complex function
+  signatures.
+- This can be super useful when you’re dealing with complex function signatures or when you want to
+  make your code more expressive.
 
 ### Example
 
@@ -505,7 +537,9 @@ method.
 
 ## What are Anonymous Functions?
 
-- Anonymous functions (also called lambdas or closures) are functions in Dart that do not have a name. Since Dart treats functions as first-class objects, they can be assigned to variables, passed as arguments, or returned from other functions.
+- Anonymous functions (also called lambdas or closures) are functions in Dart that do not have a
+  name. Since Dart treats functions as first-class objects, they can be assigned to variables,
+  passed as arguments, or returned from other functions.
 
 ### Example
 
@@ -526,7 +560,9 @@ right where it's needed.
 
 ## Constant Constructor in Dart
 
-- A constant constructor in Dart allows you to create compile-time constant objects, meaning the object's value is determined at compile time rather than at runtime. This improves performance and memory usage by reusing instances when possible.
+- A constant constructor in Dart allows you to create compile-time constant objects, meaning the
+  object's value is determined at compile time rather than at runtime. This improves performance and
+  memory usage by reusing instances when possible.
 
 ## Sealed Class
 
@@ -534,19 +570,27 @@ right where it's needed.
 - All subclasses must be defined within the same library or file.
 - Sealed classes are implicitly abstract, so they cannot be instantiated directly.
 
-A sealed class restricts inheritance to a fixed set of subclasses, which must be declared in the same file.
+A sealed class restricts inheritance to a fixed set of subclasses, which must be declared in the
+same file.
 
 ## Immutable vs Mutable Class
 
-- **Immutable Class:** 
-  - An immutable class is a class whose objects cannot be changed after creation.
-  - Once created → data stays the same
-  - All fields are final, no setters, value set only via constructor.
-- **Mutable Class:** 
-  - A mutable class allows its object data to change after creation
-  - Fields are not final, Has setters or direct modification.
+- **Immutable Class:**
+    - An immutable class is a class whose objects cannot be changed after creation.
+    - Once created → data stays the same
+    - All fields are final, no setters, value set only via constructor.
+- **Mutable Class:**
+    - A mutable class allows its object data to change after creation
+    - Fields are not final, Has setters or direct modification.
 
-Immutable classes cannot be modified after creation, while mutable classes allow changes to their data after the object is created.
+Immutable classes cannot be modified after creation, while mutable classes allow changes to their
+data after the object is created.
+
+## what is the difference between == and identical in dart?
+
+- == checks whether two objects are equal in value. It can be overridden to provide custom equality.
+  identical() checks whether two variables refer to the exact same object in memory and cannot be
+  overridden.
 
 ## What is an Event Loop?
 
@@ -597,6 +641,19 @@ behavior.
 - **Abstract Class**: Use when you want to define a common interface for other classes to follow,
   but you don’t want the abstract class to be instantiated.
 
+## what is difference between extend and implement in dart?
+
+- extend keyword is used to inherit and reuse the implementation of a parent class. implements is
+  used to
+  follow a class's contract, but it doesn't inherit any implementation. When using implements, we
+  must override all the methods and properties defined by that class.
+
+## when would you choose a mixin instead of an abstract class?
+
+- I choose a Mixin when I want to share common behavior across multiple classes, such as logging,
+  analytics, or validation. I choose an Abstract Class when I want to define a common contract or
+  blueprint that all subclasses must follow.
+
 ## What are they ??, ??=, ?., …? in Dart?
 
 - ?? (Null Coalescing Operator): Returns a default value if the left-hand expression is null.
@@ -629,19 +686,22 @@ behavior.
     - Used for declaring variables with implicit type inference.
     - Allows the variable's value to change.
 
-in short, var is used when Dart automatically detects the type from the assigned value. The type becomes fixed after assignment, but the value can change.
+in short, var is used when Dart automatically detects the type from the assigned value. The type
+becomes fixed after assignment, but the value can change.
 
 - **`final`:**
     - Used for declaring variables whose value can be set only once.
     - Typically initialized at runtime and cannot change thereafter.
 
-In Short, final is used for variables whose value is assigned only once at runtime and cannot be changed afterward.
+In Short, final is used for variables whose value is assigned only once at runtime and cannot be
+changed afterward.
 
 - **`const`:**
     - Used for declaring compile-time constants whose value is known at compile time.
     - Requires the type to be explicitly specified and remains constant throughout the program.
 
-In Short, const is used for compile-time constants, where the value is known and fixed before runtime. The object becomes deeply immutable.
+In Short, const is used for compile-time constants, where the value is known and fixed before
+runtime. The object becomes deeply immutable.
 
 ## Built-in Libraries in Dart
 
@@ -672,50 +732,17 @@ In Short, const is used for compile-time constants, where the value is known and
     - Dart's automatic memory management system ensures efficient memory usage across different
       platforms without requiring manual intervention.
 
-## Difference Between Set and List in Dart
+## Difference Between Set vs List vs Map in Dart
 
-#### **List**
-
-- **Definition:** A `List` is an ordered collection of elements.
-- **Features:**
-  - Allows **duplicate values**
-  - Maintains **insertion order**
-  - Access elements using **index**
-
----
-
-#### **Set**
-
-- **Definition:** A `Set` is an unordered collection of unique elements.
-- **Features:**
-  - Does **not allow duplicates**
-  - Does not guarantee order
-  - No index-based access
-
----
-
-#### **Key Differences**
-
-- `List` → Ordered collection, allows duplicates
-- `Set` → Unordered collection, only unique values
-
----
-
-### 📌 Example
-
-```dart
-void main() {
-  List<int> list = [1, 2, 2, 3];
-  Set<int> set = {1, 2, 2, 3};
-
-  print(list); // [1, 2, 2, 3]
-  print(set);  // {1, 2, 3}
-}
-```
+- A List stores an ordered collection of items and allows duplicates. A Set stores only unique
+  values and automatically removes duplicates. A Map stores data as key-value pairs, where each key
+  is unique and is used to access its value.
 
 ## What is copyWith?
+
 - Create a new object by copying existing values while updating specific properties.
-- In simple terms, instead of modifying the original object, we create a new object with updated fields. This keeps data safe and predictable.
+- In simple terms, instead of modifying the original object, we create a new object with updated
+  fields. This keeps data safe and predictable.
 
 So copyWith helps us update only what is needed while keeping the rest same.
 
@@ -732,14 +759,16 @@ So copyWith helps us update only what is needed while keeping the rest same.
 
 ## Fat Arrow Notation in Dart
 
-- In Dart, the fat arrow (`=>`) is a shorthand syntax used to write functions that contain only a single expression.
+- In Dart, the fat arrow (`=>`) is a shorthand syntax used to write functions that contain only a
+  single expression.
 - It automatically returns the result of that expression.
 - No need to use the return keyword.
 
 ## 18. Method vs Function in Dart
 
 - Method:
-    - A method is a function that is defined inside a class and is associated with an object. It represents the behavior of that object.
+    - A method is a function that is defined inside a class and is associated with an object. It
+      represents the behavior of that object.
 
 - Function:
     - A function is a top-level function which is declared outside of a class or an inline function
@@ -853,12 +882,14 @@ void main() {
 
 ## Implicit Interface in Dart
 
-- **Definition:** In Dart, every class automatically acts as an **interface**, even if it is not explicitly declared.
+- **Definition:** In Dart, every class automatically acts as an **interface**, even if it is not
+  explicitly declared.
 - This is called an **implicit interface**.
 
 ---
 
 ### 📌 How it works
+
 - Any class can be used as an interface using the `implements` keyword.
 - The implementing class must **override all methods and properties**.
 
@@ -881,13 +912,15 @@ class Dog implements Animal {
 }
 ```
 
-In short, In Dart, every class is an implicit interface, meaning it can be implemented by other classes using the implements keyword.
+In short, In Dart, every class is an implicit interface, meaning it can be implemented by other
+classes using the implements keyword.
 
 ## `assert` in Dart
 
-- **Definition:** `assert` is used to **check a condition during development** and throw an error if the condition is false.
+- **Definition:** `assert` is used to **check a condition during development** and throw an error if
+  the condition is false.
 - It is mainly used for **debugging and testing assumptions** in code.
-- If the condition is true → nothing happens  
+- If the condition is true → nothing happens
 - If the condition is false → program throws an **AssertionError**
 
 ---
@@ -902,21 +935,26 @@ void main() {
 }
 ```
 
-In short, assert is used to validate conditions during development. If the condition is false, it throws an AssertionError, helping developers catch bugs early.
+In short, assert is used to validate conditions during development. If the condition is false, it
+throws an AssertionError, helping developers catch bugs early.
 
 ### 28. **📌 Why Mixins in Dart?**
 
-- Mixins in Dart are used to reuse code across multiple classes without using inheritance. They allow you to share common behavior between classes even when they are not in the same class hierarchy.
+- Mixins in Dart are used to reuse code across multiple classes without using inheritance. They
+  allow you to share common behavior between classes even when they are not in the same class
+  hierarchy.
 
 🔹 Why we use Mixins
-  - Dart does not support multiple inheritance
-  - Mixins help reuse functionality in multiple classes
-  - Avoids creating deep or complex inheritance chains
-  - Promotes clean and modular code
+
+- Dart does not support multiple inheritance
+- Mixins help reuse functionality in multiple classes
+- Avoids creating deep or complex inheritance chains
+- Promotes clean and modular code
 
 ---
 
 ### **📌 Mixin Example Using `on`**
+
 The on keyword restricts a mixin to be used only with a specific class type.
 
 ```dart
@@ -945,6 +983,7 @@ void main() {
 ---
 
 ### **📌 Mixin Example Using `with`**
+
 The with keyword is used to apply a mixin to a class.
 
 ```dart

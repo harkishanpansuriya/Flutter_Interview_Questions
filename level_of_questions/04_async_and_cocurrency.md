@@ -31,13 +31,52 @@ Key Takeaway,
   manually creating and managing an isolate, we just use compute, and it handles everything
   internally.
 
+## What's the difference between compute() and Isolate.spawn()?
+
+- compute() is a Flutter helper that executes a single function in a background isolate, returns the
+  result, and automatically terminates the isolate. It's ideal for one-time CPU-intensive tasks like
+  JSON parsing.
+- Isolate.spawn() is a low-level Dart API that creates an independent isolate. It stays alive until
+  you terminate it and requires manual communication using SendPort and ReceivePort, making it
+  suitable for long-running background workers and ongoing two-way communication.
+
+## How does Isolate.spawn() close?
+
+- Isolate.spawn() does not automatically terminate if it's designed to keep running. It stays alive
+  until its entry function finishes or until we explicitly stop it using isolate.kill(). If we're
+  using ReceivePort, we should also call receivePort.close() to clean up resources.
+
 ## `async`, `await`, `.then()`, `.whenComplete()` and `Future` in Dart
 
 - **`async`:** Keyword used to mark a function as asynchronous, Allows use of await inside it.
 - **`await`:** Waits for a Future to complete and Pauses execution until result comes.
 - **`.then((value) { ... })`:** Handles result of a Future using callback and Alternative to await.
 - **`.whenComplete(() { ... })`:** this code runs after future completes (success or error).
-- **`Future`:** Represents a value that will be available later and Used for async operations like API calls, file reading.
+- **`Future`:** Represents a value that will be available later and Used for async operations like
+  API calls, file reading.
+
+## Future.wait vs Future.any in Dart
+
+- Future.wait runs multiple asynchronous operations at the same time and waits until all of them are
+  complete. It returns a list of results in the same order as the futures.
+- Future.any runs multiple asynchronous operations at the same time and returns the result of the
+  first future that completes. It does not wait for the remaining futures.
+
+> Future.wait waits for all futures to complete and returns a list of results. Future.any returns
+> the result of the first future that completes and doesn't wait for the others.
+
+## why use future.wait instead of calling api one by one?
+
+- I use Future.wait when multiple API calls are independent. It runs them in parallel instead of one
+  by one, which reduces the total loading time and improves performance. If one API depends on
+  another, I use sequential await calls instead.
+
+## Difference between Future.sync, Future.value, and Future.microtask
+
+- Future.value is used when I already have the result and want to return it as a Future.
+- Future.sync executes a function immediately and wraps its result or exception in a Future.
+- Future.microtask schedules a task in the microtask queue, so it runs before normal event queue
+  tasks.
 
 ## Difference between `async` and `async*` in Dart
 
@@ -97,6 +136,7 @@ return a single value and end the function.
 #### **Stream**
 
 - **Definition:** A `Stream` delivers a sequence of values (events) over time.
+- stream is for multiple values over time.
 - **Purpose:** Used for real-time or continuous data (e.g., chat messages, live updates).
 - **Types:**
     - **Single-subscription:** Supports only one listener.
@@ -107,6 +147,7 @@ return a single value and end the function.
 #### **Future**
 
 - **Definition:** A `Future` represents a single value that will be available in the future.
+- future is for single async result.
 - **Purpose:** Used for one-time asynchronous operations (e.g., API calls, file loading).
 - **Features:**
     - `Future.value()` → returns a predefined value
@@ -126,15 +167,27 @@ return a single value and end the function.
 In short, `Stream` is used for handling continuous data or events, while `Future` is used for a
 single asynchronous result.
 
+## how would you handle a stream in widget? how would you manage subscription or disposal if it's not using streambuilder.
+
+- If I only need to display stream data in the UI, I prefer using StreamBuilder because it
+  automatically listens to the stream and handles rebuilding the widget.
+- If I'm not using StreamBuilder, I listen to the stream using a StreamSubscription in initState().
+  Whenever new data arrives, I update the UI using setState() or my state management solution.
+  Finally, I cancel the subscription in dispose() to avoid memory leaks.
+
 ## Differences between streams and sockets in Flutter?
 
-- A Socket is a network connection between a client and a server that enables real-time, two-way communication. It allows the server to push data to the client without continuous polling, making it useful for live features like chat, notifications, and tracking systems.
+- A Socket is a network connection between a client and a server that enables real-time, two-way
+  communication. It allows the server to push data to the client without continuous polling, making
+  it useful for live features like chat, notifications, and tracking systems.
 
-- A Stream is a way to receive continuous data over time inside the app. It is used to handle a sequence of events such as user input, UI updates, or data coming from APIs or sockets.
+- A Stream is a way to receive continuous data over time inside the app. It is used to handle a
+  sequence of events such as user input, UI updates, or data coming from APIs or sockets.
 
 One-line Interview Answer,
 
-Stream is used to handle continuous data inside the app, while sockets are used for real-time two-way communication between client and server over the network.
+Stream is used to handle continuous data inside the app, while sockets are used for real-time
+two-way communication between client and server over the network.
 
 ## `Future` vs `Future.microtask` in Flutter**
 
@@ -180,7 +233,8 @@ void main() {
 - FutureOr = maybe async, maybe sync
 - FutureOr<T> means the function can return either a value of type T or a Future<T>.
 
-FutureOr in Dart allows a function to return either a direct value or a Future of that value, making the function flexible for both synchronous and asynchronous results.
+FutureOr in Dart allows a function to return either a direct value or a Future of that value, making
+the function flexible for both synchronous and asynchronous results.
 
 #### Example:
 
@@ -244,23 +298,35 @@ void fetchDataWithCompleter(Completer<int> completer) {
     completer.complete(84);
   });
 }
+```
 
-## What is an Instance ?
-- An instance is an object created from a class. used to access the class properties and methods.
+## What is an Instance?
 
-**Each instance is independent with its own data.**
+* An **instance** is an **object** created from a **class**.
+* It is used to access the **class properties** and **methods**.
+* **Each instance is independent and has its own data.**
 
-## Future.wait in Dart
+---
 
-- Future.wait in Dart is a way to run multiple asynchronous operations at the same time and wait
-  until all of them are complete.
-- **Why use**: Future.wait is useful when you need to perform multiple asynchronous operations and
-  proceed only when all of them are complete.
-    - **For example**: Loading data from multiple sources (e.g.,
-      network requests, file reads) before displaying it.
-    - Performing multiple database operations.
-- **Output**: It returns a list of results in the same order as the futures.
-- If any future completes with an error, then the returned future completes with that error. If
+# Future.wait in Dart
+
+* `Future.wait` in Dart is a way to run **multiple asynchronous operations** at the same time and
+  wait until **all of them are complete**.
+
+### Why use `Future.wait`?
+
+* `Future.wait` is useful when you need to perform multiple asynchronous operations and proceed only
+  when **all of them are complete**.
+
+### For example:
+
+* Loading data from multiple sources (e.g., network requests, file reads) before displaying it.
+* Performing multiple database operations.
+
+### Output
+
+* It returns a **list of results** in the same order as the futures.
+* If **any future** completes with an error, the returned future also completes with that error. If
   further futures also complete with errors, those errors are discarded.
 
 ### Example
@@ -289,27 +355,66 @@ Future<void> fetchData() async {
 Dart uses a single-threaded event loop to handle asynchronous operations without blocking execution.
 
 It manages two main queues:
+
 - Microtask Queue (high priority)
 - Event Queue (normal async tasks)
 
-## What is the difference between Microtask and Event Queue?
+## What is the difference between Microtask queue and Event Queue?
 
-Microtask Queue:
-Runs immediately after synchronous code
-Higher priority
-Example: Future.microtask()
+### Microtask Queue
 
-Event Queue:
-Runs after microtasks
-Used for normal async work
+* Runs **immediately after the current synchronous code**.
+* All microtasks are completed **before** Dart processes the event queue.
 
-👉 Example:
-Microtask always runs BEFORE Future
+### Examples
 
-Microtasks run before the event queue because they have higher priority in the Dart event loop, which ensures critical async tasks are handled first.
+* `Future.microtask()`
+* `scheduleMicrotask()`
 
-## What is Isolate in Flutter?
-In Flutter, an Isolate is a separate thread of execution with its own memory and event loop, used to run heavy tasks without blocking the main UI thread.
+``` 
+Future.microtask(() {
+print("Microtask");
+});
+```
+
+### Event Queue
+
+* Handles normal asynchronous events.
+* Runs only after the microtask queue is empty.
+
+### Examples
+
+* `Future()`
+* `Future.delayed()`
+* `Timer`
+* API calls
+* User input
+
+``` 
+Future(() {
+print("Event");
+});
+```
+
+### Easy answer
+
+> **"The Microtask Queue has higher priority than the Event Queue. After the current synchronous
+code finishes, Dart executes all microtasks first, and only then processes the event queue.
+Microtasks are used for immediate asynchronous work, while the event queue handles timers, I/O, API
+calls, and user events."**
+
+### Easy way to remember
+
+* **Microtask Queue** → **Higher priority, runs first.**
+* **Event Queue** → **Lower priority, runs after all microtasks.**
+
+## What is Isolate in dart and how it different from async await?
+
+- In Flutter, an Isolate is a separate thread of execution with its own memory and event loop, used
+  to run heavy tasks without blocking the main UI thread.
+- async/await is used for asynchronous operations like API calls, file reading, or database access.
+  It doesn't create a new thread; it simply waits for the operation to complete without blocking the
+  UI.
 
 👉 Examples:
 
@@ -382,4 +487,5 @@ Break tasks into chunks
 Use async properly
 
 ## Why does UI freeze even in async code?
+
 - Because async does NOT mean parallel execution in Dart — it only schedules work in event loop.

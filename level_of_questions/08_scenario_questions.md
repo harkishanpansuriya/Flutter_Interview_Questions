@@ -1,8 +1,12 @@
 ## How do you manage responsive UI across 20+ device sizes?
 
-- I don't design for specific devices; I design for responsive layouts. I use MediaQuery or LayoutBuilder, Expanded and Flexible instead of fixed sizes, and packages like flutter_screenutil only when needed. I also test on phones, tablets, and different orientations to ensure the UI adapts properly.
+- I don't design for specific devices; I design for responsive layouts. I use MediaQuery or
+  LayoutBuilder, Expanded and Flexible instead of fixed sizes, and packages like flutter_screenutil
+  only when needed. I also test on phones, tablets, and different orientations to ensure the UI
+  adapts properly.
 
 ## How would you implement a payment flow (Razorpay/Stripe) with proper error handling?
+
 - TODO
 
 - ## Know about AI and open ai api and how to optimize tokens usage.
@@ -10,35 +14,51 @@
 
 ## How do you structure a Flutter project for scale (10+ devs)?
 
-- I follow a feature-first architecture with Clean Architecture. Each feature has its own presentation, domain, and data layers. Shared code like networking, themes, and common widgets goes into a core module. This keeps features independent and allows multiple developers to work without conflicts.
+- I follow a feature-first architecture with Clean Architecture. Each feature has its own
+  presentation, domain, and data layers. Shared code like networking, themes, and common widgets
+  goes into a core module. This keeps features independent and allows multiple developers to work
+  without conflicts.
 
 ## How do you keep code clean when 5 developers are working on the same screen?
 
-- I split the screen into reusable widgets, keep business logic separate using Bloc or Provider, follow coding standards, and create small pull requests. Code reviews, naming conventions, and reusable components help avoid conflicts.
+- I split the screen into reusable widgets, keep business logic separate using Bloc or Provider,
+  follow coding standards, and create small pull requests. Code reviews, naming conventions, and
+  reusable components help avoid conflicts.
 
 ## What’s your approach to feature flags or environment configs in Flutter?
 
-- I keep separate environments like Development, Staging, and Production using --dart-define or configuration files. Feature flags allow enabling or disabling features without changing the app code, making testing and gradual rollouts easier.
+- I keep separate environments like Development, Staging, and Production using --dart-define or
+  configuration files. Feature flags allow enabling or disabling features without changing the app
+  code, making testing and gradual rollouts easier.
 
 ## What’s your real-world approach to offline-first design? (check duplicate within this file)
 
-- I store important data locally using Hive or SQLite. The app first reads local data for a fast experience, then syncs with the server when the internet is available. Any offline actions are queued and uploaded once the connection is restored.
+- I store important data locally using Hive or SQLite. The app first reads local data for a fast
+  experience, then syncs with the server when the internet is available. Any offline actions are
+  queued and uploaded once the connection is restored.
 
 ## How do you handle Firebase Auth state across app restarts?
 
-- Firebase automatically persists the user's login state. On app startup, I listen to authStateChanges() or check FirebaseAuth.instance.currentUser to decide whether to show the login screen or the home screen.
+- Firebase automatically persists the user's login state. On app startup, I listen to
+  authStateChanges() or check FirebaseAuth.instance.currentUser to decide whether to show the login
+  screen or the home screen.
 
 ## How do you ensure app security (code obfuscation, API keys, etc.)?
 
-- I always use HTTPS, store sensitive data in Flutter Secure Storage instead of SharedPreferences, keep API keys on the backend whenever possible, enable code obfuscation for release builds, and never expose secrets in the app.
+- I always use HTTPS, store sensitive data in Flutter Secure Storage instead of SharedPreferences,
+  keep API keys on the backend whenever possible, enable code obfuscation for release builds, and
+  never expose secrets in the app.
 
 ## What’s your strategy when a plugin breaks after a Flutter upgrade?
 
-- First, I check the plugin's GitHub issues and release notes. Then I update to a compatible version, review migration guides, and test thoroughly. If there's no fix yet, I either downgrade Flutter temporarily or replace the plugin with an alternative.
+- First, I check the plugin's GitHub issues and release notes. Then I update to a compatible
+  version, review migration guides, and test thoroughly. If there's no fix yet, I either downgrade
+  Flutter temporarily or replace the plugin with an alternative.
 
 ## If 10,000 users use your app at the same time, how would you handle it?
 
-Flutter can easily handle many users because each app runs on the user's own device. The main challenge is handling the **backend**, not Flutter itself.
+Flutter can easily handle many users because each app runs on the user's own device. The main
+challenge is handling the **backend**, not Flutter itself.
 
 To support high traffic:
 Use a **scalable backend** with load balancing and auto-scaling.
@@ -49,7 +69,9 @@ Use **WebSockets/Firebase** only where real-time updates are required.
 Monitor performance using **Firebase Crashlytics** and **Performance Monitoring**.
 
 **Interview Tip:**  
-"Flutter is not the bottleneck. If 10,000 users are online, the backend architecture, database, caching, and API scalability are the key factors. Flutter should efficiently consume the APIs and avoid unnecessary network calls."
+"Flutter is not the bottleneck. If 10,000 users are online, the backend architecture, database,
+caching, and API scalability are the key factors. Flutter should efficiently consume the APIs and
+avoid unnecessary network calls."
 
 ## When would you choose StatelessWidget over StatefulWidget?
 
@@ -59,9 +81,10 @@ Monitor performance using **Firebase Crashlytics** and **Performance Monitoring*
 
 ## what is repository pattern in flutter?
 
-The repository pattern in Flutter separates data access from business logic. Instead of widgets
-calling APIs directly, they use a repository that provides clean methods. This makes the app easier
-to test, maintain, and scale.
+- The Repository Pattern is a design pattern that separates the UI from the data layer. The UI or
+  ViewModel doesn't call the API directly. Instead, it requests data from the repository, and the
+  repository decides whether to fetch it from an API, local database, or cache. This makes the code
+  cleaner, easier to maintain, and easier to test.
 
 ## How would you design a booking service system and manage slot selection in Flutter?
 
