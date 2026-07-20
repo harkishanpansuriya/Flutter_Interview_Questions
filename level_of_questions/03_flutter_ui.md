@@ -454,3 +454,7 @@ Flex(
 - `BouncingScrollPhysics` – Adds a bounce effect at the edges (default on iOS).
 - `ClampingScrollPhysics` – Stops scrolling at the edges without a bounce effect (default on
   Android).
+
+## What is Pagination?
+
+- Pagination is a technique to load data in small batches instead of loading everything at once. It improves performance, reduces memory usage, and provides a better user experience. As the user scrolls, the app loads the next set of data from the API.

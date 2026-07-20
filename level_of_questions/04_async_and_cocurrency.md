@@ -37,7 +37,8 @@ Key Takeaway,
 - **`await`:** Waits for a Future to complete and Pauses execution until result comes.
 - **`.then((value) { ... })`:** Handles result of a Future using callback and Alternative to await.
 - **`.whenComplete(() { ... })`:** this code runs after future completes (success or error).
-- **`Future`:** Represents a value that will be available later and Used for async operations like API calls, file reading.
+- **`Future`:** Represents a value that will be available later and Used for async operations like
+  API calls, file reading.
 
 ## Difference between `async` and `async*` in Dart
 
@@ -97,6 +98,7 @@ return a single value and end the function.
 #### **Stream**
 
 - **Definition:** A `Stream` delivers a sequence of values (events) over time.
+- stream is for multiple values over time.
 - **Purpose:** Used for real-time or continuous data (e.g., chat messages, live updates).
 - **Types:**
     - **Single-subscription:** Supports only one listener.
@@ -107,6 +109,7 @@ return a single value and end the function.
 #### **Future**
 
 - **Definition:** A `Future` represents a single value that will be available in the future.
+- future is for single async result.
 - **Purpose:** Used for one-time asynchronous operations (e.g., API calls, file loading).
 - **Features:**
     - `Future.value()` → returns a predefined value
@@ -126,15 +129,27 @@ return a single value and end the function.
 In short, `Stream` is used for handling continuous data or events, while `Future` is used for a
 single asynchronous result.
 
+## how would you handle a stream in widget? how would you manage subscription or disposal if it's not using streambuilder.
+
+- If I only need to display stream data in the UI, I prefer using StreamBuilder because it
+  automatically listens to the stream and handles rebuilding the widget.
+- If I'm not using StreamBuilder, I listen to the stream using a StreamSubscription in initState().
+  Whenever new data arrives, I update the UI using setState() or my state management solution.
+  Finally, I cancel the subscription in dispose() to avoid memory leaks.
+
 ## Differences between streams and sockets in Flutter?
 
-- A Socket is a network connection between a client and a server that enables real-time, two-way communication. It allows the server to push data to the client without continuous polling, making it useful for live features like chat, notifications, and tracking systems.
+- A Socket is a network connection between a client and a server that enables real-time, two-way
+  communication. It allows the server to push data to the client without continuous polling, making
+  it useful for live features like chat, notifications, and tracking systems.
 
-- A Stream is a way to receive continuous data over time inside the app. It is used to handle a sequence of events such as user input, UI updates, or data coming from APIs or sockets.
+- A Stream is a way to receive continuous data over time inside the app. It is used to handle a
+  sequence of events such as user input, UI updates, or data coming from APIs or sockets.
 
 One-line Interview Answer,
 
-Stream is used to handle continuous data inside the app, while sockets are used for real-time two-way communication between client and server over the network.
+Stream is used to handle continuous data inside the app, while sockets are used for real-time
+two-way communication between client and server over the network.
 
 ## `Future` vs `Future.microtask` in Flutter**
 
@@ -180,7 +195,8 @@ void main() {
 - FutureOr = maybe async, maybe sync
 - FutureOr<T> means the function can return either a value of type T or a Future<T>.
 
-FutureOr in Dart allows a function to return either a direct value or a Future of that value, making the function flexible for both synchronous and asynchronous results.
+FutureOr in Dart allows a function to return either a direct value or a Future of that value, making
+the function flexible for both synchronous and asynchronous results.
 
 #### Example:
 
@@ -245,34 +261,124 @@ void fetchDataWithCompleter(Completer<int> completer) {
   });
 }
 
-## What is an Instance ?
-- An instance is an object created from a class. used to access the class properties and methods.
+##
+What is
 
-**Each instance is independent with its own data.**
+an Instance
+?
+-
 
-## Future.wait in Dart
+An instance
+is
 
-- Future.wait in Dart is a way to run multiple asynchronous operations at the same time and wait
-  until all of them are complete.
-- **Why use**: Future.wait is useful when you need to perform multiple asynchronous operations and
-  proceed only when all of them are complete.
-    - **For example**: Loading data from multiple sources (e.g.,
-      network requests, file reads) before displaying it.
-    - Performing multiple database operations.
+an object
+
+created from
+a
+
+class
+.
+
+used to
+
+access the
+
+class properties
+and
+methods
+.
+
+**
+
+Each instance
+is
+independent with
+
+its own
+data
+.**
+
+#
+#
+Future.wait in Dart
+
+- Future.wait in Dart is
+
+a way
+
+to run
+
+multiple asynchronous
+
+operations at
+
+the same
+
+time and
+
+wait
+until
+
+all of
+
+them are
+complete
+.- *
+*
+
+Why use
+*
+*
+:
+Future.wait is
+
+useful when
+
+you need
+
+to perform
+
+multiple asynchronous
+
+operations and
+
+proceed only
+
+when all
+
+of them
+are
+complete
+.- *
+*
+
+For example
+*
+*
+:
+
+Loading data
+
+from multiple
+sources
+(
+e.g.,
+network requests, file reads) before displaying it.
+- Performing multiple database operations.
 - **Output**: It returns a list of results in the same order as the futures.
 - If any future completes with an error, then the returned future completes with that error. If
-  further futures also complete with errors, those errors are discarded.
+further futures also complete with errors, those errors are discarded.
 
 ### Example
 
 ```dart
 Future<void> fetchData() async {
-  List<String> results = await Future.wait([
-    fetchUser(),
-    fetchPosts(),
-  ]);
+List<String> results = await Future.wait([
+fetchUser(),
+fetchPosts(),
+]);
 
-  print(results); // ['User data loaded', 'Posts loaded']
+print(results); // ['User data loaded', 'Posts loaded']
 }
 ```
 
@@ -289,6 +395,7 @@ Future<void> fetchData() async {
 Dart uses a single-threaded event loop to handle asynchronous operations without blocking execution.
 
 It manages two main queues:
+
 - Microtask Queue (high priority)
 - Event Queue (normal async tasks)
 
@@ -306,10 +413,16 @@ Used for normal async work
 👉 Example:
 Microtask always runs BEFORE Future
 
-Microtasks run before the event queue because they have higher priority in the Dart event loop, which ensures critical async tasks are handled first.
+Microtasks run before the event queue because they have higher priority in the Dart event loop,
+which ensures critical async tasks are handled first.
 
-## What is Isolate in Flutter?
-In Flutter, an Isolate is a separate thread of execution with its own memory and event loop, used to run heavy tasks without blocking the main UI thread.
+## What is Isolate in dart and how it different from async await?
+
+- In Flutter, an Isolate is a separate thread of execution with its own memory and event loop, used
+  to run heavy tasks without blocking the main UI thread.
+- async/await is used for asynchronous operations like API calls, file reading, or database access.
+  It doesn't create a new thread; it simply waits for the operation to complete without blocking the
+  UI.
 
 👉 Examples:
 
@@ -382,4 +495,5 @@ Break tasks into chunks
 Use async properly
 
 ## Why does UI freeze even in async code?
+
 - Because async does NOT mean parallel execution in Dart — it only schedules work in event loop.
