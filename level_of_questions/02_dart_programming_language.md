@@ -586,6 +586,12 @@ same file.
 Immutable classes cannot be modified after creation, while mutable classes allow changes to their
 data after the object is created.
 
+## what is the difference between == and identical in dart?
+
+- == checks whether two objects are equal in value. It can be overridden to provide custom equality.
+  identical() checks whether two variables refer to the exact same object in memory and cannot be
+  overridden.
+
 ## What is an Event Loop?
 
 - Event Loop:

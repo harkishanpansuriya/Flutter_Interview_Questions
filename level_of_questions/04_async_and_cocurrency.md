@@ -31,6 +31,21 @@ Key Takeaway,
   manually creating and managing an isolate, we just use compute, and it handles everything
   internally.
 
+## What's the difference between compute() and Isolate.spawn()?
+
+- compute() is a Flutter helper that executes a single function in a background isolate, returns the
+  result, and automatically terminates the isolate. It's ideal for one-time CPU-intensive tasks like
+  JSON parsing.
+- Isolate.spawn() is a low-level Dart API that creates an independent isolate. It stays alive until
+  you terminate it and requires manual communication using SendPort and ReceivePort, making it
+  suitable for long-running background workers and ongoing two-way communication.
+
+## How does Isolate.spawn() close?
+
+- Isolate.spawn() does not automatically terminate if it's designed to keep running. It stays alive
+  until its entry function finishes or until we explicitly stop it using isolate.kill(). If we're
+  using ReceivePort, we should also call receivePort.close() to clean up resources.
+
 ## `async`, `await`, `.then()`, `.whenComplete()` and `Future` in Dart
 
 - **`async`:** Keyword used to mark a function as asynchronous, Allows use of await inside it.
@@ -39,6 +54,29 @@ Key Takeaway,
 - **`.whenComplete(() { ... })`:** this code runs after future completes (success or error).
 - **`Future`:** Represents a value that will be available later and Used for async operations like
   API calls, file reading.
+
+## Future.wait vs Future.any in Dart
+
+- Future.wait runs multiple asynchronous operations at the same time and waits until all of them are
+  complete. It returns a list of results in the same order as the futures.
+- Future.any runs multiple asynchronous operations at the same time and returns the result of the
+  first future that completes. It does not wait for the remaining futures.
+
+> Future.wait waits for all futures to complete and returns a list of results. Future.any returns
+> the result of the first future that completes and doesn't wait for the others.
+
+## why use future.wait instead of calling api one by one?
+
+- I use Future.wait when multiple API calls are independent. It runs them in parallel instead of one
+  by one, which reduces the total loading time and improves performance. If one API depends on
+  another, I use sequential await calls instead.
+
+## Difference between Future.sync, Future.value, and Future.microtask
+
+- Future.value is used when I already have the result and want to return it as a Future.
+- Future.sync executes a function immediately and wraps its result or exception in a Future.
+- Future.microtask schedules a task in the microtask queue, so it runs before normal event queue
+  tasks.
 
 ## Difference between `async` and `async*` in Dart
 
@@ -260,125 +298,47 @@ void fetchDataWithCompleter(Completer<int> completer) {
     completer.complete(84);
   });
 }
+```
 
-##
-What is
+## What is an Instance?
 
-an Instance
-?
--
+* An **instance** is an **object** created from a **class**.
+* It is used to access the **class properties** and **methods**.
+* **Each instance is independent and has its own data.**
 
-An instance
-is
+---
 
-an object
+# Future.wait in Dart
 
-created from
-a
+* `Future.wait` in Dart is a way to run **multiple asynchronous operations** at the same time and
+  wait until **all of them are complete**.
 
-class
-.
+### Why use `Future.wait`?
 
-used to
+* `Future.wait` is useful when you need to perform multiple asynchronous operations and proceed only
+  when **all of them are complete**.
 
-access the
+### For example:
 
-class properties
-and
-methods
-.
+* Loading data from multiple sources (e.g., network requests, file reads) before displaying it.
+* Performing multiple database operations.
 
-**
+### Output
 
-Each instance
-is
-independent with
-
-its own
-data
-.**
-
-#
-#
-Future.wait in Dart
-
-- Future.wait in Dart is
-
-a way
-
-to run
-
-multiple asynchronous
-
-operations at
-
-the same
-
-time and
-
-wait
-until
-
-all of
-
-them are
-complete
-.- *
-*
-
-Why use
-*
-*
-:
-Future.wait is
-
-useful when
-
-you need
-
-to perform
-
-multiple asynchronous
-
-operations and
-
-proceed only
-
-when all
-
-of them
-are
-complete
-.- *
-*
-
-For example
-*
-*
-:
-
-Loading data
-
-from multiple
-sources
-(
-e.g.,
-network requests, file reads) before displaying it.
-- Performing multiple database operations.
-- **Output**: It returns a list of results in the same order as the futures.
-- If any future completes with an error, then the returned future completes with that error. If
-further futures also complete with errors, those errors are discarded.
+* It returns a **list of results** in the same order as the futures.
+* If **any future** completes with an error, the returned future also completes with that error. If
+  further futures also complete with errors, those errors are discarded.
 
 ### Example
 
 ```dart
 Future<void> fetchData() async {
-List<String> results = await Future.wait([
-fetchUser(),
-fetchPosts(),
-]);
+  List<String> results = await Future.wait([
+    fetchUser(),
+    fetchPosts(),
+  ]);
 
-print(results); // ['User data loaded', 'Posts loaded']
+  print(results); // ['User data loaded', 'Posts loaded']
 }
 ```
 
@@ -399,22 +359,54 @@ It manages two main queues:
 - Microtask Queue (high priority)
 - Event Queue (normal async tasks)
 
-## What is the difference between Microtask and Event Queue?
+## What is the difference between Microtask queue and Event Queue?
 
-Microtask Queue:
-Runs immediately after synchronous code
-Higher priority
-Example: Future.microtask()
+### Microtask Queue
 
-Event Queue:
-Runs after microtasks
-Used for normal async work
+* Runs **immediately after the current synchronous code**.
+* All microtasks are completed **before** Dart processes the event queue.
 
-👉 Example:
-Microtask always runs BEFORE Future
+### Examples
 
-Microtasks run before the event queue because they have higher priority in the Dart event loop,
-which ensures critical async tasks are handled first.
+* `Future.microtask()`
+* `scheduleMicrotask()`
+
+``` 
+Future.microtask(() {
+print("Microtask");
+});
+```
+
+### Event Queue
+
+* Handles normal asynchronous events.
+* Runs only after the microtask queue is empty.
+
+### Examples
+
+* `Future()`
+* `Future.delayed()`
+* `Timer`
+* API calls
+* User input
+
+``` 
+Future(() {
+print("Event");
+});
+```
+
+### Easy answer
+
+> **"The Microtask Queue has higher priority than the Event Queue. After the current synchronous
+code finishes, Dart executes all microtasks first, and only then processes the event queue.
+Microtasks are used for immediate asynchronous work, while the event queue handles timers, I/O, API
+calls, and user events."**
+
+### Easy way to remember
+
+* **Microtask Queue** → **Higher priority, runs first.**
+* **Event Queue** → **Lower priority, runs after all microtasks.**
 
 ## What is Isolate in dart and how it different from async await?
 
